@@ -1,17 +1,17 @@
 package com.condelar.cader.base.errors.exceptions;
 
-import com.condelar.cader.base.errors.msgerror.ValidErrors;
+import com.condelar.cader.base.errors.exceptionshandler.ValidationError;
 
 public class ValidException extends RuntimeException {
 
-    ValidErrors erros;
+    ValidationError erros;
 
-    public ValidException(String msg, ValidErrors erros) {
+    public ValidException(String msg, ValidationError erros) {
         super(msg);
         this.erros = erros;
     }
 
-    public ValidErrors getErros() {
+    public ValidationError getErros() {
         return erros;
     }
 }

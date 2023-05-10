@@ -1,51 +1,128 @@
 package com.condelar.cader.base.structure;
 
 import com.condelar.cader.base.domain.User;
+import com.condelar.cader.base.errors.exceptions.NotIsRegisterException;
+import com.condelar.cader.base.errors.exceptions.UpdateException;
+import com.condelar.cader.base.otherdto.ComboItem;
+import com.condelar.cader.base.structure.util.PackageDT;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class BaseResource<Entity extends BaseEntity, Service extends BaseService> {
+public class BaseResource<Entity extends BaseEntity,
+        DTO extends BaseDTO,
+        FilterDTO extends BaseDTO,
+        ListDTO extends BaseDTO,
+        Repos extends JpaRepository,
+        Service extends BaseService<Entity, DTO, FilterDTO, ListDTO, Repos, Valid>,
+        Valid extends BaseValid<DTO, Entity>> {
 
     @Autowired
     private Service service;
+
+    @Autowired
+    private Valid valid;
 
     private User getUser() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
-
-    @GetMapping("/")
-    public List<Entity> list() {
-        User user = getUser();
-        Entity ob = (Entity) service.instance();
-        ob.setUser(user);
-        return service.list(ob);
-    }
-
     @GetMapping("/{id}")
-    public Entity get(@PathVariable Long id) {
+    public ResponseEntity<PackageDT<DTO>> get(@PathVariable Long id) {
         User user = getUser();
-        Entity ob = (Entity) service.instance();
+        Entity ob = service.instance();
         ob.setUser(user);
         ob.setId(id);
-        return (Entity) service.find(ob);
+        ob = service.find(ob);
+        DTO dto = service.toDTO(ob);
+        dto.setUpdate(ob.getUpdate());
+        PackageDT<DTO> pack = new PackageDT();
+        pack.setData(dto);
+        return ResponseEntity.ok().body(pack);
+    }
+
+    @PostMapping
+    public ResponseEntity<PackageDT<DTO>> save(@RequestBody PackageDT<DTO> pack) {
+        valid.clear();
+        valid.validDtoToSave(pack.getData());
+        valid.hasError();
+        Entity ob = service.instance();
+        if (pack.getData().getId() != null) {
+            throw new UpdateException("The data has extist: " + ob.getUpdate());
+        }
+        ob = service.toEntity(ob, pack.getData());
+        ob.setRegister(LocalDate.now());
+        ob.setUser(getUser());
+        ob = service.save(ob);
+        DTO dto = service.toDTO(ob);
+        pack.setData(dto);
+        pack.setMessage("Data Save");
+        return ResponseEntity.ok().body(pack);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PackageDT<DTO>> update(@PathVariable Long id, @RequestBody PackageDT<DTO> pack) {
+        valid.clear();
+        valid.validDtoToSave(pack.getData());
+        valid.hasError();
+        Entity ob = service.instance();
+        ob.setUser(getUser());
+        ob.setId(id);
+        ob = service.find(ob);
+        if (ob.getUpdate().equals(pack.getData().getUpdate())) {
+            ob = service.toEntity(ob, pack.getData());
+            ob = service.save(ob);
+            DTO dto = service.toDTO(ob);
+            dto.setUpdate(ob.getUpdate());
+            pack.setData(dto);
+            pack.setMessage("Data Save");
+            return ResponseEntity.ok().body(pack);
+        }
+        throw new UpdateException("Update in: " + ob.getUpdate());
     }
 
     @GetMapping("/combo")
-    public List<String> combp() {
+    public ResponseEntity<PackageDT<ComboItem>> combo() {
         User user = getUser();
-        Entity ob = (Entity) service.instance();
-        ob.setUser(user);
-        List<String> res = new ArrayList<>();
-        service.list(ob).forEach(i -> {
-            Entity e = (Entity) i;
-        });
+        Entity ob = service.instance();
+        if (ob instanceof RegisterEntity) {
+            ob.setUser(user);
+            List<ComboItem> res = new ArrayList<>();
+            ((RegisterEntity) ob).setActive(null);
+            service.list(ob).forEach(e -> res.add(new ComboItem((RegisterEntity) e)));
+            PackageDT<ComboItem> pack = new PackageDT();
+            pack.setDatas(res);
+            return ResponseEntity.ok().body(pack);
+        }
+        throw new NotIsRegisterException("Type: " + ob.getClass().getName());
+    }
 
-        return res;
+    @PostMapping("/list")
+    public ResponseEntity<PackageDT<ListDTO>> filter(@RequestBody PackageDT<FilterDTO> pack) {
+        PackageDT<ListDTO> res = new PackageDT<ListDTO>();
+        Entity ob = service.instance();
+        if (ob instanceof RegisterEntity) {
+            ob.setUser(getUser());
+            ((RegisterEntity) ob).setActive(null);
+            List<Entity> list = service.list(ob);
+            List<ListDTO> listDTO = list.stream().map(m -> service.toListItem(m)).collect(Collectors.toList());
+            res.setDatas(listDTO);
+        } else {
+            List<Entity> list = service.filter(pack.getData(), getUser());
+            List<ListDTO> listDTO = list.stream().map(m -> service.toListItem(m)).collect(Collectors.toList());
+            res.setDatas(listDTO);
+            return ResponseEntity.ok().body(res);
+        }
+        if (res.getDatas().isEmpty()) {
+
+        }
+        return ResponseEntity.ok().body(res);
     }
 }

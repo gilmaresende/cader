@@ -13,7 +13,7 @@ public class TokenService {
 
     public String gerarToken(User user) {
         return JWT.create().withIssuer("home1").withSubject(user.getUsername()).withClaim("id", user.getId())
-                .withExpiresAt(LocalDateTime.now().plusMinutes(10L).toInstant(ZoneOffset.of("-03:00")))
+                .withExpiresAt(LocalDateTime.now().plusMinutes(60L).toInstant(ZoneOffset.of("-03:00")))
                 .sign(Algorithm.HMAC256("secreta"));
     }
 

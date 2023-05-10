@@ -26,4 +26,8 @@ public class ValidationError extends StandardError {
         this.errors.add(new FieldMessage(fildName, message));
     }
 
+    public Boolean hasErrors(){
+        return !errors.isEmpty();
+    }
+
 }

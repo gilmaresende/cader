@@ -4,7 +4,7 @@ import com.condelar.cader.base.domain.User;
 import com.condelar.cader.base.dto.LoginDTO;
 import com.condelar.cader.base.dto.UserDTO;
 import com.condelar.cader.base.errors.exceptions.ValidException;
-import com.condelar.cader.base.errors.msgerror.ValidErrors;
+import com.condelar.cader.base.errors.exceptionshandler.ValidationError;
 import com.condelar.cader.base.securyti.services.TokenService;
 import com.condelar.cader.base.securyti.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,49 +56,48 @@ public class AuthResource {
     }
 
     private void validLogin(LoginDTO login) {
-
-        ValidErrors errors = new ValidErrors();
+        ValidationError v = new ValidationError();
         if (login.login() == null || login.login().isBlank()) {
-            errors.addErro("login", "The Login can not be empty!");
+            v.addErrors("login", "The Login can not be empty!");
         }
 
         if (login.password() == null || login.password().isBlank()) {
-            errors.addErro("password", "The Password can not be empty!");
+            v.addErrors("password", "The Password can not be empty!");
         }
 
-        if (errors.getHasError()) {
-            throw new ValidException("Campos Obrigatórios", errors);
+        if (v.hasErrors()) {
+            throw new ValidException("Campos Obrigatórios", v);
         }
     }
 
     private void validRegister(UserDTO login) {
 
-        ValidErrors errors = new ValidErrors();
+        ValidationError errors = new ValidationError();
         if (login.login() == null || login.login().isBlank()) {
-            errors.addErro("login", "The Login can not be empty!");
+            errors.addErrors("login", "The Login can not be empty!");
         }
 
         if (login.name() == null || login.name().isBlank()) {
-            errors.addErro("name", "The Name can not be empty!");
+            errors.addErrors("name", "The Name can not be empty!");
         }
 
         if (login.password1() == null || login.password1().isBlank()) {
-            errors.addErro("password1", "The Password can not be empty!");
+            errors.addErrors("password1", "The Password can not be empty!");
         }
 
         if (login.password2() == null || login.password2().isBlank()) {
-            errors.addErro("password2", "Repeat the Password!");
+            errors.addErrors("password2", "Repeat the Password!");
         }
 
         if (login.email() == null || login.email().isBlank()) {
-            errors.addErro("email", "The e-mail can not be empty!");
+            errors.addErrors("email", "The e-mail can not be empty!");
         }
 
         if (login.password1() != null && !login.password1().equals(login.password2())) {
-            errors.addErro("", "The passwords aren't equals!");
+            errors.addErrors("", "The passwords aren't equals!");
         }
 
-        if (errors.getHasError()) {
+        if (errors.hasErrors()) {
             throw new ValidException("Campos Obrigatórios", errors);
         }
     }
