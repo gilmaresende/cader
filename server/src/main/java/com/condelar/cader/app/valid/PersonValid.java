@@ -19,4 +19,9 @@ public class PersonValid extends BaseValid<PersonDTO, Person> {
     public void validObject(Person ob) {
 
     }
+
+    @Override
+    public void validDelete(Person ob) {
+
+    }
 }

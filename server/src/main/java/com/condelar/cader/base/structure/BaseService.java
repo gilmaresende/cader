@@ -1,9 +1,11 @@
 package com.condelar.cader.base.structure;
 
 import com.condelar.cader.base.domain.User;
+import com.condelar.cader.base.errors.exceptions.DeleteException;
 import com.condelar.cader.base.errors.exceptions.ObjectNotFoundException;
 import com.condelar.cader.base.errors.exceptions.SaveException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -61,6 +63,17 @@ public abstract class BaseService<
             return (Entity) repository.save(ob);
         } catch (JpaSystemException e) {
             throw new SaveException(e);
+        }
+    }
+
+    public void delete(Entity ob) {
+        try {
+            valid.clear();
+            valid.validDelete(ob);
+            valid.hasError();
+            repository.delete(ob);
+        } catch (JpaSystemException | DataIntegrityViolationException e) {
+            throw new DeleteException(e.getMessage());
         }
     }
 

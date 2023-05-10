@@ -19,4 +19,9 @@ public class ExpenseCategoryValid extends BaseValid<ExpenseCategoryDTO, ExpenseC
     public void validObject(ExpenseCategory ob) {
 
     }
+
+    @Override
+    public void validDelete(ExpenseCategory ob) {
+
+    }
 }

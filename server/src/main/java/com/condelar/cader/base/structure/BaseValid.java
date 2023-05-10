@@ -12,6 +12,8 @@ public abstract class BaseValid<DTO extends BaseDTO, Entity extends BaseEntity> 
 
     public abstract void validObject(Entity ob);
 
+    public abstract void validDelete(Entity ob);
+
     public ValidationError getErrors() {
         return errors;
     }

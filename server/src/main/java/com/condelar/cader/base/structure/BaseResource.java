@@ -125,4 +125,18 @@ public class BaseResource<Entity extends BaseEntity,
         }
         return ResponseEntity.ok().body(res);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PackageDT> delete(@PathVariable Long id) {
+        Entity ob = service.instance();
+        ob.setUser(getUser());
+        ob.setId(id);
+        ob = service.find(ob);
+
+        service.delete(ob);
+
+        PackageDT res = new PackageDT();
+        res.setMessage("Data deleted");
+        return ResponseEntity.ok().body(res);
+    }
 }
