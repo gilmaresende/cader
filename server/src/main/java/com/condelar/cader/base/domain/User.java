@@ -13,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "usuario")
 public class User implements UserDetails {
 
     private static final long serialVersionUID = 1L;
@@ -21,15 +22,17 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(unique = true, length = 50, nullable = false)
+    @Column(name = "login", unique = true, length = 50, nullable = false)
     private String login;
 
+    @Column(name = "senha", unique = true, length = 250, nullable = false)
     private String password;
 
-    @Column(unique = true, length = 50, nullable = false)
+
+    @Column(name = "nome", unique = true, length = 50, nullable = false)
     private String name;
 
-    @Column(unique = true, length = 50, nullable = false)
+    @Column(name = "email", unique = true, length = 50, nullable = false)
     private String email;
 
     public User() {
