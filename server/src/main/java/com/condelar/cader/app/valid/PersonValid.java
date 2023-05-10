@@ -1,7 +1,7 @@
 package com.condelar.cader.app.valid;
 
 import com.condelar.cader.app.domain.Person;
-import com.condelar.cader.app.dto.PersonDTO;
+import com.condelar.cader.app.dto.person.PersonDTO;
 import com.condelar.cader.base.structure.BaseValid;
 import org.springframework.stereotype.Component;
 

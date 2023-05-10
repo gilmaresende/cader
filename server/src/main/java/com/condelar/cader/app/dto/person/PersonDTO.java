@@ -1,4 +1,4 @@
-package com.condelar.cader.app.dto;
+package com.condelar.cader.app.dto.person;
 
 import com.condelar.cader.app.domain.Person;
 import com.condelar.cader.base.structure.BaseDTO;
