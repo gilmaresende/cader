@@ -1,10 +1,10 @@
 package com.condelar.cader.base.errors.exceptionshandler;
 
+import com.condelar.cader.base.errors.exceptions.ObjectNotFoundException;
 import com.condelar.cader.base.errors.exceptions.ValidException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -40,6 +40,14 @@ public class ResourceExceptionHandler {
                                                   HttpServletRequest request) {
         StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
                 "Error Data Base", ex.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(ObjectNotFoundException.class)
+    public ResponseEntity<StandardError> objNotFound(ObjectNotFoundException ex,
+                                                     HttpServletRequest request) {
+        StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
+                "Dado Não Encontrado", ex.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 

@@ -7,7 +7,6 @@ import com.condelar.cader.base.errors.exceptions.ValidException;
 import com.condelar.cader.base.errors.msgerror.ValidErrors;
 import com.condelar.cader.base.securyti.services.TokenService;
 import com.condelar.cader.base.securyti.services.UserService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -47,7 +46,7 @@ public class AuthResource {
     }
 
     @PostMapping("/toRegister")
-    public ResponseEntity toRegister(@Valid @RequestBody UserDTO login) {
+    public ResponseEntity toRegister(@RequestBody UserDTO login) {
         validRegister(login);
         User ob = new User(login);
         ob.setPassword(encoder.encode(login.password1()));
@@ -57,13 +56,14 @@ public class AuthResource {
     }
 
     private void validLogin(LoginDTO login) {
+
         ValidErrors errors = new ValidErrors();
         if (login.login() == null || login.login().isBlank()) {
-            errors.addErro("", "Login can not be empty!");
+            errors.addErro("login", "The Login can not be empty!");
         }
 
         if (login.password() == null || login.password().isBlank()) {
-            errors.addErro("", "Password can not be empty!");
+            errors.addErro("password", "The Password can not be empty!");
         }
 
         if (errors.getHasError()) {
@@ -75,27 +75,27 @@ public class AuthResource {
 
         ValidErrors errors = new ValidErrors();
         if (login.login() == null || login.login().isBlank()) {
-            errors.addErro("login", "Login can not be empty!");
+            errors.addErro("login", "The Login can not be empty!");
         }
 
         if (login.name() == null || login.name().isBlank()) {
-            errors.addErro("name", "Name can not be empty!");
+            errors.addErro("name", "The Name can not be empty!");
         }
 
         if (login.password1() == null || login.password1().isBlank()) {
-            errors.addErro("password1", "Password can not be empty!");
+            errors.addErro("password1", "The Password can not be empty!");
         }
 
         if (login.password2() == null || login.password2().isBlank()) {
-            errors.addErro("password1", "Repeat the Password!");
+            errors.addErro("password2", "Repeat the Password!");
         }
 
         if (login.email() == null || login.email().isBlank()) {
-            errors.addErro("email", "e-mail can not be empty!");
+            errors.addErro("email", "The e-mail can not be empty!");
         }
 
         if (login.password1() != null && !login.password1().equals(login.password2())) {
-            errors.addErro("password", "The passwords aren't equals!");
+            errors.addErro("", "The passwords aren't equals!");
         }
 
         if (errors.getHasError()) {
