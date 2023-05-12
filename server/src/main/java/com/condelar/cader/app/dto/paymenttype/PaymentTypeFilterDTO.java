@@ -1,20 +1,20 @@
-package com.condelar.cader.app.dto.person;
+package com.condelar.cader.app.dto.paymenttype;
 
-import com.condelar.cader.app.domain.Person;
+import com.condelar.cader.app.domain.PaymentType;
 import com.condelar.cader.base.structure.BaseDTO;
 import lombok.Data;
 
 @Data
-public class PersonListDTO extends BaseDTO {
+public class PaymentTypeFilterDTO extends BaseDTO {
 
     private String name;
 
     private Short active;
 
-    public PersonListDTO() {
+    public PaymentTypeFilterDTO() {
     }
 
-    public PersonListDTO(Person ob) {
+    public PaymentTypeFilterDTO(PaymentType ob) {
         setId(ob.getId());
         setName(ob.getName());
         setActive(ob.getActive());
