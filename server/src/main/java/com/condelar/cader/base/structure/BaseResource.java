@@ -112,11 +112,19 @@ public class BaseResource<Entity extends BaseEntity,
             ob.setUser(getUser());
             ((RegisterEntity) ob).setActive(null);
             List<Entity> list = service.list(ob);
-            List<ListDTO> listDTO = list.stream().map(m -> service.toListItem(m)).collect(Collectors.toList());
+            List<ListDTO> listDTO = list.stream().map(m -> {
+                ListDTO i = service.toListItem(m);
+                i.setUpdate(m.getUpdate());
+                return i;
+            }).collect(Collectors.toList());
             res.setDatas(listDTO);
         } else {
             List<Entity> list = service.filter(pack.getData(), getUser());
-            List<ListDTO> listDTO = list.stream().map(m -> service.toListItem(m)).collect(Collectors.toList());
+            List<ListDTO> listDTO = list.stream().map(m -> {
+                ListDTO i = service.toListItem(m);
+                i.setUpdate(m.getUpdate());
+                return i;
+            }).collect(Collectors.toList());
             res.setDatas(listDTO);
             return ResponseEntity.ok().body(res);
         }

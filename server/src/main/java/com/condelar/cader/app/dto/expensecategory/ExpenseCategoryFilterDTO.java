@@ -1,6 +1,6 @@
 package com.condelar.cader.app.dto.expensecategory;
 
-import com.condelar.cader.app.domain.Person;
+import com.condelar.cader.app.domain.ExpenseCategory;
 import com.condelar.cader.base.structure.BaseDTO;
 import lombok.Data;
 
@@ -14,7 +14,7 @@ public class ExpenseCategoryFilterDTO extends BaseDTO {
     public ExpenseCategoryFilterDTO() {
     }
 
-    public ExpenseCategoryFilterDTO(Person ob) {
+    public ExpenseCategoryFilterDTO(ExpenseCategory ob) {
         setId(ob.getId());
         setName(ob.getName());
         setActive(ob.getActive());
