@@ -10,7 +10,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,26 +51,21 @@ public class BaseResource<Entity extends BaseEntity,
     }
 
     @PostMapping
-    public ResponseEntity<PackageDT<DTO>> save(@RequestBody PackageDT<DTO> pack) {
+    public ResponseEntity<Void> save(@RequestBody PackageDT<DTO> pack) {
         valid.clear();
         valid.validDtoToSave(pack.getData());
         valid.hasError();
         Entity ob = service.instance();
-        if (pack.getData().getId() != null) {
-            throw new UpdateException("The data has extist: " + ob.getUpdate());
-        }
+        pack.getData().setId(null);
         ob = service.toEntity(ob, pack.getData());
         ob.setRegister(LocalDate.now());
         ob.setUser(getUser());
         ob = service.save(ob);
-        DTO dto = service.toDTO(ob);
-        pack.setData(dto);
-        pack.setMessage("Data Save");
-        return ResponseEntity.ok().body(pack);
+        return ResponseEntity.created(createURI(ob)).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PackageDT<DTO>> update(@PathVariable Long id, @RequestBody PackageDT<DTO> pack) {
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody PackageDT<DTO> pack) {
         valid.clear();
         valid.validDtoToSave(pack.getData());
         valid.hasError();
@@ -79,11 +76,7 @@ public class BaseResource<Entity extends BaseEntity,
         if (ob.getUpdate().equals(pack.getData().getUpdate())) {
             ob = service.toEntity(ob, pack.getData());
             ob = service.save(ob);
-            DTO dto = service.toDTO(ob);
-            dto.setUpdate(ob.getUpdate());
-            pack.setData(dto);
-            pack.setMessage("Data Save");
-            return ResponseEntity.ok().body(pack);
+            return ResponseEntity.created(createURI(ob)).build();
         }
         throw new UpdateException("Update in: " + ob.getUpdate());
     }
@@ -135,16 +128,18 @@ public class BaseResource<Entity extends BaseEntity,
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<PackageDT> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         Entity ob = service.instance();
         ob.setUser(getUser());
         ob.setId(id);
         ob = service.find(ob);
-
         service.delete(ob);
+        return ResponseEntity.noContent().build();
+    }
 
-        PackageDT res = new PackageDT();
-        res.setMessage("Data deleted");
-        return ResponseEntity.ok().body(res);
+    private URI createURI(Entity ob) {
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(ob.getId()).toUri();
+        return uri;
     }
 }
