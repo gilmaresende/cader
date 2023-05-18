@@ -15,9 +15,7 @@ public class PersonFilterDTO extends BaseDTO {
     }
 
     public PersonFilterDTO(Person ob) {
-        setId(ob.getId());
-        setName(ob.getName());
-        setActive(ob.getActive());
+        super(ob);
     }
 
 }

@@ -40,6 +40,8 @@ public class BaseResource<Entity extends BaseEntity,
     public ResponseEntity<PackageDT<DTO>> get(@PathVariable Long id) {
         User user = getUser();
         Entity ob = service.instance();
+        if (ob instanceof RegisterEntity)
+            ((RegisterEntity) ob).setActive(null);
         ob.setUser(user);
         ob.setId(id);
         ob = service.find(ob);
@@ -70,6 +72,8 @@ public class BaseResource<Entity extends BaseEntity,
         valid.validDtoToSave(pack.getData());
         valid.hasError();
         Entity ob = service.instance();
+        if (ob instanceof RegisterEntity)
+            ((RegisterEntity) ob).setActive(null);
         ob.setUser(getUser());
         ob.setId(id);
         ob = service.find(ob);

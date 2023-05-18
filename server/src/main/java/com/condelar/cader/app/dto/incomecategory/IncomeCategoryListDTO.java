@@ -15,9 +15,7 @@ public class IncomeCategoryListDTO extends BaseDTO {
     }
 
     public IncomeCategoryListDTO(IncomeCategory ob) {
-        setId(ob.getId());
-        setName(ob.getName());
-        setActive(ob.getActive());
+        super(ob);
     }
 
 }

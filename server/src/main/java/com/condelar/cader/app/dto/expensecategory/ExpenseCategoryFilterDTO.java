@@ -15,9 +15,7 @@ public class ExpenseCategoryFilterDTO extends BaseDTO {
     }
 
     public ExpenseCategoryFilterDTO(ExpenseCategory ob) {
-        setId(ob.getId());
-        setName(ob.getName());
-        setActive(ob.getActive());
+        super(ob);
     }
 
 }

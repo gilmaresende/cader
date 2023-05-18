@@ -15,9 +15,7 @@ public class PersonDTO extends BaseDTO {
     }
 
     public PersonDTO(Person ob) {
-        setId(ob.getId());
-        setName(ob.getName());
-        setActive(ob.getActive());
+        super(ob);
     }
 
 }

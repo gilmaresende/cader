@@ -15,9 +15,7 @@ public class ExpenseCategoryDTO extends BaseDTO {
     }
 
     public ExpenseCategoryDTO(ExpenseCategory ob) {
-        setId(ob.getId());
-        setName(ob.getName());
-        setActive(ob.getActive());
+        super(ob);
     }
 
 }
