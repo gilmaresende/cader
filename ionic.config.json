@@ -1,0 +1,8 @@
+{
+  "name": "cader",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "6ba17ba9"
+}
