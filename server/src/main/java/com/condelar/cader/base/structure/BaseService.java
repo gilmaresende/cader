@@ -25,10 +25,20 @@ public abstract class BaseService<
     @Autowired
     Repository repository;
 
+    public Repository getRepo(){
+        return repository;
+    }
+
     @Autowired
     Valid valid;
 
     public Entity get(Entity base) {
+        User u = new User();
+        u.setId(base.getUser().getId());
+        base.setUser(u);
+        /*o usuario é redefinidor apenas com o Id. para que na query seja considerado apenas o Id.
+         * se não todos os atributos seriam analisados, inclusive, strings seriam com like
+         * */
         Example example = Example.of(base, ExampleMatcher.matching()
                 .withIgnoreCase()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
@@ -51,6 +61,12 @@ public abstract class BaseService<
     }
 
     public List<Entity> list(Entity base) {
+        User u = new User();
+        u.setId(base.getUser().getId());
+        base.setUser(u);
+        /*o usuario é redefinidor apenas com o Id. para que na query seja considerado apenas o Id.
+         * se não todos os atributos seriam analisados, inclusive, strings seriam com like
+         * */
         Example example = Example.of(base, ExampleMatcher.matching()
                 .withIgnoreCase()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));

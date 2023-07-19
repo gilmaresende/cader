@@ -1,3 +1,3 @@
 interface Base {
-
+   id?: number
 }

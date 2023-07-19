@@ -2,7 +2,7 @@
 import TextField from '@mui/material/TextField';
 import React from 'react';
 
-export default function CPassword(props: IInput) {
+export default function InputPasswordImpl(props: IInput) {
    const [txt, setTxt] = React.useState(props.ob[props.atr]);
    return (
       <TextField
