@@ -9,7 +9,7 @@ export class ApiUser extends ApiService<Login>{
    async logar(ob: Login) {
       console.log(ob)
       let res = '0'
-      await this.postOb('login', ob).then((response) => {
+      await this.post('login', ob).then((response) => {
          res = response.data
       })
          .catch((erro) => {
