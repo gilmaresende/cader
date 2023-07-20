@@ -4,35 +4,35 @@ import React from "react";
 
 abstract class PageLogin extends React.Component {
 
- 
-   private loading: boolean = false
+   state = {
+      loading: false
+   }
 
    async componentDidMount() {
-      this.loading = true
+      this.showLoadind()
       if (!isLog()) {
-         console.log('to login')
          toPage('')
       } else {
-         console.log("super no login")
+         console.log(this.props)
       }
       this.build()
-      setTimeout(function () {
-         console.log('dev')
-      }, 3000);
-      this.loading = false
+
+      this.disabledLoadind()
    }
 
    render() {
-      if (this.loading) {
-         console.log('carregadndo')
+      if (this.state.loading) {
          return <>carregando</>
       }
+      return this.showView()
+   }
 
-      return (
-         <>
-            {this.showView()}
-         </>
-      );
+   async showLoadind() {
+      this.setState({ loading: true })
+   }
+
+   async disabledLoadind() {
+      this.setState({ loading: false })
    }
 
    abstract showView(): any

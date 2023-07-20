@@ -1,3 +1,4 @@
 interface Base {
-   id?: number
+   id?: number,
+   update?: number
 }

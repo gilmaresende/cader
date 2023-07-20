@@ -67,9 +67,9 @@ public class BaseResource<Entity extends BaseEntity,
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody PackageDT<DTO> pack) {
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody DTO data) {
         valid.clear();
-        valid.validDtoToSave(pack.getData());
+        valid.validDtoToSave(data);
         valid.hasError();
         Entity ob = service.instance();
         if (ob instanceof RegisterEntity)
@@ -77,8 +77,8 @@ public class BaseResource<Entity extends BaseEntity,
         ob.setUser(getUser());
         ob.setId(id);
         ob = service.find(ob);
-        if (ob.getUpdate().equals(pack.getData().getUpdate())) {
-            ob = service.toEntity(ob, pack.getData());
+        if (ob.getUpdate().equals(data.getUpdate())) {
+            ob = service.toEntity(ob, data);
             ob = service.save(ob);
             return ResponseEntity.created(createURI(ob)).build();
         }

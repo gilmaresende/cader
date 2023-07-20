@@ -9,5 +9,4 @@ export class ServiceExpenseCategory extends ApiEntity<ExpenseCategory>{
    newEntity(): ExpenseCategory {
       return { name: '', active: 1 }
    }
-
 }

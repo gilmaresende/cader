@@ -22,8 +22,9 @@ abstract class PageEntity<Entidade extends BaseEntity, Service extends ApiEntity
    }
 
    async save() {
+      this.showLoadind()
       const response = await this.service.save(this.ob)
-      console.log(response)
+      this.disabledLoadind()
    }
 }
 
