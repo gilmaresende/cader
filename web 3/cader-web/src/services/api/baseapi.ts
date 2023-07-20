@@ -19,6 +19,11 @@ class ApiBase {
       }
    }
 
+   postSave(ob: any) {
+      const requestUrl = `${this.apiurl}`;
+      return httpClient.post(requestUrl, ob, this.header);
+   }
+
    postS(url: string, ob: any) {
       const requestUrl = `${this.apiurl}/${url}`;
       if (isLog())

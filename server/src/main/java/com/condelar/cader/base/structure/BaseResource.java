@@ -53,13 +53,13 @@ public class BaseResource<Entity extends BaseEntity,
     }
 
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody PackageDT<DTO> pack) {
+    public ResponseEntity<Void> save(@RequestBody DTO data) {
         valid.clear();
-        valid.validDtoToSave(pack.getData());
+        valid.validDtoToSave(data);
         valid.hasError();
         Entity ob = service.instance();
-        pack.getData().setId(null);
-        ob = service.toEntity(ob, pack.getData());
+        data.setId(null);
+        ob = service.toEntity(ob, data);
         ob.setRegister(LocalDate.now());
         ob.setUser(getUser());
         ob = service.save(ob);

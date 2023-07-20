@@ -2,8 +2,9 @@ import PageEntity from "@/components/pageEntity/PageEntity";
 import { ServiceExpenseCategory } from "@/services/services/expenseCategory/service";
 import { logOut } from "@/services/services/login/service";
 import styles from './style.module.css';
+import InputTextImpl from "@/components/inputtext";
 
-class HomeView extends PageEntity<ServiceExpenseCategory> {
+class ExpenseCategoryView extends PageEntity<ExpenseCategory, ServiceExpenseCategory> {
 
    constructor() {
       super(new ServiceExpenseCategory());
@@ -17,12 +18,15 @@ class HomeView extends PageEntity<ServiceExpenseCategory> {
    showView() {
       return (<>
          <div className={styles.card}>
-            Home
+            Categoria
             <br></br>
+            <InputTextImpl ob={this.ob} atr={"name"} label={"Nome"} />
+            <InputTextImpl ob={this.ob} atr={"active"} label={"Ativo"} />
             <button onClick={() => logOut()}>Sair</button>
-            <button onClick={() => this.showCa()}>Show</button>
+            <button onClick={() => this.save()}>Save</button>
+            <button onClick={() => console.log(this.ob)}>Show ob</button>
          </div>
       </>)
    }
 }
-export default HomeView
+export default ExpenseCategoryView

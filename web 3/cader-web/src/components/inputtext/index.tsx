@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import React from 'react';
 
 export default function InputTextImpl(props: IInput) {
-   const [txt, setTxt] = React.useState(props.ob[props.atr]);
+   const [txt, setTxt] = React.useState(props.ob ? props.ob[props.atr] : '');
    return (
       <TextField
          sx={props.sx}

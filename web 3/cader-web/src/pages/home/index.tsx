@@ -9,6 +9,10 @@ class HomeView extends PageLogin {
       toPage('expense-category')
    }
 
+   build(): void {
+
+   }
+
    showView() {
       return (<>
          <div className={styles.card}>

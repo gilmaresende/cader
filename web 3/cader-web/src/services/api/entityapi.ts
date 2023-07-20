@@ -1,17 +1,17 @@
 import { BaseEntity } from "@/modal/BaseEntity";
 import ApiBase from "./baseapi";
 
-class ApiEntity<Entity extends BaseEntity> extends ApiBase {
+abstract class ApiEntity<Entity extends BaseEntity> extends ApiBase {
 
    constructor(apiurl: string) {
       super(apiurl)
    }
 
-   save(ob: Entity) {
+   async save(ob: Entity) {
       if (ob.id) {
-         super.putS(ob.id, ob)
+         return await super.putS(ob.id, ob)
       } else {
-         super.postS('', ob)
+         return await super.postSave(ob)
       }
    }
 
@@ -35,6 +35,8 @@ class ApiEntity<Entity extends BaseEntity> extends ApiBase {
    get(url: string) {
       return super.getS(url)
    }
+
+   abstract newEntity(): Entity;
 }
 
 export default ApiEntity;
