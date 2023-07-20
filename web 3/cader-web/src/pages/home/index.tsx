@@ -1,16 +1,12 @@
 import PageLogin from "@/components/pagelogin/PageLog";
 import styles from './style.module.css';
 import { logOut } from "@/services/services/login/service";
-import { ApiExpenseCategory } from "@/services/api/expenseCategory/expenseCategoryApi";
+import { toPage } from "@/services/tools/JsService";
 
 class HomeView extends PageLogin {
 
-   private service = new ApiExpenseCategory()
-
-
-   async showCa() {
-      const token = await this.service.post('list', {})
-      console.log(token)
+   async toCategoria() {
+      toPage('expense-category')
    }
 
    showView() {
@@ -19,7 +15,7 @@ class HomeView extends PageLogin {
             Home
             <br></br>
             <button onClick={() => logOut()}>Sair</button>
-            <button onClick={() => this.showCa()}>Show</button>
+            <button onClick={() => this.toCategoria()}>To Categoria</button>
          </div>
       </>)
    }

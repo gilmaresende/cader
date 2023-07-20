@@ -1,6 +1,6 @@
 import ApiService from "../baseapi";
 
-export class ApiUser extends ApiService<Login>{
+export class ApiUser extends ApiService {
 
    constructor() {
       super('user');
@@ -9,7 +9,7 @@ export class ApiUser extends ApiService<Login>{
    async logar(ob: Login) {
       console.log(ob)
       let res = '0'
-      await this.post('login', ob).then((response) => {
+      await this.postS('login', ob).then((response) => {
          res = response.data
       })
          .catch((erro) => {
@@ -20,7 +20,7 @@ export class ApiUser extends ApiService<Login>{
 
    async logar1(ob: Login) {
       console.log(ob)
-      await this.post('teste', ob).then((response) => {
+      await this.postS('teste', ob).then((response) => {
          console.log(response)
       })
          .catch((erro) => {

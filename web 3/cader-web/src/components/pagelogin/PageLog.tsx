@@ -3,6 +3,11 @@ import { toPage } from "@/services/tools/JsService";
 import React from "react";
 
 class PageLogin extends React.Component {
+
+   constructor() {
+      super({})
+   }
+
    async componentDidMount() {
       if (!isLog()) {
          console.log('to login')

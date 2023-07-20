@@ -1,4 +1,3 @@
-import { BaseEntity } from "@/modal/BaseEntity";
 import axios from "axios";
 import { getToken, isLog } from "../services/login/service";
 
@@ -6,7 +5,7 @@ const httpClient = axios.create({
    baseURL: `http://localhost:8080/`,
 });
 
-class ApiService<Entity extends BaseEntity> {
+class ApiBase {
 
    private apiurl: string
    private header = {}
@@ -20,31 +19,31 @@ class ApiService<Entity extends BaseEntity> {
       }
    }
 
-   post(url: string, ob: any) {
+   postS(url: string, ob: any) {
       const requestUrl = `${this.apiurl}/${url}`;
       if (isLog())
          return httpClient.post(requestUrl, ob, this.header);
       return httpClient.post(requestUrl, ob);
    }
 
-   put(ob: Entity) {
-      const requestUrl = `${this.apiurl}/${ob.id}`;
+   putS(id: number, ob: any) {
+      const requestUrl = `${this.apiurl}/${id}`;
       return httpClient.put(requestUrl, ob, this.header);
    }
 
-   delete(ob: Entity) {
-      const requestUrl = `${this.apiurl}/${ob.id}`;
+   deleteS(id: number) {
+      const requestUrl = `${this.apiurl}/${id}`;
       return httpClient.delete(requestUrl, this.header);
    }
 
-   getId(id: number) {
+   getIdS(id: number) {
       const requestUrl = `${this.apiurl}/${id}`;
       return httpClient.get(requestUrl, this.header);
    }
 
-   get(url: string) {
+   getS(url: string) {
       return httpClient.get(url);
    }
 }
 
-export default ApiService;
+export default ApiBase;
