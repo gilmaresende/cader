@@ -3,9 +3,15 @@ import { toPage } from "@/services/tools/JsService";
 import React from "react";
 import TopBarImpl from "../topbar/TopBarImpl";
 import DivScroll from "../divscroll/divscroll";
+import { BaseEntity } from "@/modal/BaseEntity";
 
-abstract class PageLogin extends React.Component {
-	state = {
+abstract class PageLogin<Entidade extends BaseEntity> extends React.Component {
+	state: {
+		loading: boolean;
+		list: Entidade[];
+		columns: [];
+		action: [];
+	} = {
 		loading: false,
 		list: [],
 		columns: [],

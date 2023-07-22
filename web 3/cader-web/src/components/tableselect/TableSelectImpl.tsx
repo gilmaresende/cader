@@ -1,5 +1,10 @@
 import * as React from "react";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import {
+	DataGrid,
+	GridColDef,
+	GridRowId,
+	GridValueGetterParams,
+} from "@mui/x-data-grid";
 
 const columns: GridColDef[] = [
 	{ field: "id", headerName: "ID", width: 70 },
@@ -34,14 +39,18 @@ const rowsExemple = [
 	{ id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
 ];
 
-export default function TableSelectImpl(props: {
+export default function TableSelectImpl<Entidade>(props: {
 	coluna: ColumnsTable[];
-	rows: never[];
+	rows: Entidade[];
+	setId: Function;
 }) {
+	const arrayEmpty: GridRowId[] = [];
+	const [selectionModel, setSelectionModel] = React.useState(arrayEmpty);
+
 	return (
 		<div style={{ height: "100hv", width: "100%" }}>
 			<DataGrid
-				rows={props.rows}
+				rows={props.rows as []}
 				columns={props.coluna}
 				initialState={{
 					pagination: {
@@ -50,6 +59,18 @@ export default function TableSelectImpl(props: {
 				}}
 				pageSizeOptions={[7, 14, 21]}
 				checkboxSelection
+				onRowSelectionModelChange={async (newSelection) => {
+					setSelectionModel([]);
+					if (newSelection.length > 0 && newSelection.length < 3) {
+						const selec = newSelection[newSelection.length - 1];
+						const aSelec = [selec];
+						setSelectionModel(aSelec);
+						props.setId(selec);
+					} else {
+						props.setId(0);
+					}
+				}}
+				rowSelectionModel={selectionModel}
 			/>
 		</div>
 	);

@@ -5,7 +5,7 @@ import PageLogin from "../pagelogin/PageLog";
 abstract class PageEntity<
 	Entidade extends BaseEntity,
 	Service extends ApiEntity<Entidade>
-> extends PageLogin {
+> extends PageLogin<Entidade> {
 	private service: Service;
 	public ob: Entidade;
 
