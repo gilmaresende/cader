@@ -1,10 +1,10 @@
+import { StateView } from "@/data/constants/StateView";
+import { BaseEntity } from "@/modal/BaseEntity";
 import { isLog } from "@/services/services/login/service";
 import { toPage } from "@/services/tools/JsService";
 import React from "react";
-import TopBarImpl from "../topbar/TopBarImpl";
 import DivScroll from "../divscroll/divscroll";
-import { BaseEntity } from "@/modal/BaseEntity";
-import { StateView } from "@/data/constants/StateView";
+import TopBarImpl from "../topbar/TopBarImpl";
 
 abstract class PageLogin<Entidade extends BaseEntity> extends React.Component {
 	state: {
@@ -18,7 +18,7 @@ abstract class PageLogin<Entidade extends BaseEntity> extends React.Component {
 		list: [],
 		columns: [],
 		action: [],
-		stateView: StateView.BLOCK,
+		stateView: StateView.EDITABLE,
 	};
 
 	async componentDidMount() {

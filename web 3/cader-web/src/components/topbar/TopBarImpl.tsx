@@ -6,8 +6,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import * as React from "react";
-import StructMenuImpl from "../structmenu/StructMenuImpl";
 import GrupoButtonSave from "../groupbutton/GrupoButtonSave";
+import StructMenuImpl from "../structmenu/StructMenuImpl";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
