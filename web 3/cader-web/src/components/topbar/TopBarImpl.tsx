@@ -7,10 +7,11 @@ import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import * as React from "react";
 import StructMenuImpl from "../structmenu/StructMenuImpl";
+import GrupoButtonSave from "../groupbutton/GrupoButtonSave";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
-function TopBarImpl() {
+function TopBarImpl(props: { buttons: IButton[] }) {
 	const [state, setState] = React.useState({
 		top: false,
 		left: false,
@@ -55,6 +56,21 @@ function TopBarImpl() {
 					>
 						<MenuIcon />
 					</IconButton>
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "flex-end",
+							width: "100%",
+						}}
+					>
+						<div
+							style={{
+								float: "right",
+							}}
+						>
+							<GrupoButtonSave buttons={props.buttons} />
+						</div>
+					</div>
 				</Toolbar>
 			</AppBar>
 			<div>

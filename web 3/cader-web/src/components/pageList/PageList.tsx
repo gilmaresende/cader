@@ -1,5 +1,6 @@
 import { BaseEntity } from "@/modal/BaseEntity";
 import ApiEntity from "@/services/api/entityapi";
+import { GridColDef } from "@mui/x-data-grid";
 import PageLogin from "../pagelogin/PageLog";
 import TableSelectImpl from "../tableselect/TableSelectImpl";
 
@@ -15,9 +16,9 @@ abstract class PageList<
 
 	build() {}
 
-	private columns: ColumnsTable[] = [];
+	private columns: GridColDef[] = [];
 
-	constructor(service: Service, columns: ColumnsTable[]) {
+	constructor(service: Service, columns: GridColDef[]) {
 		super(service);
 		this.columns = columns;
 		this.service = service;
@@ -28,6 +29,17 @@ abstract class PageList<
 		const list = await this.service.getAll();
 		this.setState({ list: list.data.datas });
 		this.setState({ columns: this.columns });
+		this.setState({
+			action: [
+				{
+					text: "Carregar",
+					onClick: function () {
+						console.log("carregar");
+					},
+				},
+			],
+		});
+		console.log(this.state);
 		this.disabledLoadind();
 	}
 

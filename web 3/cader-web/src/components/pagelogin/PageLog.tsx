@@ -9,6 +9,7 @@ abstract class PageLogin extends React.Component {
 		loading: false,
 		list: [],
 		columns: [],
+		action: [],
 	};
 
 	async componentDidMount() {
@@ -26,7 +27,7 @@ abstract class PageLogin extends React.Component {
 		}
 		return (
 			<>
-				<TopBarImpl />
+				<TopBarImpl buttons={this.state.action} />
 				<DivScroll>{this.showView()}</DivScroll>
 			</>
 		);

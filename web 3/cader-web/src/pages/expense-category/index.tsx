@@ -15,7 +15,6 @@ class ExpenseCategoryView extends PageEntity<
 	async showCa() {
 		await this.showLoadind();
 		const token = await this.getService().getAll();
-		console.log(token);
 	}
 
 	showView() {
