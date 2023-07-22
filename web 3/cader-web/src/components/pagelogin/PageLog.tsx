@@ -1,6 +1,7 @@
 import { isLog } from "@/services/services/login/service";
 import { toPage } from "@/services/tools/JsService";
 import React from "react";
+import TopBarImpl from "../topbar/TopBarImpl";
 
 abstract class PageLogin extends React.Component {
 
@@ -24,7 +25,10 @@ abstract class PageLogin extends React.Component {
       if (this.state.loading) {
          return <>carregando</>
       }
-      return this.showView()
+      return (<>
+         <TopBarImpl />
+         {this.showView()}
+      </>)
    }
 
    async showLoadind() {

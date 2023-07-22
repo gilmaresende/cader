@@ -16,7 +16,7 @@ abstract class PageEntity<Entidade extends BaseEntity, Service extends ApiEntity
    }
 
    constructor(service: Service) {
-      super({});
+      super(service);
       this.service = service
       this.ob = this.getService().newEntity()
    }
