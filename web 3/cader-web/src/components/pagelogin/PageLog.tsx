@@ -2,46 +2,51 @@ import { isLog } from "@/services/services/login/service";
 import { toPage } from "@/services/tools/JsService";
 import React from "react";
 import TopBarImpl from "../topbar/TopBarImpl";
+import DivScroll from "../divscroll/divscroll";
 
 abstract class PageLogin extends React.Component {
+	state = {
+		loading: false,
+		list: [],
+		columns: [],
+	};
 
-   state = {
-      loading: false
-   }
+	async componentDidMount() {
+		this.showLoadind();
+		if (!isLog()) {
+			toPage("");
+		}
+		this.build();
+		this.disabledLoadind();
+	}
 
-   async componentDidMount() {
-      this.showLoadind()
-      if (!isLog()) {
-         toPage('')
-      } else {
-         console.log(this.props)
-      }
-      this.build()
+	render() {
+		if (this.state.loading) {
+			return <>carregando</>;
+		}
+		return (
+			<>
+				<TopBarImpl />
+				<DivScroll>{this.showView()}</DivScroll>
+			</>
+		);
+	}
 
-      this.disabledLoadind()
-   }
+	async showLoadind() {
+		this.setState({ loading: true });
+	}
 
-   render() {
-      if (this.state.loading) {
-         return <>carregando</>
-      }
-      return (<>
-         <TopBarImpl />
-         {this.showView()}
-      </>)
-   }
+	async disabledLoadind() {
+		this.setState({ loading: false });
+	}
 
-   async showLoadind() {
-      this.setState({ loading: true })
-   }
+	getList() {
+		return this.state.list;
+	}
 
-   async disabledLoadind() {
-      this.setState({ loading: false })
-   }
+	abstract showView(): any;
 
-   abstract showView(): any
-
-   abstract build(): void
+	abstract build(): void;
 }
 
-export default PageLogin
+export default PageLogin;
