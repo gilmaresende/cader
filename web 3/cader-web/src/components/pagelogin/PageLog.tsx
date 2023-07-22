@@ -4,6 +4,7 @@ import React from "react";
 import TopBarImpl from "../topbar/TopBarImpl";
 import DivScroll from "../divscroll/divscroll";
 import { BaseEntity } from "@/modal/BaseEntity";
+import { StateView } from "@/data/constants/StateView";
 
 abstract class PageLogin<Entidade extends BaseEntity> extends React.Component {
 	state: {
@@ -11,11 +12,13 @@ abstract class PageLogin<Entidade extends BaseEntity> extends React.Component {
 		list: Entidade[];
 		columns: [];
 		action: [];
+		stateView: StateView;
 	} = {
 		loading: false,
 		list: [],
 		columns: [],
 		action: [],
+		stateView: StateView.BLOCK,
 	};
 
 	async componentDidMount() {
@@ -39,11 +42,15 @@ abstract class PageLogin<Entidade extends BaseEntity> extends React.Component {
 		);
 	}
 
-	async showLoadind() {
-		this.setState({ loading: true });
+	public async showLoadind() {
+		console.log("1");
+		const st = this.state;
+		st.loading = true;
+		await this.setState(st);
+		console.log(this.state);
 	}
 
-	async disabledLoadind() {
+	public async disabledLoadind() {
 		this.setState({ loading: false });
 	}
 

@@ -10,7 +10,7 @@ abstract class PageList<
 > extends PageLogin<Entidade> {
 	private service: Service;
 	private id: number = 0;
-	private btnAct: any;
+	private isController: boolean;
 
 	getService() {
 		return this.service;
@@ -20,13 +20,14 @@ abstract class PageList<
 
 	private columns: GridColDef[] = [];
 
-	constructor(service: Service, columns: GridColDef[]) {
+	constructor(service: Service, columns: GridColDef[], isController: boolean) {
 		super(service);
 		this.columns = columns;
 		this.service = service;
+		this.isController = isController;
 	}
 
-	carregar = async () => {
+	toLoad = async () => {
 		{
 			console.log(this.id);
 		}
@@ -43,30 +44,32 @@ abstract class PageList<
 		const list = await this.service.getAll();
 		this.setState({ list: list.data.datas });
 		this.setState({ columns: this.columns });
-		this.definirTipoAction();
+		this.toDefineTypeAction();
 		console.log(this.state);
 		this.disabledLoadind();
 	}
 
-	definirTipoAction() {
+	toDefineTypeAction() {
+		const actions = [];
 		if (this.id !== 0) {
-			this.btnAct = [
-				{
-					text: "Carregar",
-					onClick: this.carregar,
-				},
-			];
+			actions.push({
+				text: "Carregar",
+				onClick: this.toLoad,
+			});
 		} else {
-			this.btnAct = [
-				{
-					text: "Novo",
-					onClick: this.toPageNew,
-				},
-			];
+			actions.push({
+				text: "Novo",
+				onClick: this.toPageNew,
+			});
 		}
-
+		if (this.isController) {
+			actions.push({
+				text: "Filtrar",
+				onClick: this.toLoad,
+			});
+		}
 		this.setState({
-			action: this.btnAct,
+			action: actions,
 		});
 	}
 
@@ -77,7 +80,7 @@ abstract class PageList<
 		} else {
 			this.id = 0;
 		}
-		this.definirTipoAction();
+		this.toDefineTypeAction();
 	};
 
 	showView() {

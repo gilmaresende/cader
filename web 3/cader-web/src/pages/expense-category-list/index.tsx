@@ -7,20 +7,24 @@ class ExpenseCategoryList extends PageList<
 	ServiceExpenseCategory
 > {
 	constructor() {
-		super(new ServiceExpenseCategory(), [
-			{
-				headerName: "Descrição",
-				field: "name",
-				width: 302,
-			},
-			{
-				headerName: "Ativo",
-				field: "active",
-				width: 250,
-				valueGetter: (params: GridValueGetterParams) =>
-					`${params.row.active === 1 ? "Sim" : "Não"}`,
-			},
-		]);
+		super(
+			new ServiceExpenseCategory(),
+			[
+				{
+					headerName: "Descrição",
+					field: "name",
+					width: 302,
+				},
+				{
+					headerName: "Ativo",
+					field: "active",
+					width: 250,
+					valueGetter: (params: GridValueGetterParams) =>
+						`${params.row.active === 1 ? "Sim" : "Não"}`,
+				},
+			],
+			false
+		);
 	}
 }
 export default ExpenseCategoryList;
