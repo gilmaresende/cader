@@ -1,33 +1,18 @@
-import * as React from "react";
-import ListSubheader from "@mui/material/ListSubheader";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import StarBorder from "@mui/icons-material/StarBorder";
-import AssessmentIcon from "@mui/icons-material/Assessment";
-import GamepadIcon from '@mui/icons-material/Gamepad';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
+import ListSubheader from "@mui/material/ListSubheader";
+import * as React from "react";
+
+import menuCader from "@/data/menu/MunuCader";
+import { toPage } from "@/services/tools/JsService";
 
 export default function StructMenuImpl() {
-   const [openRegister, setOpenRegister] = React.useState(false);
-   const [openControlling, setOntrolling] = React.useState(false);
-   const [openReport, setOpenReport] = React.useState(false);
-   const clickResiter = () => {
-      setOpenRegister(!openRegister);
-   };
-
-   const clickControlling = () => {
-      setOntrolling(!openControlling);
-   };
-
-   const clickOpenReport = () => {
-      setOpenReport(!openReport);
-   };
-
+   const [indexOpen, setIndexOpen] = React.useState(-1);
    return (
       <List
          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
@@ -39,57 +24,37 @@ export default function StructMenuImpl() {
             </ListSubheader>
          }
       >
-         <ListItemButton onClick={clickResiter}>
-            <ListItemIcon>
-               <BorderColorIcon />
-            </ListItemIcon>
-            <ListItemText primary="Cadastro" />
-            {openRegister ? <ExpandLess /> : <ExpandMore />}
+         <ListItemButton sx={{ pl: 4 }} onClick={() => toPage("home")} >
+            {/* <ListItemIcon>
+                              <StarBorder />
+                           </ListItemIcon> */}
+            < ListItemText primary={"Home"} />
          </ListItemButton>
-         <Collapse in={openRegister} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-               <ListItemButton sx={{ pl: 4 }}>
+         {menuCader.map((i, index) => (
+            <>
+               <ListItemButton onClick={() => setIndexOpen(index === indexOpen ? -1 : index)}>
                   <ListItemIcon>
-                     <StarBorder />
+                     {i.icon}
                   </ListItemIcon>
-                  <ListItemText primary="Starred" />
-               </ListItemButton>
-            </List>
-         </Collapse>
-         <ListItemButton onClick={clickControlling}>
-            <ListItemIcon>
-               <GamepadIcon />
-            </ListItemIcon>
-            <ListItemText primary="Controladoria" />
-            {openReport ? <ExpandLess /> : <ExpandMore />}
-         </ListItemButton>
-         <Collapse in={openControlling} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-               <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                     <StarBorder />
-                  </ListItemIcon>
-                  <ListItemText primary="Starred" />
-               </ListItemButton>
-            </List>
-         </Collapse>
-         <ListItemButton onClick={clickOpenReport}>
-            <ListItemIcon>
-               <AssessmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Relatório" />
-            {openReport ? <ExpandLess /> : <ExpandMore />}
-         </ListItemButton>
-         <Collapse in={openReport} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-               <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                     <StarBorder />
-                  </ListItemIcon>
-                  <ListItemText primary="Starred" />
-               </ListItemButton>
-            </List>
-         </Collapse>
-      </List>
+                  <ListItemText primary={i.name} />
+                  {index === indexOpen ? <ExpandLess /> : <ExpandMore />}
+               </ListItemButton >
+               <Collapse in={index === indexOpen} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                     {i.children?.map((j) => (
+                        <ListItemButton sx={{ pl: 4 }} onClick={() => toPage(j.path)} >
+                           {/* <ListItemIcon>
+                              <StarBorder />
+                           </ListItemIcon> */}
+                           < ListItemText primary={j.name} />
+                        </ListItemButton>
+                     ))
+                     }
+                  </List>
+               </Collapse >
+            </>
+         ))
+         }
+      </List >
    );
 }
