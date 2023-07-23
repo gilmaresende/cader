@@ -38,8 +38,8 @@ export default function GrupoButtonSave(props: { buttons: IButton[] }) {
 					variant="text"
 					aria-label="text secondary button group"
 				>
-					{props.buttons.map((m) => (
-						<Button sx={themeButton} onClick={() => m.onClick()}>
+					{props.buttons.map((m, index) => (
+						<Button key={index} sx={themeButton} onClick={() => m.onClick()}>
 							{m.text}
 						</Button>
 					))}

@@ -32,7 +32,7 @@ export default function StructMenuImpl() {
 				<ListItemText primary={"Home"} />
 			</ListItemButton>
 			{menuCader.map((i, index) => (
-				<>
+				<div key={index}>
 					<ListItemButton
 						onClick={() => setIndexOpen(index === indexOpen ? -1 : index)}
 					>
@@ -42,17 +42,19 @@ export default function StructMenuImpl() {
 					</ListItemButton>
 					<Collapse in={index === indexOpen} timeout="auto" unmountOnExit>
 						<List component="div" disablePadding>
-							{i.children?.map((j) => (
-								<ListItemButton sx={{ pl: 4 }} onClick={() => toPage(j.path)}>
-									{/* <ListItemIcon>
+							{i.children?.map((j, indexJ) => (
+								<div key={indexJ}>
+									<ListItemButton sx={{ pl: 4 }} onClick={() => toPage(j.path)}>
+										{/* <ListItemIcon>
                               <StarBorder />
                            </ListItemIcon> */}
-									<ListItemText primary={j.name} />
-								</ListItemButton>
+										<ListItemText primary={j.name} />
+									</ListItemButton>
+								</div>
 							))}
 						</List>
 					</Collapse>
-				</>
+				</div>
 			))}
 		</List>
 	);

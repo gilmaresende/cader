@@ -4,9 +4,9 @@ import SwitchImpl from "@/components/switch/SwitchImpl";
 import { StateView } from "@/data/constants/StateView";
 import styles from "./styles.module.css";
 
-export default function ExpenseCategoryForm2(props: {
-	ob?: ExpenseCategory;
-	disabled: StateView;
+export default function ExpenseCategoryForm(props: {
+	ob: ExpenseCategory;
+	disabled: boolean;
 }) {
 	return (
 		<CardImpl>
@@ -16,7 +16,7 @@ export default function ExpenseCategoryForm2(props: {
 						ob={props.ob}
 						atr={"name"}
 						label={"Nome"}
-						disabled={props.disabled === StateView.BLOCK}
+						disabled={props.disabled}
 					/>
 				</div>
 				<div>
@@ -24,7 +24,7 @@ export default function ExpenseCategoryForm2(props: {
 						label="Ativo"
 						ob={props.ob}
 						atr={"active"}
-						disabled={props.disabled === StateView.BLOCK}
+						disabled={props.disabled}
 					/>
 				</div>
 			</div>

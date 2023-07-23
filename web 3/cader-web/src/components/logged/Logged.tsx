@@ -1,40 +1,98 @@
-import React from "react";
 import DivScroll from "../divscroll/divscroll";
+import LoadingImpl from "../loading/LoadingImpl";
 import TopBarImpl from "../topbar/TopBarImpl";
-import { BaseEntity } from "@/modal/BaseEntity";
-import { EnumSimNao } from "@/data/constants/EnumSimNao";
+import React from "react";
 
-export function Logged<Entidade extends BaseEntity>(props: {
-	ob: Entidade;
+export function Logged(props: {
 	children: any;
+	ob: any;
 	setOb: any;
+	service: any;
+	setDisabled: any;
+	disabled: boolean;
+	title: string;
 }) {
-	const action: IButton[] = [];
-	const [loading, setLoading] = React.useState(false);
+	const [loadins, setLoadins] = React.useState(false);
 
-	if (loading) {
-		return <>Loadins</>;
+	if (loadins) {
+		return (
+			<>
+				<LoadingImpl />
+			</>
+		);
 	}
 
-	const show = () => {
-		setLoading(true);
-		if (props.ob.active === EnumSimNao.SIM) {
-			props.ob.active = EnumSimNao.NAO;
-		} else {
-			props.ob.active = EnumSimNao.SIM;
-		}
-		console.log(props.ob);
-		props.setOb(props.ob);
-		setLoading(false);
+	const actionBtn = [];
+
+	const btnNewClick = () => {
+		console.log(loadins);
+		setLoadins(true);
+		console.log(props);
+		props.setDisabled(false);
+		setLoadins(false);
 	};
-	if (loading) {
-		return <>loadinf</>;
-	}
+	const btnNew: IButton = { text: "Editar", onClick: btnNewClick, style: {} };
 
+	const btnEditClick = () => {
+		console.log(loadins);
+		setLoadins(true);
+		console.log(props);
+		props.setDisabled(false);
+		setLoadins(false);
+	};
+	const btnEdit: IButton = { text: "Editar", onClick: btnEditClick, style: {} };
+
+	const btnDeleteClick = () => {
+		console.log(loadins);
+		setLoadins(true);
+		console.log(props);
+		props.setDisabled(false);
+		setLoadins(false);
+	};
+	const btnDelete: IButton = {
+		text: "Delete",
+		onClick: btnDeleteClick,
+		style: {},
+	};
+
+	const btnSaveClick = () => {
+		console.log(loadins);
+		setLoadins(true);
+		console.log(props);
+		props.setDisabled(false);
+		setLoadins(false);
+	};
+	const btnSave: IButton = { text: "Salvar", onClick: btnSaveClick, style: {} };
+
+	const btnCancelClick = () => {
+		console.log(loadins);
+		setLoadins(true);
+		console.log(props);
+		props.setDisabled(false);
+		setLoadins(false);
+	};
+	const btnCanecel: IButton = {
+		text: "Cancelar",
+		onClick: btnCancelClick,
+		style: {},
+	};
+
+	if (props.disabled && props.ob.id) {
+		actionBtn.push(btnNew);
+		actionBtn.push(btnEdit);
+		actionBtn.push(btnDelete);
+	} else if (props.disabled) {
+		actionBtn.push(btnNew);
+	} else if (!props.disabled && props.ob.id) {
+		actionBtn.push(btnSave);
+		actionBtn.push(btnCanecel);
+	} else {
+		actionBtn.push(btnSave);
+		actionBtn.push(btnCanecel);
+	}
 	return (
 		<>
-			<button onClick={show}>show</button>
-			<TopBarImpl buttons={action} />
+			<TopBarImpl buttons={actionBtn} />
 			<DivScroll>{props.children}</DivScroll>
 		</>
 	);

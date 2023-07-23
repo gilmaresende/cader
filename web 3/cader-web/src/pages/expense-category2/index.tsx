@@ -1,18 +1,25 @@
 import { Logged } from "@/components/logged/Logged";
-import { StateView } from "@/data/constants/StateView";
+import { ServiceExpenseCategory } from "@/services/services/expenseCategory/service";
 import React from "react";
-import ExpenseCategoryForm2 from "./form/FormPage";
-import { EnumSimNao } from "@/data/constants/EnumSimNao";
+import ExpenseCategoryForm from "./form/FormPage";
 
 export default function ExpenseCategoryView() {
-	const [ob, setOb] = React.useState<ExpenseCategory>({
-		active: EnumSimNao.SIM,
-		name: "Teste",
-		id: 3,
-	});
+	const service = new ServiceExpenseCategory();
+	const [disabled, setDisabled] = React.useState(false);
+	const [ob, setOb] = React.useState<ExpenseCategory>(service.newEntity());
+
 	return (
-		<Logged<ExpenseCategory> ob={ob} setOb={setOb}>
-			<ExpenseCategoryForm2 ob={ob} disabled={StateView.BLOCK} />
-		</Logged>
+		<>
+			<Logged
+				title="Categoria Despesa"
+				disabled={disabled}
+				service={service}
+				ob={ob}
+				setOb={setOb}
+				setDisabled={setDisabled}
+			>
+				<ExpenseCategoryForm disabled={disabled} ob={ob!} />
+			</Logged>
+		</>
 	);
 }
