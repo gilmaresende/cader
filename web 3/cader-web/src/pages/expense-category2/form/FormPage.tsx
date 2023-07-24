@@ -1,7 +1,6 @@
 import CardImpl from "@/components/card";
 import InputTextImpl from "@/components/inputtext";
 import SwitchImpl from "@/components/switch/SwitchImpl";
-import { StateView } from "@/data/constants/StateView";
 import styles from "./styles.module.css";
 
 export default function ExpenseCategoryForm(props: {
