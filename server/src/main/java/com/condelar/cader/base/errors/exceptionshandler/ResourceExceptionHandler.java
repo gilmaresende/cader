@@ -1,9 +1,6 @@
 package com.condelar.cader.base.errors.exceptionshandler;
 
-import com.condelar.cader.base.errors.exceptions.NotIsRegisterException;
-import com.condelar.cader.base.errors.exceptions.ObjectNotFoundException;
-import com.condelar.cader.base.errors.exceptions.UpdateException;
-import com.condelar.cader.base.errors.exceptions.ValidException;
+import com.condelar.cader.base.errors.exceptions.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,5 +63,14 @@ public class ResourceExceptionHandler {
                 "The data not's combo type!", ex.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
+    @ExceptionHandler(SessionExceptionImpl.class)
+    public ResponseEntity<StandardError> errorSessionException(SessionExceptionImpl ex,
+                                                               HttpServletRequest request) {
+        StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
+                "The data not's combo type!", ex.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+
 
 }

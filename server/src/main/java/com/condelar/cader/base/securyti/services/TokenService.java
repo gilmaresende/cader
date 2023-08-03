@@ -2,7 +2,9 @@ package com.condelar.cader.base.securyti.services;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.condelar.cader.base.domain.User;
+import com.condelar.cader.base.errors.exceptions.SessionExceptionImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +28,10 @@ public class TokenService {
     }
 
     public String getSubject(String token) {
-        return JWT.require(Algorithm.HMAC256(keyPass)).withIssuer("").build().verify(token).getSubject();
+        try {
+            return JWT.require(Algorithm.HMAC256(keyPass)).withIssuer("").build().verify(token).getSubject();
+        } catch (TokenExpiredException e) {
+            throw new SessionExceptionImpl(e.getMessage());
+        }
     }
-
 }
