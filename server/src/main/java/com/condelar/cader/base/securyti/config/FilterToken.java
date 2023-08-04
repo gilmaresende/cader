@@ -1,6 +1,5 @@
 package com.condelar.cader.base.securyti.config;
 
-
 import com.condelar.cader.base.securyti.repositories.UserRepository;
 import com.condelar.cader.base.securyti.services.TokenService;
 import jakarta.servlet.FilterChain;
@@ -25,8 +24,7 @@ public class FilterToken extends OncePerRequestFilter {
     private UserRepository userRepository;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token;
         var authorizationHeader = request.getHeader("Authorization");
 
@@ -37,8 +35,7 @@ public class FilterToken extends OncePerRequestFilter {
 
             var usuario = this.userRepository.findByLogin(subject);
 
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null,
-                    usuario.getAuthorities());
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
