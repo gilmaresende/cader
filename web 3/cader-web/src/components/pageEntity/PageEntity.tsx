@@ -1,7 +1,5 @@
 import { BaseEntity } from "@/modal/BaseEntity";
 import ApiEntity from "@/services/api/entityapi";
-import PageLogin from "../pagelogin/PageLog";
-import { StateView } from "@/data/constants/StateView";
 
 abstract class PageEntity<
 	Entidade extends BaseEntity,
@@ -11,7 +9,6 @@ abstract class PageEntity<
 	public ob: Entidade;
 
 	async componentDidMount() {
-		this.showLoadind();
 		this.analizeState();
 		this.disabledLoadind();
 	}

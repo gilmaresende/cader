@@ -3,26 +3,19 @@ import { toPage } from "@/services/tools/JsService";
 import React from "react";
 
 class PageNoLogin extends React.Component {
+	async componentDidMount() {
+		if (isLog()) {
+			//  toPage('home')
+		} else {
+			console.log("super no login");
+		}
+	}
 
-   async componentDidMount() {
-      if (isLog()) {
-         toPage('home')
-      } else {
-         console.log("super no login")
-      }
-   }
+	showView() {}
 
-   showView() {
-
-   }
-
-   render() {
-      return (
-         <>
-            {this.showView()}
-         </>
-      );
-   }
+	render() {
+		return <>{this.showView()}</>;
+	}
 }
 
-export default PageNoLogin
+export default PageNoLogin;

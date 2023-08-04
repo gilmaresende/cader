@@ -1,30 +1,10 @@
-import ApiService from "../baseapi";
+import httpClient from "../baseapi";
+const rote = 'user'
 
-export class ApiUser {//extends ApiService {
-
-   // constructor() {
-   //    super('user');
-   // }
-
-   async logar(ob: Login) {
-      console.log(ob)
-      let res = '0'
-      // await this.postS('login', ob).then((response) => {
-      //    res = response.data
-      // })
-      //    .catch((erro) => {
-      //       console.log(erro)
-      //    });
+const fLogar =
+   async function logar(ob: Login) {
+      const url = `${rote}/login`
+      const res = httpClient.post(url, ob);
       return res
    }
-
-   async logar1(ob: Login) {
-      console.log(ob)
-      // await this.postS('teste', ob).then((response) => {
-      //    console.log(response)
-      // })
-      //    .catch((erro) => {
-      //       console.log(erro)
-      //    });
-   }
-}
+export default fLogar
