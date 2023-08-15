@@ -25,7 +25,7 @@ public abstract class BaseService<
     @Autowired
     Repository repository;
 
-    public Repository getRepo(){
+    public Repository getRepo() {
         return repository;
     }
 
@@ -97,6 +97,18 @@ public abstract class BaseService<
         } catch (JpaSystemException | DataIntegrityViolationException e) {
             throw new DeleteException(e.getMessage());
         }
+    }
+
+    public Entity findById(Long id) {
+        Entity filter = instance();
+        filter.setId(id);
+        return find(filter);
+    }
+
+    public Entity getById(Long id) {
+        Entity filter = instance();
+        filter.setId(id);
+        return get(filter);
     }
 
     public abstract Entity instance();
