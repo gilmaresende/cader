@@ -10,6 +10,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.orm.jpa.JpaSystemException;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,9 +33,13 @@ public abstract class BaseService<
     @Autowired
     Valid valid;
 
+    private User getUser() {
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
     public Entity get(Entity base) {
         User u = new User();
-        u.setId(base.getUser().getId());
+        u.setId(getUser().getId());
         base.setUser(u);
         /*o usuario é redefinidor apenas com o Id. para que na query seja considerado apenas o Id.
          * se não todos os atributos seriam analisados, inclusive, strings seriam com like
@@ -48,7 +53,7 @@ public abstract class BaseService<
 
     public Entity find(Entity base) {
         User u = new User();
-        u.setId(base.getUser().getId());
+        u.setId(getUser().getId());
         base.setUser(u);
         /*o usuario é redefinidor apenas com o Id. para que na query seja considerado apenas o Id.
          * se não todos os atributos seriam analisados, inclusive, strings seriam com like
@@ -62,7 +67,7 @@ public abstract class BaseService<
 
     public List<Entity> list(Entity base) {
         User u = new User();
-        u.setId(base.getUser().getId());
+        u.setId(getUser().getId());
         base.setUser(u);
         /*o usuario é redefinidor apenas com o Id. para que na query seja considerado apenas o Id.
          * se não todos os atributos seriam analisados, inclusive, strings seriam com like

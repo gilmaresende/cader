@@ -24,6 +24,8 @@ public class CardService extends BaseService<Card, CardDTO, CardFilterDTO, CardL
 
     private final ExpenseCategoryService expenseCategoryService;
 
+    private final WalletService walletService;
+
     @Override
     public Card instance() {
         return new Card();
@@ -33,9 +35,10 @@ public class CardService extends BaseService<Card, CardDTO, CardFilterDTO, CardL
     public Card toEntity(Card ob, CardDTO dto) {
         ob.setName(dto.getName());
         ob.setActive(EnumYesNo.valueOf(dto.getActive()).getValue());
-        ob.setPersonExpense(personService.getById(dto.getIdPerson()));
+        ob.setPersonExpense(personService.getById(dto.getIdPersonExpense()));
         ob.setPaymentTypeExpense(paymentTypeService.getById(dto.getIdPaymentType()));
         ob.setExpenseCategoryBuyCard(expenseCategoryService.getById(dto.getIdExpenseCategoryBuyCard()));
+        ob.setWalletExpense(walletService.getById(dto.getIdWalletExpense()));
         return ob;
     }
 

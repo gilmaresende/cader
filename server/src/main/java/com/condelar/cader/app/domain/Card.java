@@ -55,6 +55,10 @@ public class Card extends BaseEntity implements RegisterEntity {
     @JoinColumn(name = "id_categoria_despesa", foreignKey = @ForeignKey(name = "fk_cat_des_cartao"), nullable = false)
     private ExpenseCategory expenseCategoryBuyCard;
 
+    @ManyToOne
+    @JoinColumn(name = "id_carteira", foreignKey = @ForeignKey(name = "fk_cartei_cartao"), nullable = false)
+    private Wallet walletExpense;
+
     @Override
     public String toString() {
         return this.name;

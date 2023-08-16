@@ -38,11 +38,9 @@ public class BaseResource<Entity extends BaseEntity,
 
     @GetMapping("/{id}")
     public ResponseEntity<PackageDT<DTO>> get(@PathVariable Long id) {
-        User user = getUser();
         Entity ob = service.instance();
         if (ob instanceof RegisterEntity)
             ((RegisterEntity) ob).setActive(null);
-        ob.setUser(user);
         ob.setId(id);
         ob = service.find(ob);
         DTO dto = service.toDTO(ob);
@@ -80,7 +78,8 @@ public class BaseResource<Entity extends BaseEntity,
         if (ob.getUpdate().equals(data.getUpdate())) {
             ob = service.toEntity(ob, data);
             ob = service.save(ob);
-            return ResponseEntity.created(createURI(ob)).build();
+            return ResponseEntity.noContent().build();
+            //    return ResponseEntity.created(createURI(ob)).build();
         }
         throw new UpdateException("Update in: " + ob.getUpdate());
     }
