@@ -7,5 +7,9 @@ import { Login } from '../../model/login';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  ob: Login = { username: 'Gil', password: '' };
+  ob: Login = { username: '', password: '' };
+
+  logar() {
+    alert('super login');
+  }
 }

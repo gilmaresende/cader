@@ -10,12 +10,17 @@
         [isDisabled]="false"
       />
     </div>
-    <input-password
-      [ob]="ob"
-      [atributo]="'password'"
-      [label]="'Password'"
-      [placeholder]="'Password'"
-      [isDisabled]="false"
-    />
+    <div class="inputLogin">
+      <input-password
+        [ob]="ob"
+        [atributo]="'password'"
+        [label]="'Password'"
+        [placeholder]="'Password'"
+        [isDisabled]="false"
+      />
+    </div>
+    <div>
+      <btn-primary [label]="'Login'" (click)="logar()" />
+    </div>
   </div>
 </div>

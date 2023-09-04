@@ -9,6 +9,7 @@ import { InputTextComponent } from './input-text/input-text.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputPasswordComponent } from './input-password/input-password.component';
 import { FormsModule } from '@angular/forms';
+import { BtnPrimaryComponent } from './btn/btn-primary/btn-primary.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     ToolbarComponent,
     InputTextComponent,
     InputPasswordComponent,
+    BtnPrimaryComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { FormsModule } from '@angular/forms';
     ToolbarComponent,
     InputTextComponent,
     InputPasswordComponent,
+    BtnPrimaryComponent,
   ],
 })
 export class PrimeModule {}
