@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Login } from '../../model/login';
+import { AuthServiceService } from '../../services/auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,19 @@ import { Login } from '../../model/login';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  ob: Login = { username: '', password: '' };
+  constructor(private service: AuthServiceService) {}
+
+  ob: Login = { login: '', password: '' };
 
   logar() {
-    alert('super login');
+    this.service.authenticate(this.ob).subscribe({
+      next: (res) => {
+        if (res.body) {
+          const token: string = res.body;
+          localStorage.setItem('token-cader', token);
+        }
+      },
+      error: (error) => console.log(error.error.errors),
+    });
   }
 }
