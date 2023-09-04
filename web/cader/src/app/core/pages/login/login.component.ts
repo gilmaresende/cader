@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Login } from '../../model/login';
 import { AuthServiceService } from '../../services/auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent {
       next: (res) => {
         if (res.body) {
           const token: string = res.body;
-          localStorage.setItem('token-cader', token);
+          this.service.login(token);
         }
       },
       error: (error) => console.log(error.error.errors),

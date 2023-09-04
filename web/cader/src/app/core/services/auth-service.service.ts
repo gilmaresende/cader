@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_CONFIG } from 'src/environments/environments';
+import { API_CONFIG, KEY_LOCAL } from 'src/environments/environments';
 import { Login } from '../model/login';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +11,7 @@ import { Login } from '../model/login';
 export class AuthServiceService {
   private rote: string = 'user';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
   //HttpResponse<string>
   // Observable<string>
   /*
@@ -32,5 +34,22 @@ export class AuthServiceService {
       observe: 'response',
       responseType: 'text',
     });
+  }
+
+  public logout() {
+    localStorage.removeItem(KEY_LOCAL.KEY_TOKEN);
+    return this.router.navigate(['']);
+  }
+
+  public isAutenticated(): boolean {
+    const token = localStorage.getItem(KEY_LOCAL.KEY_TOKEN);
+    if (!token) return false;
+    const jwtHelper = new JwtHelperService();
+    return !jwtHelper.isTokenExpired(token);
+  }
+
+  public login(token: string) {
+    localStorage.setItem(KEY_LOCAL.KEY_TOKEN, token);
+    this.router.navigate(['cader/home']);
   }
 }
