@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Login } from '../../model/login';
 import { AuthServiceService } from '../../services/auth-service.service';
-import { Router } from '@angular/router';
+import { ToastService } from 'src/app/components/prime/toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(private service: AuthServiceService) {}
+  constructor(
+    private service: AuthServiceService,
+    private toastService: ToastService
+  ) {}
 
   ob: Login = { login: '', password: '' };
 
@@ -21,7 +24,12 @@ export class LoginComponent {
           this.service.login(token);
         }
       },
-      error: (error) => console.log(error.error.errors),
+      error: (error) => {
+        const erros = JSON.parse(error.error);
+        erros.errors.map((element: any) => {
+          this.toastService.showAlert(element.message);
+        });
+      },
     });
   }
 }

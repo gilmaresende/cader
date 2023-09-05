@@ -14,6 +14,23 @@
   width: 100%;
 }
 
+.btn-icon {
+  border: none;
+  background: #3f51b5;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  height: 3rem;
+  width: 3rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: #fff;
+  &:hover {
+    background: #3d4eae;
+  }
+}
+
 // body {
 //   height: 100vh;
 //   background-size: cover;
