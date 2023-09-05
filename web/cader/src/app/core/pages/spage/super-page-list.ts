@@ -7,7 +7,7 @@ export abstract class SPageList<
   Service extends BaseHttpService<Entidade>
 > {
   public ob?: Entidade;
-
+  public list?: Array<{}>;
   constructor(
     title: string,
     private actions: ControlService,
@@ -28,7 +28,7 @@ export abstract class SPageList<
       .findAll()
       .subscribe({
         next: (res) => {
-          console.log(res);
+          this.list = res.datas;
         },
         error: (error) => {
           console.log(error);

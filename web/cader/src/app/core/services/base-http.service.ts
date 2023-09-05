@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SEntidade } from '../model/sentidade';
 import { API_CONFIG } from 'src/environments/environments';
 import { AuthServiceService } from './auth-service.service';
+import { ResponseServe } from '../model/response-serve';
 @Injectable({
   providedIn: 'root',
 })
@@ -25,9 +26,10 @@ export class BaseHttpService<Entiti extends SEntidade> {
     return this.http.get<Entiti>(`${API_CONFIG.BASE_URL}/${this.rote}/${id}`);
   }
 
-  findAll(): Observable<Entiti[]> {
+  findAll(): Observable<ResponseServe> {
     const url = `${API_CONFIG.BASE_URL}/${this.rote}/list`;
-    return this.http.post<Entiti[]>(url, {});
+    const response = this.http.post<any>(url, {});
+    return response;
     //return this.http.post<Entiti[]>(url, {}, this.getHeader());
   }
 

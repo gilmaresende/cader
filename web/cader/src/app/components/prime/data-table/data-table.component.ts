@@ -7,7 +7,6 @@ import { SEntidade } from 'src/app/core/model/sentidade';
   styleUrls: ['./data-table.component.scss'],
 })
 export class DataTableComponent implements OnInit {
-  customers: Array<{}> = [];
   selected: SEntidade | undefined;
   header: Array<{ description: string; percentage: number }> = [];
   atributos: Array<string> = [];
