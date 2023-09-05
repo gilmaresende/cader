@@ -14,6 +14,8 @@ import { InputTextComponent } from './input-text/input-text.component';
 import { ToastComponent } from './toast/toast.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarModule } from 'primeng/sidebar';
+import { TreeMenuComponent } from './tree-menu/tree-menu.component';
+import { PanelMenuModule } from 'primeng/panelmenu';
 @NgModule({
   declarations: [
     BtnTesteComponent,
@@ -23,6 +25,7 @@ import { SidebarModule } from 'primeng/sidebar';
     ToastComponent,
     BtnIconComponent,
     SidebarComponent,
+    TreeMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,7 @@ import { SidebarModule } from 'primeng/sidebar';
     InputTextModule,
     ToastModule,
     SidebarModule,
+    PanelMenuModule,
   ],
   exports: [
     BtnTesteComponent,
