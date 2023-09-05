@@ -7,6 +7,7 @@ import { PrimeModule } from './components/prime/prime.module';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './components/material/material.module';
+import { FusionModule } from './components/fusion/fusion.module';
 
 //material
 
@@ -19,6 +20,7 @@ import { MaterialModule } from './components/material/material.module';
     MaterialModule,
     CoreModule,
     BrowserAnimationsModule,
+    FusionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

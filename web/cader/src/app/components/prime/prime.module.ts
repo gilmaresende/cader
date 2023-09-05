@@ -12,7 +12,8 @@ import { BtnPrimaryComponent } from './btn/btn-primary/btn-primary.component';
 import { InputPasswordComponent } from './input-password/input-password.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { ToastComponent } from './toast/toast.component';
-
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarModule } from 'primeng/sidebar';
 @NgModule({
   declarations: [
     BtnTesteComponent,
@@ -21,6 +22,7 @@ import { ToastComponent } from './toast/toast.component';
     BtnPrimaryComponent,
     ToastComponent,
     BtnIconComponent,
+    SidebarComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { ToastComponent } from './toast/toast.component';
     ToolbarModule,
     InputTextModule,
     ToastModule,
+    SidebarModule,
   ],
   exports: [
     BtnTesteComponent,
@@ -36,6 +39,7 @@ import { ToastComponent } from './toast/toast.component';
     InputPasswordComponent,
     BtnPrimaryComponent,
     ToastComponent,
+    SidebarComponent,
   ],
 })
 export class PrimeModule {}

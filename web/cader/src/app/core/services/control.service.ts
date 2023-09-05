@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SEntidade } from '../model/sentidade';
 import { ToolbarComponent } from 'src/app/components/material/toolbar/toolbar.component';
 import { SPage } from '../pages/spage/super-page';
+import { SidebarComponent } from 'src/app/components/prime/sidebar/sidebar.component';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,15 @@ export class ControlService {
   ob?: SEntidade;
   title: string = '';
   toobar?: ToolbarComponent;
+  sidebar?: SidebarComponent;
   page?: SPage<SEntidade>;
 
   setTooBar(tooBar: ToolbarComponent) {
     this.toobar = tooBar;
+  }
+
+  setSideBar(sidebar: SidebarComponent) {
+    this.sidebar = sidebar;
   }
 
   constructor() {}
@@ -49,5 +55,9 @@ export class ControlService {
 
   getTitle() {
     return this.title;
+  }
+
+  showSidebar() {
+    this.sidebar?.showSideBar();
   }
 }

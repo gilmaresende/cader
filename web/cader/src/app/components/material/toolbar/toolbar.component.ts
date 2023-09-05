@@ -26,4 +26,8 @@ export class ToolbarComponent implements OnInit {
   delete() {
     this.controller.delete();
   }
+
+  showSidebar() {
+    this.controller.showSidebar();
+  }
 }
