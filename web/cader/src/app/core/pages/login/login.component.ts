@@ -25,10 +25,7 @@ export class LoginComponent {
         }
       },
       error: (error) => {
-        const erros = JSON.parse(error.error);
-        erros.errors.map((element: any) => {
-          this.toastService.showAlert(element.message);
-        });
+        this.toastService.catchErro(error);
       },
     });
   }

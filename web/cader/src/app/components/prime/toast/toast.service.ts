@@ -20,4 +20,18 @@ export class ToastService {
   showAlert(msg: string) {
     this.toast?.showWarn(msg);
   }
+
+  catchErro(error: any) {
+    if (error.status === 403) {
+      this.showAlert('Invalid credentials');
+    } else if (error.status === 400) {
+      const erros = JSON.parse(error.error);
+      erros.errors.map((element: any) => {
+        this.showAlert(element.message);
+      });
+    } else {
+      console.log('code', error.status);
+      console.log('detail', error);
+    }
+  }
 }
