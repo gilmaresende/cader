@@ -22,7 +22,7 @@ export class TreeMenuComponent implements OnInit {
         label: 'Cadastros',
         items: [
           { label: 'Carteira', command: () => this.toGo('wallet') },
-          { label: 'Pessoa', command: () => this.toGo('person') },
+          { label: 'Pessoa', command: () => this.toGo('person/list') },
         ],
       },
       {

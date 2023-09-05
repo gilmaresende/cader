@@ -17,6 +17,7 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.controller.setTooBar(this);
+    this.title = this.controller.getTitle();
   }
 
   save() {
