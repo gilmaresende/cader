@@ -7,18 +7,15 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
+import { BtnIconComponent } from './btn/btn-icon/btn-icon.component';
 import { BtnPrimaryComponent } from './btn/btn-primary/btn-primary.component';
 import { InputPasswordComponent } from './input-password/input-password.component';
 import { InputTextComponent } from './input-text/input-text.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ToastComponent } from './toast/toast.component';
-import { ToastService } from './toast/toast.service';
-import { BtnIconComponent } from './btn/btn-icon/btn-icon.component';
 
 @NgModule({
   declarations: [
     BtnTesteComponent,
-    ToolbarComponent,
     InputTextComponent,
     InputPasswordComponent,
     BtnPrimaryComponent,
@@ -31,11 +28,10 @@ import { BtnIconComponent } from './btn/btn-icon/btn-icon.component';
     ButtonModule,
     ToolbarModule,
     InputTextModule,
-    ToastModule
+    ToastModule,
   ],
   exports: [
     BtnTesteComponent,
-    ToolbarComponent,
     InputTextComponent,
     InputPasswordComponent,
     BtnPrimaryComponent,
