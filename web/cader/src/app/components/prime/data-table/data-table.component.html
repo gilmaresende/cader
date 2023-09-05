@@ -1,0 +1,41 @@
+<div class="card">
+  <p-table
+    [value]="data"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th
+          *ngFor="let itemHeader of header"
+          [ngStyle]="{ width: itemHeader.percentage + '%' }"
+        >
+          {{ itemHeader.description }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td *ngFor="let itemAtributo of atributos">{{ item[itemAtributo] }}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+      <p-button
+        type="button"
+        icon="pi pi-plus"
+        styleClass="p-button-text"
+      ></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+      <p-button
+        type="button"
+        icon="pi pi-cloud"
+        styleClass="p-button-text"
+      ></p-button>
+    </ng-template>
+  </p-table>
+</div>

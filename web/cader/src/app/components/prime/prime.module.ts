@@ -16,6 +16,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { TreeMenuComponent } from './tree-menu/tree-menu.component';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { DataTableComponent } from './data-table/data-table.component';
+import { TableModule } from 'primeng/table';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DropdownModule } from 'primeng/dropdown';
+import { TagModule } from 'primeng/tag';
 @NgModule({
   declarations: [
     BtnTesteComponent,
@@ -26,6 +31,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
     BtnIconComponent,
     SidebarComponent,
     TreeMenuComponent,
+    DataTableComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +42,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
     ToastModule,
     SidebarModule,
     PanelMenuModule,
+    TableModule,
   ],
   exports: [
     BtnTesteComponent,
@@ -44,6 +51,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
     BtnPrimaryComponent,
     ToastComponent,
     SidebarComponent,
+    DataTableComponent,
   ],
 })
 export class PrimeModule {}
