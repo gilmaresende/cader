@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SPageList } from 'src/app/core/pages/spage/super-page-list';
 import { ControlService } from 'src/app/core/services/control.service';
 import { Person } from 'src/app/model/person';
@@ -11,6 +11,6 @@ import { PersonService } from 'src/app/services/person.service';
 })
 export class PersonListComponent extends SPageList<Person, PersonService> {
   constructor(private action: ControlService, private service: PersonService) {
-    super('Lista Pessoas', action);
+    super('Lista Pessoas', action, service);
   }
 }

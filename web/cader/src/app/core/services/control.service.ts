@@ -15,7 +15,9 @@ export class ControlService {
   toobar!: ToolbarComponent;
   sidebar!: SidebarComponent;
   service!: BaseHttpService<SEntidade>;
-  page?: SPage<SEntidade> | SPageList<SEntidade, BaseHttpService<SEntidade>>;
+  page?:
+    | SPage<SEntidade, BaseHttpService<SEntidade>>
+    | SPageList<SEntidade, BaseHttpService<SEntidade>>;
 
   setTooBar(tooBar: ToolbarComponent) {
     this.toobar = tooBar;
@@ -38,10 +40,12 @@ export class ControlService {
   build(
     ob: SEntidade | undefined,
     title: string,
-    page: SPageList<SEntidade, BaseHttpService<SEntidade>> | SPage<SEntidade>
+    page:
+      | SPageList<SEntidade, BaseHttpService<SEntidade>>
+      | SPage<SEntidade, BaseHttpService<SEntidade>>,
+    service: BaseHttpService<SEntidade>
   ) {
-    console.log('dff', this.toobar);
-
+    this.setService(service);
     this.setOb(ob);
     this.page = page;
     this.title = title;
@@ -55,7 +59,6 @@ export class ControlService {
   }
 
   save() {
-    console.log(this.ob);
     alert('save');
   }
 

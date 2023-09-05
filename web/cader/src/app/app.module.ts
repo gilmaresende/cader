@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FusionModule } from './components/fusion/fusion.module';
+import { MaterialModule } from './components/material/material.module';
 import { PrimeModule } from './components/prime/prime.module';
 import { CoreModule } from './core/core.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './components/material/material.module';
-import { FusionModule } from './components/fusion/fusion.module';
-
-//material
+import { AuthInterceptorProvider } from './core/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +21,7 @@ import { FusionModule } from './components/fusion/fusion.module';
     BrowserAnimationsModule,
     FusionModule,
   ],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

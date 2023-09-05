@@ -42,7 +42,7 @@ export class AuthServiceService {
   }
 
   public isAutenticated(): boolean {
-    const token = localStorage.getItem(KEY_LOCAL.KEY_TOKEN);
+    const token = this.getToken();
     if (!token) return false;
     const jwtHelper = new JwtHelperService();
     return !jwtHelper.isTokenExpired(token);
@@ -51,5 +51,9 @@ export class AuthServiceService {
   public login(token: string) {
     localStorage.setItem(KEY_LOCAL.KEY_TOKEN, token);
     this.router.navigate(['cader/home']);
+  }
+
+  public getToken() {
+    return localStorage.getItem(KEY_LOCAL.KEY_TOKEN);
   }
 }

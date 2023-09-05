@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SEntidade } from '../model/sentidade';
 import { API_CONFIG } from 'src/environments/environments';
+import { AuthServiceService } from './auth-service.service';
 @Injectable({
   providedIn: 'root',
 })
 export class BaseHttpService<Entiti extends SEntidade> {
   rote: String = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthServiceService
+  ) {}
 
   delete(id: any): Observable<Entiti> {
     return this.http.delete<Entiti>(
@@ -22,7 +26,15 @@ export class BaseHttpService<Entiti extends SEntidade> {
   }
 
   findAll(): Observable<Entiti[]> {
-    return this.http.get<Entiti[]>(`${API_CONFIG.BASE_URL}/${this.rote}`);
+    const url = `${API_CONFIG.BASE_URL}/${this.rote}/list`;
+    return this.http.post<Entiti[]>(url, {});
+    //return this.http.post<Entiti[]>(url, {}, this.getHeader());
+  }
+
+  findFilter(): Observable<Entiti[]> {
+    const url = `${API_CONFIG.BASE_URL}/${this.rote}`;
+    console.log(url);
+    return this.http.get<Entiti[]>(url);
   }
 
   create(tipo: Entiti): Observable<Entiti> {
@@ -34,5 +46,23 @@ export class BaseHttpService<Entiti extends SEntidade> {
       `${API_CONFIG.BASE_URL}/${this.rote}/${tipo.id}`,
       tipo
     );
+  }
+
+  getHeader() {
+    const _headers = new HttpHeaders();
+    const headers = _headers.append(
+      'Content-Type',
+      'application/x-www-form-urlencoded'
+    );
+    const token: string = this.authService.getToken() as string;
+    headers.append('token', token);
+    headers.append('Authorization', 'bearer ' + token);
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //     token: ,this.authService.getToken()
+    //   }),
+    // };
+    return headers;
   }
 }
