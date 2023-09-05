@@ -1,26 +1,28 @@
-<div class="card">
-  <div class="cardInte">
-    <h1>Cader</h1>
-    <div class="inputLogin">
-      <input-text
-        [ob]="ob"
-        [atributo]="'login'"
-        [label]="'Login'"
-        [placeholder]="'Login'"
-        [isDisabled]="false"
-      />
-    </div>
-    <div class="inputLogin">
-      <input-password
-        [ob]="ob"
-        [atributo]="'password'"
-        [label]="'Password'"
-        [placeholder]="'Password'"
-        [isDisabled]="false"
-      />
-    </div>
-    <div>
-      <btn-primary [label]="'Login'" (click)="logar()" />
+<div class="body">
+  <div class="card">
+    <div class="cardInte">
+      <h1>Cader</h1>
+      <div class="inputLogin">
+        <input-text
+          [ob]="ob"
+          [atributo]="'login'"
+          [label]="'Login'"
+          [placeholder]="'Login'"
+          [isDisabled]="false"
+        />
+      </div>
+      <div class="inputLogin">
+        <input-password
+          [ob]="ob"
+          [atributo]="'password'"
+          [label]="'Password'"
+          [placeholder]="'Password'"
+          [isDisabled]="false"
+        />
+      </div>
+      <div>
+        <btn-primary [label]="'Login'" (click)="logar()" />
+      </div>
     </div>
   </div>
 </div>
