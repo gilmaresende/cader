@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SEntidade } from 'src/app/core/model/sentidade';
 
 @Component({
@@ -8,33 +8,13 @@ import { SEntidade } from 'src/app/core/model/sentidade';
 })
 export class DataTableComponent implements OnInit {
   selected: SEntidade | undefined;
-  header: Array<{ description: string; percentage: number }> = [];
-  atributos: Array<string> = [];
+  @Input() header: Array<{ description: string; percentage: number }> = [];
+  @Input() atributos: Array<string> = [];
   dataShow: Array<{}> = [];
-  data: Array<{}> = [
-    { id: 1, nome: 'Gilmar', idade: 10, cidade: 'Itauna' },
-    { id: 2, nome: 'Livia', idade: 10, cidade: 'Crucilandia' },
-    { id: 3, nome: 'Thamires', idade: 10, cidade: 'Bom despache' },
-    { id: 1, nome: 'Gilmar', idade: 10, cidade: 'Itauna' },
-    { id: 2, nome: 'Livia', idade: 10, cidade: 'Crucilandia' },
-    { id: 3, nome: 'Thamires', idade: 10, cidade: 'Bom despache' },
-    { id: 1, nome: 'Gilmar', idade: 10, cidade: 'Itauna' },
-    { id: 2, nome: 'Livia', idade: 10, cidade: 'Crucilandia' },
-    { id: 3, nome: 'Thamires', idade: 10, cidade: 'Bom despache' },
-    { id: 1, nome: 'Gilmar', idade: 10, cidade: 'Itauna' },
-    { id: 2, nome: 'Livia', idade: 10, cidade: 'Crucilandia' },
-    { id: 3, nome: 'Thamires', idade: 10, cidade: 'Bom despache' },
-  ];
+  @Input() data: Array<{}> = [];
 
   ngOnInit() {
-    this.header = [
-      { description: 'Id', percentage: 10 },
-      { description: 'Nome', percentage: 25 },
-      { description: 'Idade', percentage: 25 },
-      { description: 'Origem', percentage: 25 },
-    ];
     this.dataShow = this.data;
-    this.atributos = ['id', 'nome', 'idade', 'cidade'];
   }
 
   public search(value: string) {
@@ -51,5 +31,9 @@ export class DataTableComponent implements OnInit {
       (item, i) => filterMain.indexOf(item) === i
     );
     this.dataShow = listClear;
+  }
+
+  select(item: any) {
+    this.selected = item;
   }
 }

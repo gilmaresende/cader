@@ -10,6 +10,14 @@ import { PersonService } from 'src/app/services/person.service';
   styleUrls: ['./person-list.component.scss'],
 })
 export class PersonListComponent extends SPageList<Person, PersonService> {
+  header: Array<{ description: string; percentage: number }> = [
+    {
+      description: 'Nome',
+      percentage: 90,
+    },
+  ];
+  atributos: Array<string> = ['name'];
+
   constructor(private action: ControlService, private service: PersonService) {
     super('Lista Pessoas', action, service);
   }

@@ -7,7 +7,7 @@ export abstract class SPageList<
   Service extends BaseHttpService<Entidade>
 > {
   public ob?: Entidade;
-  public list?: Array<{}>;
+  public list: Array<{}> = [];
   constructor(
     title: string,
     private actions: ControlService,

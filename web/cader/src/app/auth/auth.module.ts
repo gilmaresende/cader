@@ -10,6 +10,7 @@ import { PersonViewComponent } from './register/person/person-view/person-view.c
 import { WalletListComponent } from './register/wallet/wallet-list/wallet-list.component';
 import { WalletViewComponent } from './register/wallet/wallet-view/wallet-view.component';
 import { ViewComponent } from './view/view.component';
+import { PersonListComponent } from './register/person/person-list/person-list.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ViewComponent } from './view/view.component';
     WalletListComponent,
     WalletViewComponent,
     PersonViewComponent,
+    PersonListComponent,
   ],
   imports: [
     CommonModule,
