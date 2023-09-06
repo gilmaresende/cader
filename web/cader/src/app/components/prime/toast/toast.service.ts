@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastComponent } from './toast.component';
+import { ControlService } from 'src/app/core/services/control.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,9 @@ import { ToastComponent } from './toast.component';
 export class ToastService {
   private toast: ToastComponent | null = null;
 
-  constructor() {}
+  constructor(private controlService: ControlService) {
+    controlService.setToastService(this);
+  }
 
   setToast(toast: ToastComponent) {
     this.toast = toast;

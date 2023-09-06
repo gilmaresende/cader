@@ -31,4 +31,8 @@ export class ToolbarComponent implements OnInit {
   showSidebar() {
     this.controller.showSidebar();
   }
+
+  load() {
+    this.controller.load();
+  }
 }

@@ -22,13 +22,15 @@ export class BaseHttpService<Entiti extends SEntidade> {
     );
   }
 
-  findById(id: any): Observable<Entiti> {
-    return this.http.get<Entiti>(`${API_CONFIG.BASE_URL}/${this.rote}/${id}`);
+  findById(id: any): Observable<ResponseServe> {
+    return this.http.get<ResponseServe>(
+      `${API_CONFIG.BASE_URL}/${this.rote}/${id}`
+    );
   }
 
   findAll(): Observable<ResponseServe> {
     const url = `${API_CONFIG.BASE_URL}/${this.rote}/list`;
-    const response = this.http.post<any>(url, {});
+    const response = this.http.post<ResponseServe>(url, {});
     return response;
     //return this.http.post<Entiti[]>(url, {}, this.getHeader());
   }

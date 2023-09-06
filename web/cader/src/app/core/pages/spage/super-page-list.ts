@@ -10,10 +10,12 @@ export abstract class SPageList<
   public list: Array<{}> = [];
   constructor(
     title: string,
+    roteEntiti: string,
     private actions: ControlService,
     private services: Service
   ) {
     actions.build(this.ob, title, this, this.services);
+    actions.setRotaEntidade(roteEntiti);
     this.findAll();
   }
 

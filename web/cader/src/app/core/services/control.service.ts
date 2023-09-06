@@ -5,6 +5,8 @@ import { SPage } from '../pages/spage/super-page';
 import { SidebarComponent } from 'src/app/components/prime/sidebar/sidebar.component';
 import { BaseHttpService } from './base-http.service';
 import { SPageList } from '../pages/spage/super-page-list';
+import { ToastService } from 'src/app/components/prime/toast/toast.service';
+import { Route, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +17,8 @@ export class ControlService {
   toobar!: ToolbarComponent;
   sidebar!: SidebarComponent;
   service!: BaseHttpService<SEntidade>;
+  toastService?: ToastService;
+  rotaEntidade: string = '';
   page?:
     | SPage<SEntidade, BaseHttpService<SEntidade>>
     | SPageList<SEntidade, BaseHttpService<SEntidade>>;
@@ -35,7 +39,23 @@ export class ControlService {
     return this.service;
   }
 
-  constructor() {}
+  setOb(ob: any) {
+    this.ob = ob;
+  }
+
+  getOb(): SEntidade | undefined {
+    return this.ob;
+  }
+
+  setToastService(toastService: ToastService) {
+    this.toastService = toastService;
+  }
+
+  setRotaEntidade(rota: string) {
+    this.rotaEntidade = `cader/${rota}`;
+  }
+
+  constructor(private router: Router) {}
 
   build(
     ob: SEntidade | undefined,
@@ -52,10 +72,6 @@ export class ControlService {
     if (this.toobar) {
       this.toobar.setTitle(title);
     }
-  }
-
-  setOb(ob: any) {
-    this.ob = ob;
   }
 
   save() {
@@ -80,5 +96,14 @@ export class ControlService {
 
   showSidebar() {
     this.sidebar?.showSideBar();
+  }
+
+  load() {
+    if (!this.ob) {
+      this.toastService?.showAlert('Selecione um registro para carregar!');
+      return;
+    }
+
+    this.router.navigate([`${this.rotaEntidade}/${this.ob.id}`]);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SEntidade } from 'src/app/core/model/sentidade';
+import { ControlService } from 'src/app/core/services/control.service';
 
 @Component({
   selector: 'data-table',
@@ -12,6 +13,8 @@ export class DataTableComponent implements OnInit {
   @Input() atributos: Array<string> = [];
   dataShow: Array<{}> = [];
   @Input() data: Array<{}> = [];
+
+  constructor(private controller: ControlService) {}
 
   ngOnInit() {
     this.dataShow = this.data;
@@ -34,6 +37,7 @@ export class DataTableComponent implements OnInit {
   }
 
   select(item: any) {
+    this.controller.setOb(item);
     this.selected = item;
   }
 }
