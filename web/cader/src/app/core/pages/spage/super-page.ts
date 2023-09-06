@@ -9,6 +9,8 @@ export abstract class SPage<
 > {
   public ob?: Entidade;
 
+  loading: boolean = true;
+
   constructor(
     title: string,
     private actions: ControlService,
@@ -29,13 +31,20 @@ export abstract class SPage<
   }
 
   findById(id: number) {
+    this.actions.showLoadingTrue();
     this.actions.service.findById(id).subscribe({
       next: (res) => {
         this.setOb(res.data);
+        this.actions.showLoadingFalse();
       },
       error: (error) => {
         console.log(error);
+        this.actions.showLoadingFalse();
       },
     });
+  }
+
+  public alterLoading(isLoading: boolean) {
+    this.loading = isLoading;
   }
 }

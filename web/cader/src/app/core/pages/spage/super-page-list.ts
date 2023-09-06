@@ -8,6 +8,9 @@ export abstract class SPageList<
 > {
   public ob?: Entidade;
   public list: Array<{}> = [];
+
+  loading: boolean = true;
+
   constructor(
     title: string,
     roteEntiti: string,
@@ -25,16 +28,23 @@ export abstract class SPageList<
   }
 
   findAll() {
+    this.actions.showLoadingTrue();
     this.actions
       .getService()
       .findAll()
       .subscribe({
         next: (res) => {
+          this.actions.showLoadingFalse();
           this.list = res.datas;
         },
         error: (error) => {
           console.log(error);
+          this.actions.showLoadingFalse();
         },
       });
+  }
+
+  public alterLoading(isLoading: boolean) {
+    this.loading = isLoading;
   }
 }

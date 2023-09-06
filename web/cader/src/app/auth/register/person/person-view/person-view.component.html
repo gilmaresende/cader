@@ -1,1 +1,11 @@
-{{ ob | json }}
+<div *ngIf="loading">
+  <div class="framePerson">
+    <input-text
+      [ob]="ob"
+      [atributo]="'name'"
+      [label]="'Nome'"
+      [placeholder]="'Nome'"
+      [isDisabled]="false"
+    />
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { BaseHttpService } from './base-http.service';
 import { SPageList } from '../pages/spage/super-page-list';
 import { ToastService } from 'src/app/components/prime/toast/toast.service';
 import { Route, Router } from '@angular/router';
+import { ViewComponent } from 'src/app/auth/view/view.component';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,7 @@ export class ControlService {
   service!: BaseHttpService<SEntidade>;
   toastService?: ToastService;
   rotaEntidade: string = '';
+  superView!: ViewComponent;
   page?:
     | SPage<SEntidade, BaseHttpService<SEntidade>>
     | SPageList<SEntidade, BaseHttpService<SEntidade>>;
@@ -53,6 +55,10 @@ export class ControlService {
 
   setRotaEntidade(rota: string) {
     this.rotaEntidade = `cader/${rota}`;
+  }
+
+  setSuperView(superView: ViewComponent) {
+    this.superView = superView;
   }
 
   constructor(private router: Router) {}
@@ -105,5 +111,15 @@ export class ControlService {
     }
 
     this.router.navigate([`${this.rotaEntidade}/${this.ob.id}`]);
+  }
+
+  showLoadingFalse() {
+    this.superView.alterLoading(false);
+    this.page?.alterLoading(true);
+  }
+
+  showLoadingTrue() {
+    this.superView.alterLoading(true);
+    this.page?.alterLoading(false);
   }
 }
