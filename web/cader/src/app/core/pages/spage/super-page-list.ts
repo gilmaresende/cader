@@ -1,3 +1,4 @@
+import { StatePage } from '../../enuns/statePage';
 import { SEntidade } from '../../model/sentidade';
 import { BaseHttpService } from '../../services/base-http.service';
 import { ControlService } from '../../services/control.service';
@@ -17,14 +18,18 @@ export abstract class SPageList<
     private actions: ControlService,
     private services: Service
   ) {
+    actions.setStatePage(StatePage.LIST);
     actions.build(this.ob, title, this, this.services);
     actions.setRotaEntidade(roteEntiti);
     this.findAll();
   }
 
   public setOb(ob: Entidade) {
+    this.actions.showLoadingFalse();
     this.ob = ob;
+    console.log(ob);
     this.actions.setOb(ob);
+    this.actions.showLoadingFalse();
   }
 
   findAll() {
@@ -47,4 +52,6 @@ export abstract class SPageList<
   public alterLoading(isLoading: boolean) {
     this.loading = isLoading;
   }
+
+  public clearScreen() {}
 }

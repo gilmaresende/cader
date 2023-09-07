@@ -8,7 +8,7 @@ import { ResponseServe } from '../model/response-serve';
 @Injectable({
   providedIn: 'root',
 })
-export class BaseHttpService<Entiti extends SEntidade> {
+export abstract class BaseHttpService<Entiti extends SEntidade> {
   rote: String = '';
 
   constructor(
@@ -68,4 +68,6 @@ export class BaseHttpService<Entiti extends SEntidade> {
     // };
     return headers;
   }
+
+  abstract newInstance(): Entiti;
 }

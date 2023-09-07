@@ -14,6 +14,7 @@
     class="example-icon favorite-icon"
     aria-label="Example icon-button with heart icon"
     (click)="load()"
+    *ngIf="isList"
   >
     <mat-icon>dvr</mat-icon>
   </button>
@@ -22,6 +23,7 @@
     class="example-icon"
     aria-label="Example icon-button with share icon"
     (click)="save()"
+    *ngIf="isInsert || isEdit"
   >
     <mat-icon>save</mat-icon>
   </button>
@@ -29,23 +31,8 @@
     mat-icon-button
     class="example-icon"
     aria-label="Example icon-button with share icon"
-    (click)="save()"
-  >
-    <mat-icon>edit </mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
-    (click)="delete()"
-  >
-    <mat-icon>delete </mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
-    (click)="save()"
+    (click)="newOb()"
+    *ngIf="isView || isList"
   >
     <mat-icon>add_circle </mat-icon>
   </button>
@@ -54,6 +41,26 @@
     class="example-icon"
     aria-label="Example icon-button with share icon"
     (click)="save()"
+    *ngIf="isView"
+  >
+    <mat-icon>edit </mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+    (click)="delete()"
+    *ngIf="isView"
+  >
+    <mat-icon>delete </mat-icon>
+  </button>
+
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+    (click)="save()"
+    *ngIf="isInsert || isEdit"
   >
     <mat-icon>cancel </mat-icon>
   </button>

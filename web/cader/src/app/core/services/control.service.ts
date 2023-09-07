@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { SEntidade } from '../model/sentidade';
-import { ToolbarComponent } from 'src/app/components/material/toolbar/toolbar.component';
-import { SPage } from '../pages/spage/super-page';
-import { SidebarComponent } from 'src/app/components/prime/sidebar/sidebar.component';
-import { BaseHttpService } from './base-http.service';
-import { SPageList } from '../pages/spage/super-page-list';
-import { ToastService } from 'src/app/components/prime/toast/toast.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ViewComponent } from 'src/app/auth/view/view.component';
+import { ToolbarComponent } from 'src/app/components/material/toolbar/toolbar.component';
+import { SidebarComponent } from 'src/app/components/prime/sidebar/sidebar.component';
+import { ToastService } from 'src/app/components/prime/toast/toast.service';
+import { SEntidade } from '../model/sentidade';
+import { SPage } from '../pages/spage/super-page';
+import { SPageList } from '../pages/spage/super-page-list';
+import { BaseHttpService } from './base-http.service';
+import { StatePage } from '../enuns/statePage';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,7 @@ export class ControlService {
   toastService?: ToastService;
   rotaEntidade: string = '';
   superView!: ViewComponent;
+  statePage: StatePage = StatePage.HOME;
   page?:
     | SPage<SEntidade, BaseHttpService<SEntidade>>
     | SPageList<SEntidade, BaseHttpService<SEntidade>>;
@@ -47,6 +49,17 @@ export class ControlService {
 
   getOb(): SEntidade | undefined {
     return this.ob;
+  }
+
+  getTitle() {
+    return this.title;
+  }
+
+  setTitle(title: string) {
+    this.title = title;
+    if (this.toobar) {
+      this.toobar.setTitle(title);
+    }
   }
 
   setToastService(toastService: ToastService) {
@@ -82,6 +95,7 @@ export class ControlService {
 
   save() {
     alert('save');
+    console.log(this.ob);
   }
 
   delete() {
@@ -96,10 +110,6 @@ export class ControlService {
     alert('cancel');
   }
 
-  getTitle() {
-    return this.title;
-  }
-
   showSidebar() {
     this.sidebar?.showSideBar();
   }
@@ -109,8 +119,13 @@ export class ControlService {
       this.toastService?.showAlert('Selecione um registro para carregar!');
       return;
     }
-
+    this.setStatePage(StatePage.VIEW);
     this.router.navigate([`${this.rotaEntidade}/${this.ob.id}`]);
+  }
+
+  async newOb() {
+    this.setStatePage(StatePage.INSERT);
+    this.router.navigate([`${this.rotaEntidade}`]);
   }
 
   showLoadingFalse() {
@@ -121,5 +136,9 @@ export class ControlService {
   showLoadingTrue() {
     this.superView.alterLoading(true);
     this.page?.alterLoading(false);
+  }
+
+  setStatePage(state: StatePage) {
+    this.statePage = state;
   }
 }
