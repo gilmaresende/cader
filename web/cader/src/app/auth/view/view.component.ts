@@ -14,8 +14,6 @@ export class ViewComponent {
   }
 
   public alterLoading(isLoading: boolean) {
-    console.log(isLoading);
     this.loading = isLoading;
-    console.log('dev true');
   }
 }

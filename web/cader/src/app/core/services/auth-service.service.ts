@@ -45,7 +45,11 @@ export class AuthServiceService {
     const token = this.getToken();
     if (!token) return false;
     const jwtHelper = new JwtHelperService();
-    return !jwtHelper.isTokenExpired(token);
+    if (jwtHelper.isTokenExpired(token)) {
+      localStorage.removeItem(KEY_LOCAL.KEY_TOKEN);
+      return false;
+    }
+    return true;
   }
 
   public login(token: string) {

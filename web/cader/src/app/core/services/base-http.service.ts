@@ -37,7 +37,6 @@ export class BaseHttpService<Entiti extends SEntidade> {
 
   findFilter(): Observable<Entiti[]> {
     const url = `${API_CONFIG.BASE_URL}/${this.rote}`;
-    console.log(url);
     return this.http.get<Entiti[]>(url);
   }
 
