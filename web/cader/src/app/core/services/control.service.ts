@@ -103,7 +103,7 @@ export class ControlService {
   }
 
   edit() {
-    alert('edit');
+    this.setStatePage(StatePage.EDIT);
   }
 
   cancel() {
@@ -140,5 +140,11 @@ export class ControlService {
 
   setStatePage(state: StatePage) {
     this.statePage = state;
+    if (state === StatePage.VIEW) {
+      this.page?.setIsDisabled(true);
+    } else {
+      this.page?.setIsDisabled(false);
+    }
+    if (this.toobar) this.toobar.checkState();
   }
 }

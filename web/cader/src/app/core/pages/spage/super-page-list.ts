@@ -11,7 +11,7 @@ export abstract class SPageList<
   public list: Array<{}> = [];
 
   loading: boolean = true;
-
+  isDisabled: boolean = false;
   constructor(
     title: string,
     roteEntiti: string,
@@ -54,4 +54,8 @@ export abstract class SPageList<
   }
 
   public clearScreen() {}
+
+  public setIsDisabled(valueIsDisable: boolean) {
+    this.isDisabled = valueIsDisable;
+  }
 }

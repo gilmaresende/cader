@@ -24,6 +24,7 @@ export abstract class SPage<
     const id = this.activatedRoutes.snapshot.params['id'];
     if (id) {
       this.findById(id);
+      this.actions.setStatePage(StatePage.VIEW);
     } else {
       this.actions.setStatePage(StatePage.INSERT);
       this.setOb(this.services.newInstance());
@@ -58,5 +59,9 @@ export abstract class SPage<
   public clearScreen() {
     this.ob = this.services.newInstance();
     this.isDisabled = false;
+  }
+
+  public setIsDisabled(valueIsDisable: boolean) {
+    this.isDisabled = valueIsDisable;
   }
 }

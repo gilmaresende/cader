@@ -52,6 +52,9 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
     this.controller.setTooBar(this);
     this.title = this.controller.getTitle();
+    this.checkState();
+  }
+  checkState() {
     if (this.controller.statePage === StatePage.EDIT) {
       this.setEdit();
     } else if (this.controller.statePage === StatePage.INSERT) {
@@ -83,5 +86,9 @@ export class ToolbarComponent implements OnInit {
 
   newOb() {
     this.controller.newOb();
+  }
+
+  edit() {
+    this.controller.edit();
   }
 }
