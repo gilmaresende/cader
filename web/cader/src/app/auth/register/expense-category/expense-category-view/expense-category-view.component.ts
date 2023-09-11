@@ -14,10 +14,10 @@ export class ExpenseCategoryViewComponent extends SPage<
   ExpenseCategoryService
 > {
   constructor(
-    private action: ControlService,
+    private controller: ControlService,
     private service: ExpenseCategoryService,
     private activatedRoute: ActivatedRoute
   ) {
-    super('Categoria Despesa', action, service, activatedRoute);
+    super('Categoria Despesa', controller, service, activatedRoute);
   }
 }

@@ -64,7 +64,7 @@ public class BaseResource<Entity extends BaseEntity,
 
         PackageDT<DTO> pack = new PackageDT();
         pack.setRotaOb(createURI(ob).getPath());
-        pack.setMessage("Saved data");
+        pack.setMessage("Saved record");
         return ResponseEntity.ok().body(pack);
     }
 
@@ -85,7 +85,7 @@ public class BaseResource<Entity extends BaseEntity,
 
             PackageDT<DTO> pack = new PackageDT();
             pack.setUpdate(ob.getUpdate());
-            pack.setMessage("Updated data");
+            pack.setMessage("Updated record");
             return ResponseEntity.ok().body(pack);
         }
         throw new UpdateException("Update in: " + ob.getUpdate());
@@ -146,7 +146,7 @@ public class BaseResource<Entity extends BaseEntity,
         service.delete(ob);
 
         PackageDT<DTO> res = new PackageDT<DTO>();
-        res.setMessage("Deleted data!");
+        res.setMessage("Deleted record!");
         return ResponseEntity.ok().body(res);
     }
 

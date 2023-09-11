@@ -9,6 +9,7 @@ import { SPage } from '../pages/spage/super-page';
 import { SPageList } from '../pages/spage/super-page-list';
 import { BaseHttpService } from './base-http.service';
 import { StatePage } from '../enuns/statePage';
+import { ConfirmDialogService } from 'src/app/components/prime/confirm-dialog/confirm-dialog.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class ControlService {
   toobar!: ToolbarComponent;
   sidebar!: SidebarComponent;
   toastService?: ToastService;
+  confirmDialogService?: ConfirmDialogService;
   statePage: StatePage = StatePage.HOME;
   superView!: ViewComponent;
   page?:
@@ -75,6 +77,10 @@ export class ControlService {
 
   setToastService(toastService: ToastService) {
     this.toastService = toastService;
+  }
+
+  setConfirmDialogService(confirmDialogService: ConfirmDialogService) {
+    this.confirmDialogService = confirmDialogService;
   }
 
   setSuperView(superView: ViewComponent) {
@@ -149,24 +155,31 @@ export class ControlService {
 
   delete() {
     if (this.ob!.id! > 0) {
-      this.service.delete(this.ob!.id!).subscribe({
-        next: (res) => {
-          this.getOb()!.update = res.update;
-          this.showLoadingFalse();
-          this.toastService!.showSucess(res.message);
-          this.setStatePage(StatePage.LIST);
-          this.router.navigate([`${this.rotaEntidade}/list`]);
+      this.confirmDialogService!.showDialog(
+        'Confirmar Exclusão',
+        'Realmente deseja apagar este registro? Esta ação não pode ser desfeita!',
+        () => {
+          this.service.delete(this.ob!.id!).subscribe({
+            next: (res) => {
+              this.getOb()!.update = res.update;
+              this.showLoadingFalse();
+              this.toastService!.showSucess(res.message);
+              this.setStatePage(StatePage.LIST);
+              this.router.navigate([`${this.rotaEntidade}/list`]);
+            },
+            error: (error) => {
+              if (error.error) {
+                this.toastService!.showAlert(error.error.error);
+              } else {
+                console.log(error);
+              }
+              this.showLoadingFalse();
+              this.setStatePage(StatePage.VIEW);
+            },
+          });
         },
-        error: (error) => {
-          if (error.error) {
-            this.toastService!.showAlert(error.error.error);
-          } else {
-            console.log(error);
-          }
-          this.showLoadingFalse();
-          this.setStatePage(StatePage.VIEW);
-        },
-      });
+        () => {}
+      );
     }
   }
 
@@ -177,6 +190,10 @@ export class ControlService {
   async cancel() {
     this.setStatePage(StatePage.VIEW);
     this.page?.findById(this.ob!.id!);
+  }
+
+  goToList() {
+    this.router.navigate([`cader/${this.service.rote}/list`]);
   }
 
   showSidebar() {

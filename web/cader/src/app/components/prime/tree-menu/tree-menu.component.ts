@@ -29,7 +29,7 @@ export class TreeMenuComponent implements OnInit {
             label: 'Categoria Receita',
             command: () => this.toGo('incomeCategory'),
           },
-
+          { label: 'Meio Pagamento', command: () => this.toGo('paymentType') },
           { label: 'Pessoa', command: () => this.toGo('person') },
         ],
       },

@@ -87,4 +87,8 @@ export class ToolbarComponent implements OnInit {
   cancel() {
     this.controller.cancel();
   }
+
+  goToList() {
+    this.controller.goToList();
+  }
 }

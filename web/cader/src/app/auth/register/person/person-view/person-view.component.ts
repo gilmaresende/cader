@@ -12,10 +12,10 @@ import { PersonService } from 'src/app/services/person.service';
 })
 export class PersonViewComponent extends SPage<Person, PersonService> {
   constructor(
-    private action: ControlService,
+    private controller: ControlService,
     private service: PersonService,
     private activatedRoute: ActivatedRoute
   ) {
-    super('Pessoa', action, service, activatedRoute);
+    super('Pessoa', controller, service, activatedRoute);
   }
 }

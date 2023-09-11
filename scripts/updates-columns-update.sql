@@ -10,4 +10,7 @@ update categoria_receita p
 set p.update_time = p.data_cadastro
 where p.id > 0;
 
+update meio_pagamento p
+set p.update_time = p.data_cadastro
+where p.id > 0;
 

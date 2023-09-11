@@ -18,7 +18,10 @@ export class PersonListComponent extends SPageList<Person, PersonService> {
   ];
   atributos: Array<string> = ['name'];
 
-  constructor(private action: ControlService, private service: PersonService) {
-    super('Lista Pessoas', action, service);
+  constructor(
+    private controller: ControlService,
+    private service: PersonService
+  ) {
+    super('Lista Pessoas', controller, service);
   }
 }
