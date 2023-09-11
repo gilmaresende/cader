@@ -13,6 +13,8 @@ import { ViewComponent } from './view/view.component';
 import { PersonListComponent } from './register/person/person-list/person-list.component';
 import { ExpenseCategoryListComponent } from './register/expense-category/expense-category-list/expense-category-list.component';
 import { ExpenseCategoryViewComponent } from './register/expense-category/expense-category-view/expense-category-view.component';
+import { IncomeCategoryListComponent } from './register/income-category/income-category-list/income-category-list.component';
+import { IncomeCategoryViewComponent } from './register/income-category/income-category-view/income-category-view.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { ExpenseCategoryViewComponent } from './register/expense-category/expens
     PersonListComponent,
     ExpenseCategoryListComponent,
     ExpenseCategoryViewComponent,
+    IncomeCategoryListComponent,
+    IncomeCategoryViewComponent,
   ],
   imports: [
     CommonModule,

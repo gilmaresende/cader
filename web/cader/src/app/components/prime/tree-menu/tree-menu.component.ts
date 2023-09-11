@@ -25,6 +25,11 @@ export class TreeMenuComponent implements OnInit {
             label: 'Categoria Despesa',
             command: () => this.toGo('expenseCategory'),
           },
+          {
+            label: 'Categoria Receita',
+            command: () => this.toGo('incomeCategory'),
+          },
+
           { label: 'Pessoa', command: () => this.toGo('person') },
         ],
       },

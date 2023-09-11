@@ -1,0 +1,17 @@
+<div *ngIf="loading">
+  <div class="defaultRegister">
+    <input-text
+      [ob]="ob"
+      [atributo]="'name'"
+      [label]="'Nome'"
+      [placeholder]="'Nome'"
+      [isDisabled]="isDisabled"
+    />
+    <input-switch
+      [label]="'Ativo'"
+      [ob]="ob"
+      [atributo]="'active'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+</div>

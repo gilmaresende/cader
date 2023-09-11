@@ -22,9 +22,9 @@ export class ExpenseCategoryListComponent extends SPageList<
   atributos: Array<string> = ['name'];
 
   constructor(
-    private action: ControlService,
+    private controller: ControlService,
     private service: ExpenseCategoryService
   ) {
-    super('Lista Categorias Despesa', action, service);
+    super('Lista Categorias Despesa', controller, service);
   }
 }
