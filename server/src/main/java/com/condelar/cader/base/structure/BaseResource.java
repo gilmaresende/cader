@@ -61,15 +61,15 @@ public class BaseResource<Entity extends BaseEntity,
         ob.setRegister(LocalDate.now());
         ob.setUser(getUser());
         ob = service.save(ob);
-      //  return ResponseEntity.created(createURI(ob)).build();
 
         PackageDT<DTO> pack = new PackageDT();
         pack.setRotaOb(createURI(ob).getPath());
+        pack.setMessage("Saved data");
         return ResponseEntity.ok().body(pack);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody DTO data) {
+    public ResponseEntity<PackageDT<DTO>> update(@PathVariable Long id, @RequestBody DTO data) {
         valid.clear();
         valid.validDtoToSave(data);
         valid.hasError();
@@ -82,8 +82,11 @@ public class BaseResource<Entity extends BaseEntity,
         if (ob.getUpdate().equals(data.getUpdate())) {
             ob = service.toEntity(ob, data);
             ob = service.save(ob);
-            return ResponseEntity.noContent().build();
-            //    return ResponseEntity.created(createURI(ob)).build();
+
+            PackageDT<DTO> pack = new PackageDT();
+            pack.setUpdate(ob.getUpdate());
+            pack.setMessage("Updated data");
+            return ResponseEntity.ok().body(pack);
         }
         throw new UpdateException("Update in: " + ob.getUpdate());
     }
@@ -135,16 +138,24 @@ public class BaseResource<Entity extends BaseEntity,
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<PackageDT<DTO>> delete(@PathVariable Long id) {
         Entity ob = service.instance();
         ob.setUser(getUser());
         ob.setId(id);
         ob = service.find(ob);
         service.delete(ob);
-        return ResponseEntity.noContent().build();
+
+        PackageDT<DTO> res = new PackageDT<DTO>();
+        res.setMessage("Deleted data!");
+        return ResponseEntity.ok().body(res);
     }
 
     private URI createURI(Entity ob) {
+        if (ob == null) {
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                    .buildAndExpand().toUri();
+            return uri;
+        }
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(ob.getId()).toUri();
         return uri;

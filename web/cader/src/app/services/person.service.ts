@@ -8,7 +8,7 @@ import { EnumYesNo } from '../core/enuns/enumSimNao';
 })
 export class PersonService extends BaseHttpService<Person> {
   override newInstance(): Person {
-    return { name: '', id: 0, active: EnumYesNo.YES };
+    return { name: '', id: 0, active: EnumYesNo.YES, update: new Date() };
   }
   override rote: string = 'person';
 }

@@ -34,6 +34,7 @@ public class Person extends BaseEntity implements RegisterEntity {
 
     @Version
     @Column(name = "update_time")
+   // @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime update;
 
     @Column(name = "data_cadastro")

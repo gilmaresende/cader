@@ -14,13 +14,12 @@ export abstract class SPageList<
   isDisabled: boolean = false;
   constructor(
     title: string,
-    roteEntiti: string,
     private actions: ControlService,
     private services: Service
   ) {
     actions.setStatePage(StatePage.LIST);
     actions.build(this.ob, title, this, this.services);
-    actions.setRotaEntidade(roteEntiti);
+    actions.setRotaEntidade(`${this.services.rote}`);
     this.findAll();
   }
 

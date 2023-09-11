@@ -5,6 +5,8 @@ import { ViewComponent } from './view/view.component';
 import { PersonViewComponent } from './register/person/person-view/person-view.component';
 import { WalletViewComponent } from './register/wallet/wallet-view/wallet-view.component';
 import { PersonListComponent } from './register/person/person-list/person-list.component';
+import { ExpenseCategoryListComponent } from './register/expense-category/expense-category-list/expense-category-list.component';
+import { ExpenseCategoryViewComponent } from './register/expense-category/expense-category-view/expense-category-view.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
           { path: '', component: PersonViewComponent },
           { path: 'list', component: PersonListComponent },
           { path: ':id', component: PersonViewComponent },
+        ],
+      },
+      {
+        path: 'expenseCategory',
+        children: [
+          { path: '', component: ExpenseCategoryViewComponent },
+          { path: 'list', component: ExpenseCategoryListComponent },
+          { path: ':id', component: ExpenseCategoryViewComponent },
         ],
       },
       {

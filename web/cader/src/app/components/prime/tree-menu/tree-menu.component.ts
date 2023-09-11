@@ -17,12 +17,15 @@ export class TreeMenuComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: 'Home', command: () => this.toGo('home') },
+      { label: 'Home', command: () => this.toGoHome() },
       {
         label: 'Cadastros',
         items: [
-          { label: 'Carteira', command: () => this.toGo('wallet') },
-          { label: 'Pessoa', command: () => this.toGo('person/list') },
+          {
+            label: 'Categoria Despesa',
+            command: () => this.toGo('expenseCategory'),
+          },
+          { label: 'Pessoa', command: () => this.toGo('person') },
         ],
       },
       {
@@ -52,7 +55,10 @@ export class TreeMenuComponent implements OnInit {
   }
 
   private toGo(rote: string) {
-    this.router.navigate([`cader/${rote}`]);
+    this.router.navigate([`cader/${rote}/list`]);
+  }
+  private toGoHome() {
+    this.router.navigate([`cader/home`]);
   }
 
   private logout() {

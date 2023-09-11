@@ -8,12 +8,12 @@ import { SEntidade } from '../model/sentidade';
   providedIn: 'root',
 })
 export abstract class BaseHttpService<Entiti extends SEntidade> {
-  rote: String = '';
+  rote: string = '';
 
   constructor(private http: HttpClient) {}
 
-  delete(id: any): Observable<Entiti> {
-    return this.http.delete<Entiti>(
+  delete(id: any): Observable<ResponseServe> {
+    return this.http.delete<ResponseServe>(
       `${API_CONFIG.BASE_URL}/${this.rote}/${id}`
     );
   }
@@ -43,11 +43,12 @@ export abstract class BaseHttpService<Entiti extends SEntidade> {
     return response;
   }
 
-  update(tipo: Entiti): Observable<Entiti> {
-    return this.http.put<Entiti>(
-      `${API_CONFIG.BASE_URL}/${this.rote}/${tipo.id}`,
-      tipo
+  update(ob: Entiti): Observable<ResponseServe> {
+    const response = this.http.put<ResponseServe>(
+      `${API_CONFIG.BASE_URL}/${this.rote}/${ob.id}`,
+      ob
     );
+    return response;
   }
 
   abstract newInstance(): Entiti;

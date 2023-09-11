@@ -102,6 +102,10 @@ export class ControlService {
     this.rotaEntidade = `cader/${rota}`;
   }
 
+  getRouter(): Router {
+    return this.router;
+  }
+
   //----------------------------------------------------------Actions----------------------------------------
 
   async save() {
@@ -109,20 +113,33 @@ export class ControlService {
     if (this.ob!.id! > 0) {
       this.service.update(this.ob!).subscribe({
         next: (res) => {
-          console.log(res);
+          this.getOb()!.update = res.update;
+          this.showLoadingFalse();
+          this.setStatePage(StatePage.VIEW);
+          this.toastService!.showSucess(res.message);
         },
         error: (error) => {
-          console.log(error);
+          if (error.error) {
+            this.toastService!.showAlert(error.error.error);
+          } else {
+            console.log(error);
+          }
+          this.showLoadingFalse();
+          this.setStatePage(StatePage.VIEW);
         },
       });
     } else {
-      const rota = this.rotaEntidade;
       await this.service.create(this.ob!).subscribe({
         next: (res) => {
-          this.router.navigate([`${this.rotaEntidade}/cader/${res.rotaOb}`]);
+          this.router.navigate([`cader/${res.rotaOb}`]);
+          this.toastService!.showSucess(res.message);
         },
         error: (error) => {
-          console.log(error);
+          if (error.error) {
+            this.toastService!.showAlert(error.error.error);
+          } else {
+            console.log(error);
+          }
           this.showLoadingFalse();
           this.setStatePage(StatePage.VIEW);
         },
@@ -131,7 +148,26 @@ export class ControlService {
   }
 
   delete() {
-    alert('delete');
+    if (this.ob!.id! > 0) {
+      this.service.delete(this.ob!.id!).subscribe({
+        next: (res) => {
+          this.getOb()!.update = res.update;
+          this.showLoadingFalse();
+          this.toastService!.showSucess(res.message);
+          this.setStatePage(StatePage.LIST);
+          this.router.navigate([`${this.rotaEntidade}/list`]);
+        },
+        error: (error) => {
+          if (error.error) {
+            this.toastService!.showAlert(error.error.error);
+          } else {
+            console.log(error);
+          }
+          this.showLoadingFalse();
+          this.setStatePage(StatePage.VIEW);
+        },
+      });
+    }
   }
 
   edit() {
@@ -152,7 +188,6 @@ export class ControlService {
       this.toastService?.showAlert('Selecione um registro para carregar!');
       return;
     }
-    //this.setStatePage(StatePage.VIEW); TODO //DELETAR LINHA
     this.router.navigate([`${this.rotaEntidade}/${this.ob.id}`]);
   }
 

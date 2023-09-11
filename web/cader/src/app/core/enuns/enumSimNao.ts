@@ -1,4 +1,4 @@
 export enum EnumYesNo {
-  NO = 2,
+  NO = 0,
   YES = 1,
 }

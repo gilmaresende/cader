@@ -2,6 +2,7 @@ package com.condelar.cader.base.structure.util;
 
 import com.condelar.cader.base.structure.BaseDTO;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class PackageDT<DTO extends BaseDTO> {
@@ -13,6 +14,8 @@ public class PackageDT<DTO extends BaseDTO> {
     List<DTO> datas;
 
     private String message;
+
+    private LocalDateTime update;
 
     public PackageDT(){
 
@@ -48,5 +51,13 @@ public class PackageDT<DTO extends BaseDTO> {
 
     public void setRotaOb(String rotaOb) {
         this.rotaOb = rotaOb;
+    }
+
+    public LocalDateTime getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(LocalDateTime update) {
+        this.update = update;
     }
 }

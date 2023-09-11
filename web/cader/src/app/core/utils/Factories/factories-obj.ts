@@ -1,5 +1,3 @@
-import { SEntidade } from '../../model/sentidade';
-import { BaseHttpService } from '../../services/base-http.service';
 import { ControlService } from '../../services/control.service';
 
 export function getBilder(

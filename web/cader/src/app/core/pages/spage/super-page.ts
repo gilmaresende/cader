@@ -47,9 +47,12 @@ export abstract class SPage<
         this.actions.setStatePage(StatePage.VIEW);
       },
       error: (error) => {
-        console.log(error);
-        this.actions.showLoadingFalse();
-        this.actions.setStatePage(StatePage.VIEW);
+        if (error.error) {
+          this.actions.toastService!.showAlert(error.error.error);
+        } else {
+          console.log(error);
+        }
+        this.actions.getRouter().navigate([`cader/${this.services.rote}`]);
       },
     });
   }
