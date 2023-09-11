@@ -23,38 +23,30 @@ export class ToolbarComponent implements OnInit {
   setInsert() {
     this.isList = this.isEdit = this.isView = false;
     this.isInsert = true;
-    console.log('setInsert=', this.isEdit);
   }
 
   setView() {
     this.isInsert = this.isList = this.isEdit = false;
     this.isView = true;
-    console.log('setView=', this.isEdit);
   }
 
   setEdit() {
     this.isView = this.isInsert = this.isList = false;
     this.isEdit = true;
-    console.log('setEdit=', this.isEdit);
   }
 
   public setList() {
     this.isEdit = this.isView = this.isInsert = false;
     this.isList = true;
-    console.log('setList=', this.isEdit);
-  }
-
-  setTitle(title: string) {
-    this.title = title;
-    console.log(title);
   }
 
   ngOnInit(): void {
     this.controller.setTooBar(this);
-    this.title = this.controller.getTitle();
     this.checkState();
   }
+
   checkState() {
+    this.title = this.controller.getTitle();
     if (this.controller.statePage === StatePage.EDIT) {
       this.setEdit();
     } else if (this.controller.statePage === StatePage.INSERT) {
@@ -90,5 +82,9 @@ export class ToolbarComponent implements OnInit {
 
   edit() {
     this.controller.edit();
+  }
+
+  cancel() {
+    this.controller.cancel();
   }
 }

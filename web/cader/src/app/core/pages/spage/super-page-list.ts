@@ -58,4 +58,6 @@ export abstract class SPageList<
   public setIsDisabled(valueIsDisable: boolean) {
     this.isDisabled = valueIsDisable;
   }
+
+  async findById(id: number) {}
 }

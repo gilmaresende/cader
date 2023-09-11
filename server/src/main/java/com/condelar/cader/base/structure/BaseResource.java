@@ -51,7 +51,7 @@ public class BaseResource<Entity extends BaseEntity,
     }
 
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody DTO data) {
+    public ResponseEntity<PackageDT<DTO>> save(@RequestBody DTO data) {
         valid.clear();
         valid.validDtoToSave(data);
         valid.hasError();
@@ -61,7 +61,11 @@ public class BaseResource<Entity extends BaseEntity,
         ob.setRegister(LocalDate.now());
         ob.setUser(getUser());
         ob = service.save(ob);
-        return ResponseEntity.created(createURI(ob)).build();
+      //  return ResponseEntity.created(createURI(ob)).build();
+
+        PackageDT<DTO> pack = new PackageDT();
+        pack.setRotaOb(createURI(ob).getPath());
+        return ResponseEntity.ok().body(pack);
     }
 
     @PutMapping("/{id}")

@@ -19,6 +19,7 @@ export abstract class SPage<
     private services: Service,
     private activatedRoutes: ActivatedRoute
   ) {
+    this.actions.showLoadingTrue();
     actions.build(this.ob, title, this, this.services);
 
     const id = this.activatedRoutes.snapshot.params['id'];
@@ -28,6 +29,7 @@ export abstract class SPage<
     } else {
       this.actions.setStatePage(StatePage.INSERT);
       this.setOb(this.services.newInstance());
+      this.actions.showLoadingFalse();
     }
   }
 

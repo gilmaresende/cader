@@ -14,18 +14,56 @@ import { StatePage } from '../enuns/statePage';
   providedIn: 'root',
 })
 export class ControlService {
-  ob?: SEntidade;
+  //----------------------------------------//relacionado ao core da aplicacao--------------------------------
+
   title: string = '';
   toobar!: ToolbarComponent;
   sidebar!: SidebarComponent;
-  service!: BaseHttpService<SEntidade>;
   toastService?: ToastService;
-  rotaEntidade: string = '';
-  superView!: ViewComponent;
   statePage: StatePage = StatePage.HOME;
+  superView!: ViewComponent;
   page?:
     | SPage<SEntidade, BaseHttpService<SEntidade>>
     | SPageList<SEntidade, BaseHttpService<SEntidade>>;
+
+  //----------------------------------------  //relacionado a entidade da tela--------------------------------
+
+  ob?: SEntidade;
+  service!: BaseHttpService<SEntidade>;
+  rotaEntidade: string = '';
+
+  //----------------------------------------  //contrutores--------------------------------
+  constructor(private router: Router) {}
+
+  build(
+    ob: SEntidade | undefined,
+    title: string,
+    page:
+      | SPageList<SEntidade, BaseHttpService<SEntidade>>
+      | SPage<SEntidade, BaseHttpService<SEntidade>>,
+    service: BaseHttpService<SEntidade>
+  ) {
+    this.setService(service);
+    this.setOb(ob);
+    this.page = page;
+    this.title = title;
+    if (this.toobar) {
+      this.toobar.checkState();
+    }
+  }
+
+  //-----------------------------------------//gets e setes relacionado a aplicacao---------------------------------
+
+  getTitle() {
+    return this.title;
+  }
+
+  setTitle(title: string) {
+    this.title = title;
+    if (this.toobar) {
+      this.toobar.checkState();
+    }
+  }
 
   setTooBar(tooBar: ToolbarComponent) {
     this.toobar = tooBar;
@@ -34,6 +72,15 @@ export class ControlService {
   setSideBar(sidebar: SidebarComponent) {
     this.sidebar = sidebar;
   }
+
+  setToastService(toastService: ToastService) {
+    this.toastService = toastService;
+  }
+
+  setSuperView(superView: ViewComponent) {
+    this.superView = superView;
+  }
+  //-----------------------------------------------get e set relacionado a entidades---------------------------
 
   setService(service: BaseHttpService<SEntidade>) {
     this.service = service;
@@ -51,51 +98,36 @@ export class ControlService {
     return this.ob;
   }
 
-  getTitle() {
-    return this.title;
-  }
-
-  setTitle(title: string) {
-    this.title = title;
-    if (this.toobar) {
-      this.toobar.setTitle(title);
-    }
-  }
-
-  setToastService(toastService: ToastService) {
-    this.toastService = toastService;
-  }
-
   setRotaEntidade(rota: string) {
     this.rotaEntidade = `cader/${rota}`;
   }
 
-  setSuperView(superView: ViewComponent) {
-    this.superView = superView;
-  }
+  //----------------------------------------------------------Actions----------------------------------------
 
-  constructor(private router: Router) {}
-
-  build(
-    ob: SEntidade | undefined,
-    title: string,
-    page:
-      | SPageList<SEntidade, BaseHttpService<SEntidade>>
-      | SPage<SEntidade, BaseHttpService<SEntidade>>,
-    service: BaseHttpService<SEntidade>
-  ) {
-    this.setService(service);
-    this.setOb(ob);
-    this.page = page;
-    this.title = title;
-    if (this.toobar) {
-      this.toobar.setTitle(title);
+  async save() {
+    this.showLoadingTrue();
+    if (this.ob!.id! > 0) {
+      this.service.update(this.ob!).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    } else {
+      const rota = this.rotaEntidade;
+      await this.service.create(this.ob!).subscribe({
+        next: (res) => {
+          this.router.navigate([`${this.rotaEntidade}/cader/${res.rotaOb}`]);
+        },
+        error: (error) => {
+          console.log(error);
+          this.showLoadingFalse();
+          this.setStatePage(StatePage.VIEW);
+        },
+      });
     }
-  }
-
-  save() {
-    alert('save');
-    console.log(this.ob);
   }
 
   delete() {
@@ -106,8 +138,9 @@ export class ControlService {
     this.setStatePage(StatePage.EDIT);
   }
 
-  cancel() {
-    alert('cancel');
+  async cancel() {
+    this.setStatePage(StatePage.VIEW);
+    this.page?.findById(this.ob!.id!);
   }
 
   showSidebar() {
@@ -119,7 +152,7 @@ export class ControlService {
       this.toastService?.showAlert('Selecione um registro para carregar!');
       return;
     }
-    this.setStatePage(StatePage.VIEW);
+    //this.setStatePage(StatePage.VIEW); TODO //DELETAR LINHA
     this.router.navigate([`${this.rotaEntidade}/${this.ob.id}`]);
   }
 

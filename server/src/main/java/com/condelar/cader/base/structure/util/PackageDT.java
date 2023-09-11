@@ -6,6 +6,8 @@ import java.util.List;
 
 public class PackageDT<DTO extends BaseDTO> {
 
+   String rotaOb;
+
     DTO data;
 
     List<DTO> datas;
@@ -38,5 +40,13 @@ public class PackageDT<DTO extends BaseDTO> {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getRotaOb() {
+        return rotaOb;
+    }
+
+    public void setRotaOb(String rotaOb) {
+        this.rotaOb = rotaOb;
     }
 }
