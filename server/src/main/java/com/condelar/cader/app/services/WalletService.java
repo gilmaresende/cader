@@ -7,8 +7,8 @@ import com.condelar.cader.app.dto.wallet.WalletFilterDTO;
 import com.condelar.cader.app.dto.wallet.WalletListDTO;
 import com.condelar.cader.app.repositories.WalletRepository;
 import com.condelar.cader.app.valid.WalletValid;
-import com.condelar.cader.base.domain.User;
-import com.condelar.cader.base.structure.BaseService;
+import com.condelar.cader.core.domain.User;
+import com.condelar.cader.core.structure.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

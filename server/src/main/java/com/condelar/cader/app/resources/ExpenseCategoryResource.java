@@ -7,7 +7,7 @@ import com.condelar.cader.app.dto.expensecategory.ExpenseCategoryListDTO;
 import com.condelar.cader.app.repositories.ExpenseCategoryRepository;
 import com.condelar.cader.app.services.ExpenseCategoryService;
 import com.condelar.cader.app.valid.ExpenseCategoryValid;
-import com.condelar.cader.base.structure.BaseResource;
+import com.condelar.cader.core.structure.BaseResource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

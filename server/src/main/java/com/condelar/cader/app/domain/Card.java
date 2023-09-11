@@ -1,8 +1,8 @@
 package com.condelar.cader.app.domain;
 
-import com.condelar.cader.base.domain.User;
-import com.condelar.cader.base.structure.BaseEntity;
-import com.condelar.cader.base.structure.RegisterEntity;
+import com.condelar.cader.core.domain.User;
+import com.condelar.cader.core.structure.BaseEntity;
+import com.condelar.cader.core.structure.RegisterEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;

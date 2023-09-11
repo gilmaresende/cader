@@ -7,8 +7,8 @@ import com.condelar.cader.app.dto.incomecategory.IncomeCategoryFilterDTO;
 import com.condelar.cader.app.dto.incomecategory.IncomeCategoryListDTO;
 import com.condelar.cader.app.repositories.IncomeCategoryRepository;
 import com.condelar.cader.app.valid.IncomeCategoryValid;
-import com.condelar.cader.base.domain.User;
-import com.condelar.cader.base.structure.BaseService;
+import com.condelar.cader.core.domain.User;
+import com.condelar.cader.core.structure.BaseService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

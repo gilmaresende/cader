@@ -7,7 +7,7 @@ import com.condelar.cader.app.dto.incomecategory.IncomeCategoryListDTO;
 import com.condelar.cader.app.repositories.IncomeCategoryRepository;
 import com.condelar.cader.app.services.IncomeCategoryService;
 import com.condelar.cader.app.valid.IncomeCategoryValid;
-import com.condelar.cader.base.structure.BaseResource;
+import com.condelar.cader.core.structure.BaseResource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

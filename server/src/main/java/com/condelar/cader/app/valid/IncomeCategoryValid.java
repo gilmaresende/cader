@@ -2,7 +2,7 @@ package com.condelar.cader.app.valid;
 
 import com.condelar.cader.app.domain.IncomeCategory;
 import com.condelar.cader.app.dto.incomecategory.IncomeCategoryDTO;
-import com.condelar.cader.base.structure.BaseValid;
+import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 
 @Component

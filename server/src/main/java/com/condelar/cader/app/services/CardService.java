@@ -7,8 +7,8 @@ import com.condelar.cader.app.dto.card.CardFilterDTO;
 import com.condelar.cader.app.dto.card.CardListDTO;
 import com.condelar.cader.app.repositories.CardRepository;
 import com.condelar.cader.app.valid.CardValid;
-import com.condelar.cader.base.domain.User;
-import com.condelar.cader.base.structure.BaseService;
+import com.condelar.cader.core.domain.User;
+import com.condelar.cader.core.structure.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

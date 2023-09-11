@@ -2,7 +2,7 @@ package com.condelar.cader.app.valid;
 
 import com.condelar.cader.app.domain.Wallet;
 import com.condelar.cader.app.dto.wallet.WalletDTO;
-import com.condelar.cader.base.structure.BaseValid;
+import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 
 @Component

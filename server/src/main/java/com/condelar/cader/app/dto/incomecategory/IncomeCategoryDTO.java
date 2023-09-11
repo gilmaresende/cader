@@ -1,7 +1,7 @@
 package com.condelar.cader.app.dto.incomecategory;
 
 import com.condelar.cader.app.domain.IncomeCategory;
-import com.condelar.cader.base.structure.BaseDTO;
+import com.condelar.cader.core.structure.BaseDTO;
 import lombok.Data;
 
 @Data

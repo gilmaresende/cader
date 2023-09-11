@@ -7,8 +7,8 @@ import com.condelar.cader.app.dto.person.PersonFilterDTO;
 import com.condelar.cader.app.dto.person.PersonListDTO;
 import com.condelar.cader.app.repositories.PersonRepository;
 import com.condelar.cader.app.valid.PersonValid;
-import com.condelar.cader.base.domain.User;
-import com.condelar.cader.base.structure.BaseService;
+import com.condelar.cader.core.domain.User;
+import com.condelar.cader.core.structure.BaseService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

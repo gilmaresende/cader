@@ -7,7 +7,7 @@ import com.condelar.cader.app.dto.person.PersonListDTO;
 import com.condelar.cader.app.repositories.PersonRepository;
 import com.condelar.cader.app.services.PersonService;
 import com.condelar.cader.app.valid.PersonValid;
-import com.condelar.cader.base.structure.BaseResource;
+import com.condelar.cader.core.structure.BaseResource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

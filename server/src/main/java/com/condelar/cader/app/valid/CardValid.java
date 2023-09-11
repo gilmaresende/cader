@@ -2,7 +2,7 @@ package com.condelar.cader.app.valid;
 
 import com.condelar.cader.app.domain.Card;
 import com.condelar.cader.app.dto.card.CardDTO;
-import com.condelar.cader.base.structure.BaseValid;
+import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 
 @Component

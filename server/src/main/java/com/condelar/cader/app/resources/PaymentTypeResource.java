@@ -7,7 +7,7 @@ import com.condelar.cader.app.dto.paymenttype.PaymentTypeListDTO;
 import com.condelar.cader.app.repositories.PaymentTypeRepository;
 import com.condelar.cader.app.services.PaymentTypeService;
 import com.condelar.cader.app.valid.PaymentTypeValid;
-import com.condelar.cader.base.structure.BaseResource;
+import com.condelar.cader.core.structure.BaseResource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

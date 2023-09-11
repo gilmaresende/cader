@@ -1,7 +1,7 @@
 package com.condelar.cader.app.dto.wallet;
 
 import com.condelar.cader.app.domain.Card;
-import com.condelar.cader.base.structure.BaseDTO;
+import com.condelar.cader.core.structure.BaseDTO;
 import lombok.Data;
 
 @Data

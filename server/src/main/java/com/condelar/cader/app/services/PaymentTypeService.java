@@ -7,8 +7,8 @@ import com.condelar.cader.app.dto.paymenttype.PaymentTypeFilterDTO;
 import com.condelar.cader.app.dto.paymenttype.PaymentTypeListDTO;
 import com.condelar.cader.app.repositories.PaymentTypeRepository;
 import com.condelar.cader.app.valid.PaymentTypeValid;
-import com.condelar.cader.base.domain.User;
-import com.condelar.cader.base.structure.BaseService;
+import com.condelar.cader.core.domain.User;
+import com.condelar.cader.core.structure.BaseService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
