@@ -11,11 +11,11 @@ public class WalletDTO extends BaseDTO {
 
     private Short active;
 
-    private Long idPersonExpense;
+    private Short reserved;
 
-    private Long idPaymentType;
+    private Short canBeNegative;
 
-    private Long idExpenseCategoryBuyCard;
+    private Double balance;
 
     public WalletDTO() {
     }

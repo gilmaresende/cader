@@ -22,6 +22,9 @@ import { InputTextComponent } from './input-text/input-text.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToastComponent } from './toast/toast.component';
 import { TreeMenuComponent } from './tree-menu/tree-menu.component';
+import { InputReaisComponent } from './input-reais/input-reais.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { StyleClassModule } from 'primeng/styleclass';
 @NgModule({
   declarations: [
     BtnTesteComponent,
@@ -35,6 +38,7 @@ import { TreeMenuComponent } from './tree-menu/tree-menu.component';
     DataTableComponent,
     InputSwitchComponent,
     ConfirmDialogComponent,
+    InputReaisComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +52,8 @@ import { TreeMenuComponent } from './tree-menu/tree-menu.component';
     TableModule,
     InputSwitchModule,
     ConfirmDialogModule,
+    InputNumberModule,
+    StyleClassModule,
   ],
   exports: [
     BtnTesteComponent,
@@ -59,6 +65,7 @@ import { TreeMenuComponent } from './tree-menu/tree-menu.component';
     DataTableComponent,
     InputSwitchComponent,
     ConfirmDialogComponent,
+    InputReaisComponent,
   ],
 })
 export class PrimeModule {}

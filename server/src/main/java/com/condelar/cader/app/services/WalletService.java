@@ -27,6 +27,8 @@ public class WalletService extends BaseService<Wallet, WalletDTO, WalletFilterDT
     public Wallet toEntity(Wallet ob, WalletDTO dto) {
         ob.setName(dto.getName());
         ob.setActive(EnumYesNo.valueOf(dto.getActive()).getValue());
+        ob.setCanBeNegative(EnumYesNo.valueOf(dto.getCanBeNegative()).getValue());
+        ob.setReserved(EnumYesNo.valueOf(dto.getReserved()).getValue());
         return ob;
     }
 

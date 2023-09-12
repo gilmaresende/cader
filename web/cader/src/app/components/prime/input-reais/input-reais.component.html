@@ -1,0 +1,15 @@
+<span class="p-float-label">
+  <p-inputNumber
+    class="p-inputtext-sm"
+    [placeholder]="placeholder"
+    [(ngModel)]="value"
+    inputId="currency-us"
+    mode="currency"
+    currency="USD"
+    locale="en-US"
+    [disabled]="isDisabled"
+    (keyup)="teclar()"
+  >
+  </p-inputNumber>
+  <label htmlFor="username">{{ label }}</label>
+</span>

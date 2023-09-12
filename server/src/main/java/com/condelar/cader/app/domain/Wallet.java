@@ -24,8 +24,17 @@ public class Wallet extends BaseEntity implements RegisterEntity {
     @Column(name = "nome")
     private String name;
 
-    @Column(name = "ativo")
+    @Column(name = "ativa")
     private Short active;
+
+    @Column(name = "reservada")
+    private Short reserved;
+
+    @Column(name = "permitir_cheque_especial")
+    private Short canBeNegative;
+
+    @Column(name = "saldo", nullable = false)
+    private Double balance;
 
     @Version
     @Column(name = "update_time")
@@ -42,5 +51,7 @@ public class Wallet extends BaseEntity implements RegisterEntity {
     public String toString() {
         return getName();
     }
+
+
 
 }

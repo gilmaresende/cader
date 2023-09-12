@@ -1,1 +1,3 @@
-<data-table />
+<div *ngIf="loading">
+  <data-table [data]="list" [header]="header" [atributos]="atributos" />
+</div>

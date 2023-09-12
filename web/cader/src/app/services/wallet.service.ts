@@ -8,7 +8,15 @@ import { EnumYesNo } from '../core/enuns/enumSimNao';
 })
 export class WalletService extends BaseHttpService<Wallet> {
   override newInstance(): Wallet {
-    return { name: '', id: 0, active: EnumYesNo.YES, update: new Date() };
+    return {
+      name: '',
+      id: 0,
+      active: EnumYesNo.YES,
+      update: new Date(),
+      reserved: EnumYesNo.NO,
+      canBeNegative: EnumYesNo.NO,
+      balance: 0,
+    };
   }
-  override rote: string = 'person';
+  override rote: string = 'wallet';
 }

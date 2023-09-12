@@ -17,3 +17,7 @@ where p.id > 0;
 update cartao p
 set p.update_time = p.data_cadastro
 where p.id > 0;
+
+update carteira p
+set p.update_time = p.data_cadastro
+where p.id > 0;

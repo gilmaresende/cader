@@ -13,6 +13,7 @@ import { PaymentTypeListComponent } from './register/payment-type/payment-type-l
 import { PaymentTypeViewComponent } from './register/payment-type/payment-type-view/payment-type-view.component';
 import { CardListComponent } from './register/card/card-list/card-list.component';
 import { CardViewComponent } from './register/card/card-view/card-view.component';
+import { WalletListComponent } from './register/wallet/wallet-list/wallet-list.component';
 
 const routes: Routes = [
   {
@@ -65,7 +66,11 @@ const routes: Routes = [
       },
       {
         path: 'wallet',
-        component: WalletViewComponent,
+        children: [
+          { path: '', component: WalletViewComponent },
+          { path: 'list', component: WalletListComponent },
+          { path: ':id', component: WalletViewComponent },
+        ],
       },
     ],
   },

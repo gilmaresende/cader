@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -115,6 +116,7 @@ public class BaseResource<Entity extends BaseEntity,
             ob.setUser(getUser());
             ((RegisterEntity) ob).setActive(null);
             List<Entity> list = service.list(ob);
+            Collections.sort(list);
             List<ListDTO> listDTO = list.stream().map(m -> {
                 ListDTO i = service.toListItem(m);
                 i.setUpdate(m.getUpdate());

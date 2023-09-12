@@ -19,7 +19,7 @@ export class InputSwitchComponent implements OnInit {
   }
 
   onClickLabel(): void {
-    if (this.ob && this.ob[this.atributo] !== undefined) {
+    if (!this.isDisabled && this.ob && this.ob[this.atributo] !== undefined) {
       this.checked = !this.checked;
       this.ob[this.atributo] = this.checked ? 1 : 0;
     }

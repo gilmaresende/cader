@@ -1,1 +1,39 @@
-<data-table />
+<div *ngIf="loading">
+  <div class="defaultRegister">
+    <div>
+      <input-text
+        [ob]="ob"
+        [atributo]="'name'"
+        [label]="'Nome'"
+        [placeholder]="'Nome'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div class="balance">
+      <input-reais
+        [label]="'Saldo'"
+        [ob]="ob"
+        [atributo]="'balance'"
+        [isDisabled]="true"
+      />
+    </div>
+    <input-switch
+      [label]="'Ativo'"
+      [ob]="ob"
+      [atributo]="'active'"
+      [isDisabled]="isDisabled"
+    />
+    <input-switch
+      [label]="'Reservada'"
+      [ob]="ob"
+      [atributo]="'reserved'"
+      [isDisabled]="isDisabled"
+    />
+    <input-switch
+      [label]="'Permite Saldo Negativo'"
+      [ob]="ob"
+      [atributo]="'canBeNegative'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+</div>
