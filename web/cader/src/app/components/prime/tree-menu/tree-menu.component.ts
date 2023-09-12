@@ -22,6 +22,10 @@ export class TreeMenuComponent implements OnInit {
         label: 'Cadastros',
         items: [
           {
+            label: 'Cartão',
+            command: () => this.toGo('card'),
+          },
+          {
             label: 'Categoria Despesa',
             command: () => this.toGo('expenseCategory'),
           },

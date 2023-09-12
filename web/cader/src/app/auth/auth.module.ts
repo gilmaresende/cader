@@ -17,6 +17,8 @@ import { IncomeCategoryListComponent } from './register/income-category/income-c
 import { IncomeCategoryViewComponent } from './register/income-category/income-category-view/income-category-view.component';
 import { PaymentTypeListComponent } from './register/payment-type/payment-type-list/payment-type-list.component';
 import { PaymentTypeViewComponent } from './register/payment-type/payment-type-view/payment-type-view.component';
+import { CardListComponent } from './register/card/card-list/card-list.component';
+import { CardViewComponent } from './register/card/card-view/card-view.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { PaymentTypeViewComponent } from './register/payment-type/payment-type-v
     IncomeCategoryViewComponent,
     PaymentTypeListComponent,
     PaymentTypeViewComponent,
+    CardListComponent,
+    CardViewComponent,
   ],
   imports: [
     CommonModule,
