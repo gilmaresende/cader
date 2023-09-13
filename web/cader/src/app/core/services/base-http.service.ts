@@ -30,9 +30,10 @@ export abstract class BaseHttpService<Entiti extends SEntidade> {
     return response;
   }
 
-  findFilter(): Observable<Entiti[]> {
-    const url = `${API_CONFIG.BASE_URL}/${this.rote}`;
-    return this.http.get<Entiti[]>(url);
+  findFilter(filter: any): Observable<ResponseServe> {
+    const url = `${API_CONFIG.BASE_URL}/${this.rote}/list`;
+    const response = this.http.post<ResponseServe>(url, filter);
+    return response;
   }
 
   create(ob: Entiti): Observable<ResponseServe> {

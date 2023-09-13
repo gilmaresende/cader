@@ -5,6 +5,7 @@ import com.condelar.cader.core.errors.exceptions.NotIsRegisterException;
 import com.condelar.cader.core.errors.exceptions.UpdateException;
 import com.condelar.cader.core.otherdto.ComboItem;
 import com.condelar.cader.core.structure.util.PackageDT;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
@@ -57,6 +58,7 @@ public class BaseResource<Entity extends BaseEntity,
         valid.validDtoToSave(data);
         valid.hasError();
         Entity ob = service.instance();
+        replayEquals(ob, data);
         data.setId(null);
         ob = service.toEntity(ob, data);
         ob.setRegister(LocalDate.now());
@@ -81,9 +83,9 @@ public class BaseResource<Entity extends BaseEntity,
         ob.setId(id);
         ob = service.find(ob);
         if (ob.getUpdate().equals(data.getUpdate())) {
+            replayEquals(ob, data);
             ob = service.toEntity(ob, data);
             ob = service.save(ob);
-
             PackageDT<DTO> pack = new PackageDT();
             pack.setUpdate(ob.getUpdate());
             pack.setMessage("Updated record");
@@ -109,7 +111,7 @@ public class BaseResource<Entity extends BaseEntity,
     }
 
     @PostMapping("/list")
-    public ResponseEntity<PackageDT<ListDTO>> filter(@RequestBody PackageDT<FilterDTO> pack) {
+    public ResponseEntity<PackageDT<ListDTO>> filter(@RequestBody FilterDTO filter) {
         PackageDT<ListDTO> res = new PackageDT<ListDTO>();
         Entity ob = service.instance();
         if (ob instanceof RegisterEntity) {
@@ -124,7 +126,7 @@ public class BaseResource<Entity extends BaseEntity,
             }).collect(Collectors.toList());
             res.setDatas(listDTO);
         } else {
-            List<Entity> list = service.filter(pack.getData(), getUser());
+            List<Entity> list = service.filter(filter, getUser());
             List<ListDTO> listDTO = list.stream().map(m -> {
                 ListDTO i = service.toListItem(m);
                 i.setUpdate(m.getUpdate());
@@ -161,5 +163,9 @@ public class BaseResource<Entity extends BaseEntity,
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(ob.getId()).toUri();
         return uri;
+    }
+
+    private void replayEquals(Entity ob, DTO dto){
+        BeanUtils.copyProperties(dto, ob);
     }
 }

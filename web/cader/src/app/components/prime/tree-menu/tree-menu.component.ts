@@ -43,11 +43,7 @@ export class TreeMenuComponent implements OnInit {
       },
       {
         label: 'Controladoria',
-        items: [
-          { label: 'Despesa', command: () => this.toGo('carteira') },
-          { label: 'Receita', command: () => this.toGo('pessoa') },
-          { label: 'Movimento', command: () => this.toGo('pessoa') },
-        ],
+        items: [{ label: 'Movimento', command: () => this.toGo('movement') }],
       },
       {
         label: 'Relatórios',

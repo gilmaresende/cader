@@ -1,0 +1,15 @@
+<div class="calendar-prime-impl calendar-i">
+  <span class="p-float-label">
+    <p-calendar
+      [(ngModel)]="date"
+      [(ngModel)]="date"
+      [showIcon]="true"
+      dateFormat="dd/mm/yy"
+    ></p-calendar>
+
+    <label htmlFor="username">{{ label }}</label>
+  </span>
+  <button (click)="cleanDate()" class="btn">
+    <i class="pi pi-times"></i>
+  </button>
+</div>

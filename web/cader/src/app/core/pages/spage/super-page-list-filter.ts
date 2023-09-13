@@ -3,7 +3,7 @@ import { SEntidade } from '../../model/sentidade';
 import { BaseHttpService } from '../../services/base-http.service';
 import { ControlService } from '../../services/control.service';
 
-export abstract class SPageList<
+export abstract class SPageListFilter<
   Entidade extends SEntidade,
   Service extends BaseHttpService<Entidade>
 > {
@@ -17,10 +17,10 @@ export abstract class SPageList<
     private actions: ControlService,
     private services: Service
   ) {
-    actions.setStatePage(StatePage.LIST);
+    actions.setStatePage(StatePage.LIST_FILTER);
     actions.build(this.ob, title, this, this.services);
     actions.setRotaEntidade(`${this.services.rote}`);
-    this.findAll();
+    this.findFilter(this.getFilterBase());
   }
 
   public setOb(ob: Entidade) {
@@ -30,11 +30,11 @@ export abstract class SPageList<
     this.actions.showLoadingFalse();
   }
 
-  findAll() {
+  findFilter(filter: any) {
     this.actions.showLoadingTrue();
     this.actions
       .getService()
-      .findAll()
+      .findFilter(filter)
       .subscribe({
         next: (res) => {
           this.actions.showLoadingFalse();
@@ -59,5 +59,5 @@ export abstract class SPageList<
 
   async findById(id: number) {}
 
-  public findFilter(filter: any) {}
+  abstract getFilterBase(): any;
 }

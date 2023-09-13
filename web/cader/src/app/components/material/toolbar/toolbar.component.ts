@@ -15,29 +15,40 @@ export class ToolbarComponent implements OnInit {
   isList: boolean = false;
   isEdit: boolean = false;
   isView: boolean = false;
+  isListFilter: boolean = false;
 
   setHome() {
-    this.isInsert = this.isList = this.isEdit = this.isView = false;
+    this.isListFilter =
+      this.isInsert =
+      this.isList =
+      this.isEdit =
+      this.isView =
+        false;
   }
 
   setInsert() {
-    this.isList = this.isEdit = this.isView = false;
+    this.isListFilter = this.isList = this.isEdit = this.isView = false;
     this.isInsert = true;
   }
 
   setView() {
-    this.isInsert = this.isList = this.isEdit = false;
+    this.isListFilter = this.isInsert = this.isList = this.isEdit = false;
     this.isView = true;
   }
 
   setEdit() {
-    this.isView = this.isInsert = this.isList = false;
+    this.isListFilter = this.isView = this.isInsert = this.isList = false;
     this.isEdit = true;
   }
 
   public setList() {
-    this.isEdit = this.isView = this.isInsert = false;
+    this.isListFilter = this.isEdit = this.isView = this.isInsert = false;
     this.isList = true;
+  }
+
+  public setListFilter() {
+    this.isList = this.isEdit = this.isView = this.isInsert = false;
+    this.isListFilter = true;
   }
 
   ngOnInit(): void {
@@ -55,6 +66,8 @@ export class ToolbarComponent implements OnInit {
       this.setList();
     } else if (this.controller.statePage === StatePage.VIEW) {
       this.setView();
+    } else if (this.controller.statePage === StatePage.LIST_FILTER) {
+      this.setListFilter();
     } else {
       this.setHome();
     }
@@ -90,5 +103,9 @@ export class ToolbarComponent implements OnInit {
 
   goToList() {
     this.controller.goToList();
+  }
+
+  showFilter() {
+    this.controller.showFilter();
   }
 }

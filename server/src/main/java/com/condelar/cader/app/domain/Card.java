@@ -3,7 +3,6 @@ package com.condelar.cader.app.domain;
 import com.condelar.cader.core.domain.User;
 import com.condelar.cader.core.structure.BaseEntity;
 import com.condelar.cader.core.structure.RegisterEntity;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -30,7 +29,6 @@ public class Card extends BaseEntity implements RegisterEntity {
 
     @Version
     @Column(name = "update_time")
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime update;
 
     @Column(name = "data_cadastro")

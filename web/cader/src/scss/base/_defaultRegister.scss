@@ -1,3 +1,9 @@
 .defaultRegister {
   padding: 4rem 5rem 0 5rem;
 }
+
+.line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

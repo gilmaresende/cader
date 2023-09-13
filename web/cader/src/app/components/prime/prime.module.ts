@@ -4,11 +4,15 @@ import { BtnTesteComponent } from './btn/btn-teste/btn-teste.component';
 
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { SidebarModule } from 'primeng/sidebar';
+import { StyleClassModule } from 'primeng/styleclass';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -16,15 +20,15 @@ import { BtnIconComponent } from './btn/btn-icon/btn-icon.component';
 import { BtnPrimaryComponent } from './btn/btn-primary/btn-primary.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { DataTableComponent } from './data-table/data-table.component';
+import { InputDateComponent } from './input-date/input-date.component';
 import { InputPasswordComponent } from './input-password/input-password.component';
+import { InputReaisComponent } from './input-reais/input-reais.component';
 import { InputSwitchComponent } from './input-switch/input-switch.component';
 import { InputTextComponent } from './input-text/input-text.component';
+import { ModelFilterComponent } from './model-filter/model-filter.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToastComponent } from './toast/toast.component';
 import { TreeMenuComponent } from './tree-menu/tree-menu.component';
-import { InputReaisComponent } from './input-reais/input-reais.component';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { StyleClassModule } from 'primeng/styleclass';
 @NgModule({
   declarations: [
     BtnTesteComponent,
@@ -39,6 +43,8 @@ import { StyleClassModule } from 'primeng/styleclass';
     InputSwitchComponent,
     ConfirmDialogComponent,
     InputReaisComponent,
+    ModelFilterComponent,
+    InputDateComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +60,8 @@ import { StyleClassModule } from 'primeng/styleclass';
     ConfirmDialogModule,
     InputNumberModule,
     StyleClassModule,
+    DialogModule,
+    CalendarModule,
   ],
   exports: [
     BtnTesteComponent,
@@ -66,6 +74,8 @@ import { StyleClassModule } from 'primeng/styleclass';
     InputSwitchComponent,
     ConfirmDialogComponent,
     InputReaisComponent,
+    ModelFilterComponent,
+    InputDateComponent,
   ],
 })
 export class PrimeModule {}

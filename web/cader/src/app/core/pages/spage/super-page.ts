@@ -69,4 +69,6 @@ export abstract class SPage<
   public setIsDisabled(valueIsDisable: boolean) {
     this.isDisabled = valueIsDisable;
   }
+
+  findFilter(filter: any) {}
 }

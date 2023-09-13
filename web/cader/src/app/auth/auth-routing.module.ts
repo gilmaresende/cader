@@ -14,6 +14,7 @@ import { PaymentTypeViewComponent } from './register/payment-type/payment-type-v
 import { CardListComponent } from './register/card/card-list/card-list.component';
 import { CardViewComponent } from './register/card/card-view/card-view.component';
 import { WalletListComponent } from './register/wallet/wallet-list/wallet-list.component';
+import { MovementListComponent } from './controllership/movement/movement-list/movement-list.component';
 
 const routes: Routes = [
   {
@@ -70,6 +71,14 @@ const routes: Routes = [
           { path: '', component: WalletViewComponent },
           { path: 'list', component: WalletListComponent },
           { path: ':id', component: WalletViewComponent },
+        ],
+      },
+      {
+        path: 'movement',
+        children: [
+          // { path: '', component: WalletViewComponent },
+          { path: 'list', component: MovementListComponent },
+          // { path: ':id', component: WalletViewComponent },
         ],
       },
     ],

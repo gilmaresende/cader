@@ -10,6 +10,9 @@ import { SPageList } from '../pages/spage/super-page-list';
 import { BaseHttpService } from './base-http.service';
 import { StatePage } from '../enuns/statePage';
 import { ConfirmDialogService } from 'src/app/components/prime/confirm-dialog/confirm-dialog.service';
+import { SPageListFilter } from '../pages/spage/super-page-list-filter';
+import { ModelFilterService } from 'src/app/components/prime/model-filter/model-filter.service';
+import { SFilter } from '../pages/spage/super-filter';
 
 @Injectable({
   providedIn: 'root',
@@ -24,9 +27,12 @@ export class ControlService {
   confirmDialogService?: ConfirmDialogService;
   statePage: StatePage = StatePage.HOME;
   superView!: ViewComponent;
+  filterView!: ModelFilterService;
+  pageFilter!: SFilter;
   page?:
     | SPage<SEntidade, BaseHttpService<SEntidade>>
-    | SPageList<SEntidade, BaseHttpService<SEntidade>>;
+    | SPageList<SEntidade, BaseHttpService<SEntidade>>
+    | SPageListFilter<SEntidade, BaseHttpService<SEntidade>>;
 
   //----------------------------------------  //relacionado a entidade da tela--------------------------------
 
@@ -42,7 +48,8 @@ export class ControlService {
     title: string,
     page:
       | SPageList<SEntidade, BaseHttpService<SEntidade>>
-      | SPage<SEntidade, BaseHttpService<SEntidade>>,
+      | SPage<SEntidade, BaseHttpService<SEntidade>>
+      | SPageListFilter<SEntidade, BaseHttpService<SEntidade>>,
     service: BaseHttpService<SEntidade>
   ) {
     this.setService(service);
@@ -85,6 +92,18 @@ export class ControlService {
 
   setSuperView(superView: ViewComponent) {
     this.superView = superView;
+  }
+
+  setFilterService(filterView: ModelFilterService) {
+    this.filterView = filterView;
+  }
+
+  setPageFilter(pageFilter: SFilter) {
+    this.pageFilter = pageFilter;
+  }
+
+  getPageFilter() {
+    return this.pageFilter;
   }
   //-----------------------------------------------get e set relacionado a entidades---------------------------
 
@@ -211,6 +230,10 @@ export class ControlService {
   async newOb() {
     this.setStatePage(StatePage.INSERT);
     this.router.navigate([`${this.rotaEntidade}`]);
+  }
+
+  showFilter() {
+    this.filterView.showModel();
   }
 
   showLoadingFalse() {

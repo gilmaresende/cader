@@ -1,0 +1,18 @@
+<p-dialog
+  header="Filtro"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '90vw', height: '100vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <ng-content></ng-content>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="toFilert()"
+      label="Filtrar"
+      styleClass="p-button-text"
+    ></p-button>
+  </ng-template>
+</p-dialog>

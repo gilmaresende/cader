@@ -19,6 +19,8 @@ import { PaymentTypeListComponent } from './register/payment-type/payment-type-l
 import { PaymentTypeViewComponent } from './register/payment-type/payment-type-view/payment-type-view.component';
 import { CardListComponent } from './register/card/card-list/card-list.component';
 import { CardViewComponent } from './register/card/card-view/card-view.component';
+import { MovementListComponent } from './controllership/movement/movement-list/movement-list.component';
+import { MovementFilterComponent } from './controllership/movement/movement-filter/movement-filter.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { CardViewComponent } from './register/card/card-view/card-view.component
     PaymentTypeViewComponent,
     CardListComponent,
     CardViewComponent,
+    MovementListComponent,
+    MovementFilterComponent,
   ],
   imports: [
     CommonModule,

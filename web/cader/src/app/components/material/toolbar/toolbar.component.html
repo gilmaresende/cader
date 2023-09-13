@@ -9,12 +9,13 @@
   </button>
   <span>{{ title }}</span>
   <span class="example-spacer"></span>
+
   <button
     mat-icon-button
     class="example-icon favorite-icon"
     aria-label="Example icon-button with heart icon"
     (click)="load()"
-    *ngIf="isList"
+    *ngIf="isList || isListFilter"
   >
     <mat-icon>dvr</mat-icon>
   </button>
@@ -32,9 +33,18 @@
     class="example-icon"
     aria-label="Example icon-button with share icon"
     (click)="newOb()"
-    *ngIf="isView || isList"
+    *ngIf="isView || isList || isListFilter"
   >
     <mat-icon>add_circle </mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+    (click)="showFilter()"
+    *ngIf="isListFilter"
+  >
+    <mat-icon>filter_list</mat-icon>
   </button>
   <button
     mat-icon-button

@@ -30,12 +30,6 @@ export class ConfirmDialogComponent {
       message: message,
       header: title,
       icon: 'pi pi-exclamation-triangle',
-      // accept: () => {
-      //   alert('sim');
-      // },
-      // reject: () => {
-      //   alert('nao');
-      // },
       accept: acceptFuncion,
       reject: rejectFunction,
     });
