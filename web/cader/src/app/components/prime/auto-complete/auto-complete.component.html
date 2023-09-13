@@ -1,0 +1,16 @@
+<div class="select-prime-impl">
+  <span class="p-float-label">
+    <p-autoComplete
+      [(ngModel)]="selectedCountry"
+      [dropdown]="true"
+      [suggestions]="filteredCountries"
+      (completeMethod)="filterCountry($event)"
+      field="description"
+    ></p-autoComplete>
+
+    <label htmlFor="username">{{ label }}</label>
+  </span>
+  <button (click)="cleanSeleted()" class="btn">
+    <i class="pi pi-times"></i>
+  </button>
+</div>

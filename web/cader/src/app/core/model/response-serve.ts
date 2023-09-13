@@ -1,7 +1,7 @@
 export interface ResponseServe {
   rotaOb?: string;
   data: any;
-  datas: Array<{}>;
+  datas: Array<any>;
   message: string;
   update: Date;
 }

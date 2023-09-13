@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { BtnTesteComponent } from './btn/btn-teste/btn-teste.component';
 
 import { FormsModule } from '@angular/forms';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
@@ -16,6 +18,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
+import { AutoCompleteComponent } from './auto-complete/auto-complete.component';
 import { BtnIconComponent } from './btn/btn-icon/btn-icon.component';
 import { BtnPrimaryComponent } from './btn/btn-primary/btn-primary.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
@@ -29,6 +32,7 @@ import { ModelFilterComponent } from './model-filter/model-filter.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToastComponent } from './toast/toast.component';
 import { TreeMenuComponent } from './tree-menu/tree-menu.component';
+import { DropDowComponent } from './drop-dow/drop-dow.component';
 @NgModule({
   declarations: [
     BtnTesteComponent,
@@ -45,6 +49,8 @@ import { TreeMenuComponent } from './tree-menu/tree-menu.component';
     InputReaisComponent,
     ModelFilterComponent,
     InputDateComponent,
+    AutoCompleteComponent,
+    DropDowComponent,
   ],
   imports: [
     CommonModule,
@@ -62,6 +68,8 @@ import { TreeMenuComponent } from './tree-menu/tree-menu.component';
     StyleClassModule,
     DialogModule,
     CalendarModule,
+    AutoCompleteModule,
+    DropdownModule,
   ],
   exports: [
     BtnTesteComponent,
@@ -76,6 +84,8 @@ import { TreeMenuComponent } from './tree-menu/tree-menu.component';
     InputReaisComponent,
     ModelFilterComponent,
     InputDateComponent,
+    AutoCompleteComponent,
+    DropDowComponent,
   ],
 })
 export class PrimeModule {}

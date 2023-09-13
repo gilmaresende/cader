@@ -39,7 +39,11 @@ public class MovementService extends BaseService<Movement, MovementDTO, Movement
 
     @Override
     public List<Movement> filter(MovementFilterDTO filter, User user) {
-        return getRepo().getFilter(user.getId(), filter.getIdWallet(), filter.getTypeRevenueExpence(), filter.getMovimentDateStart(), filter.getMovimentDateEnd());
+        return getRepo().getFilter(user.getId(), filter.getIdWallet(),
+                filter.getTypeRevenueExpence(),
+                filter.getOrigin(),
+                filter.getMovimentDateStart(),
+                filter.getMovimentDateEnd());
     }
 
     @Override

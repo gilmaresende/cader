@@ -16,29 +16,32 @@
     />
   </div>
   <div class="itemFilter">
-    <input-text
+    <drop-dow
       [ob]="ob"
-      [atributo]="'name'"
-      [label]="'Data Inicial'"
-      [placeholder]="'Data Inicial'"
+      [atributo]="'typeRevenueExpence'"
+      [label]="'Tipo'"
+      [placeholder]="'Tipo'"
+      [list]="typeList"
     />
   </div>
   <div class="itemFilter">
-    <input-text
+    <drop-dow
       [ob]="ob"
-      [atributo]="'name'"
-      [label]="'Data Inicial'"
-      [placeholder]="'Data Inicial'"
+      [atributo]="'origin'"
+      [label]="'Origem'"
+      [placeholder]="'Origem'"
+      [list]="origenList"
     />
   </div>
 </div>
 <div class="line lineFilter">
   <div class="itemFilter">
-    <input-text
+    <auto-complete
       [ob]="ob"
-      [atributo]="'name'"
-      [label]="'Data Inicial'"
-      [placeholder]="'Data Inicial'"
+      [atributo]="'idWallet'"
+      [label]="'Carteira'"
+      [placeholder]="'Carteira'"
+      [service]="serviceWallet"
     />
   </div>
 </div>

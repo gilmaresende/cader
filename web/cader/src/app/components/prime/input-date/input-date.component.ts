@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  DoCheck,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, DoCheck, OnInit } from '@angular/core';
 
 @Component({
   selector: 'input-date',

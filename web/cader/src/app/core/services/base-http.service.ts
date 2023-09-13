@@ -24,6 +24,12 @@ export abstract class BaseHttpService<Entiti extends SEntidade> {
     );
   }
 
+  getCombo(): Observable<ResponseServe> {
+    return this.http.get<ResponseServe>(
+      `${API_CONFIG.BASE_URL}/${this.rote}/combo`
+    );
+  }
+
   findAll(): Observable<ResponseServe> {
     const url = `${API_CONFIG.BASE_URL}/${this.rote}/list`;
     const response = this.http.post<ResponseServe>(url, {});

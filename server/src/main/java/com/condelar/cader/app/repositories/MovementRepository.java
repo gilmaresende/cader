@@ -32,7 +32,7 @@ public interface MovementRepository extends JpaRepository<Movement, Long> {
 //            @Param("receitaDespesa") Short receitaDespesa,
 //            @Param("idUser") Long idUser);
 
-        @Query(value = "select\n" +
+    @Query(value = "select\n" +
             "m\n" +
             "from Movement m\n" +
             "       inner join m.wallet c\n" +
@@ -42,11 +42,13 @@ public interface MovementRepository extends JpaRepository<Movement, Long> {
             "and (:dataInicial is null or m.movimentDate >= :dataInicial)\n" +
             "and (:dataFinal is null or m.movimentDate <= :dataFinal)\n" +
             "and (:receitaDespesa is null or m.typeRevenueExpence = :receitaDespesa)\n" +
+            "and (:origem is null or m.origin = :origem)\n" +
             "order by m.movimentDate"
     )
     List<Movement> getFilter(@Param("idUser") Long idUser,
                              @Param("idCarteira") Long idCarteira,
                              @Param("receitaDespesa") Short receitaDespesa,
+                             @Param("origem") Short origem,
                              @Param("dataInicial") LocalDate dataInicial,
                              @Param("dataFinal") LocalDate dataFinal);
 }
