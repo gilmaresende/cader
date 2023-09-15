@@ -21,6 +21,8 @@ import { CardListComponent } from './register/card/card-list/card-list.component
 import { CardViewComponent } from './register/card/card-view/card-view.component';
 import { MovementListComponent } from './controllership/movement/movement-list/movement-list.component';
 import { MovementFilterComponent } from './controllership/movement/movement-filter/movement-filter.component';
+import { ExpenseListComponent } from './controllership/expense/expense-list/expense-list.component';
+import { ExpenseFilterComponent } from './controllership/expense/expense-filter/expense-filter.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { MovementFilterComponent } from './controllership/movement/movement-filt
     CardViewComponent,
     MovementListComponent,
     MovementFilterComponent,
+    ExpenseListComponent,
+    ExpenseFilterComponent,
   ],
   imports: [
     CommonModule,

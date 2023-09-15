@@ -25,8 +25,11 @@ export class DataTableComponent implements OnInit {
     let filterMain: Array<{}> = [];
     for (let atr of this.atributos) {
       let filter = this.data.filter((res: any) => {
-        const str: string = res[atr].toString();
-        return !str.toLocaleLowerCase().indexOf(value.toLocaleLowerCase());
+        if (res[atr]) {
+          const str: string = res[atr].toString();
+          return !str.toLocaleLowerCase().indexOf(value.toLocaleLowerCase());
+        }
+        return false;
       });
       Array.prototype.push.apply(filterMain, filter);
     }

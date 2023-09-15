@@ -1,0 +1,65 @@
+<div class="line lineFilter">
+  <div class="itemFilter">
+    <input-date
+      [ob]="ob"
+      [atributo]="'dueDateStart'"
+      [label]="'Data Inicial'"
+      [placeholder]="'Data Inicial'"
+    />
+  </div>
+  <div class="itemFilter">
+    <input-date
+      [ob]="ob"
+      [atributo]="'dueDateEnd'"
+      [label]="'Data Final'"
+      [placeholder]="'Data Final'"
+    />
+  </div>
+  <div class="itemFilter">
+    <drop-dow
+      [ob]="ob"
+      [atributo]="'status'"
+      [label]="'Status'"
+      [placeholder]="'Status'"
+      [list]="statusList"
+    />
+  </div>
+</div>
+<div class="line lineFilter">
+  <div class="itemFilter">
+    <auto-complete
+      [ob]="ob"
+      [atributo]="'idWallet'"
+      [label]="'Carteira'"
+      [placeholder]="'Carteira'"
+      [service]="serviceWallet"
+    />
+  </div>
+  <div class="itemFilter">
+    <auto-complete
+      [ob]="ob"
+      [atributo]="'idPaymentType'"
+      [label]="'Meio Pagamento'"
+      [placeholder]="'Meio Pagamento'"
+      [service]="servicePaymentTypeService"
+    />
+  </div>
+  <div class="itemFilter">
+    <auto-complete
+      [ob]="ob"
+      [atributo]="'idPerson'"
+      [label]="'Pessoa'"
+      [placeholder]="'Pessoa'"
+      [service]="servicePerson"
+    />
+  </div>
+  <div class="itemFilter">
+    <auto-complete
+      [ob]="ob"
+      [atributo]="'idExpenseCategory'"
+      [label]="'Categoria'"
+      [placeholder]="'Categoria'"
+      [service]="serviceExpenseCategory"
+    />
+  </div>
+</div>

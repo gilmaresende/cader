@@ -15,6 +15,7 @@ import { CardListComponent } from './register/card/card-list/card-list.component
 import { CardViewComponent } from './register/card/card-view/card-view.component';
 import { WalletListComponent } from './register/wallet/wallet-list/wallet-list.component';
 import { MovementListComponent } from './controllership/movement/movement-list/movement-list.component';
+import { ExpenseListComponent } from './controllership/expense/expense-list/expense-list.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,14 @@ const routes: Routes = [
         children: [
           // { path: '', component: WalletViewComponent },
           { path: 'list', component: MovementListComponent },
+          // { path: ':id', component: WalletViewComponent },
+        ],
+      },
+      {
+        path: 'expense',
+        children: [
+          // { path: '', component: WalletViewComponent },
+          { path: 'list', component: ExpenseListComponent },
           // { path: ':id', component: WalletViewComponent },
         ],
       },

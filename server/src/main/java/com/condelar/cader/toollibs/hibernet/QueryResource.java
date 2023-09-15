@@ -18,7 +18,7 @@ public class QueryResource {
     @Autowired
     private QueryHqlService component;
 
-    // @PostMapping
+    @PostMapping
     public ResponseEntity<List<Map>> save(@RequestBody QueryDTO data) {
         List<Map> datas = component.executeToMap(data.getQuery());
         return ResponseEntity.ok().body(datas);
