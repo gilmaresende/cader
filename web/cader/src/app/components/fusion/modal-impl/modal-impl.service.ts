@@ -1,28 +1,24 @@
 import { Injectable } from '@angular/core';
-import { ModalImplComponent } from './modal-impl.component';
+import { SEntidade } from 'src/app/core/model/sentidade';
 import { SItems } from 'src/app/core/pages/spage/super-itens';
-import { HttpServerService } from 'src/app/core/services/http-server.service';
+import { BaseHttpService } from 'src/app/core/services/base-http.service';
+import { ModalImplComponent } from './modal-impl.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModalImplService {
-  functionSave?: () => void;
-
-  setfunctionSave(save: () => void) {
-    this.functionSave = save;
-  }
   rote: string = '';
 
   ob: any;
 
-  view?: SItems;
+  view?: SItems<SEntidade, BaseHttpService<SEntidade>>;
 
-  setView(ob: SItems) {
+  setView(ob: SItems<SEntidade, BaseHttpService<SEntidade>>) {
     this.view = ob;
   }
 
-  getView(): SItems {
+  getView(): SItems<SEntidade, BaseHttpService<SEntidade>> {
     return this.view!;
   }
 
@@ -57,6 +53,6 @@ export class ModalImplService {
   }
 
   save() {
-    this.functionSave!();
+    this.getView().save();
   }
 }

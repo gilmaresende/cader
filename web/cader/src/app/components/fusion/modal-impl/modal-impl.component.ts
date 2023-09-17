@@ -29,5 +29,7 @@ export class ModalImplComponent {
     this.title = title;
   }
 
-  public save() {}
+  public save() {
+    this.service.save()
+  }
 }

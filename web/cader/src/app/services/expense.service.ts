@@ -20,19 +20,4 @@ export class ExpenseService extends BaseHttpService<Expense> {
       `${API_CONFIG.BASE_URL}/${this.rote}/predictPayment/${id}`
     );
   }
-
-  savePayment(payment: ExpensePayment): Observable<ResponseServe> {
-    if (payment.id) {
-      const response = this.getHttp().put<ResponseServe>(
-        `${API_CONFIG.BASE_URL}/${this.rote}/newPayment/${payment.id}`,
-        payment
-      );
-      return response;
-    } else {
-      return this.getHttp().post<ResponseServe>(
-        `${API_CONFIG.BASE_URL}/${this.rote}/newPayment`,
-        payment
-      );
-    }
-  }
 }

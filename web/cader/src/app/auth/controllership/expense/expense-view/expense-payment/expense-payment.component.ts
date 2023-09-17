@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-impl.service';
 import { ControlService } from 'src/app/core/services/control.service';
-import { ExpensePayment } from 'src/app/model/expense-payment';
 import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
@@ -33,18 +32,11 @@ export class ExpensePaymentComponent {
   newExpensePayment() {
     this.serviceExpense.predictPayment(this.controller.getOb()!.id).subscribe({
       next: (res) => {
-        console.log(res);
         this.serviceModel.setTitle('Pagamento');
         this.serviceModel.setOb(res.data);
-        this.serviceModel.setfunctionSave(this.save);
-
         this.serviceModel.show();
       },
       error: (error) => console.log(error),
     });
-  }
-
-  save() {
-    console.log(this.serviceModel.ob);
   }
 }

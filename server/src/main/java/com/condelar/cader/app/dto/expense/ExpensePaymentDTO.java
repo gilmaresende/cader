@@ -10,6 +10,7 @@ import java.util.Date;
 
 @Data
 public class ExpensePaymentDTO extends BaseDTO {
+    Long idExpense;
     Long idWallet;
     Long idPaymentType;
     Double value;
@@ -21,6 +22,7 @@ public class ExpensePaymentDTO extends BaseDTO {
 
     public ExpensePaymentDTO(ExpensePayment ob) {
         super(ob);
+        setIdExpense(ob.getExpense().getId());
         setIdWallet(ob.getWallet().getId());
         setIdPaymentType(ob.getPaymentType().getId());
         setPayDay(ob.getPayDay());

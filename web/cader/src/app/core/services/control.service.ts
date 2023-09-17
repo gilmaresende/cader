@@ -216,7 +216,7 @@ export class ControlService {
     this.setStatePage(StatePage.EDIT);
   }
 
-  async cancel() {
+  async reload() {
     this.setStatePage(StatePage.VIEW);
     this.page?.findById(this.ob!.id!);
   }

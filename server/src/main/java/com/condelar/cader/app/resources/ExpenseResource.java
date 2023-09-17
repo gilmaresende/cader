@@ -9,14 +9,10 @@ import com.condelar.cader.app.dto.expense.ExpensePaymentDTO;
 import com.condelar.cader.app.repositories.ExpenseRepository;
 import com.condelar.cader.app.services.ExpenseService;
 import com.condelar.cader.app.valid.ExpenseValid;
-import com.condelar.cader.core.errors.exceptions.UpdateException;
 import com.condelar.cader.core.structure.BaseResource;
-import com.condelar.cader.core.structure.RegisterEntity;
 import com.condelar.cader.core.structure.util.PackageDT;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/expense")
@@ -29,13 +25,16 @@ public class ExpenseResource extends BaseResource<Expense, ExpenseDTO, ExpenseFi
         return ResponseEntity.ok().body(pack);
     }
 
-    @PostMapping("/newPayment")
-    public ResponseEntity<String> save(@RequestBody ExpensePaymentDTO data) {
+    @PostMapping("/expensePayment")
+    public ResponseEntity<PackageDT<ExpensePaymentDTO>> save(@RequestBody ExpensePaymentDTO data) {
         System.out.println(data);
-        return ResponseEntity.ok().body("sucesso");
+
+        PackageDT<ExpensePaymentDTO> pack = new PackageDT();
+       pack.setMessage("Sucesso");
+        return ResponseEntity.ok().body(pack);
     }
 
-    @PutMapping("/newPayment/{id}")
+    @PutMapping("/expensePayment/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody ExpensePaymentDTO data) {
         System.out.println(id);
         System.out.println(data);
