@@ -38,6 +38,10 @@ public class BaseResource<Entity extends BaseEntity,
     @Autowired
     private Valid valid;
 
+    public Valid getValid() {
+        return this.valid;
+    }
+
     private User getUser() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }

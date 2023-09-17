@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class BtnPrimaryComponent {
   @Input() label: string = '';
+  @Input() isDisabled: boolean = false;
 
   @Output() click: EventEmitter<any> = new EventEmitter();
 }

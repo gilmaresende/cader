@@ -58,25 +58,25 @@ export abstract class SItems<
 
   //chamada da api para salvar objeto atual da tela
   save() {
-    console.log('to going save'); //TODO-GF
     this.serviceItem.create(this.serviceModalS.getOb()).subscribe({
       next: (res) => {
-        console.log(res);
+        this.controllerS.getControllerToast().showSucess(res.message);
         this.controllerS.reload();
       },
-      error: (er) => console.log(er),
+      error: (er) => {
+        this.controllerS.getControllerToast().catchErro(er);
+      },
     });
   }
 
   //chamada da api para apagar objeto atual da tela
   delete() {
-    console.log('to going delete'); //TODO-GF
     this.serviceItem.delete(this.serviceModalS.getOb().id).subscribe({
       next: (res) => {
-        console.log(res);
+        this.controllerS.getControllerToast().showSucess(res.message);
         this.controllerS.reload();
       },
-      error: (er) => console.log(er),
+      error: (er) => this.controllerS.getControllerToast().catchErro(er),
     });
   }
 }

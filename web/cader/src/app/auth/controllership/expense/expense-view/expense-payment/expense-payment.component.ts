@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-impl.service';
+import { ToastService } from 'src/app/components/prime/toast/toast.service';
 import { ControlService } from 'src/app/core/services/control.service';
 import { ExpensePaymentService } from 'src/app/services/expense-payment.service';
 
@@ -12,13 +13,15 @@ export class ExpensePaymentComponent implements OnInit {
   constructor(
     public controller: ControlService,
     private serviceExpensePayment: ExpensePaymentService,
-    private serviceModel: ModalImplService
+    private serviceModel: ModalImplService,
+    private toastService: ToastService
   ) {}
   ngOnInit(): void {
     this.serviceModel.setTitle('Pagamento');
   }
 
   @Input() listPayments: Array<any> = [];
+  @Input() isDisabled: boolean = true;
 
   header: Array<{ description: string; percentage: number }> = [
     { description: 'Carteira', percentage: 25 },
@@ -40,7 +43,7 @@ export class ExpensePaymentComponent implements OnInit {
 
           this.serviceModel.disabledFalse();
         },
-        error: (error) => console.log(error),
+        error: (error) => this.toastService.catchErro(error),
       });
   }
 
@@ -55,7 +58,7 @@ export class ExpensePaymentComponent implements OnInit {
           this.serviceModel.show();
           this.serviceModel.disabledTrue();
         },
-        error: (error) => console.log(error),
+        error: (error) => this.toastService.catchErro(error),
       });
   }
 }

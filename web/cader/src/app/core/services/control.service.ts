@@ -107,6 +107,10 @@ export class ControlService {
   getPageFilter() {
     return this.pageFilter;
   }
+
+  getControllerToast(): ToastService {
+    return this.toastService!;
+  }
   //-----------------------------------------------get e set relacionado a entidades---------------------------
 
   setService(service: BaseHttpService<SEntidade>) {

@@ -54,8 +54,7 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         return new ExpenseListDTO(ob);
     }
 
-    public ExpensePayment predictPayment(Long id) {
-        Expense expense = findById(id);
+    public ExpensePayment predictPayment( Expense expense) {
         ExpensePayment expensePayment = new ExpensePayment();
         expensePayment.setExpense(expense);
         expensePayment.setPaymentType(expense.getPaymentType());

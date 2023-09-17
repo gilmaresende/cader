@@ -19,7 +19,13 @@ import org.springframework.web.bind.annotation.*;
 public class ExpenseResource extends BaseResource<Expense, ExpenseDTO, ExpenseFilterDTO, ExpenseListDTO, ExpenseRepository, ExpenseService, ExpenseValid> {
     @GetMapping("/expensePayment/predictPayment/{idExpense}")
     public ResponseEntity<PackageDT<ExpensePaymentDTO>> predictPayment(@PathVariable Long idExpense) {
-        ExpensePayment paymentPreviw = getService().predictPayment(idExpense);
+
+        Expense expense = getService().findById(idExpense);
+        getValid().clear();
+        getValid().validPreviewNewPayment(expense);
+        getValid().hasError();
+
+        ExpensePayment paymentPreviw = getService().predictPayment(expense);
         PackageDT<ExpensePaymentDTO> pack = new PackageDT();
         pack.setData(new ExpensePaymentDTO(paymentPreviw));
         return ResponseEntity.ok().body(pack);
@@ -30,7 +36,7 @@ public class ExpenseResource extends BaseResource<Expense, ExpenseDTO, ExpenseFi
         System.out.println(data);
 
         PackageDT<ExpensePaymentDTO> pack = new PackageDT();
-        pack.setMessage("Sucesso");
+        pack.setMessage("Saved record");
         return ResponseEntity.ok().body(pack);
     }
 
@@ -38,7 +44,7 @@ public class ExpenseResource extends BaseResource<Expense, ExpenseDTO, ExpenseFi
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody ExpensePaymentDTO data) {
         System.out.println(id);
         System.out.println(data);
-        return ResponseEntity.ok().body("sucesso");
+        return ResponseEntity.ok().body("Updated record");
     }
 
     @GetMapping("/expensePayment/{idPayment}")
