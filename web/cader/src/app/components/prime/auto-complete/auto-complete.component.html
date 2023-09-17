@@ -6,11 +6,12 @@
       [suggestions]="filteredCountries"
       (completeMethod)="filterCountry($event)"
       field="description"
+      [disabled]="isDisabled"
     ></p-autoComplete>
 
     <label htmlFor="username">{{ label }}</label>
   </span>
-  <button (click)="cleanSeleted()" class="btn">
+  <button (click)="cleanSeleted()" class="btn" [disabled]="isDisabled">
     <i class="pi pi-times"></i>
   </button>
 </div>

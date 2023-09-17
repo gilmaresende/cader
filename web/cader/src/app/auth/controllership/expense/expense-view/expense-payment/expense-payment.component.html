@@ -1,0 +1,9 @@
+<div class="lineLeft">
+  <div class="btnActionsPayment btnActionsPaymentNew">
+    <btn-primary [label]="'Novo'" (click)="loading()"></btn-primary>
+  </div>
+  <div *ngIf="controller.obSelect" class="btnActionsPayment">
+    <btn-primary [label]="'Carregar'" (click)="loading()"></btn-primary>
+  </div>
+</div>
+<data-table [data]="listPayments" [header]="header" [atributos]="atributos" />

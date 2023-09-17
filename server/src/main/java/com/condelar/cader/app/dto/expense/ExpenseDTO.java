@@ -2,6 +2,7 @@ package com.condelar.cader.app.dto.expense;
 
 import com.condelar.cader.app.domain.*;
 import com.condelar.cader.core.structure.BaseDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.time.LocalDate;

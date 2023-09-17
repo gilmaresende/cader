@@ -16,12 +16,14 @@ export class InputDateComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     if (this.ob && this.ob[this.atributo]) {
-      this.date = this.ob[this.atributo];
+      this.date = new Date(); //this.ob[this.atributo];
     }
   }
 
   ngDoCheck(): void {
-    this.ob[this.atributo] = this.date;
+    if (this.ob && this.ob[this.atributo]) {
+      this.ob[this.atributo] = this.date;
+    }
   }
 
   cleanDate() {

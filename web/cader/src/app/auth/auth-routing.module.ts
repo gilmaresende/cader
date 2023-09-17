@@ -16,6 +16,9 @@ import { CardViewComponent } from './register/card/card-view/card-view.component
 import { WalletListComponent } from './register/wallet/wallet-list/wallet-list.component';
 import { MovementListComponent } from './controllership/movement/movement-list/movement-list.component';
 import { ExpenseListComponent } from './controllership/expense/expense-list/expense-list.component';
+import { TesteHqlComponent } from './dev/teste-hql/teste-hql.component';
+import { ExpenseViewComponent } from './controllership/expense/expense-view/expense-view.component';
+import { ExpenseDetailComponent } from './controllership/expense/expense-view/expense-detail/expense-detail.component';
 
 const routes: Routes = [
   {
@@ -61,9 +64,15 @@ const routes: Routes = [
       {
         path: 'person',
         children: [
-          { path: '', component: PersonViewComponent },
+          {
+            path: '',
+            component: PersonViewComponent,
+          },
           { path: 'list', component: PersonListComponent },
-          { path: ':id', component: PersonViewComponent },
+          {
+            path: ':id',
+            component: PersonViewComponent,
+          },
         ],
       },
       {
@@ -85,10 +94,14 @@ const routes: Routes = [
       {
         path: 'expense',
         children: [
-          // { path: '', component: WalletViewComponent },
+          { path: '', component: ExpenseViewComponent },
           { path: 'list', component: ExpenseListComponent },
-          // { path: ':id', component: WalletViewComponent },
+          { path: ':id', component: ExpenseViewComponent },
         ],
+      },
+      {
+        path: 'testeHql',
+        component: TesteHqlComponent,
       },
     ],
   },

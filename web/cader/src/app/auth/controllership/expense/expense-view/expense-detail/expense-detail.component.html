@@ -1,0 +1,81 @@
+
+<div class="">
+  <div class="lineExpense">
+    <input-text
+      [ob]="ob"
+      [atributo]="'description'"
+      [label]="'Descrição'"
+      [placeholder]="'Descrição'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+  <div class="lineExpense2 line">
+    <div class="itemFilter">
+      <auto-complete
+        [ob]="ob"
+        [atributo]="'idWallet'"
+        [label]="'Carteira'"
+        [placeholder]="'Carteira'"
+        [service]="serviceWallet"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div class="itemFilter">
+      <auto-complete
+        [ob]="ob"
+        [atributo]="'idPaymentType'"
+        [label]="'Meio Pagamento'"
+        [placeholder]="'Meio Pagamento'"
+        [service]="servicePaymentTypeService"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div class="itemFilter">
+      <auto-complete
+        [ob]="ob"
+        [atributo]="'idPerson'"
+        [label]="'Pessoa'"
+        [placeholder]="'Pessoa'"
+        [service]="servicePerson"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div class="itemFilter">
+      <auto-complete
+        [ob]="ob"
+        [atributo]="'idExpenseCategory'"
+        [label]="'Categoria'"
+        [placeholder]="'Categoria'"
+        [service]="serviceExpenseCategory"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+  </div>
+  <div class="lineExpense2 line">
+    <input-date
+      [ob]="ob"
+      [atributo]="'dueDate'"
+      [label]="'Vencimento'"
+      [placeholder]="'Vencimento'"
+      [isDisabled]="isDisabled"
+    />
+    <input-reais
+      [label]="'Valor Pago'"
+      [ob]="ob"
+      [atributo]="'amountPaid'"
+      [isDisabled]="true"
+    ></input-reais>
+    <input-reais
+      [label]="'Valor Aberto'"
+      [ob]="ob"
+      [atributo]="'openValue'"
+      [isDisabled]="true"
+    ></input-reais>
+    <input-reais
+      [label]="'Valor'"
+      [ob]="ob"
+      [atributo]="'value'"
+      [isDisabled]="isDisabled"
+    ></input-reais>
+  </div>
+</div>

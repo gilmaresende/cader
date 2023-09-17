@@ -1,0 +1,26 @@
+<div class="card">
+  <p-tabView>
+    <p-tabPanel *ngIf="titles[0]" [header]="titles[0]">
+      <ng-content select="#idItem0"></ng-content>
+    </p-tabPanel>
+    <p-tabPanel *ngIf="titles[1]" [header]="titles[1]">
+      <ng-content select="#idItem1"></ng-content>
+    </p-tabPanel>
+    <p-tabPanel *ngIf="titles[2]" [header]="titles[2]">
+      <ng-content select="#idItem2"></ng-content>
+    </p-tabPanel>
+    <p-tabPanel *ngIf="titles[3]" [header]="titles[3]">
+      <ng-content select="#idItem3"></ng-content>
+    </p-tabPanel>
+
+    <!-- <p-tabPanel
+      *ngFor="let item of itemsTab; let i = index"
+      [header]="item.title"
+    >
+      <div>
+        {{ itemsTab[i].id }}
+        <ng-content [select]="itemsTab[i].id"></ng-content>
+      </div>
+    </p-tabPanel> -->
+  </p-tabView>
+</div>

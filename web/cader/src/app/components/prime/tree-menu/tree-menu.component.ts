@@ -17,7 +17,7 @@ export class TreeMenuComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: 'Home', command: () => this.toGoHome() },
+      { label: 'Home', command: () => this.toGoPage('home') },
       {
         label: 'Cadastros',
         items: [
@@ -57,6 +57,12 @@ export class TreeMenuComponent implements OnInit {
         ],
       },
       {
+        label: 'Dev',
+        items: [
+          { label: 'Teste HQL', command: () => this.toGoPage('testeHql') },
+        ],
+      },
+      {
         label: 'Perfil',
         items: [
           { label: 'Editar', command: () => this.toGo('perfil') },
@@ -69,8 +75,8 @@ export class TreeMenuComponent implements OnInit {
   private toGo(rote: string) {
     this.router.navigate([`cader/${rote}/list`]);
   }
-  private toGoHome() {
-    this.router.navigate([`cader/home`]);
+  private toGoPage(rote: string) {
+    this.router.navigate([`cader/${rote}`]);
   }
 
   private logout() {

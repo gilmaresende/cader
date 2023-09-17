@@ -23,6 +23,10 @@ import { MovementListComponent } from './controllership/movement/movement-list/m
 import { MovementFilterComponent } from './controllership/movement/movement-filter/movement-filter.component';
 import { ExpenseListComponent } from './controllership/expense/expense-list/expense-list.component';
 import { ExpenseFilterComponent } from './controllership/expense/expense-filter/expense-filter.component';
+import { TesteHqlComponent } from './dev/teste-hql/teste-hql.component';
+import { ExpenseViewComponent } from './controllership/expense/expense-view/expense-view.component';
+import { ExpenseDetailComponent } from './controllership/expense/expense-view/expense-detail/expense-detail.component';
+import { ExpensePaymentComponent } from './controllership/expense/expense-view/expense-payment/expense-payment.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,10 @@ import { ExpenseFilterComponent } from './controllership/expense/expense-filter/
     MovementFilterComponent,
     ExpenseListComponent,
     ExpenseFilterComponent,
+    TesteHqlComponent,
+    ExpenseViewComponent,
+    ExpenseDetailComponent,
+    ExpensePaymentComponent,
   ],
   imports: [
     CommonModule,

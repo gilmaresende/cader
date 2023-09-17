@@ -29,6 +29,7 @@ export class ControlService {
   superView!: ViewComponent;
   filterView!: ModelFilterService;
   pageFilter!: SFilter;
+
   page?:
     | SPage<SEntidade, BaseHttpService<SEntidade>>
     | SPageList<SEntidade, BaseHttpService<SEntidade>>
@@ -36,7 +37,8 @@ export class ControlService {
 
   //----------------------------------------  //relacionado a entidade da tela--------------------------------
 
-  ob?: SEntidade;
+  ob?: any;
+  public obSelect?: SEntidade;
   service!: BaseHttpService<SEntidade>;
   rotaEntidade: string = '';
 
@@ -121,6 +123,14 @@ export class ControlService {
 
   getOb(): SEntidade | undefined {
     return this.ob;
+  }
+
+  setObSelect(ob: any) {
+    this.obSelect = ob;
+  }
+
+  getObSelect(): SEntidade | undefined {
+    return this.obSelect;
   }
 
   setRotaEntidade(rota: string) {
@@ -220,11 +230,11 @@ export class ControlService {
   }
 
   load() {
-    if (!this.ob) {
+    if (!this.obSelect) {
       this.toastService?.showAlert('Selecione um registro para carregar!');
       return;
     }
-    this.router.navigate([`${this.rotaEntidade}/${this.ob.id}`]);
+    this.router.navigate([`${this.rotaEntidade}/${this.obSelect.id}`]);
   }
 
   async newOb() {

@@ -24,6 +24,13 @@ public class QueryResource {
         return ResponseEntity.ok().body(datas);
     }
 
+    @PostMapping("/csv")
+    public HttpEntity<byte[]> saveCsv(@RequestBody QueryDTO data) {
+        List<Map> datas = component.executeToMap(data.getQuery());
+        String result = ToolCsv.mapToCsv(datas);
+        return ToolDownload.getFile("select", "csv", result.getBytes());
+    }
+
     // @PostMapping
     public ResponseEntity<String> saveMap(@RequestBody QueryDTO query) {
         List<Map> datas = component.executeToMap(query.getQuery());

@@ -1,0 +1,17 @@
+<div>
+  <div class="fillW area">
+    <text-area
+      [ob]="ob"
+      [atributo]="'query'"
+      [placeholder]="'Teste HQL'"
+      [nRows]="20"
+      [nCols]="100"
+    />
+  </div>
+
+  <div class="btn">
+    <div>
+      <btn-primary (click)="consult()" [label]="'Executar'"></btn-primary>
+    </div>
+  </div>
+</div>

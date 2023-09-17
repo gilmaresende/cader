@@ -1,0 +1,13 @@
+<div *ngIf="loading">
+  <abas-tab [titles]="pages">
+    <div id="idItem0">
+      <expense-detail [ob]="ob" [isDisabled]="isDisabled"></expense-detail>
+    </div>
+    <div id="idItem1">
+      <expense-payment
+        *ngIf="ob"
+        [listPayments]="ob.payments"
+      ></expense-payment>
+    </div>
+  </abas-tab>
+</div>

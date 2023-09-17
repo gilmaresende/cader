@@ -33,6 +33,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToastComponent } from './toast/toast.component';
 import { TreeMenuComponent } from './tree-menu/tree-menu.component';
 import { DropDowComponent } from './drop-dow/drop-dow.component';
+import { TextAreaComponent } from './text-area/text-area.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { AbasTabComponent } from './abas-tab/abas-tab.component';
+import { TabViewModule } from 'primeng/tabview';
 @NgModule({
   declarations: [
     BtnTesteComponent,
@@ -51,6 +55,8 @@ import { DropDowComponent } from './drop-dow/drop-dow.component';
     InputDateComponent,
     AutoCompleteComponent,
     DropDowComponent,
+    TextAreaComponent,
+    AbasTabComponent,
   ],
   imports: [
     CommonModule,
@@ -70,6 +76,8 @@ import { DropDowComponent } from './drop-dow/drop-dow.component';
     CalendarModule,
     AutoCompleteModule,
     DropdownModule,
+    InputTextareaModule,
+    TabViewModule,
   ],
   exports: [
     BtnTesteComponent,
@@ -86,6 +94,8 @@ import { DropDowComponent } from './drop-dow/drop-dow.component';
     InputDateComponent,
     AutoCompleteComponent,
     DropDowComponent,
+    TextAreaComponent,
+    AbasTabComponent,
   ],
 })
 export class PrimeModule {}

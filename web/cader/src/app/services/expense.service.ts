@@ -7,7 +7,7 @@ import { BaseHttpService } from '../core/services/base-http.service';
 })
 export class ExpenseService extends BaseHttpService<Expense> {
   override newInstance(): Expense {
-    return { id: 0, update: new Date() };
+    return { id: 0, update: new Date(), payments: [], description: '' };
   }
   override rote: string = 'expense';
 }

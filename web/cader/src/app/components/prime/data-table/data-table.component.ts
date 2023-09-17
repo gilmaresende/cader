@@ -18,6 +18,7 @@ export class DataTableComponent implements OnInit {
 
   ngOnInit() {
     this.dataShow = this.data;
+    this.controller.setObSelect(undefined);
   }
 
   public search(value: string) {
@@ -40,7 +41,7 @@ export class DataTableComponent implements OnInit {
   }
 
   select(item: any) {
-    this.controller.setOb(item);
+    this.controller.setObSelect(item);
     this.selected = item;
   }
 }
