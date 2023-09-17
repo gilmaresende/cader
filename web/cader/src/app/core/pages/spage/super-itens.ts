@@ -36,9 +36,21 @@ export abstract class SItems<
   }
 
   save() {
-    console.log('to going save');
+    console.log('to going save'); //TODO-GF
     this.serviceItem.create(this.serviceModalS.getOb()).subscribe({
       next: (res) => {
+        console.log(res);
+        this.controllerS.reload();
+      },
+      error: (er) => console.log(er),
+    });
+  }
+
+  delete() {
+    console.log('to going delete'); //TODO-GF
+    this.serviceItem.delete(this.serviceModalS.getOb().id).subscribe({
+      next: (res) => {
+        console.log(res);
         this.controllerS.reload();
       },
       error: (er) => console.log(er),

@@ -12,10 +12,10 @@ import { WalletService } from 'src/app/services/wallet.service';
   templateUrl: './expense-payment-view.component.html',
   styleUrls: ['./expense-payment-view.component.scss'],
 })
-export class ExpensePaymentViewComponent
-  extends SItems<ExpensePayment, ExpensePaymentService>
-  implements OnInit
-{
+export class ExpensePaymentViewComponent extends SItems<
+  ExpensePayment,
+  ExpensePaymentService
+> {
   constructor(
     private serviceModal: ModalImplService,
     public serviceWallet: WalletService,
@@ -24,9 +24,5 @@ export class ExpensePaymentViewComponent
     private serviceExpensePayment: ExpensePaymentService
   ) {
     super(serviceModal, serviceExpensePayment, controller);
-  }
-
-  ngOnInit(): void {
-    console.log(this.serviceModal.getOb());
   }
 }

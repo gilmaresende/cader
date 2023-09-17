@@ -12,11 +12,18 @@ export class ModalImplService {
 
   view?: SItems<SEntidade, BaseHttpService<SEntidade>>;
 
-  disabledFalse() {
+  async disabledFalse() {
+    await this.view!.showViewFalse();
     this.view!.isDisabled = true;
+    this.modal?.habiliteView();
+    await this.view!.showViewTrue();
   }
-  disabledTrue() {
-    this.view!.isDisabled = true;
+
+  async disabledTrue() {
+    await this.view!.showViewFalse();
+    this.view!.isDisabled = false;
+    this.modal?.habiliteEdit();
+    await this.view!.showViewTrue();
   }
 
   functionNewItem?: () => void;
@@ -74,5 +81,9 @@ export class ModalImplService {
 
   save() {
     this.getView().save();
+  }
+
+  delete() {
+     this.getView().delete();
   }
 }

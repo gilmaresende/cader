@@ -16,7 +16,7 @@ export abstract class BaseHttpService<Entiti extends SEntidade> {
     return this.http;
   }
 
-  delete(id: any): Observable<ResponseServe> {
+  delete(id: number): Observable<ResponseServe> {
     return this.http.delete<ResponseServe>(
       `${API_CONFIG.BASE_URL}/${this.rote}/${id}`
     );

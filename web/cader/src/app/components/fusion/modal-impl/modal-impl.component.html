@@ -6,10 +6,15 @@
           {{ title }}
         </div>
         <div class="actionBtn">
-          <btn-icon (click)="save()"><i class="pi pi-save"></i></btn-icon>
+          <btn-icon *ngIf="!stateView" (click)="save()"
+            ><i class="pi pi-save"></i
+          ></btn-icon>
           <!-- <btn-icon><i class="pi pi-spin pi-save"></i></btn-icon> -->
-          <btn-icon (click)="executeFunctionNewItem()"
-            ><i class="pi pi-plus"></i
+          <btn-icon *ngIf="stateView" (click)="editData()"
+            ><i class="pi pi-pencil"></i
+          ></btn-icon>
+          <btn-icon *ngIf="stateView" (click)="deleteData()"
+            ><i class="pi pi-trash"></i
           ></btn-icon>
           <btn-icon (click)="closeModal()"
             ><i class="pi pi-times"></i

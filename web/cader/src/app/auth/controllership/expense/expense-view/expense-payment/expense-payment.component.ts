@@ -38,7 +38,8 @@ export class ExpensePaymentComponent implements OnInit {
         next: (res) => {
           this.serviceModel.setOb(res.data);
           this.serviceModel.show();
-          this.serviceModel.disabledTrue();
+
+          this.serviceModel.disabledFalse();
         },
         error: (error) => console.log(error),
       });
@@ -52,7 +53,7 @@ export class ExpensePaymentComponent implements OnInit {
         next: (res) => {
           this.serviceModel.setOb(res.data);
           this.serviceModel.show();
-          this.serviceModel.disabledFalse();
+          this.serviceModel.disabledTrue();
         },
         error: (error) => console.log(error),
       });

@@ -48,4 +48,12 @@ public class ExpenseResource extends BaseResource<Expense, ExpenseDTO, ExpenseFi
         pack.setData(new ExpensePaymentDTO(paymentPreviw));
         return ResponseEntity.ok().body(pack);
     }
+
+    @DeleteMapping("/expensePayment/{id}")
+    public ResponseEntity<PackageDT<ExpensePaymentDTO>> deleteExpensePayment(@PathVariable Long id) {
+        System.out.println(id);
+        PackageDT<ExpensePaymentDTO> res = new PackageDT<ExpensePaymentDTO>();
+        res.setMessage("Deleted record!");
+        return ResponseEntity.ok().body(res);
+    }
 }

@@ -11,6 +11,8 @@ export class ModalImplComponent {
     service.setModal(this);
   }
 
+  stateView: boolean = true;
+
   title: string = '';
   rote: string = '';
 
@@ -32,8 +34,20 @@ export class ModalImplComponent {
     this.service.save();
   }
 
-  executeFunctionNewItem() {
-    this.closeModal();
-    this.service.executeFunctionNewItem();
+  editData() {
+    this.habiliteEdit();
+    this.service.disabledTrue();
+  }
+
+  habiliteView() {
+    this.stateView = true;
+  }
+
+  habiliteEdit() {
+    this.stateView = false;
+  }
+
+  deleteData() {
+    this.service.delete();
   }
 }
