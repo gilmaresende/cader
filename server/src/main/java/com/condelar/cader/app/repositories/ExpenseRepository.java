@@ -1,6 +1,8 @@
 package com.condelar.cader.app.repositories;
 
 import com.condelar.cader.app.domain.Expense;
+import com.condelar.cader.app.domain.ExpensePayment;
+import com.condelar.cader.core.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
@@ -35,4 +38,12 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
                             @Param("pPerson") Long pPerson,
                             @Param("pExpenseCategory") Long pExpenseCategory
     );
+
+    @Query(value = " SELECT \n" +
+            " e \n " +
+            " FROM ExpensePayment e \n" +
+            "   INNER JOIN e.user u \n" +
+            " WHERE (u.id = :idUser) \n" +
+            " AND e.id = :idPayment\n")
+    Optional<ExpensePayment> findByIdAndUser(@Param("idPayment") Long idPayment, @Param("idUser") Long idUser);
 }

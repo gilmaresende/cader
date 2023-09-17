@@ -1,0 +1,26 @@
+:host {
+  .btnIcon {
+    background: none;
+    //  padding: 0.5rem;
+    margin: 0.2rem 0.5rem;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    font-weight: bold;
+    color: #fff;
+    &:hover {
+      background-color: #fff;
+      color: blue;
+    }
+  }
+
+  .di {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    height: 100vh;
+    height: 100%;
+  }
+}

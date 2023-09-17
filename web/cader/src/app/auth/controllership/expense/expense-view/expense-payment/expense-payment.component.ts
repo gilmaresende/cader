@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-impl.service';
 import { ControlService } from 'src/app/core/services/control.service';
+import { ExpensePaymentService } from 'src/app/services/expense-payment.service';
 import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
@@ -8,12 +9,16 @@ import { ExpenseService } from 'src/app/services/expense.service';
   templateUrl: './expense-payment.component.html',
   styleUrls: ['./expense-payment.component.scss'],
 })
-export class ExpensePaymentComponent {
+export class ExpensePaymentComponent implements OnInit {
   constructor(
     public controller: ControlService,
-    private serviceExpense: ExpenseService,
+    private serviceExpensePayment: ExpensePaymentService,
     private serviceModel: ModalImplService
   ) {}
+  ngOnInit(): void {
+    this.serviceModel.setTitle('Pagamento');
+    this.serviceModel.setFunctionNewItem(this.newExpensePayment);
+  }
 
   @Input() listPayments: Array<any> = [];
 
@@ -26,17 +31,30 @@ export class ExpensePaymentComponent {
   atributos = ['wallet', 'paymentType', 'payDay', 'value'];
 
   loading() {
-    console.log(this.controller.getObSelect());
+    this.serviceModel.clear();
+    this.serviceExpensePayment
+      .findById(this.controller.getObSelect()?.id)
+      .subscribe({
+        next: (res) => {
+          this.serviceModel.setOb(res.data);
+          this.serviceModel.show();
+          this.serviceModel.disabledTrue();
+        },
+        error: (error) => console.log(error),
+      });
   }
 
   newExpensePayment() {
-    this.serviceExpense.predictPayment(this.controller.getOb()!.id).subscribe({
-      next: (res) => {
-        this.serviceModel.setTitle('Pagamento');
-        this.serviceModel.setOb(res.data);
-        this.serviceModel.show();
-      },
-      error: (error) => console.log(error),
-    });
+    this.serviceModel.clear();
+    this.serviceExpensePayment
+      .predictPayment(this.controller.getOb()!.id)
+      .subscribe({
+        next: (res) => {
+          this.serviceModel.setOb(res.data);
+          this.serviceModel.show();
+          this.serviceModel.disabledFalse();
+        },
+        error: (error) => console.log(error),
+      });
   }
 }

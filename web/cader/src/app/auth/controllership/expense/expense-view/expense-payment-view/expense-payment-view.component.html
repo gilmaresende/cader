@@ -14,6 +14,7 @@
       [label]="'Meio Pagamento'"
       [placeholder]="'Meio Pagamento'"
       [service]="servicePaymentTypeService"
+      [isDisabled]="isDisabled"
     />
   </div>
   <div class="linePayment line">
@@ -22,8 +23,14 @@
       [atributo]="'payDay'"
       [label]="'Data'"
       [placeholder]="'Data'"
+      [isDisabled]="isDisabled"
     />
-    <input-reais [label]="'Valor'" [ob]="ob" [atributo]="'value'" />
+    <input-reais
+      [label]="'Valor'"
+      [ob]="ob"
+      [atributo]="'value'"
+      [isDisabled]="isDisabled"
+    />
   </div>
   <div class="linePayment lineObservation">
     <input-text
@@ -35,3 +42,4 @@
     />
   </div>
 </div>
+{{ ob | json }}

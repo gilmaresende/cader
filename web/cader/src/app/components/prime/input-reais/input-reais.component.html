@@ -1,6 +1,5 @@
 <span class="p-float-label">
   <p-inputNumber
-    inputStyle="width: 100%"
     [placeholder]="placeholder"
     [(ngModel)]="value"
     mode="decimal"
@@ -10,7 +9,7 @@
     [maxFractionDigits]="2"
   >
   </p-inputNumber>
-  <label htmlFor="username">{{ label }}</label>
+  <label>{{ label }}</label>
   <button (click)="cleanDate()" class="btn">
     <i class="pi pi-times"></i>
   </button>

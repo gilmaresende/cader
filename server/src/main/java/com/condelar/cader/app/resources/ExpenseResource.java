@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/expense")
 public class ExpenseResource extends BaseResource<Expense, ExpenseDTO, ExpenseFilterDTO, ExpenseListDTO, ExpenseRepository, ExpenseService, ExpenseValid> {
-    @GetMapping("/predictPayment/{id}")
-    public ResponseEntity<PackageDT<ExpensePaymentDTO>> predictPayment(@PathVariable Long id) {
-        ExpensePayment paymentPreviw = getService().predictPayment(id);
+    @GetMapping("/expensePayment/predictPayment/{idExpense}")
+    public ResponseEntity<PackageDT<ExpensePaymentDTO>> predictPayment(@PathVariable Long idExpense) {
+        ExpensePayment paymentPreviw = getService().predictPayment(idExpense);
         PackageDT<ExpensePaymentDTO> pack = new PackageDT();
         pack.setData(new ExpensePaymentDTO(paymentPreviw));
         return ResponseEntity.ok().body(pack);
@@ -30,7 +30,7 @@ public class ExpenseResource extends BaseResource<Expense, ExpenseDTO, ExpenseFi
         System.out.println(data);
 
         PackageDT<ExpensePaymentDTO> pack = new PackageDT();
-       pack.setMessage("Sucesso");
+        pack.setMessage("Sucesso");
         return ResponseEntity.ok().body(pack);
     }
 
@@ -39,5 +39,13 @@ public class ExpenseResource extends BaseResource<Expense, ExpenseDTO, ExpenseFi
         System.out.println(id);
         System.out.println(data);
         return ResponseEntity.ok().body("sucesso");
+    }
+
+    @GetMapping("/expensePayment/{idPayment}")
+    public ResponseEntity<PackageDT<ExpensePaymentDTO>> getExpensePayment(@PathVariable Long idPayment) {
+        ExpensePayment paymentPreviw = getService().getPaymentById(idPayment);
+        PackageDT<ExpensePaymentDTO> pack = new PackageDT();
+        pack.setData(new ExpensePaymentDTO(paymentPreviw));
+        return ResponseEntity.ok().body(pack);
     }
 }

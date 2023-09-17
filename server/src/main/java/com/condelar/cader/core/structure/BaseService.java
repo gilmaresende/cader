@@ -33,7 +33,7 @@ public abstract class BaseService<
     @Autowired
     Valid valid;
 
-    private User getUser() {
+    public User getUser() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 

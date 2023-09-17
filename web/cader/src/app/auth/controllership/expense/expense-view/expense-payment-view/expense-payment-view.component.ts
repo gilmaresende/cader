@@ -16,8 +16,6 @@ export class ExpensePaymentViewComponent
   extends SItems<ExpensePayment, ExpensePaymentService>
   implements OnInit
 {
-  isDisabled: boolean = false;
-
   constructor(
     private serviceModal: ModalImplService,
     public serviceWallet: WalletService,

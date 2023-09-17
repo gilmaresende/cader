@@ -8,22 +8,31 @@ export abstract class SItems<
   Service extends BaseHttpService<Entidade>
 > {
   constructor(
-    public serviceModalS: ModalImplService,
+    private serviceModalS: ModalImplService,
     private serviceItem: Service,
     private controllerS: ControlService
   ) {
     serviceModalS.setView(this);
   }
 
-  public exibir: boolean = false;
+  isDisabled: boolean = false;
+
+  exibir: boolean = false;
 
   ob?: SEntidade;
   getOb(): SEntidade {
     return this.ob!;
   }
-  public setOb(ob: SEntidade) {
+  public setOb(ob: SEntidade | undefined) {
     this.ob = ob;
+  }
+
+  showViewTrue() {
     this.exibir = true;
+  }
+
+  showViewFalse() {
+    this.exibir = false;
   }
 
   save() {

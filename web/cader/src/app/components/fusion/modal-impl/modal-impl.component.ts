@@ -21,7 +21,6 @@ export class ModalImplComponent {
   }
 
   public show() {
-    console.log(this.service.ob);
     this.showModal = true;
   }
 
@@ -30,6 +29,11 @@ export class ModalImplComponent {
   }
 
   public save() {
-    this.service.save()
+    this.service.save();
+  }
+
+  executeFunctionNewItem() {
+    this.closeModal();
+    this.service.executeFunctionNewItem();
   }
 }

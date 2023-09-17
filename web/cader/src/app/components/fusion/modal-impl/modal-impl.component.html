@@ -1,9 +1,21 @@
 <div class="modal" [ngClass]="{ show: showModal }">
   <div class="modal-content">
     <div class="barActions">
-      {{ title }}
-      <span class="close" (click)="save()">&plus;</span>
-      <span class="close" (click)="closeModal()">&times;</span>
+      <div class="lineBetween">
+        <div class="title">
+          {{ title }}
+        </div>
+        <div class="actionBtn">
+          <btn-icon (click)="save()"><i class="pi pi-save"></i></btn-icon>
+          <!-- <btn-icon><i class="pi pi-spin pi-save"></i></btn-icon> -->
+          <btn-icon (click)="executeFunctionNewItem()"
+            ><i class="pi pi-plus"></i
+          ></btn-icon>
+          <btn-icon (click)="closeModal()"
+            ><i class="pi pi-times"></i
+          ></btn-icon>
+        </div>
+      </div>
     </div>
     <ng-content></ng-content>
   </div>

@@ -8,12 +8,14 @@ import com.condelar.cader.app.dto.expense.ExpenseListDTO;
 import com.condelar.cader.app.repositories.ExpenseRepository;
 import com.condelar.cader.app.valid.ExpenseValid;
 import com.condelar.cader.core.domain.User;
+import com.condelar.cader.core.errors.exceptions.ObjectNotFoundException;
 import com.condelar.cader.core.structure.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -55,10 +57,18 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
     public ExpensePayment predictPayment(Long id) {
         Expense expense = findById(id);
         ExpensePayment expensePayment = new ExpensePayment();
+        expensePayment.setExpense(expense);
         expensePayment.setPaymentType(expense.getPaymentType());
         expensePayment.setPayDay(LocalDate.now());
         expensePayment.setWallet(expense.getWallet());
         expensePayment.setValue(expense.getValue() - expense.getPayments().stream().mapToDouble(m -> m.getValue()).sum());
         return expensePayment;
+    }
+
+    public ExpensePayment getPaymentById(Long idPayment) {
+        User user = getUser();
+        Optional<ExpensePayment> op = getRepo().findByIdAndUser(idPayment, user.getId());
+        return op.orElseThrow(() -> new ObjectNotFoundException("Data not found to object of type '" + instance().getClass().getName() + "' with id '" + idPayment + "'"));
+
     }
 }

@@ -8,11 +8,18 @@ import { ModalImplComponent } from './modal-impl.component';
   providedIn: 'root',
 })
 export class ModalImplService {
-  rote: string = '';
-
   ob: any;
 
   view?: SItems<SEntidade, BaseHttpService<SEntidade>>;
+
+  disabledFalse() {
+    this.view!.isDisabled = true;
+  }
+  disabledTrue() {
+    this.view!.isDisabled = true;
+  }
+
+  functionNewItem?: () => void;
 
   setView(ob: SItems<SEntidade, BaseHttpService<SEntidade>>) {
     this.view = ob;
@@ -24,10 +31,19 @@ export class ModalImplService {
 
   setOb(ob: any) {
     this.ob = ob;
+    this.view!.setOb(ob);
   }
 
   getOb() {
     return this.ob;
+  }
+
+  setFunctionNewItem(functionNewItem: () => void) {
+    this.functionNewItem = functionNewItem;
+  }
+
+  executeFunctionNewItem() {
+    this.functionNewItem!();
   }
 
   modal: ModalImplComponent | undefined;
@@ -42,10 +58,14 @@ export class ModalImplService {
     return this.modal;
   }
 
+  public clear() {
+    this.view!.setOb(undefined);
+    this.view!.showViewFalse();
+  }
+
   public show() {
-    console.log(this.ob);
-    this.view!.setOb(this.ob);
     this.modal!.show();
+    this.view!.showViewTrue();
   }
 
   public setTitle(title: string) {

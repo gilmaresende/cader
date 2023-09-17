@@ -96,6 +96,7 @@ import { TabViewModule } from 'primeng/tabview';
     DropDowComponent,
     TextAreaComponent,
     AbasTabComponent,
+    BtnIconComponent,
   ],
 })
 export class PrimeModule {}
