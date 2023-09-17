@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-impl.service';
 import { ControlService } from 'src/app/core/services/control.service';
 import { ExpensePaymentService } from 'src/app/services/expense-payment.service';
-import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
   selector: 'expense-payment',
@@ -17,7 +16,6 @@ export class ExpensePaymentComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.serviceModel.setTitle('Pagamento');
-    this.serviceModel.setFunctionNewItem(this.newExpensePayment);
   }
 
   @Input() listPayments: Array<any> = [];
@@ -30,6 +28,7 @@ export class ExpensePaymentComponent implements OnInit {
   ];
   atributos = ['wallet', 'paymentType', 'payDay', 'value'];
 
+  //chama a api para carregar um registro de pagamento no model
   loading() {
     this.serviceModel.clear();
     this.serviceExpensePayment
@@ -45,6 +44,7 @@ export class ExpensePaymentComponent implements OnInit {
       });
   }
 
+  //chama api para prever o valor em aberto da despesa
   newExpensePayment() {
     this.serviceModel.clear();
     this.serviceExpensePayment

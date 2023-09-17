@@ -8,82 +8,98 @@ import { ModalImplComponent } from './modal-impl.component';
   providedIn: 'root',
 })
 export class ModalImplService {
+  constructor() {}
+
+  //objeto do model
   ob: any;
 
+  //tela dentro do model, a que é exibida
   view?: SItems<SEntidade, BaseHttpService<SEntidade>>;
 
-  async disabledFalse() {
-    await this.view!.showViewFalse();
-    this.view!.isDisabled = true;
-    this.modal?.habiliteView();
-    await this.view!.showViewTrue();
-  }
+  //model, recebe a tela que sera exibida
+  modal: ModalImplComponent | undefined;
 
-  async disabledTrue() {
-    await this.view!.showViewFalse();
-    this.view!.isDisabled = false;
-    this.modal?.habiliteEdit();
-    await this.view!.showViewTrue();
-  }
+  //------------------------------------------------------------------------------------
+  //gets e sets
+  //------------------------------------------------------------------------------------
 
-  functionNewItem?: () => void;
-
+  //defini qual é a tela dentro do modal para exibicao
   setView(ob: SItems<SEntidade, BaseHttpService<SEntidade>>) {
     this.view = ob;
   }
 
+  //pega qual é a tela esta dentro do modal sendo exibida
   getView(): SItems<SEntidade, BaseHttpService<SEntidade>> {
     return this.view!;
   }
 
+  //defini o objeto atual na tela
   setOb(ob: any) {
     this.ob = ob;
     this.view!.setOb(ob);
   }
 
+  //pega o objeto atual na tela
   getOb() {
     return this.ob;
   }
 
-  setFunctionNewItem(functionNewItem: () => void) {
-    this.functionNewItem = functionNewItem;
-  }
-
-  executeFunctionNewItem() {
-    this.functionNewItem!();
-  }
-
-  modal: ModalImplComponent | undefined;
-
-  constructor() {}
-
+  //defini o model, função usada para ter controle da instancia,
+  // podendo controlar o model onde usa este service
   setModal(modal: ModalImplComponent) {
     this.modal = modal;
   }
 
+  //pegar a class do model
   getModal() {
     return this.modal;
   }
 
+  //defini o titulo do modal
+  public setTitle(title: string) {
+    this.modal!.setTitle(title);
+  }
+
+  //------------------------------------------------------------------------------------
+  //Ações
+  //------------------------------------------------------------------------------------
+
+  //bloqueia edição a tela, desabilita o icone de salvar
+  // habilita o icone de iditar e o icone de deletar
+  async disabledFalse() {
+    this.view!.isDisabled = true;
+    this.modal?.habiliteView();
+  }
+
+  //habilita edição a tela, desabilita o  icone de iditar e o icone de deletar
+  // habilita o icone de salvar
+  async disabledTrue() {
+    this.view!.isDisabled = false;
+    this.modal?.habiliteEdit();
+  }
+
+  //limpa o objeto atual na tela e na memoria
+  //e desabilita o conteudo do corpo do model
+  //TODO-GF{SERA QUE PODE REMOVER O SHOWVIEWFALSE?}
   public clear() {
     this.view!.setOb(undefined);
     this.view!.showViewFalse();
   }
 
+  //mostra o modal aberto
+  //abilita o conteudo da tela para exição
   public show() {
     this.modal!.show();
     this.view!.showViewTrue();
   }
 
-  public setTitle(title: string) {
-    this.modal!.setTitle(title);
-  }
-
+  //faz a chamada para salvar o objeto atual na tela
   save() {
     this.getView().save();
   }
 
+  //faz a chamada para deletar o objeto atual na tela
   delete() {
-     this.getView().delete();
+    this.getView().delete();
   }
 }
