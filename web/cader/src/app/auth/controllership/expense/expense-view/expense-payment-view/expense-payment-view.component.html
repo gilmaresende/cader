@@ -1,0 +1,45 @@
+<div *ngIf="exibir">
+  <div class="linePayment line">
+    <auto-complete
+      [ob]="ob"
+      [atributo]="'idWallet'"
+      [label]="'Carteira'"
+      [placeholder]="'Carteira'"
+      [service]="serviceWallet"
+      [isDisabled]="isDisabled"
+    />
+    <auto-complete
+      [ob]="ob"
+      [atributo]="'idPaymentType'"
+      [label]="'Meio Pagamento'"
+      [placeholder]="'Meio Pagamento'"
+      [service]="servicePaymentTypeService"
+    />
+  </div>
+  <div class="linePayment line">
+    <input-date
+      [ob]="ob"
+      [atributo]="'payDay'"
+      [label]="'Data'"
+      [placeholder]="'Data'"
+    />
+    <input-reais [label]="'Valor'" [ob]="ob" [atributo]="'value'" />
+  </div>
+  <div class="linePayment lineObservation">
+    <input-text
+      [ob]="ob"
+      [atributo]="'observation'"
+      [label]="'Observação'"
+      [placeholder]="'Observação'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+  <div class="lineRight">
+    <div class="btnModel">
+      <btn-primary [label]="'Salvar'" (click)="savePayment()"></btn-primary>
+    </div>
+    <div class="btnModel">
+      <btn-primary [label]="'Carregar'"></btn-primary>
+    </div>
+  </div>
+</div>

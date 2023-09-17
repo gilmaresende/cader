@@ -27,6 +27,7 @@ import { TesteHqlComponent } from './dev/teste-hql/teste-hql.component';
 import { ExpenseViewComponent } from './controllership/expense/expense-view/expense-view.component';
 import { ExpenseDetailComponent } from './controllership/expense/expense-view/expense-detail/expense-detail.component';
 import { ExpensePaymentComponent } from './controllership/expense/expense-view/expense-payment/expense-payment.component';
+import { ExpensePaymentViewComponent } from './controllership/expense/expense-view/expense-payment-view/expense-payment-view.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ExpensePaymentComponent } from './controllership/expense/expense-view/e
     ExpenseViewComponent,
     ExpenseDetailComponent,
     ExpensePaymentComponent,
+    ExpensePaymentViewComponent,
   ],
   imports: [
     CommonModule,

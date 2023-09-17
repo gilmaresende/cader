@@ -40,7 +40,7 @@ export abstract class SPage<
 
   async findById(id: number) {
     this.actions.showLoadingTrue();
-    await this.actions.service.findById(id).subscribe({
+    await this.services.findById(id).subscribe({
       next: (res) => {
         this.setOb(res.data);
         this.actions.showLoadingFalse();

@@ -1,15 +1,42 @@
 <span class="p-float-label">
   <p-inputNumber
-    class="p-inputtext-sm inputNumber"
+    inputStyle="width: 100%"
     [placeholder]="placeholder"
     [(ngModel)]="value"
-    inputId="currency-us"
-    mode="currency"
-    currency="USD"
-    locale="en-US"
+    mode="decimal"
     [disabled]="isDisabled"
     (keyup)="teclar()"
+    [minFractionDigits]="2"
+    [maxFractionDigits]="2"
   >
   </p-inputNumber>
   <label htmlFor="username">{{ label }}</label>
+  <button (click)="cleanDate()" class="btn">
+    <i class="pi pi-times"></i>
+  </button>
 </span>
+
+<!-- <div class="card flex flex-wrap gap-3 p-fluid">
+  <div class="flex-auto">
+    <label for="minmax">Min-Max Boundaries</label>
+    <p-inputNumber
+      [placeholder]="placeholder"
+      [(ngModel)]="value"
+      inputId="minmax"
+      mode="decimal"
+      (keyup)="teclar()"
+      [minFractionDigits]="2"
+      [maxFractionDigits]="2"
+    >
+    </p-inputNumber>
+  </div>
+</div> -->
+
+<!-- <p-inputNumber
+  [(ngModel)]="value3"
+  inputId="minmaxfraction"
+  mode="decimal"
+  [minFractionDigits]="2"
+  [maxFractionDigits]="5"
+>
+</p-inputNumber> -->

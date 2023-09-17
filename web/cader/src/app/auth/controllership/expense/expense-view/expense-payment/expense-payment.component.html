@@ -1,6 +1,10 @@
+<modal-impl>
+  <expense-payment-view></expense-payment-view>
+</modal-impl>
+
 <div class="lineLeft">
   <div class="btnActionsPayment btnActionsPaymentNew">
-    <btn-primary [label]="'Novo'" (click)="loading()"></btn-primary>
+    <btn-primary [label]="'Novo'" (click)="newExpensePayment()"></btn-primary>
   </div>
   <div *ngIf="controller.obSelect" class="btnActionsPayment">
     <btn-primary [label]="'Carregar'" (click)="loading()"></btn-primary>

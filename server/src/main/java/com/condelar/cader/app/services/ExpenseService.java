@@ -1,6 +1,7 @@
 package com.condelar.cader.app.services;
 
 import com.condelar.cader.app.domain.Expense;
+import com.condelar.cader.app.domain.ExpensePayment;
 import com.condelar.cader.app.dto.expense.ExpenseDTO;
 import com.condelar.cader.app.dto.expense.ExpenseFilterDTO;
 import com.condelar.cader.app.dto.expense.ExpenseListDTO;
@@ -11,6 +12,7 @@ import com.condelar.cader.core.structure.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -48,5 +50,15 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
     @Override
     public ExpenseListDTO toListItem(Expense ob) {
         return new ExpenseListDTO(ob);
+    }
+
+    public ExpensePayment predictPayment(Long id) {
+        Expense expense = findById(id);
+        ExpensePayment expensePayment = new ExpensePayment();
+        expensePayment.setPaymentType(expense.getPaymentType());
+        expensePayment.setPayDay(LocalDate.now());
+        expensePayment.setWallet(expense.getWallet());
+        expensePayment.setValue(expense.getValue() - expense.getPayments().stream().mapToDouble(m -> m.getValue()).sum());
+        return expensePayment;
     }
 }

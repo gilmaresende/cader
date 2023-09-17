@@ -31,6 +31,10 @@ public class BaseResource<Entity extends BaseEntity,
     @Autowired
     private Service service;
 
+    public Service getService() {
+        return service;
+    }
+
     @Autowired
     private Valid valid;
 
@@ -165,7 +169,7 @@ public class BaseResource<Entity extends BaseEntity,
         return uri;
     }
 
-    private void replayEquals(Entity ob, DTO dto){
+    private void replayEquals(Entity ob, DTO dto) {
         BeanUtils.copyProperties(dto, ob);
     }
 }

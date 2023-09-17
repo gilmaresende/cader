@@ -22,4 +22,8 @@ export class InputReaisComponent implements OnInit {
   teclar() {
     this.ob[this.atributo] = this.value;
   }
+
+  cleanDate() {
+    this.ob[this.atributo] = this.value = 0;
+  }
 }
