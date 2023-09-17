@@ -1,4 +1,3 @@
-
 <div class="">
   <div class="lineExpense">
     <input-text
@@ -9,6 +8,7 @@
       [isDisabled]="isDisabled"
     />
   </div>
+
   <div class="lineExpense2 line">
     <div class="itemFilter">
       <auto-complete
@@ -52,13 +52,17 @@
     </div>
   </div>
   <div class="lineExpense2 line">
-    <input-date
-      [ob]="ob"
-      [atributo]="'dueDate'"
-      [label]="'Vencimento'"
-      [placeholder]="'Vencimento'"
-      [isDisabled]="isDisabled"
-    />
+    <div class="itemFilter">
+      <input-date
+        [ob]="ob"
+        [atributo]="'dueDate'"
+        [label]="'Vencimento'"
+        [placeholder]="'Vencimento'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+  </div>
+  <div class="lineExpense2 line">
     <input-reais
       [label]="'Valor Pago'"
       [ob]="ob"
