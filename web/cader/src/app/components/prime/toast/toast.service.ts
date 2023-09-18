@@ -31,9 +31,14 @@ export class ToastService {
     } else if (error.status === 400) {
       //  const erros = JSON.parse(error.error);
       const erros = error.error;
-      erros.errors.map((element: any) => {
-        this.showAlert(element.message);
-      });
+      console.log(erros.error);
+      if (erros.errors) {
+        erros.errors.map((element: any) => {
+          this.showAlert(element.message);
+        });
+      } else if (erros.error) {
+        this.showAlert(erros.error);
+      }
     } else {
       console.log('code', error.status);
       console.log('detail', error);

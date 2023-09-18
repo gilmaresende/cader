@@ -1,5 +1,8 @@
 package com.condelar.cader.app.services;
 
+import com.condelar.cader.app.constants.enuns.EnumOriginMovement;
+import com.condelar.cader.app.constants.enuns.EnumTypeRevenueExpence;
+import com.condelar.cader.app.domain.ExpensePayment;
 import com.condelar.cader.app.domain.Movement;
 import com.condelar.cader.app.dto.movement.MovementDTO;
 import com.condelar.cader.app.dto.movement.MovementFilterDTO;
@@ -11,6 +14,8 @@ import com.condelar.cader.core.structure.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -49,5 +54,20 @@ public class MovementService extends BaseService<Movement, MovementDTO, Movement
     @Override
     public MovementListDTO toListItem(Movement ob) {
         return new MovementListDTO(ob);
+    }
+
+    public Movement newMovement(ExpensePayment paymentExpense) {
+        Movement movement = new Movement();
+        movement.setWallet(paymentExpense.getWallet());
+        movement.setOrigin(EnumOriginMovement.DESPESA.getValue());
+        movement.setUser(getUser());
+        movement.setDescription(paymentExpense.getExpense().getDescription());
+        movement.setValue(paymentExpense.getValue());
+        movement.setUpdate(paymentExpense.getUpdate());
+        movement.setMovimentDate(paymentExpense.getPayDay());
+        movement.setTypeRevenueExpence(EnumTypeRevenueExpence.DESPESA.getValue());
+        movement.setRegister(LocalDate.now());
+
+        return movement;
     }
 }

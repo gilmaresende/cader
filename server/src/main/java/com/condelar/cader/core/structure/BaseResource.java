@@ -71,6 +71,7 @@ public class BaseResource<Entity extends BaseEntity,
         ob = service.toEntity(ob, data);
         ob.setRegister(LocalDate.now());
         ob.setUser(getUser());
+       // ob = service.beforeSave(ob);
         ob = service.save(ob);
 
         PackageDT<DTO> pack = new PackageDT();
@@ -93,6 +94,7 @@ public class BaseResource<Entity extends BaseEntity,
         if (ob.getUpdate().equals(data.getUpdate())) {
             replayEquals(ob, data);
             ob = service.toEntity(ob, data);
+           // ob = service.beforeSave(ob);
             ob = service.save(ob);
             PackageDT<DTO> pack = new PackageDT();
             pack.setUpdate(ob.getUpdate());

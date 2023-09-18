@@ -1,5 +1,6 @@
 package com.condelar.cader.core.errors.exceptions;
 
+import org.hibernate.PropertyValueException;
 import org.springframework.orm.jpa.JpaSystemException;
 
 public class SaveException extends RuntimeException{

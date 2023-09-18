@@ -4,6 +4,7 @@ import com.condelar.cader.core.domain.User;
 import com.condelar.cader.core.errors.exceptions.DeleteException;
 import com.condelar.cader.core.errors.exceptions.ObjectNotFoundException;
 import com.condelar.cader.core.errors.exceptions.SaveException;
+import org.hibernate.PropertyValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
@@ -85,11 +86,14 @@ public abstract class BaseService<
     public Entity save(Entity ob) {
         valid.clear();
         valid.validObject(ob);
+        ob = beforeSave(ob);
         valid.hasError();
         try {
             return (Entity) repository.save(ob);
         } catch (JpaSystemException e) {
             throw new SaveException(e);
+        } catch (Exception e) {
+            throw new SaveException(e.getMessage() + e.getCause());
         }
     }
 
@@ -127,4 +131,7 @@ public abstract class BaseService<
 
     public abstract ListDTO toListItem(Entity ob);
 
+    public Entity beforeSave(Entity ob) {
+        return ob;
+    }
 }

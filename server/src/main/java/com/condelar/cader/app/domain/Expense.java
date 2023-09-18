@@ -63,7 +63,7 @@ public class Expense extends BaseEntity {
     @Column(name = "valor")
     private Double value;
 
-    @OneToMany(mappedBy = "expense", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "expense", cascade = CascadeType.MERGE, orphanRemoval = true)
     private List<ExpensePayment> payments;
 
 }

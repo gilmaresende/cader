@@ -35,6 +35,9 @@ public class ExpenseResource extends BaseResource<Expense, ExpenseDTO, ExpenseFi
     public ResponseEntity<PackageDT<ExpensePaymentDTO>> save(@RequestBody ExpensePaymentDTO data) {
         System.out.println(data);
 
+        Expense expense = getService().newPayment(data);
+        getService().save(expense);
+
         PackageDT<ExpensePaymentDTO> pack = new PackageDT();
         pack.setMessage("Saved record");
         return ResponseEntity.ok().body(pack);

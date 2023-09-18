@@ -50,19 +50,28 @@ public class ResourceExceptionHandler {
 
     @ExceptionHandler(UpdateException.class)
     public ResponseEntity<StandardError> update(UpdateException ex,
-                                                     HttpServletRequest request) {
+                                                HttpServletRequest request) {
         StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
                 "The Data has changed at another time", ex.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
+    @ExceptionHandler(SaveException.class)
+    public ResponseEntity<StandardError> save(SaveException ex,
+                                              HttpServletRequest request) {
+        StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
+                "The Data can not is saved", ex.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
     @ExceptionHandler(NotIsRegisterException.class)
     public ResponseEntity<StandardError> notIsRegister(NotIsRegisterException ex,
-                                                HttpServletRequest request) {
+                                                       HttpServletRequest request) {
         StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
                 "The data not's combo type!", ex.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
+
     @ExceptionHandler(SessionExceptionImpl.class)
     public ResponseEntity<StandardError> errorSessionException(SessionExceptionImpl ex,
                                                                HttpServletRequest request) {
@@ -70,7 +79,6 @@ public class ResourceExceptionHandler {
                 "The data not's combo type!", ex.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
-
 
 
 }
