@@ -39,12 +39,14 @@ export abstract class SPage<
   }
 
   async findById(id: number) {
+    this.actions.loading.showLoading();
     this.actions.showLoadingTrue();
     await this.services.findById(id).subscribe({
       next: (res) => {
         this.setOb(res.data);
         this.actions.showLoadingFalse();
         this.actions.setStatePage(StatePage.VIEW);
+        this.actions.loading.dropLoading();
       },
       error: (error) => {
         if (error.error) {
@@ -52,6 +54,7 @@ export abstract class SPage<
         } else {
           console.log(error);
         }
+        this.actions.loading.dropLoading();
         this.actions.getRouter().navigate([`cader/${this.services.rote}`]);
       },
     });

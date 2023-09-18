@@ -31,6 +31,7 @@ export abstract class SPageList<
   }
 
   findAll() {
+    this.actions.loading.showLoading();
     this.actions.showLoadingTrue();
     this.actions
       .getService()
@@ -39,10 +40,12 @@ export abstract class SPageList<
         next: (res) => {
           this.actions.showLoadingFalse();
           this.list = res.datas;
+          this.actions.loading.dropLoading();
         },
         error: (error) => {
           console.log(error);
           this.actions.showLoadingFalse();
+          this.actions.loading.dropLoading();
         },
       });
   }

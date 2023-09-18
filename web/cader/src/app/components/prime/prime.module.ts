@@ -37,6 +37,8 @@ import { TextAreaComponent } from './text-area/text-area.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AbasTabComponent } from './abas-tab/abas-tab.component';
 import { TabViewModule } from 'primeng/tabview';
+import { AnimationLoadingComponent } from './animation-loading/animation-loading.component';
+import { ProgressBarModule } from 'primeng/progressbar';
 @NgModule({
   declarations: [
     BtnTesteComponent,
@@ -57,6 +59,7 @@ import { TabViewModule } from 'primeng/tabview';
     DropDowComponent,
     TextAreaComponent,
     AbasTabComponent,
+    AnimationLoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -78,6 +81,7 @@ import { TabViewModule } from 'primeng/tabview';
     DropdownModule,
     InputTextareaModule,
     TabViewModule,
+    ProgressBarModule,
   ],
   exports: [
     BtnTesteComponent,
@@ -97,6 +101,7 @@ import { TabViewModule } from 'primeng/tabview';
     TextAreaComponent,
     AbasTabComponent,
     BtnIconComponent,
+    AnimationLoadingComponent,
   ],
 })
 export class PrimeModule {}

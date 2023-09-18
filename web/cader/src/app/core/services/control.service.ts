@@ -13,6 +13,7 @@ import { ConfirmDialogService } from 'src/app/components/prime/confirm-dialog/co
 import { SPageListFilter } from '../pages/spage/super-page-list-filter';
 import { ModelFilterService } from 'src/app/components/prime/model-filter/model-filter.service';
 import { SFilter } from '../pages/spage/super-filter';
+import { LoadingComponent } from 'src/app/components/fusion/loading/loading.component';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,7 @@ export class ControlService {
   superView!: ViewComponent;
   filterView!: ModelFilterService;
   pageFilter!: SFilter;
+  loading!: LoadingComponent;
 
   page?:
     | SPage<SEntidade, BaseHttpService<SEntidade>>
@@ -111,6 +113,10 @@ export class ControlService {
   getControllerToast(): ToastService {
     return this.toastService!;
   }
+
+  setLoading(loading: LoadingComponent) {
+    this.loading = loading;
+  }
   //-----------------------------------------------get e set relacionado a entidades---------------------------
 
   setService(service: BaseHttpService<SEntidade>) {
@@ -148,6 +154,7 @@ export class ControlService {
   //----------------------------------------------------------Actions----------------------------------------
 
   async save() {
+    this.loading.showLoading();
     this.showLoadingTrue();
     if (this.ob!.id! > 0) {
       this.service.update(this.ob!).subscribe({
@@ -156,15 +163,17 @@ export class ControlService {
           this.showLoadingFalse();
           this.setStatePage(StatePage.VIEW);
           this.toastService!.showSucess(res.message);
+          this.loading.dropLoading();
         },
         error: (error) => {
           if (error.error) {
             this.toastService!.showAlert(error.error.error);
           } else {
-            console.log(error);
+            this.toastService!.catchErro(error);
           }
           this.showLoadingFalse();
           this.setStatePage(StatePage.VIEW);
+          this.loading.dropLoading();
         },
       });
     } else {
@@ -172,21 +181,24 @@ export class ControlService {
         next: (res) => {
           this.router.navigate([`cader/${res.rotaOb}`]);
           this.toastService!.showSucess(res.message);
+          this.loading.dropLoading();
         },
         error: (error) => {
           if (error.error) {
             this.toastService!.showAlert(error.error.error);
           } else {
-            console.log(error);
+            this.toastService!.catchErro(error);
           }
           this.showLoadingFalse();
           this.setStatePage(StatePage.VIEW);
+          this.loading.dropLoading();
         },
       });
     }
   }
 
   delete() {
+    this.loading.showLoading();
     if (this.ob!.id! > 0) {
       this.confirmDialogService!.showDialog(
         'Confirmar Exclusão',
@@ -199,6 +211,7 @@ export class ControlService {
               this.toastService!.showSucess(res.message);
               this.setStatePage(StatePage.LIST);
               this.router.navigate([`${this.rotaEntidade}/list`]);
+              this.loading.dropLoading();
             },
             error: (error) => {
               if (error.error) {
@@ -208,6 +221,7 @@ export class ControlService {
               }
               this.showLoadingFalse();
               this.setStatePage(StatePage.VIEW);
+              this.loading.dropLoading();
             },
           });
         },

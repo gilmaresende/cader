@@ -58,25 +58,33 @@ export abstract class SItems<
 
   //chamada da api para salvar objeto atual da tela
   save() {
+    this.controllerS.loading.showLoading();
     this.serviceItem.create(this.serviceModalS.getOb()).subscribe({
       next: (res) => {
         this.controllerS.getControllerToast().showSucess(res.message);
         this.controllerS.reload();
+        this.controllerS.loading.dropLoading();
       },
       error: (er) => {
         this.controllerS.getControllerToast().catchErro(er);
+        this.controllerS.loading.dropLoading();
       },
     });
   }
 
   //chamada da api para apagar objeto atual da tela
   delete() {
+    this.controllerS.loading.showLoading();
     this.serviceItem.delete(this.serviceModalS.getOb().id).subscribe({
       next: (res) => {
         this.controllerS.getControllerToast().showSucess(res.message);
         this.controllerS.reload();
+        this.controllerS.loading.dropLoading();
       },
-      error: (er) => this.controllerS.getControllerToast().catchErro(er),
+      error: (er) => {
+        this.controllerS.getControllerToast().catchErro(er);
+        this.controllerS.loading.dropLoading();
+      },
     });
   }
 }

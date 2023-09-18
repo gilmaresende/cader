@@ -33,6 +33,7 @@ export class ExpensePaymentComponent implements OnInit {
 
   //chama a api para carregar um registro de pagamento no model
   loading() {
+    this.controller.loading.showLoading();
     this.serviceModel.clear();
     this.serviceExpensePayment
       .findById(this.controller.getObSelect()?.id)
@@ -40,15 +41,19 @@ export class ExpensePaymentComponent implements OnInit {
         next: (res) => {
           this.serviceModel.setOb(res.data);
           this.serviceModel.show();
-
           this.serviceModel.disabledFalse();
+          this.controller.loading.dropLoading();
         },
-        error: (error) => this.toastService.catchErro(error),
+        error: (error) => {
+          this.toastService.catchErro(error);
+          this.controller.loading.dropLoading();
+        },
       });
   }
 
   //chama api para prever o valor em aberto da despesa
   newExpensePayment() {
+    this.controller.loading.showLoading();
     this.serviceModel.clear();
     this.serviceExpensePayment
       .predictPayment(this.controller.getOb()!.id)
@@ -57,8 +62,12 @@ export class ExpensePaymentComponent implements OnInit {
           this.serviceModel.setOb(res.data);
           this.serviceModel.show();
           this.serviceModel.disabledTrue();
+          this.controller.loading.dropLoading();
         },
-        error: (error) => this.toastService.catchErro(error),
+        error: (error) => {
+          this.toastService.catchErro(error);
+          this.controller.loading.dropLoading();
+        },
       });
   }
 }
