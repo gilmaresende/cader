@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -64,6 +65,6 @@ public class Expense extends BaseEntity {
     private Double value;
 
     @OneToMany(mappedBy = "expense", cascade = CascadeType.MERGE, orphanRemoval = true)
-    private List<ExpensePayment> payments;
+    private List<ExpensePayment> payments = new ArrayList<>();
 
 }

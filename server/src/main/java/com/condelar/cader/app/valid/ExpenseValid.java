@@ -10,12 +10,35 @@ public class ExpenseValid extends BaseValid<ExpenseDTO, Expense> {
 
     @Override
     public void validDtoToSave(ExpenseDTO dto) {
-
+        if (!hasContent(dto.getDescription())) {
+            addErrors("description", "Descrition can not is empty!");
+        }
+        if (isNull(dto.getDueDate())) {
+            addErrors("duaDate", "Due Date can not is empty!");
+        }
+        if (!isPositive(dto.getValue())) {
+            addErrors("value", "Value can not is empty!");
+        }
+        if (!isPositive(dto.getIdPaymentType())) {
+            addErrors("idPaymentType", "Payment Type can not is empty!");
+        }
+        if (!isPositive(dto.getIdExpenseCategory())) {
+            addErrors("idExpenseCategory", "Expense Category can not is empty!");
+        }
+        if (!isPositive(dto.getIdPerson())) {
+            addErrors("idPerson", "Person can not is empty!");
+        }
+        if (!isPositive(dto.getIdWallet())) {
+            addErrors("idWallet", "Wallet can not is empty!");
+        }
     }
 
     @Override
     public void validObject(Expense ob) {
-
+        Double payValue = ob.getPayments().stream().mapToDouble(v -> v.getValue()).sum();
+        if (ob.getValue() - payValue < 0) {
+            addErrors("value", "Pay value can not is bigger than Value Expense!");
+        }
     }
 
     @Override

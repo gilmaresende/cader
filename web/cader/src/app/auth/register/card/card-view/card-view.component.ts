@@ -16,6 +16,6 @@ export class CardViewComponent extends SPage<Card, CardService> {
     private service: CardService,
     private activatedRoute: ActivatedRoute
   ) {
-    super('Categoria Despesa', controller, service, activatedRoute);
+    super('Cartão', controller, service, activatedRoute);
   }
 }

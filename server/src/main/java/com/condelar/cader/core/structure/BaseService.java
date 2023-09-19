@@ -4,7 +4,6 @@ import com.condelar.cader.core.domain.User;
 import com.condelar.cader.core.errors.exceptions.DeleteException;
 import com.condelar.cader.core.errors.exceptions.ObjectNotFoundException;
 import com.condelar.cader.core.errors.exceptions.SaveException;
-import org.hibernate.PropertyValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;

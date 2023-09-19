@@ -31,4 +31,19 @@ public abstract class BaseValid<DTO extends BaseDTO, Entity extends BaseEntity> 
             throw new ValidException("Required fields", errors);
         }
     }
+
+    public boolean isNull(Object ob) {
+        return ob == null;
+    }
+
+    public boolean isPositive(Number number) {
+        if (isNull(number)) return false;
+        Double value = number.doubleValue();
+        return value > 0;
+    }
+
+    public boolean hasContent(String str) {
+        if (isNull(str)) return false;
+        return !str.isEmpty();
+    }
 }

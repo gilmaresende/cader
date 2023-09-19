@@ -27,7 +27,6 @@ export class ControlService {
   toastService?: ToastService;
   confirmDialogService?: ConfirmDialogService;
   statePage: StatePage = StatePage.HOME;
-  superView!: ViewComponent;
   filterView!: ModelFilterService;
   pageFilter!: SFilter;
   loading!: LoadingComponent;
@@ -94,10 +93,6 @@ export class ControlService {
     this.confirmDialogService = confirmDialogService;
   }
 
-  setSuperView(superView: ViewComponent) {
-    this.superView = superView;
-  }
-
   setFilterService(filterView: ModelFilterService) {
     this.filterView = filterView;
   }
@@ -154,6 +149,7 @@ export class ControlService {
   //----------------------------------------------------------Actions----------------------------------------
 
   async save() {
+    console.log('save');
     this.loading.showLoading();
     this.showLoadingTrue();
     if (this.ob!.id! > 0) {
@@ -166,13 +162,14 @@ export class ControlService {
           this.loading.dropLoading();
         },
         error: (error) => {
+          console.log(error);
           if (error.error) {
             this.toastService!.showAlert(error.error.error);
           } else {
             this.toastService!.catchErro(error);
           }
           this.showLoadingFalse();
-          this.setStatePage(StatePage.VIEW);
+          this.setStatePage(StatePage.EDIT);
           this.loading.dropLoading();
         },
       });
@@ -184,13 +181,10 @@ export class ControlService {
           this.loading.dropLoading();
         },
         error: (error) => {
-          if (error.error) {
-            this.toastService!.showAlert(error.error.error);
-          } else {
-            this.toastService!.catchErro(error);
-          }
+          console.log(error);
+          this.toastService!.catchErro(error);
           this.showLoadingFalse();
-          this.setStatePage(StatePage.VIEW);
+          this.setStatePage(StatePage.EDIT);
           this.loading.dropLoading();
         },
       });
@@ -265,12 +259,10 @@ export class ControlService {
   }
 
   showLoadingFalse() {
-    this.superView.alterLoading(false);
     this.page?.alterLoading(true);
   }
 
   showLoadingTrue() {
-    this.superView.alterLoading(true);
     this.page?.alterLoading(false);
   }
 

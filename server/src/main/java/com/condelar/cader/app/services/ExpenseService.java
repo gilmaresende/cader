@@ -2,6 +2,7 @@ package com.condelar.cader.app.services;
 
 import com.condelar.cader.app.constants.enuns.EnumStatusExpensePayment;
 import com.condelar.cader.app.domain.Expense;
+import com.condelar.cader.app.domain.ExpenseCategory;
 import com.condelar.cader.app.domain.ExpensePayment;
 import com.condelar.cader.app.domain.Movement;
 import com.condelar.cader.app.dto.expense.ExpenseDTO;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,8 +30,11 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
 
     private final WalletService walletService;
     private final PaymentTypeService paymentTypeService;
-
     private final MovementService movementService;
+
+    private final ExpenseCategoryService expenseCategoryService;
+
+    private final PersonService personService;
 
     @Override
     public Expense instance() {
@@ -37,8 +42,19 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
     }
 
     @Override
-    public Expense toEntity(Expense ob, ExpenseDTO dto) {
-        return ob;
+    public Expense toEntity(Expense expense, ExpenseDTO dto) {
+        if (expense.getId() == null) {
+            expense.setPayments(new ArrayList<>());
+        }
+        ToolEntity.cloneAttributes(dto, expense);
+        expense.setPaymentType(paymentTypeService.findById(dto.getIdPaymentType()));
+        expense.setWallet(walletService.findById(dto.getIdWallet()));
+        expense.setExpenseCategory(expenseCategoryService.findById(dto.getIdExpenseCategory()));
+        expense.setPerson(personService.findById(dto.getIdPerson()));
+        expense.setUser(getUser());
+        expense.setUpdate(LocalDateTime.now());
+        expense.setRegister(LocalDate.now());
+        return expense;
     }
 
     @Override
