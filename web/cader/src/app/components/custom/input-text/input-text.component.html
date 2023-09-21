@@ -1,0 +1,13 @@
+<div class="choose-quantity"></div>
+<span class="p-float-label">
+  <input
+    pInputText
+    type="text"
+    [placeholder]="placeholder"
+    [disabled]="isDisabled"
+    (keyup)="teclar()"
+    [(ngModel)]="value"
+  />
+
+  <label htmlFor="username">{{ label }}</label>
+</span>
