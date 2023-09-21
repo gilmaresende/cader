@@ -35,7 +35,7 @@ public class Movement extends BaseEntity {
     private User user;
 
     @Column(name = "data_movimento")
-    private LocalDate movimentDate;
+    private LocalDate movementDate;
 
     @ManyToOne
     @JoinColumn(name = "id_carteira")

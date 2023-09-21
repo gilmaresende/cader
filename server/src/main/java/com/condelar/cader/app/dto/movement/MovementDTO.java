@@ -12,13 +12,13 @@ public class MovementDTO extends BaseDTO {
 
     private String description;
 
-    private LocalDate movimentDate;
+    private LocalDate movementDate;
 
     private Short origin;
 
     private Short typeRevenueExpence;
 
-    private Double value = 0D;
+    private Double value;
 
     private Long idWallet;
 

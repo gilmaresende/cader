@@ -23,13 +23,13 @@ public class ExpenseValid extends BaseValid<ExpenseDTO, Expense> {
             addErrors("idPaymentType", "Payment Type can not is empty!");
         }
         if (!isPositive(dto.getIdExpenseCategory())) {
-            addErrors("idExpenseCategory", "Expense Category can not is empty!");
+            addErrors("idExpenseCategory", "Expense Category must is informed!");
         }
         if (!isPositive(dto.getIdPerson())) {
-            addErrors("idPerson", "Person can not is empty!");
+            addErrors("idPerson", "Person must is informed!");
         }
         if (!isPositive(dto.getIdWallet())) {
-            addErrors("idWallet", "Wallet can not is empty!");
+            addErrors("idWallet", "Wallet must is informed!");
         }
     }
 

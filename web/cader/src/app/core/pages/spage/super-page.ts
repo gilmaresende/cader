@@ -43,6 +43,7 @@ export abstract class SPage<
     this.actions.showLoadingTrue();
     await this.services.findById(id).subscribe({
       next: (res) => {
+        console.log(res.data);
         this.setOb(res.data);
         this.actions.showLoadingFalse();
         this.actions.setStatePage(StatePage.VIEW);

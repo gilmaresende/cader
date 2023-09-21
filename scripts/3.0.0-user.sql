@@ -5,8 +5,6 @@
  alter table cartao 
        add column update_time datetime(6);       
 
-  alter table carteira 
-       add column update_time datetime(6);
 
 alter table categoria_despesa 
        add column update_time datetime(6);

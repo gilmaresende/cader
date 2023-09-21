@@ -10,7 +10,7 @@ export class MovementService extends BaseHttpService<Movement> {
     return {
       id: 0,
       description: '',
-      movimentDate: new Date(),
+      movementDate: new Date(),
       update: new Date(),
       origin: 1,
       typeRevenueExpence: 1,

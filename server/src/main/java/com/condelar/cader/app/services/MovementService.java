@@ -33,7 +33,12 @@ public class MovementService extends BaseService<Movement, MovementDTO, Movement
     public Movement toEntity(Movement ob, MovementDTO dto) {
         if (ob.getId() == null) {
             ob.setWallet(walletService.findById(dto.getIdWallet()));
+            ob.setOrigin(EnumOriginMovement.MANUAL.getValue());
         }
+        ob.setMovementDate(dto.getMovementDate());
+        ob.setDescription(dto.getDescription());
+        ob.setTypeRevenueExpence(EnumTypeRevenueExpence.valueOf(dto.getTypeRevenueExpence()).getValue());
+        ob.setValue(dto.getValue());
         return ob;
     }
 
@@ -64,7 +69,7 @@ public class MovementService extends BaseService<Movement, MovementDTO, Movement
         movement.setDescription(paymentExpense.getExpense().getDescription());
         movement.setValue(paymentExpense.getValue());
         movement.setUpdate(paymentExpense.getUpdate());
-        movement.setMovimentDate(paymentExpense.getPayDay());
+        movement.setMovementDate(paymentExpense.getPayDay());
         movement.setTypeRevenueExpence(EnumTypeRevenueExpence.DESPESA.getValue());
         movement.setRegister(LocalDate.now());
 

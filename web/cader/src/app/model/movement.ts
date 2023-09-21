@@ -2,7 +2,7 @@ import { SEntidade } from '../core/model/sentidade';
 
 export interface Movement extends SEntidade {
   description: string;
-  movimentDate: Date;
+  movementDate: Date;
   origin: number;
   typeRevenueExpence: number;
   value: number;

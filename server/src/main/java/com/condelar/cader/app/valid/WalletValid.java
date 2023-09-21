@@ -13,6 +13,18 @@ public class WalletValid extends BaseValid<WalletDTO, Wallet> {
         if (isEmpty(dto.getName())) {
             addErrors("name", "The filed name can not be empty!");
         }
+
+        if (isNull(dto.getActive())) {
+            addErrors("active", "The filed active is mandatory!");
+        }
+
+        if (isNull(dto.getReserved())) {
+            addErrors("reserved", "The filed reserved is mandatory!");
+        }
+
+        if (isNull(dto.getCanBeNegative())) {
+            addErrors("canBeNegative", "The filed canBeNegative is mandatory!");
+        }
     }
 
     @Override

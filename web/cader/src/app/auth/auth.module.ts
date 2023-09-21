@@ -28,6 +28,7 @@ import { ExpenseViewComponent } from './controllership/expense/expense-view/expe
 import { ExpenseDetailComponent } from './controllership/expense/expense-view/expense-detail/expense-detail.component';
 import { ExpensePaymentComponent } from './controllership/expense/expense-view/expense-payment/expense-payment.component';
 import { ExpensePaymentViewComponent } from './controllership/expense/expense-view/expense-payment-view/expense-payment-view.component';
+import { MovementViewComponent } from './controllership/movement/movement-view/movement-view.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ExpensePaymentViewComponent } from './controllership/expense/expense-vi
     ExpenseDetailComponent,
     ExpensePaymentComponent,
     ExpensePaymentViewComponent,
+    MovementViewComponent,
   ],
   imports: [
     CommonModule,

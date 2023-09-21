@@ -39,11 +39,11 @@ public interface MovementRepository extends JpaRepository<Movement, Long> {
             "       inner join m.user u\n" +
             "where  (u.id = :idUser)\n" +
             "and (:idCarteira is null or c.id = :idCarteira)\n" +
-            "and (:dataInicial is null or m.movimentDate >= :dataInicial)\n" +
-            "and (:dataFinal is null or m.movimentDate <= :dataFinal)\n" +
+            "and (:dataInicial is null or m.movementDate >= :dataInicial)\n" +
+            "and (:dataFinal is null or m.movementDate <= :dataFinal)\n" +
             "and (:receitaDespesa is null or m.typeRevenueExpence = :receitaDespesa)\n" +
             "and (:origem is null or m.origin = :origem)\n" +
-            "order by m.movimentDate"
+            "order by m.movementDate"
     )
     List<Movement> getFilter(@Param("idUser") Long idUser,
                              @Param("idCarteira") Long idCarteira,

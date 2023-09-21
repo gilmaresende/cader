@@ -19,6 +19,7 @@ import { ExpenseListComponent } from './controllership/expense/expense-list/expe
 import { TesteHqlComponent } from './dev/teste-hql/teste-hql.component';
 import { ExpenseViewComponent } from './controllership/expense/expense-view/expense-view.component';
 import { ExpenseDetailComponent } from './controllership/expense/expense-view/expense-detail/expense-detail.component';
+import { MovementViewComponent } from './controllership/movement/movement-view/movement-view.component';
 
 const routes: Routes = [
   {
@@ -86,9 +87,9 @@ const routes: Routes = [
       {
         path: 'movement',
         children: [
-          // { path: '', component: WalletViewComponent },
+          { path: '', component: MovementViewComponent },
           { path: 'list', component: MovementListComponent },
-          // { path: ':id', component: WalletViewComponent },
+          { path: ':id', component: MovementViewComponent },
         ],
       },
       {
