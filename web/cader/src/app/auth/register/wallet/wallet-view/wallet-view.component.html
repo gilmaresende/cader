@@ -1,39 +1,37 @@
-<div *ngIf="loading">
-  <div class="defaultRegister">
-    <div>
-      <input-text
-        [ob]="ob"
-        [atributo]="'name'"
-        [label]="'Nome'"
-        [placeholder]="'Nome'"
-        [isDisabled]="isDisabled"
-      />
-    </div>
-    <div class="balance">
-      <input-reais
-        [label]="'Saldo'"
-        [ob]="ob"
-        [atributo]="'balance'"
-        [isDisabled]="true"
-      />
-    </div>
-    <input-switch
+<div [formGroup]="form" class="m2">
+  <div class="fullW">
+    <inputText
+      formControlName="name"
+      [label]="'Nome'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+  <div class="mt2">
+    <inputSwitch
+      formControlName="active"
       [label]="'Ativo'"
-      [ob]="ob"
-      [atributo]="'active'"
       [isDisabled]="isDisabled"
     />
-    <input-switch
-      [label]="'Reservada'"
-      [ob]="ob"
-      [atributo]="'reserved'"
-      [isDisabled]="isDisabled"
-    />
-    <input-switch
+  </div>
+  <div class="mt2">
+    <inputSwitch
+      formControlName="canBeNegative"
       [label]="'Permite Saldo Negativo'"
-      [ob]="ob"
-      [atributo]="'canBeNegative'"
       [isDisabled]="isDisabled"
+    />
+  </div>
+  <div class="mt2">
+    <inputSwitch
+      formControlName="reserved"
+      [label]="'Reservada'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+  <div class="mt2">
+    <inputReais
+      formControlName="balance"
+      [label]="'Saldo'"
+      [isDisabled]="true"
     />
   </div>
 </div>

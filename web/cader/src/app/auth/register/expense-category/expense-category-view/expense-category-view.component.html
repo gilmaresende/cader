@@ -1,16 +1,15 @@
-<div *ngIf="loading">
-  <div class="defaultRegister">
-    <input-text
-      [ob]="ob"
-      [atributo]="'name'"
+<div [formGroup]="form" class="m2">
+  <div class="fullW">
+    <inputText
+      formControlName="name"
       [label]="'Nome'"
-      [placeholder]="'Nome'"
       [isDisabled]="isDisabled"
     />
-    <input-switch
+  </div>
+  <div class="mt2">
+    <inputSwitch
+      formControlName="active"
       [label]="'Ativo'"
-      [ob]="ob"
-      [atributo]="'active'"
       [isDisabled]="isDisabled"
     />
   </div>

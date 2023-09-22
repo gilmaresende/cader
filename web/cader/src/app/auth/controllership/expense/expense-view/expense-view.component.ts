@@ -11,6 +11,13 @@ import { ExpenseService } from 'src/app/services/expense.service';
   styleUrls: ['./expense-view.component.scss'],
 })
 export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
+  override getOb(): Expense {
+    throw new Error('Method not implemented.');
+  }
+  override populatedForm(ob: Expense) {
+    throw new Error('Method not implemented.');
+  }
+
   pages = ['Detalhes', 'Pagamentos'];
 
   constructor(

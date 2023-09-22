@@ -27,7 +27,7 @@ import { InputDateComponent } from './input-date/input-date.component';
 import { InputPasswordComponent } from './input-password/input-password.component';
 import { InputReaisComponent } from './input-reais/input-reais.component';
 import { InputSwitchComponent } from './input-switch/input-switch.component';
-import { InputTextComponent } from './input-text/input-text.component';
+import { InputTextComponent2 } from './input-text/input-text.component';
 import { ModelFilterComponent } from './model-filter/model-filter.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToastComponent } from './toast/toast.component';
@@ -42,7 +42,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 @NgModule({
   declarations: [
     BtnTesteComponent,
-    InputTextComponent,
+    InputTextComponent2,
     InputPasswordComponent,
     BtnPrimaryComponent,
     ToastComponent,
@@ -85,7 +85,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
   ],
   exports: [
     BtnTesteComponent,
-    InputTextComponent,
+    InputTextComponent2,
     InputPasswordComponent,
     BtnPrimaryComponent,
     ToastComponent,

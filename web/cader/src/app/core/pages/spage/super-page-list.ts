@@ -63,4 +63,8 @@ export abstract class SPageList<
   async findById(id: number) {}
 
   public findFilter(filter: any) {}
+
+  getOb() {
+    return;
+  }
 }

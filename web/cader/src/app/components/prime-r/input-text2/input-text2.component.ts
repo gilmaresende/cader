@@ -8,28 +8,26 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'inputText',
-  templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss'],
+  selector: 'input-text2',
+  templateUrl: './input-text2.component.html',
+  styleUrls: ['./input-text2.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: InputTextComponent,
+      useExisting: InputText2Component,
     },
     {
       provide: NG_VALIDATORS,
       multi: true,
-      useExisting: InputTextComponent,
+      useExisting: InputText2Component,
     },
   ],
 })
-export class InputTextComponent implements ControlValueAccessor {
-  @Input() isDisabled: boolean = false;
-  @Input() label: string | null = null;
-  @Input() placeholder: string = '';
-
+export class InputText2Component implements ControlValueAccessor {
   value = '';
+
+  @Input() increment: number = 1;
 
   touched = false;
 

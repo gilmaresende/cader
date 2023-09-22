@@ -5,5 +5,7 @@ export abstract class SFilter {
     controller.setPageFilter(this);
   }
 
-  abstract getOb(): any;
+  getOb() {
+    return;
+  }
 }

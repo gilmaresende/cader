@@ -3,6 +3,7 @@ import { SEntidade } from '../../model/sentidade';
 import { BaseHttpService } from '../../services/base-http.service';
 import { ControlService } from '../../services/control.service';
 import { StatePage } from '../../enuns/statePage';
+import { FormGroup, NgForm } from '@angular/forms';
 
 export abstract class SPage<
   Entidade extends SEntidade,
@@ -21,6 +22,7 @@ export abstract class SPage<
   ) {
     this.actions.showLoadingTrue();
     actions.build(this.ob, title, this, this.services);
+    this.startView();
 
     const id = this.activatedRoutes.snapshot.params['id'];
     if (id) {
@@ -28,7 +30,6 @@ export abstract class SPage<
       this.actions.setStatePage(StatePage.VIEW);
     } else {
       this.actions.setStatePage(StatePage.INSERT);
-      this.setOb(this.services.newInstance());
       this.actions.showLoadingFalse();
     }
   }
@@ -43,9 +44,7 @@ export abstract class SPage<
     this.actions.showLoadingTrue();
     await this.services.findById(id).subscribe({
       next: (res) => {
-        console.log(res.data);
-        this.setOb(res.data);
-        this.actions.showLoadingFalse();
+        this.populatedForm(res.data);
         this.actions.setStatePage(StatePage.VIEW);
         this.actions.loading.dropLoading();
       },
@@ -66,7 +65,6 @@ export abstract class SPage<
   }
 
   public clearScreen() {
-    this.ob = this.services.newInstance();
     this.isDisabled = false;
   }
 
@@ -75,4 +73,10 @@ export abstract class SPage<
   }
 
   findFilter(filter: any) {}
+
+  startView() {}
+
+  abstract populatedForm(ob: Entidade): any;
+
+  abstract getOb(): Entidade;
 }

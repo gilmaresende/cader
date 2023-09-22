@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SPage } from 'src/app/core/pages/spage/super-page';
 import { ControlService } from 'src/app/core/services/control.service';
@@ -12,11 +18,19 @@ import { WalletService } from 'src/app/services/wallet.service';
   styleUrls: ['./movement-view.component.scss'],
 })
 export class MovementViewComponent extends SPage<Movement, MovementService> {
+  override getOb(): Movement {
+    throw new Error('Method not implemented.');
+  }
+  override populatedForm(ob: Movement) {
+    throw new Error('Method not implemented.');
+  }
+
   constructor(
     private controller: ControlService,
     private service: MovementService,
     private activatedRoute: ActivatedRoute,
-    protected walletService: WalletService
+    protected walletService: WalletService,
+    private formBuilder: FormBuilder
   ) {
     super('Movimento', controller, service, activatedRoute);
   }

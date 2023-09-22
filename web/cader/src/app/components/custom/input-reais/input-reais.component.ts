@@ -8,23 +8,23 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'inputText',
-  templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss'],
+  selector: 'inputReais',
+  templateUrl: './input-reais.component.html',
+  styleUrls: ['./input-reais.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: InputTextComponent,
+      useExisting: InputReaisComponent,
     },
     {
       provide: NG_VALIDATORS,
       multi: true,
-      useExisting: InputTextComponent,
+      useExisting: InputReaisComponent,
     },
   ],
 })
-export class InputTextComponent implements ControlValueAccessor {
+export class InputReaisComponent implements ControlValueAccessor {
   @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;
   @Input() placeholder: string = '';

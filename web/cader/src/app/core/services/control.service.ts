@@ -126,8 +126,10 @@ export class ControlService {
     this.ob = ob;
   }
 
-  getOb(): SEntidade | undefined {
-    return this.ob;
+  getOb(): SEntidade {
+    const page = this.page;
+    const obj = page!.getOb() as SEntidade;
+    return obj;
   }
 
   setObSelect(ob: any) {
@@ -152,17 +154,15 @@ export class ControlService {
     console.log('save');
     this.loading.showLoading();
     this.showLoadingTrue();
-    if (this.ob!.id! > 0) {
-      this.service.update(this.ob!).subscribe({
+    const obj: SEntidade = this.getOb();
+    //TODO DELETAR OB
+    if (obj.id! > 0) {
+      this.service.update(obj).subscribe({
         next: (res) => {
-          this.getOb()!.update = res.update;
-          this.showLoadingFalse();
-          this.setStatePage(StatePage.VIEW);
           this.toastService!.showSucess(res.message);
-          this.loading.dropLoading();
+          this.reload();
         },
         error: (error) => {
-          console.log(error);
           if (error.error) {
             this.toastService!.showAlert(error.error.error);
           } else {
@@ -174,7 +174,7 @@ export class ControlService {
         },
       });
     } else {
-      await this.service.create(this.ob!).subscribe({
+      await this.service.create(obj).subscribe({
         next: (res) => {
           this.router.navigate([`cader/${res.rotaOb}`]);
           this.toastService!.showSucess(res.message);
@@ -230,7 +230,8 @@ export class ControlService {
 
   async reload() {
     this.setStatePage(StatePage.VIEW);
-    this.page?.findById(this.ob!.id!);
+    const obj: SEntidade = this.getOb();
+    this.page?.findById(obj.id!);
   }
 
   goToList() {

@@ -29,6 +29,9 @@ import { ExpenseDetailComponent } from './controllership/expense/expense-view/ex
 import { ExpensePaymentComponent } from './controllership/expense/expense-view/expense-payment/expense-payment.component';
 import { ExpensePaymentViewComponent } from './controllership/expense/expense-view/expense-payment-view/expense-payment-view.component';
 import { MovementViewComponent } from './controllership/movement/movement-view/movement-view.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PrimeRModule } from '../components/prime-r/prime-r.module';
+import { CustomizedModule } from '../components/custom/customized.module';
 
 @NgModule({
   declarations: [
@@ -63,6 +66,9 @@ import { MovementViewComponent } from './controllership/movement/movement-view/m
     PrimeModule,
     MaterialModule,
     FusionModule,
+    ReactiveFormsModule,
+    PrimeRModule,
+    CustomizedModule,
   ],
 })
 export class AuthModule {}

@@ -8,37 +8,37 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'inputText',
-  templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss'],
+  selector: 'inputSwitch',
+  templateUrl: './input-switch.component.html',
+  styleUrls: ['./input-switch.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: InputTextComponent,
+      useExisting: InputSwitchComponent,
     },
     {
       provide: NG_VALIDATORS,
       multi: true,
-      useExisting: InputTextComponent,
+      useExisting: InputSwitchComponent,
     },
   ],
 })
-export class InputTextComponent implements ControlValueAccessor {
+export class InputSwitchComponent {
   @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
 
-  value = '';
+  checked: boolean = true;
 
   touched = false;
 
   disabled = false;
 
-  teclar() {
+  onClick(): void {
     this.markAsTouched();
     if (!this.disabled) {
-      this.onChange(this.value);
+      this.onChange(this.checked ? 1 : 0);
     }
   }
 
@@ -46,7 +46,7 @@ export class InputTextComponent implements ControlValueAccessor {
   //que funções são essas?
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  onChange = (quantity: string) => {};
+  onChange = (quantity: number) => {};
 
   onTouched = () => {};
 
@@ -59,8 +59,8 @@ export class InputTextComponent implements ControlValueAccessor {
    * Forms sempre que o formulário pai
    * deseja definir um valor no controle filho.
    */
-  writeValue(value: string) {
-    this.value = value;
+  writeValue(value: number) {
+    this.checked = value == 1;
   }
 
   registerOnChange(onChange: any) {

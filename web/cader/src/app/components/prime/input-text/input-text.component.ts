@@ -5,7 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './input-text.component.html',
   styleUrls: ['./input-text.component.scss'],
 })
-export class InputTextComponent implements OnInit {
+export class InputTextComponent2 implements OnInit {
   value: string = '';
   @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;

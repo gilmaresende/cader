@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CustomizedModule } from './components/custom/customized.module';
 import { FusionModule } from './components/fusion/fusion.module';
 import { MaterialModule } from './components/material/material.module';
 import { PrimeModule } from './components/prime/prime.module';
@@ -20,6 +21,7 @@ import { AuthInterceptorProvider } from './core/interceptors/auth.interceptor';
     CoreModule,
     BrowserAnimationsModule,
     FusionModule,
+    CustomizedModule,
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent],

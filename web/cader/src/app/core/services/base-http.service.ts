@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { API_CONFIG } from 'src/environments/environments';
 import { ResponseServe } from '../model/response-serve';
 import { SEntidade } from '../model/sentidade';
+import { FormGroup } from '@angular/forms';
 @Injectable({
   providedIn: 'root',
 })

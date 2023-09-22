@@ -8,45 +8,51 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'inputText',
-  templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss'],
+  selector: 'input-text2',
+  templateUrl: './input-text2.component.html',
+  styleUrls: ['./input-text2.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: InputTextComponent,
+      useExisting: InputText2Component,
     },
     {
       provide: NG_VALIDATORS,
       multi: true,
-      useExisting: InputTextComponent,
+      useExisting: InputText2Component,
     },
   ],
 })
-export class InputTextComponent implements ControlValueAccessor {
-  @Input() isDisabled: boolean = false;
-  @Input() label: string | null = null;
-  @Input() placeholder: string = '';
+export class InputText2Component implements ControlValueAccessor {
+  quantity = 0;
 
-  value = '';
+  @Input() increment: number = 1;
 
   touched = false;
 
   disabled = false;
 
-  teclar() {
+  onAdd() {
     this.markAsTouched();
     if (!this.disabled) {
-      this.onChange(this.value);
+      this.quantity += this.increment;
+      this.onChange(this.quantity);
     }
   }
 
+  onRemove() {
+    this.markAsTouched();
+    if (!this.disabled) {
+      this.quantity -= this.increment;
+      this.onChange(this.quantity);
+    }
+  }
   /////////////////////////////////////////////////////////////////////////////////////////////
   //que funções são essas?
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  onChange = (quantity: string) => {};
+  onChange = (quantity: number) => {};
 
   onTouched = () => {};
 
@@ -59,8 +65,8 @@ export class InputTextComponent implements ControlValueAccessor {
    * Forms sempre que o formulário pai
    * deseja definir um valor no controle filho.
    */
-  writeValue(value: string) {
-    this.value = value;
+  writeValue(quantity: number) {
+    this.quantity = quantity;
   }
 
   registerOnChange(onChange: any) {
