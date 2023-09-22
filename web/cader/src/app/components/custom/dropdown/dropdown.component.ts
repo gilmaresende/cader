@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, DoCheck } from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -7,60 +7,65 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 
+interface ItemDrop {
+  name: string;
+  id: number;
+}
+
 @Component({
-  selector: 'inputReais',
-  templateUrl: './input-reais.component.html',
-  styleUrls: ['./input-reais.component.scss'],
+  selector: 'dropdown',
+  templateUrl: './dropdown.component.html',
+  styleUrls: ['./dropdown.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: InputReaisComponent,
+      useExisting: DropdownComponent,
     },
     {
       provide: NG_VALIDATORS,
       multi: true,
-      useExisting: InputReaisComponent,
+      useExisting: DropdownComponent,
     },
   ],
 })
-export class InputReaisComponent implements ControlValueAccessor {
+export class DropdownComponent
+  implements OnInit, DoCheck, ControlValueAccessor
+{
   @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;
-  @Input() placeholder: string = '';
+  @Input() list: Array<ItemDrop> = [];
 
-  value = '';
+  selected: ItemDrop | undefined;
+
+  selectId: number = 0;
 
   touched = false;
 
   disabled = false;
 
-  teclar() {
+  ngOnInit() {
+    for (let i = 0; i < this.list.length; i++) {
+      let country = this.list[i];
+      if (country.id === this.selectId) {
+        this.selected = country;
+        break;
+      }
+    }
+  }
+
+  ngDoCheck(): void {
     this.markAsTouched();
     if (!this.disabled) {
-      this.value = this.formatarMoeda(this.value);
-      this.onChange(this.value);
+      this.selectId = (this.selected as ItemDrop).id;
+
+      this.onChange(this.selectId);
     }
   }
 
-  formatarMoeda(valor: any) {
-    if (valor - parseFloat(valor) >= 0) {
-      console.log('num');
-    } else {
-      valor = valor.replace(/\D/g, '');
-    }
-    let numero = parseFloat(valor) / 100; // Converte para um número e divide por 100 (assumindo que os centavos estão na parte decimal)
-    const value = numero.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    });
-    return value;
-  }
-  /////////////////////////////////////////////////////////////////////////////////////////////
-  //que funções são essas?
-  /////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
 
-  onChange = (quantity: string) => {};
+  onChange = (ob: number) => {};
 
   onTouched = () => {};
 
@@ -73,8 +78,8 @@ export class InputReaisComponent implements ControlValueAccessor {
    * Forms sempre que o formulário pai
    * deseja definir um valor no controle filho.
    */
-  writeValue(value: string) {
-    this.value = this.formatarMoeda(value);
+  writeValue(id: number) {
+    this.selectId = id;
   }
 
   registerOnChange(onChange: any) {

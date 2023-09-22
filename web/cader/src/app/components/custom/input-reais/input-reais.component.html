@@ -1,6 +1,7 @@
 <div class="choose-quantity"></div>
 <span class="p-float-label">
   <input
+    class="inputReais"
     pInputText
     type="text"
     [placeholder]="placeholder"
@@ -8,6 +9,5 @@
     (keyup)="teclar()"
     [(ngModel)]="value"
   />
-
   <label htmlFor="username">{{ label }}</label>
 </span>

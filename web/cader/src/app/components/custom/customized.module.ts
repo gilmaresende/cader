@@ -6,6 +6,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputSwitchComponent } from './input-switch/input-switch.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputReaisComponent } from './input-reais/input-reais.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -13,8 +18,22 @@ import { InputReaisComponent } from './input-reais/input-reais.component';
     ReactiveFormsModule,
     FormsModule,
     InputSwitchModule,
+    DropdownModule,
+    AutoCompleteModule,
   ],
-  declarations: [InputTextComponent, InputSwitchComponent, InputReaisComponent],
-  exports: [InputTextComponent, InputSwitchComponent, InputReaisComponent],
+  declarations: [
+    InputTextComponent,
+    InputSwitchComponent,
+    InputReaisComponent,
+    DropdownComponent,
+    AutocompleteComponent,
+  ],
+  exports: [
+    InputTextComponent,
+    InputSwitchComponent,
+    InputReaisComponent,
+    DropdownComponent,
+    AutocompleteComponent,
+  ],
 })
 export class CustomizedModule {}
