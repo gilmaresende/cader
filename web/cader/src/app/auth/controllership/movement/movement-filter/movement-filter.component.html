@@ -1,15 +1,35 @@
 <div [formGroup]="form" class="m2">
-  <dropdown
-    [list]="typeList"
-    formControlName="typeRevenueExpence"
-    [label]="'Tipo'"
-  ></dropdown>
+  <div class="mt2 line">
+    <inputDate
+      formControlName="movimentDateStart"
+      [label]="'Data Inicial'"
+    ></inputDate>
+    <inputDate
+      formControlName="movimentDateEnd"
+      [label]="'Data Final'"
+    ></inputDate>
+  </div>
+
+  <div class="mt2">
+    <dropdown
+      [list]="typeList"
+      formControlName="typeRevenueExpence"
+      [label]="'Tipo'"
+    ></dropdown>
+  </div>
+  <div class="mt2">
+    <dropdown
+      [list]="typeList"
+      formControlName="typeRevenueExpence"
+      [label]="'Origem'"
+    ></dropdown>
+  </div>
 
   <div class="mt2">
     <autocomplete
       formControlName="idWallet"
       [service]="serviceWallet"
-      [label]="'Tipo'"
+      [label]="'Carteira'"
     />
   </div>
 </div>
