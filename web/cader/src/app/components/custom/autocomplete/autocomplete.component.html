@@ -13,12 +13,7 @@
   
 </div> -->
 
-<div class="line">
-  <div>
-    <button (click)="getCombo()" class="btn refresh" [disabled]="isDisabled">
-      <i class="pi pi-refresh"></i>
-    </button>
-  </div>
+<div class="line borderAutoComplete">
   <div class="fullW">
     <span class="p-fluid p-float-label">
       <p-autoComplete
@@ -32,6 +27,11 @@
       ></p-autoComplete>
       <label>{{ label }}</label>
     </span>
+  </div>
+  <div class="">
+    <button (click)="getCombo()" class="btn refresh" [disabled]="isDisabled">
+      <i class="pi pi-refresh"></i>
+    </button>
   </div>
   <div>
     <button (click)="cleanSeleted()" class="btn clean" [disabled]="isDisabled">

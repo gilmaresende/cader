@@ -150,5 +150,7 @@ export class AutocompleteComponent
 
   cleanSeleted() {
     this.selected = undefined;
+    this.selectId = 0;
+    this.onChange(this.selectId);
   }
 }

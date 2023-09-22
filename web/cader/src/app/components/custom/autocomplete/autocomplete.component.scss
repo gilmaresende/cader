@@ -17,8 +17,9 @@
     background: none;
     border: none;
     width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
   }
 
   .clean {
@@ -33,5 +34,10 @@
     &:hover {
       color: blue;
     }
+  }
+
+  .borderAutoComplete {
+    border: 1px solid rgb(201, 201, 201);
+    border-radius: 8px;
   }
 }
