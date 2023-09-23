@@ -1,4 +1,4 @@
-import { Component, OnChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SFilter } from 'src/app/core/pages/spage/super-filter';
 import { ControlService } from 'src/app/core/services/control.service';
@@ -6,10 +6,7 @@ import {
   getFirstDayMonth,
   getLastDayMonth,
 } from 'src/app/core/utils/Date/date-util';
-import {
-  MovimentFilter,
-  newMovement,
-} from 'src/app/model-filter/moviment-filter';
+
 import { WalletService } from 'src/app/services/wallet.service';
 
 @Component({
@@ -35,13 +32,8 @@ export class MovementFilterComponent extends SFilter {
     private controller: ControlService,
     public serviceWallet: WalletService
   ) {
+    console.log('build conteudo modal');
     super(controller);
-  }
-
-  ob: MovimentFilter = newMovement();
-
-  override getOb() {
-    return this.ob;
   }
 
   form = new FormGroup({
@@ -52,7 +44,7 @@ export class MovementFilterComponent extends SFilter {
     idWallet: new FormControl(0),
   });
 
-  getObF(): any {
+  getOb(): any {
     const form = this.form.controls;
     const ob = {
       movimentDateStart: form.movimentDateStart.value as Date,
@@ -62,9 +54,5 @@ export class MovementFilterComponent extends SFilter {
       idWallet: form.idWallet.value as number,
     };
     return ob;
-  }
-
-  show() {
-    console.log(this.getObF());
   }
 }

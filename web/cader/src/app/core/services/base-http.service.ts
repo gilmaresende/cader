@@ -64,4 +64,5 @@ export abstract class BaseHttpService<Entiti extends SEntidade> {
   }
 
   abstract newInstance(): Entiti;
+  abstract getFilterBase(): {};
 }

@@ -2,10 +2,9 @@ import { ControlService } from '../../services/control.service';
 
 export abstract class SFilter {
   constructor(controller: ControlService) {
-    controller.setPageFilter(this);
+    console.log('modal');
+    controller.setModalFilter(this);
   }
 
-  getOb() {
-    return;
-  }
+  abstract getOb(): any;
 }

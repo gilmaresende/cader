@@ -25,4 +25,7 @@ export class ExpensePaymentService extends BaseHttpService<ExpensePayment> {
       `${API_CONFIG.BASE_URL}/${this.rote}/predictPayment/${id}`
     );
   }
+  override getFilterBase(): {} {
+    return {};
+  }
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ModelFilterComponent } from './model-filter.component';
 import { ControlService } from 'src/app/core/services/control.service';
-import { SPageList } from 'src/app/core/pages/spage/super-page-list';
+import { ModelFilterComponent } from './model-filter.component';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +10,7 @@ export class ModelFilterService {
   ob: any;
 
   constructor(private controlService: ControlService) {
+    console.log('build model filter');
     controlService.setFilterService(this);
   }
 
@@ -23,7 +23,7 @@ export class ModelFilterService {
   }
 
   public toFilter() {
-    const ob = this.controlService.getPageFilter().getOb();
+    const ob = this.controlService.getModalFilter().getOb();
     this.controlService.page?.findFilter(ob);
     this.modelFilterComponent?.showDialog();
   }

@@ -20,4 +20,9 @@ export class ModelFilterComponent {
   toFilert() {
     this.modelFilterService.toFilter();
   }
+
+  //fecha o modal
+  closeModal() {
+    this.visible = false;
+  }
 }

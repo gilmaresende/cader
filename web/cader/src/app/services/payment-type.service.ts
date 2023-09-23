@@ -11,4 +11,7 @@ export class PaymentTypeService extends BaseHttpService<PaymentType> {
     return { name: '', id: 0, active: EnumYesNo.YES, update: new Date() };
   }
   override rote: string = 'paymentType';
+  override getFilterBase(): {} {
+    return {};
+  }
 }

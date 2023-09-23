@@ -28,7 +28,7 @@ export class ControlService {
   confirmDialogService?: ConfirmDialogService;
   statePage: StatePage = StatePage.HOME;
   filterView!: ModelFilterService;
-  pageFilter!: SFilter;
+  modalFilter!: SFilter;
   loading!: LoadingComponent;
 
   page?:
@@ -97,12 +97,16 @@ export class ControlService {
     this.filterView = filterView;
   }
 
-  setPageFilter(pageFilter: SFilter) {
-    this.pageFilter = pageFilter;
+  getFilterService() {
+    return this.filterView;
   }
 
-  getPageFilter() {
-    return this.pageFilter;
+  setModalFilter(modalFilter: SFilter) {
+    this.modalFilter = modalFilter;
+  }
+
+  getModalFilter() {
+    return this.modalFilter;
   }
 
   getControllerToast(): ToastService {

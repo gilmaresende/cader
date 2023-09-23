@@ -50,8 +50,4 @@ export class MovementListComponent extends SPageListFilter<
   ) {
     super('Lista Movimentos', controller, service);
   }
-
-  override getFilterBase() {
-    return newMovement();
-  }
 }

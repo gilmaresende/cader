@@ -7,6 +7,9 @@ import { EnumYesNo } from '../core/enuns/enumSimNao';
   providedIn: 'root',
 })
 export class CardService extends BaseHttpService<Card> {
+  override getFilterBase(): {} {
+    return {};
+  }
   override newInstance(): Card {
     return { name: '', id: 0, active: EnumYesNo.YES, update: new Date() };
   }

@@ -11,4 +11,7 @@ export class IncomeCategoryService extends BaseHttpService<IncomeCategory> {
     return { name: '', id: 0, active: EnumYesNo.YES, update: new Date() };
   }
   override rote: string = 'incomeCategory';
+  override getFilterBase(): {} {
+    return {};
+  }
 }

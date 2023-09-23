@@ -11,4 +11,7 @@ export class ExpenseCategoryService extends BaseHttpService<ExpenseCategory> {
     return { name: '', id: 0, active: EnumYesNo.YES, update: new Date() };
   }
   override rote: string = 'expenseCategory';
+  override getFilterBase(): {} {
+    return {};
+  }
 }

@@ -18,4 +18,7 @@ export class ExpenseService extends BaseHttpService<Expense> {
     };
   }
   override rote: string = 'expense';
+  override getFilterBase(): {} {
+    return {};
+  }
 }

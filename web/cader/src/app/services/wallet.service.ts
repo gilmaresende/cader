@@ -19,4 +19,7 @@ export class WalletService extends BaseHttpService<Wallet> {
     };
   }
   override rote: string = 'wallet';
+  override getFilterBase(): {} {
+    return {};
+  }
 }

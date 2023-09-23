@@ -1,18 +1,16 @@
-<p-dialog
-  header="Filtro"
-  [(visible)]="visible"
-  [modal]="true"
-  [style]="{ width: '90vw', height: '100vw' }"
-  [draggable]="false"
-  [resizable]="false"
->
-  <ng-content></ng-content>
-  <ng-template pTemplate="footer">
-    <p-button
-      icon="pi pi-check"
-      (click)="toFilert()"
-      label="Filtrar"
-      styleClass="p-button-text"
-    ></p-button>
-  </ng-template>
-</p-dialog>
+<div class="modal" [ngClass]="{ show: visible }">
+  <div class="modal-content">
+    <div class="barActions">
+      <div class="lineBetween">
+        <div class="title">Filtro</div>
+        <div class="actionBtn">
+          <btn-icon (click)="toFilert()"><i class="pi pi-search"></i></btn-icon>
+          <btn-icon (click)="closeModal()"
+            ><i class="pi pi-times"></i
+          ></btn-icon>
+        </div>
+      </div>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>

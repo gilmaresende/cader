@@ -11,4 +11,7 @@ export class PersonService extends BaseHttpService<Person> {
     return { name: '', id: 0, active: EnumYesNo.YES, update: new Date() };
   }
   override rote: string = 'person';
+  override getFilterBase(): {} {
+    return {};
+  }
 }
