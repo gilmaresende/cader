@@ -1,49 +1,50 @@
-<!-- <div *ngIf="loading">
-  <div class="pd">
-    <div class="line">
-      <div class="fullW">
-        <input-text
-          [ob]="ob"
-          [atributo]="'description'"
-          [label]="'Descrição'"
-          [placeholder]="'Descrição'"
-          [isDisabled]="isDisabled"
-        />
-      </div>
-    </div>
-    <div class="line mt2">
-      <auto-complete
-        [ob]="ob"
-        [atributo]="'idWallet'"
+<div [formGroup]="form" class="mt2 mX4">
+  <div class="fullW">
+    <inputText
+      formControlName="description"
+      [label]="'Descrição'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+  <div class="mt2">
+    <div class="lineBetween">
+      <inputDate
+        formControlName="movementDate"
+        [label]="'Data'"
+        [isDisabled]="isDisabled"
+      ></inputDate>
+      <autocomplete
+        formControlName="idWallet"
+        [service]="serviceWallet"
         [label]="'Carteira'"
-        [placeholder]="'Carteira'"
-        [service]="walletService"
         [isDisabled]="isDisabled"
       />
-      <div class="typeMovementDiv">
-        <drop-dow
-          [ob]="ob"
-          [atributo]="'typeRevenueExpence'"
-          [label]="'Receita/Despesa'"
-          [placeholder]="'Receita/Despesa'"
-          [list]="movimentType"
-          [isDisabled]="isDisabled"
-        />
-      </div>
-      <input-date
-        [ob]="ob"
-        [atributo]="'movementDate'"
-        [label]="'Data Movimento'"
-        [placeholder]="'Data Movimento'"
-        [isDisabled]="isDisabled"
-      />
-      <input-reais
+      <inputReais
+        formControlName="value"
         [label]="'Valor'"
-        [ob]="ob"
-        [atributo]="'value'"
         [isDisabled]="isDisabled"
       />
     </div>
   </div>
+  <div class="mt2">
+    <div class="lineBetween">
+      <div class="fullW mr2">
+        <dropdown
+          [list]="typeList"
+          formControlName="typeRevenueExpence"
+          [label]="'Tipo'"
+          [isDisabled]="isDisabled"
+        ></dropdown>
+      </div>
+      <div class="fullW ml2">
+        <dropdown
+          [list]="origenList"
+          formControlName="origin"
+          [label]="'Origem'"
+          [isDisabled]="isDisabled"
+        ></dropdown>
+      </div>
+    </div>
+  </div>
+  <div class="mt2"></div>
 </div>
-{{ ob | json }} -->

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { SPageListFilter } from 'src/app/core/pages/spage/super-page-list-filter';
 import { ControlService } from 'src/app/core/services/control.service';
-import { newMovement } from 'src/app/model-filter/moviment-filter';
 import { Movement } from 'src/app/model/movement';
 import { MovementService } from 'src/app/services/movement.service';
 

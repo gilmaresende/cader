@@ -1,7 +1,7 @@
 package com.condelar.cader.app.constants.enuns;
 
 public enum EnumTypeRevenueExpence {
-    RECEITA((short) 0),
+    RECEITA((short) 2),
     DESPESA((short) 1);
 
     private Short value;

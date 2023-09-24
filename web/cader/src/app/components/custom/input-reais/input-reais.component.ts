@@ -73,7 +73,8 @@ export class InputReaisComponent implements ControlValueAccessor {
    * Forms sempre que o formulário pai
    * deseja definir um valor no controle filho.
    */
-  writeValue(value: string) {
+  writeValue(value: number) {
+    value = value * 100;
     this.value = this.formatarMoeda(value);
   }
 

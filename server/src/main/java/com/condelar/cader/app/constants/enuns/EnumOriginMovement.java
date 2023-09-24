@@ -2,10 +2,11 @@ package com.condelar.cader.app.constants.enuns;
 
 public enum EnumOriginMovement {
 
-    MANUAL((short) 0),
     DESPESA((short) 1),
     TRANSFERENCIA((short) 2),
-    RECEITA((short) 3);
+    RECEITA((short) 3),
+    MANUAL((short) 4);
+
 
     private Short value;
 

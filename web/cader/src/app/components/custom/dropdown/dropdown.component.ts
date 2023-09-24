@@ -45,10 +45,12 @@ export class DropdownComponent
   disabled = false;
 
   ngOnInit() {
+    console.log(this.selectId);
     for (let i = 0; i < this.list.length; i++) {
-      let country = this.list[i];
-      if (country.id === this.selectId) {
-        this.selected = country;
+      let item = this.list[i];
+      if (item.id === this.selectId) {
+        console.log(this.selectId);
+        this.selected = item;
         break;
       }
     }
@@ -56,7 +58,7 @@ export class DropdownComponent
 
   ngDoCheck(): void {
     this.markAsTouched();
-    if (!this.disabled) {
+    if (!this.disabled && this.selected) {
       this.selectId = (this.selected as ItemDrop).id;
 
       this.onChange(this.selectId);

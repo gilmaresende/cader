@@ -22,11 +22,11 @@ export class MovementFilterComponent extends SFilter {
   ];
 
   origenList: Array<{ id?: number; name: string }> = [
-    { id: undefined, name: 'Todos' },
-    { id: 0, name: 'Manual' },
+    { id: 0, name: 'Todos' },
     { id: 1, name: 'Despesa' },
     { id: 2, name: 'Transfêrencia' },
     { id: 3, name: 'Receita' },
+    { id: 4, name: 'Manual' },
   ];
   constructor(
     private controller: ControlService,

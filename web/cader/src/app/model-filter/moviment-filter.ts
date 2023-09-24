@@ -11,9 +11,12 @@ export interface MovimentFilter {
   typeRevenueExpence?: number;
 }
 
-export function newMovement(): MovimentFilter {
+export function newMovementFilter(): MovimentFilter {
   return {
     movimentDateStart: getFirstDayMonth(),
     movimentDateEnd: getLastDayMonth(),
+    typeRevenueExpence: 0,
+    origin: 0,
+    idWallet: 0,
   };
 }

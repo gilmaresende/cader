@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseHttpService } from '../core/services/base-http.service';
+import { newMovementFilter } from '../model-filter/moviment-filter';
 import { Movement } from '../model/movement';
-import { newExpsenseFilter } from '../model-filter/expense-filter';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +21,6 @@ export class MovementService extends BaseHttpService<Movement> {
   }
   override rote: string = 'movement';
   override getFilterBase(): {} {
-    return newExpsenseFilter();
+    return newMovementFilter();
   }
 }
