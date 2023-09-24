@@ -23,7 +23,7 @@ public class MovementValid extends BaseValid<MovementDTO, Movement> {
             addErrors("movementDate", "The Moviment Date can not be empty!");
         }
 
-        if (isPositive(dto.getValue())) {
+        if (!isPositive(dto.getValue())) {
             addErrors("value", "Value should is bigger zero!");
         }
 

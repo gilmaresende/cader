@@ -7,6 +7,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
+import { DescriptionId } from 'src/app/core/model/description-id';
 import { SEntidade } from 'src/app/core/model/sentidade';
 import { BaseHttpService } from 'src/app/core/services/base-http.service';
 
@@ -37,15 +38,13 @@ export class AutocompleteComponent
 {
   @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;
-  list: Array<ItemDrop> = [];
+  list: Array<DescriptionId> = [];
 
   @Input() service!: BaseHttpService<SEntidade>;
 
-  allData: Array<ItemDrop> = [];
+  allData: Array<DescriptionId> = [];
 
-  selected: ItemDrop | undefined;
-
-  selectId: number = 0;
+  selected?: DescriptionId;
 
   touched = false;
 
@@ -59,16 +58,16 @@ export class AutocompleteComponent
     this.service.getCombo().subscribe({
       next: (res) => {
         this.list = this.allData = res.itemsCombo;
-        if (res.datas) {
-          for (let i = 0; i < this.allData.length; i++) {
-            let item = this.allData[i];
-            if (item.id === this.selectId) {
-              this.selected = item;
-              this.selectId = (this.selected as ItemDrop).id;
-              break;
-            }
-          }
-        }
+        // if (res.datas) {
+        //   for (let i = 0; i < this.allData.length; i++) {
+        //     let item = this.allData[i];
+        //     if (item.id === this.selectId) {
+        //       this.selected = item;
+        //       this.selectId = (this.selected as ItemDrop).id;
+        //       break;
+        //     }
+        //   }
+        // }
       },
       error: (error) => {
         console.log(error);
@@ -79,15 +78,13 @@ export class AutocompleteComponent
   ngDoCheck(): void {
     this.markAsTouched();
     if (!this.disabled && this.selected) {
-      this.selectId = (this.selected as ItemDrop).id;
-
-      this.onChange(this.selectId);
+      this.onChange(this.selected);
     }
   }
 
   //////////////////////////////////////////////////////////////////////////////
 
-  onChange = (ob: number) => {};
+  onChange = (ob: DescriptionId | undefined) => {};
 
   onTouched = () => {};
 
@@ -100,8 +97,8 @@ export class AutocompleteComponent
    * Forms sempre que o formulário pai
    * deseja definir um valor no controle filho.
    */
-  writeValue(id: number) {
-    this.selectId = id;
+  writeValue(ob: DescriptionId) {
+    this.selected = ob;
   }
 
   registerOnChange(onChange: any) {
@@ -150,7 +147,6 @@ export class AutocompleteComponent
 
   cleanSeleted() {
     this.selected = undefined;
-    this.selectId = 0;
-    this.onChange(this.selectId);
+    this.onChange(this.selected);
   }
 }

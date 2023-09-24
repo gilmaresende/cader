@@ -26,13 +26,7 @@ export class MovementViewComponent extends SPage<Movement, MovementService> {
 
   typeList: Array<DescriptionId> = EnumTypeRevenueExpence;
 
-  origenList: Array<DescriptionId> = [
-    { id: 0, description: 'Todos' },
-    { id: 1, description: 'Despesa' },
-    { id: 2, description: 'Transfêrencia' },
-    { id: 3, description: 'Receita' },
-    { id: 4, description: 'Manual' },
-  ];
+  origem: string = 'MANUAL';
 
   form = new FormGroup({
     id: new FormControl(0),
@@ -70,6 +64,12 @@ export class MovementViewComponent extends SPage<Movement, MovementService> {
       value: form.value.value as number,
       wallet: form.wallet.value as DescriptionId,
     };
+    this.origem = (form.origin.value as DescriptionId).description;
     return ob;
+  }
+
+  show() {
+    const ob = this.getOb();
+    console.log(ob);
   }
 }

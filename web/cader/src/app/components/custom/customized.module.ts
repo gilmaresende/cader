@@ -12,6 +12,7 @@ import { InputDateComponent } from './input-date/input-date.component';
 import { InputReaisComponent } from './input-reais/input-reais.component';
 import { InputSwitchComponent } from './input-switch/input-switch.component';
 import { InputTextComponent } from './input-text/input-text.component';
+import { LabelTextComponent } from './label-text/label-text.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { InputTextComponent } from './input-text/input-text.component';
     DropdownComponent,
     AutocompleteComponent,
     InputDateComponent,
+    LabelTextComponent,
   ],
   exports: [
     InputTextComponent,
@@ -39,6 +41,7 @@ import { InputTextComponent } from './input-text/input-text.component';
     DropdownComponent,
     AutocompleteComponent,
     InputDateComponent,
+    LabelTextComponent,
   ],
 })
 export class CustomizedModule {}

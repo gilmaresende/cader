@@ -37,14 +37,15 @@
         ></dropdown>
       </div>
       <div class="fullW ml2">
-        <!-- <dropdown
-          [list]="origenList"
+        <dropdown
+          [list]="typeList"
           formControlName="origin"
           [label]="'Origem'"
-          [isDisabled]="isDisabled"
-        ></dropdown> -->
+          [isDisabled]="true"
+        ></dropdown>
       </div>
     </div>
   </div>
   <div class="mt2"></div>
 </div>
+<button (click)="show()">show</button>

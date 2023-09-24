@@ -29,7 +29,7 @@ export class InputReaisComponent implements ControlValueAccessor {
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
 
-  value = '';
+  value = 0;
 
   touched = false;
 
@@ -44,22 +44,30 @@ export class InputReaisComponent implements ControlValueAccessor {
   }
 
   formatarMoeda(valor: any) {
-    if (valor - parseFloat(valor) >= 0) {
-    } else {
-      valor = valor.replace(/\D/g, '');
+    let dividirPor100 = false;
+    if (valor < 1) {
+      dividirPor100 = true;
     }
-    let numero = parseFloat(valor) / 100; // Converte para um número e divide por 100 (assumindo que os centavos estão na parte decimal)
-    const value = numero.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    });
-    return value;
+
+    valor = valor + '';
+    valor = parseFloat(valor.replace(/[\D]+/g, ''));
+
+    valor = valor + '';
+    valor = valor.replace(/([0-9]{2})$/g, '.$1');
+
+    if (valor.length > 6) {
+      valor = valor.replace(/([0-9]{3})([0-9]{2}$)/g, '$1.$2');
+    }
+    if (dividirPor100) {
+      valor = valor / 100;
+    }
+    return valor;
   }
   /////////////////////////////////////////////////////////////////////////////////////////////
   //que funções são essas?
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  onChange = (quantity: string) => {};
+  onChange = (quantity: number) => {};
 
   onTouched = () => {};
 
@@ -73,7 +81,10 @@ export class InputReaisComponent implements ControlValueAccessor {
    * deseja definir um valor no controle filho.
    */
   writeValue(value: number) {
-    value = value * 100;
+    if (value % 1 == 0) {
+      value = value * 100;
+    }
+
     this.value = this.formatarMoeda(value);
   }
 

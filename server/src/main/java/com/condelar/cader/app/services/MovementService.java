@@ -31,7 +31,7 @@ public class MovementService extends BaseService<Movement, MovementDTO, Movement
 
     @Override
     public Movement toEntity(Movement ob, MovementDTO dto) {
-        if (ob.getId() == null) {
+        if (ob.getId() == null || ob.getId() == 0) {
             ob.setWallet(walletService.findById(dto.getWallet().getId()));
             ob.setOrigin(EnumOriginMovement.MANUAL.getValue());
         }

@@ -9,7 +9,10 @@ import {
 } from 'src/app/core/utils/Date/date-util';
 
 import { WalletService } from 'src/app/services/wallet.service';
-import { EnumTypeRevenueExpenceFilter } from 'src/data/combos-enum';
+import {
+  EnumOriginMovementFilter,
+  EnumTypeRevenueExpenceFilter,
+} from 'src/data/combos-enum';
 
 @Component({
   selector: 'movement-filter',
@@ -18,14 +21,8 @@ import { EnumTypeRevenueExpenceFilter } from 'src/data/combos-enum';
 })
 export class MovementFilterComponent extends SFilter {
   typeList: Array<DescriptionId> = EnumTypeRevenueExpenceFilter;
+  origenList: Array<DescriptionId> = EnumOriginMovementFilter;
 
-  origenList: Array<DescriptionId> = [
-    { id: 0, description: 'Todos' },
-    { id: 1, description: 'Despesa' },
-    { id: 2, description: 'Transfêrencia' },
-    { id: 3, description: 'Receita' },
-    { id: 4, description: 'Manual' },
-  ];
   constructor(
     private controller: ControlService,
     public serviceWallet: WalletService

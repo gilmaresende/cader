@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ControlService } from 'src/app/core/services/control.service';
 import { Expense } from 'src/app/model/expense';
 import { ExpenseCategoryService } from 'src/app/services/expense-category.service';
@@ -20,6 +21,7 @@ export class ExpenseDetailComponent {
     public serviceExpenseCategory: ExpenseCategoryService
   ) {}
 
-  @Input() ob: Expense | undefined;
   @Input() isDisabled: boolean = true;
+
+  @Input() form!: FormGroup;
 }

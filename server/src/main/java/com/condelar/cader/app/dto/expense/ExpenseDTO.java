@@ -1,6 +1,7 @@
 package com.condelar.cader.app.dto.expense;
 
 import com.condelar.cader.app.domain.*;
+import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -15,11 +16,7 @@ public class ExpenseDTO extends BaseDTO {
 
     private String description;
 
-    private Short status;
-
     private LocalDate dueDate;
-
-    private Short origin;
 
     private Double value;
 
@@ -27,30 +24,32 @@ public class ExpenseDTO extends BaseDTO {
 
     private Double amountPaid;
 
-    private Long idExpenseCategory;
+    private DescriptionId origin;
 
-    private Long idPaymentType;
+    private DescriptionId status;
 
-    private Long idWallet;
+    private DescriptionId expenseCategory;
 
-    private Long idPerson;
+    private DescriptionId paymentType;
+
+    private DescriptionId wallet;
+
+    private DescriptionId person;
 
     private List<ExpensePaymentListDTO> payments = new ArrayList<>();
-
 
     public ExpenseDTO() {
     }
 
     public ExpenseDTO(Expense ob) {
         super(ob);
-        setIdExpenseCategory(ob.getExpenseCategory().getId());
-        setIdPaymentType(ob.getPaymentType().getId());
-        setIdWallet(ob.getWallet().getId());
-        setIdPerson(ob.getPerson().getId());
+        setExpenseCategory(ob.getExpenseCategory().getDescriptionId());
+        setPaymentType(ob.getPaymentType().getDescriptionId());
+        setWallet(ob.getWallet().getDescriptionId());
+        setPerson(ob.getPerson().getDescriptionId());
         setAmountPaid(ob.getPayments().stream().mapToDouble(m -> m.getValue()).sum());
         setOpenValue(getValue() - getAmountPaid());
         setPayments(ob.getPayments().stream().map(m -> new ExpensePaymentListDTO(m)).collect(Collectors.toList()));
-
     }
 
 }
