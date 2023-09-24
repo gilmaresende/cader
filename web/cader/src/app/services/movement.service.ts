@@ -13,10 +13,10 @@ export class MovementService extends BaseHttpService<Movement> {
       description: '',
       movementDate: new Date(),
       update: new Date(),
-      origin: 1,
-      typeRevenueExpence: 1,
+      origin: { id: 0, description: '' },
+      typeRevenueExpence: { id: 0, description: '' },
       value: 0,
-      idWallet: 0,
+      wallet: { id: 0, description: '' },
     };
   }
   override rote: string = 'movement';

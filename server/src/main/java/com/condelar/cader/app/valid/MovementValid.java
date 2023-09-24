@@ -27,11 +27,11 @@ public class MovementValid extends BaseValid<MovementDTO, Movement> {
             addErrors("value", "Value should is bigger zero!");
         }
 
-        if (isPositive(dto.getIdWallet())) {
+        if (isNull(dto.getWallet())) {
             addErrors("idWallet", "Wallet must is informed!");
         }
 
-        if (!isPositive(dto.getTypeRevenueExpence())) {
+        if (isNull(dto.getTypeRevenueExpence())) {
             addErrors("typeRevenueExpence", "Revenue/Expence must is informed!");
         }
     }

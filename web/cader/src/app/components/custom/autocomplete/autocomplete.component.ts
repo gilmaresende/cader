@@ -58,7 +58,7 @@ export class AutocompleteComponent
   getCombo() {
     this.service.getCombo().subscribe({
       next: (res) => {
-        this.list = this.allData = res.datas;
+        this.list = this.allData = res.itemsCombo;
         if (res.datas) {
           for (let i = 0; i < this.allData.length; i++) {
             let item = this.allData[i];

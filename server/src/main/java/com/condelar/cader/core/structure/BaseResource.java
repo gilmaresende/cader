@@ -3,7 +3,7 @@ package com.condelar.cader.core.structure;
 import com.condelar.cader.core.domain.User;
 import com.condelar.cader.core.errors.exceptions.NotIsRegisterException;
 import com.condelar.cader.core.errors.exceptions.UpdateException;
-import com.condelar.cader.core.otherdto.ComboItem;
+import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.util.PackageDT;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,16 +105,16 @@ public class BaseResource<Entity extends BaseEntity,
     }
 
     @GetMapping("/combo")
-    public ResponseEntity<PackageDT<ComboItem>> combo() {
+    public ResponseEntity<PackageDT> combo() {
         User user = getUser();
         Entity ob = service.instance();
         if (ob instanceof RegisterEntity) {
             ob.setUser(user);
-            List<ComboItem> res = new ArrayList<>();
+            List<DescriptionId> res = new ArrayList<>();
             ((RegisterEntity) ob).setActive(null);
-            service.list(ob).forEach(e -> res.add(new ComboItem((RegisterEntity) e)));
-            PackageDT<ComboItem> pack = new PackageDT();
-            pack.setDatas(res);
+            service.list(ob).forEach(e -> res.add(new DescriptionId((RegisterEntity) e)));
+            PackageDT pack = new PackageDT();
+            pack.setItemsCombo(res);
             return ResponseEntity.ok().body(pack);
         }
         throw new NotIsRegisterException("Type: " + ob.getClass().getName());

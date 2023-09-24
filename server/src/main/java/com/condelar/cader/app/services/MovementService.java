@@ -32,12 +32,12 @@ public class MovementService extends BaseService<Movement, MovementDTO, Movement
     @Override
     public Movement toEntity(Movement ob, MovementDTO dto) {
         if (ob.getId() == null) {
-            ob.setWallet(walletService.findById(dto.getIdWallet()));
+            ob.setWallet(walletService.findById(dto.getWallet().getId()));
             ob.setOrigin(EnumOriginMovement.MANUAL.getValue());
         }
         ob.setMovementDate(dto.getMovementDate());
         ob.setDescription(dto.getDescription());
-        ob.setTypeRevenueExpence(EnumTypeRevenueExpence.valueOf(dto.getTypeRevenueExpence()).getValue());
+        ob.setTypeRevenueExpence(dto.getTypeRevenueExpence().getId().shortValue());
         ob.setValue(dto.getValue());
         return ob;
     }

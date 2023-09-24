@@ -25,7 +25,7 @@ import {
   ],
 })
 export class InputReaisComponent implements ControlValueAccessor {
-  @Input() isDisabled: boolean = false;
+  @Input() isDisabled: boolean = true;
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
 
@@ -45,7 +45,6 @@ export class InputReaisComponent implements ControlValueAccessor {
 
   formatarMoeda(valor: any) {
     if (valor - parseFloat(valor) >= 0) {
-      console.log('num');
     } else {
       valor = valor.replace(/\D/g, '');
     }

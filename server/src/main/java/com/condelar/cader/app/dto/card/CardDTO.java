@@ -1,6 +1,7 @@
 package com.condelar.cader.app.dto.card;
 
 import com.condelar.cader.app.domain.Card;
+import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseDTO;
 import lombok.Data;
 
@@ -11,23 +12,23 @@ public class CardDTO extends BaseDTO {
 
     private Short active;
 
-    private Long idPersonExpense;
+    private DescriptionId personExpense;
 
-    private Long idPaymentType;
+    private DescriptionId paymentType;
 
-    private Long idExpenseCategoryBuyCard;
+    private DescriptionId expenseCategoryBuyCard;
 
-    private Long idWalletExpense;
+    private DescriptionId walletExpense;
 
     public CardDTO() {
     }
 
     public CardDTO(Card ob) {
         super(ob);
-        setIdPersonExpense(ob.getPersonExpense().getId());
-        setIdPaymentType(ob.getPaymentTypeExpense().getId());
-        setIdExpenseCategoryBuyCard(ob.getExpenseCategoryBuyCard().getId());
-        setIdWalletExpense(ob.getWalletExpense().getId());
+        setPersonExpense(ob.getPersonExpense().getDescriptionId());
+        setPaymentType(ob.getPaymentTypeExpense().getDescriptionId());
+        setExpenseCategoryBuyCard(ob.getExpenseCategoryBuyCard().getDescriptionId());
+        setWalletExpense(ob.getWalletExpense().getDescriptionId());
     }
 
 }

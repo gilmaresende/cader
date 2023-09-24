@@ -1,5 +1,6 @@
 package com.condelar.cader.core.structure.util;
 
+import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseDTO;
 
 import java.time.LocalDateTime;
@@ -7,17 +8,19 @@ import java.util.List;
 
 public class PackageDT<DTO extends BaseDTO> {
 
-   String rotaOb;
+    String rotaOb;
 
     DTO data;
 
     List<DTO> datas;
 
+    List<DescriptionId> itemsCombo;
+
     private String message;
 
     private LocalDateTime update;
 
-    public PackageDT(){
+    public PackageDT() {
 
     }
 
@@ -59,5 +62,13 @@ public class PackageDT<DTO extends BaseDTO> {
 
     public void setUpdate(LocalDateTime update) {
         this.update = update;
+    }
+
+    public List<DescriptionId> getItemsCombo() {
+        return itemsCombo;
+    }
+
+    public void setItemsCombo(List<DescriptionId> itemsCombo) {
+        this.itemsCombo = itemsCombo;
     }
 }

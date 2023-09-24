@@ -1,7 +1,10 @@
 package com.condelar.cader.app.dto.movement;
 
+import com.condelar.cader.app.constants.enuns.EnumOriginMovement;
+import com.condelar.cader.app.constants.enuns.EnumTypeRevenueExpence;
 import com.condelar.cader.app.domain.Movement;
 import com.condelar.cader.app.domain.PaymentType;
+import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseDTO;
 import lombok.Data;
 
@@ -14,20 +17,23 @@ public class MovementDTO extends BaseDTO {
 
     private LocalDate movementDate;
 
-    private Short origin;
+    private DescriptionId origin;
 
-    private Short typeRevenueExpence;
+    private DescriptionId typeRevenueExpence;
+
+    private DescriptionId wallet;
 
     private Double value;
 
-    private Long idWallet;
 
     public MovementDTO() {
     }
 
     public MovementDTO(Movement ob) {
         super(ob);
-        setIdWallet(ob.getWallet().getId());
+        setWallet(ob.getWallet().getDescriptionId());
+        setTypeRevenueExpence(EnumTypeRevenueExpence.getDescriptionId(ob.getTypeRevenueExpence()));
+        setOrigin(EnumOriginMovement.getDescriptionId(ob.getOrigin()));
     }
 
 }

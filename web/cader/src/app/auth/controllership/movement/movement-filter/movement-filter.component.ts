@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DescriptionId } from 'src/app/core/model/description-id';
 import { SFilter } from 'src/app/core/pages/spage/super-filter';
 import { ControlService } from 'src/app/core/services/control.service';
 import {
@@ -8,6 +9,7 @@ import {
 } from 'src/app/core/utils/Date/date-util';
 
 import { WalletService } from 'src/app/services/wallet.service';
+import { EnumTypeRevenueExpenceFilter } from 'src/data/combos-enum';
 
 @Component({
   selector: 'movement-filter',
@@ -15,18 +17,14 @@ import { WalletService } from 'src/app/services/wallet.service';
   styleUrls: ['./movement-filter.component.scss'],
 })
 export class MovementFilterComponent extends SFilter {
-  typeList: Array<{ id: number; name: string }> = [
-    { id: 0, name: 'Todos' },
-    { id: 1, name: 'Despesa' },
-    { id: 2, name: 'Receita' },
-  ];
+  typeList: Array<DescriptionId> = EnumTypeRevenueExpenceFilter;
 
-  origenList: Array<{ id?: number; name: string }> = [
-    { id: 0, name: 'Todos' },
-    { id: 1, name: 'Despesa' },
-    { id: 2, name: 'Transfêrencia' },
-    { id: 3, name: 'Receita' },
-    { id: 4, name: 'Manual' },
+  origenList: Array<DescriptionId> = [
+    { id: 0, description: 'Todos' },
+    { id: 1, description: 'Despesa' },
+    { id: 2, description: 'Transfêrencia' },
+    { id: 3, description: 'Receita' },
+    { id: 4, description: 'Manual' },
   ];
   constructor(
     private controller: ControlService,

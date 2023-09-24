@@ -35,10 +35,10 @@ public class CardService extends BaseService<Card, CardDTO, CardFilterDTO, CardL
     public Card toEntity(Card ob, CardDTO dto) {
         ob.setName(dto.getName());
         ob.setActive(EnumYesNo.valueOf(dto.getActive()).getValue());
-        ob.setPersonExpense(personService.getById(dto.getIdPersonExpense()));
-        ob.setPaymentTypeExpense(paymentTypeService.getById(dto.getIdPaymentType()));
-        ob.setExpenseCategoryBuyCard(expenseCategoryService.getById(dto.getIdExpenseCategoryBuyCard()));
-        ob.setWalletExpense(walletService.getById(dto.getIdWalletExpense()));
+        ob.setPersonExpense(personService.getById(dto.getPersonExpense().getId()));
+        ob.setPaymentTypeExpense(paymentTypeService.getById(dto.getPaymentType().getId()));
+        ob.setExpenseCategoryBuyCard(expenseCategoryService.getById(dto.getExpenseCategoryBuyCard().getId()));
+        ob.setWalletExpense(walletService.getById(dto.getWalletExpense().getId()));
         return ob;
     }
 

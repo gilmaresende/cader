@@ -1,10 +1,11 @@
+import { DescriptionId } from '../core/model/description-id';
 import { SEntidade } from '../core/model/sentidade';
 
 export interface Movement extends SEntidade {
   description: string;
   movementDate: Date;
-  origin: number;
-  typeRevenueExpence: number;
   value: number;
-  idWallet: number;
+  origin: DescriptionId;
+  typeRevenueExpence: DescriptionId;
+  wallet: DescriptionId;
 }

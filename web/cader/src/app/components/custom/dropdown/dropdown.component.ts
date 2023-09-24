@@ -6,11 +6,7 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
-
-interface ItemDrop {
-  name: string;
-  id: number;
-}
+import { DescriptionId } from 'src/app/core/model/description-id';
 
 @Component({
   selector: 'dropdown',
@@ -34,40 +30,33 @@ export class DropdownComponent
 {
   @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;
-  @Input() list: Array<ItemDrop> = [];
+  @Input() list: Array<DescriptionId> = [];
 
-  selected: ItemDrop | undefined;
-
-  selectId: number = 0;
+  selected?: DescriptionId;
 
   touched = false;
 
-  disabled = false;
+  description = 'dev';
 
   ngOnInit() {
-    console.log(this.selectId);
-    for (let i = 0; i < this.list.length; i++) {
-      let item = this.list[i];
-      if (item.id === this.selectId) {
-        console.log(this.selectId);
-        this.selected = item;
-        break;
-      }
+    this.markAsTouched();
+    if (this.selected) {
+      this.onChange(this.selected);
     }
   }
 
   ngDoCheck(): void {
     this.markAsTouched();
-    if (!this.disabled && this.selected) {
-      this.selectId = (this.selected as ItemDrop).id;
-
-      this.onChange(this.selectId);
+    if (!this.isDisabled && this.selected) {
+      //if (this.selected) {
+      this.description = this.selected.description;
+      this.onChange(this.selected);
     }
   }
 
   //////////////////////////////////////////////////////////////////////////////
 
-  onChange = (ob: number) => {};
+  onChange = (ob: DescriptionId) => {};
 
   onTouched = () => {};
 
@@ -80,8 +69,11 @@ export class DropdownComponent
    * Forms sempre que o formulário pai
    * deseja definir um valor no controle filho.
    */
-  writeValue(id: number) {
-    this.selectId = id;
+  writeValue(ob: DescriptionId) {
+    if (this.isDisabled && ob) {
+      this.selected = ob;
+      this.description = ob.description;
+    }
   }
 
   registerOnChange(onChange: any) {
@@ -100,7 +92,7 @@ export class DropdownComponent
   }
 
   setDisabledState(disabled: boolean) {
-    this.disabled = disabled;
+    // this.isDisabled = disabled;
   }
 
   validate(control: AbstractControl): ValidationErrors | null {

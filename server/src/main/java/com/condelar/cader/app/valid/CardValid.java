@@ -14,19 +14,19 @@ public class CardValid extends BaseValid<CardDTO, Card> {
             addErrors("name", "The filed name can not is empty!");
         }
 
-        if (isZeroOrNull(dto.getIdExpenseCategoryBuyCard())) {
+        if (isNull(dto.getExpenseCategoryBuyCard())) {
             addErrors("idExpenseCategoryBuyCard", "The option Expense Category Buy Card can not is empty!");
         }
 
-        if (isZeroOrNull(dto.getIdPaymentType())) {
+        if (isNull(dto.getPaymentType())) {
             addErrors("idPaymentType", "The option Payment Type can not is empty!");
         }
 
-        if (isZeroOrNull(dto.getIdPersonExpense())) {
+        if (isNull(dto.getPersonExpense())) {
             addErrors("idPersonExpense", "The option Person Expense can not is empty!");
         }
 
-        if (isZeroOrNull(dto.getIdWalletExpense())) {
+        if (isNull(dto.getWalletExpense())) {
             addErrors("idWalletExpense", "The option Wallet Expense can not is empty!");
         }
     }
