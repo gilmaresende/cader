@@ -1,3 +1,4 @@
+import { DescriptionId } from '../core/model/description-id';
 import {
   getFirstDayMonth,
   getLastDayMonth,
@@ -6,9 +7,9 @@ import {
 export interface MovimentFilter {
   movimentDateStart?: Date;
   movimentDateEnd?: Date;
-  idWallet?: number;
-  origin?: number;
-  typeRevenueExpence?: number;
+  wallet?: DescriptionId;
+  origin?: DescriptionId;
+  typeRevenueExpence?: DescriptionId;
 }
 
 export function newMovementFilter(): MovimentFilter {

@@ -1,65 +1,53 @@
-<div class="line lineFilter">
-  <div class="itemFilter">
-    <input-date
-      [ob]="ob"
-      [atributo]="'dueDateStart'"
+<div [formGroup]="form" class="mt4 mX6">
+  <div class="mt2 line">
+    <inputDate
+      formControlName="dueDateStart"
       [label]="'Data Inicial'"
-      [placeholder]="'Data Inicial'"
-    />
+    ></inputDate>
+    <inputDate formControlName="dueDateEnd" [label]="'Data Final'"></inputDate>
   </div>
-  <div class="itemFilter">
-    <input-date
-      [ob]="ob"
-      [atributo]="'dueDateEnd'"
-      [label]="'Data Final'"
-      [placeholder]="'Data Final'"
-    />
-  </div>
-  <div class="itemFilter">
-    <drop-dow
-      [ob]="ob"
-      [atributo]="'status'"
-      [label]="'Status'"
-      [placeholder]="'Status'"
-      [list]="statusList"
-    />
-  </div>
-</div>
-<div class="line lineFilter">
-  <div class="itemFilter">
-    <auto-complete
-      [ob]="ob"
-      [atributo]="'idWallet'"
-      [label]="'Carteira'"
-      [placeholder]="'Carteira'"
+  <div class="mt2">
+    <autocomplete
+      formControlName="wallet"
       [service]="serviceWallet"
+      [label]="'Carteira'"
     />
   </div>
-  <div class="itemFilter">
-    <auto-complete
-      [ob]="ob"
-      [atributo]="'idPaymentType'"
-      [label]="'Meio Pagamento'"
-      [placeholder]="'Meio Pagamento'"
-      [service]="servicePaymentTypeService"
-    />
-  </div>
-  <div class="itemFilter">
-    <auto-complete
-      [ob]="ob"
-      [atributo]="'idPerson'"
-      [label]="'Pessoa'"
-      [placeholder]="'Pessoa'"
+  <div class="mt2">
+    <autocomplete
+      formControlName="person"
       [service]="servicePerson"
+      [label]="'Pessoa'"
     />
   </div>
-  <div class="itemFilter">
-    <auto-complete
-      [ob]="ob"
-      [atributo]="'idExpenseCategory'"
-      [label]="'Categoria'"
-      [placeholder]="'Categoria'"
-      [service]="serviceExpenseCategory"
+  <div class="mt2">
+    <autocomplete
+      formControlName="paymentType"
+      [service]="servicePaymentTypeService"
+      [label]="'Meio de Pagamento'"
     />
+  </div>
+  <div class="mt2">
+    <autocomplete
+      formControlName="expenseCategory"
+      [service]="serviceExpenseCategory"
+      [label]="'Categoria'"
+    />
+  </div>
+  <div class="mt2 lineBetween">
+    <div class="fullW pr2">
+      <dropdown
+        [list]="originList"
+        formControlName="origin"
+        [label]="'Origem'"
+      ></dropdown>
+    </div>
+    <div class="fullW pl2">
+      <dropdown
+        [list]="statusList"
+        formControlName="status"
+        [label]="'Status'"
+      ></dropdown>
+    </div>
   </div>
 </div>

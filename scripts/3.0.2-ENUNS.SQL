@@ -23,3 +23,8 @@ UPDATE `cader-dev-1`.`carteira` SET `ativa` = '0' WHERE (`id` = '9');
 UPDATE `cader-dev-1`.`carteira` SET `ativa` = '0' WHERE (`id` = '13');
 
 DELETE FROM `cader-dev-1`.`enum_receita_despesa` WHERE (`value` = '0');
+
+INSERT INTO `cader-dev-1`.`enum_origem_despesa` (`value`, `descricao`) VALUES ('2', 'FATURA_CARTAO');
+INSERT INTO `cader-dev-1`.`enum_origem_despesa` (`value`, `descricao`) VALUES ('3', 'MANUAL');
+
+UPDATE `cader-dev-1`.`despesa` SET `origem` = '3' WHERE (`id`> '1' and `origem`> '0');

@@ -1,8 +1,7 @@
 package com.condelar.cader.app.services;
 
-import com.condelar.cader.app.constants.enuns.EnumStatusExpensePayment;
+import com.condelar.cader.app.constants.enuns.EnumExpenseStatus;
 import com.condelar.cader.app.domain.Expense;
-import com.condelar.cader.app.domain.ExpenseCategory;
 import com.condelar.cader.app.domain.ExpensePayment;
 import com.condelar.cader.app.domain.Movement;
 import com.condelar.cader.app.dto.expense.ExpenseDTO;
@@ -13,6 +12,7 @@ import com.condelar.cader.app.repositories.ExpenseRepository;
 import com.condelar.cader.app.valid.ExpenseValid;
 import com.condelar.cader.core.domain.User;
 import com.condelar.cader.core.errors.exceptions.ObjectNotFoundException;
+import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseService;
 import com.condelar.cader.tool.entity.ToolEntity;
 import lombok.RequiredArgsConstructor;
@@ -67,11 +67,11 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         return getRepo().getFilter(
                 filter.getDueDateStart(),
                 filter.getDueDateEnd(),
-                filter.getStatus(),
-                filter.getIdWallet(),
-                filter.getIdPaymentType(),
-                filter.getIdPerson(),
-                filter.getIdExpenseCategory()
+                DescriptionId.getIdShort(filter.getStatus()),
+                DescriptionId.getIdLong(filter.getWallet()),
+                DescriptionId.getIdLong(filter.getPaymentType()),
+                DescriptionId.getIdLong(filter.getPerson()),
+                DescriptionId.getIdLong(filter.getExpenseCategory())
         );
     }
 
@@ -102,11 +102,11 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         ob.getPayments().forEach(payment -> payment.setExpense(ob));
         Double payValue = ob.getPayments().stream().mapToDouble(v -> v.getValue()).sum();
         if (ob.getValue() - payValue <= 0) {
-            ob.setStatus(EnumStatusExpensePayment.CLOSED.getValue());
+            ob.setStatus(EnumExpenseStatus.LIQUIDADO.getValue());
         } else if (payValue > 0) {
-            ob.setStatus(EnumStatusExpensePayment.PARTIAL.getValue());
+            ob.setStatus(EnumExpenseStatus.PARCIAL.getValue());
         } else {
-            ob.setStatus(EnumStatusExpensePayment.OPEN.getValue());
+            ob.setStatus(EnumExpenseStatus.ABERTO.getValue());
         }
         return super.beforeSave(ob);
     }

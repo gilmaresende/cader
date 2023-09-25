@@ -45,7 +45,7 @@ export class MovementFilterComponent extends SFilter {
       movimentDateEnd: form.movimentDateEnd.value as Date,
       typeRevenueExpence: form.typeRevenueExpence.value as DescriptionId,
       origin: form.origin.value as DescriptionId,
-      wallet: form.wallet.value as number,
+      wallet: form.wallet.value as DescriptionId,
     };
     return ob;
   }

@@ -24,11 +24,11 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
             " 	INNER JOIN e.expenseCategory ec \n" +
             " WHERE (:pDueDateStart is null or e.dueDate > :pDueDateStart) \n" +
             " AND (:pDueDateEnd is null or e.dueDate < :pDueDateEnd) \n" +
-            " AND (:pStatus is null or e.status = :pStatus or (:pStatus = 2 and e.status in (0,3))) \n" +
-            " AND (:pWallet is null or w.id = :pWallet) \n" +
-            " AND (:pPaymentType is null or pt.id = :pPaymentType) \n" +
-            " AND (:pPerson is null or p.id = :pPerson) \n" +
-            " AND (:pExpenseCategory is null or ec.id = :pExpenseCategory) \n"
+            " AND (:pStatus = 0 or e.status = :pStatus or (:pStatus = 99 and e.status in (1,3))) \n" +
+            " AND (:pWallet = 0 or w.id = :pWallet) \n" +
+            " AND (:pPaymentType = 0 or pt.id = :pPaymentType) \n" +
+            " AND (:pPerson = 0 or p.id = :pPerson) \n" +
+            " AND (:pExpenseCategory = 0 or ec.id = :pExpenseCategory) \n"
     )
     List<Expense> getFilter(@Param("pDueDateStart") LocalDate pDueDateStart,
                             @Param("pDueDateEnd") LocalDate pDueDateEnd,

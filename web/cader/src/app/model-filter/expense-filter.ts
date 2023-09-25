@@ -1,3 +1,4 @@
+import { DescriptionId } from '../core/model/description-id';
 import {
   getFirstDayMonth,
   getLastDayMonth,
@@ -6,11 +7,11 @@ import {
 export interface ExpenseFilter {
   dueDateStart?: Date;
   dueDateEnd?: Date;
-  status?: number;
-  idWallet?: number;
-  idPaymentType?: number;
-  idPerson?: number;
-  idExpenseCategory?: number;
+  status?: DescriptionId;
+  wallet?: DescriptionId;
+  paymentType?: DescriptionId;
+  person?: DescriptionId;
+  expenseCategory?: DescriptionId;
 }
 
 export function newExpsenseFilter(): ExpenseFilter {

@@ -30,3 +30,26 @@ export const EnumOriginMovementFilter: Array<DescriptionId> = [
   { id: 0, description: 'TODOS' },
   ...EnumOriginMovement,
 ];
+
+export const EnumExpenseOrigin: Array<DescriptionId> = [
+  { id: 1, description: 'LOTE_DESPESA' },
+  { id: 2, description: 'FATURA_CARTAO' },
+  { id: 3, description: 'MANUAL' },
+];
+
+export const EnumExpenseOriginFilter: Array<DescriptionId> = [
+  { id: 0, description: 'TODOS' },
+  ...EnumExpenseOrigin,
+];
+
+export const EnumExpenseStatus: Array<DescriptionId> = [
+  { id: 1, description: 'LIQUIDADO' },
+  { id: 2, description: 'ABERTO' },
+  { id: 3, description: 'PARCIAL' },
+];
+
+export const EnumExpenseStatusFilter: Array<DescriptionId> = [
+  { id: 0, description: 'TODOS' },
+  { id: 99, description: 'ABERTO/PARCIAL' },
+  ...EnumExpenseStatus,
+];
