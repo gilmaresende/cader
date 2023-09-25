@@ -1,6 +1,6 @@
 package com.condelar.cader.app.dto.expense;
 
-import com.condelar.cader.app.domain.ExpensePayment;
+import com.condelar.cader.app.entiti.ExpensePayment;
 import com.condelar.cader.core.structure.BaseDTO;
 import com.condelar.cader.tool.formatter.ToolReais;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.condelar.cader.app.valid;
 
-import com.condelar.cader.app.domain.Expense;
+import com.condelar.cader.app.entiti.Expense;
 import com.condelar.cader.app.dto.expense.ExpenseDTO;
 import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;

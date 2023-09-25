@@ -1,6 +1,6 @@
 package com.condelar.cader.app.resources;
 
-import com.condelar.cader.app.domain.Movement;
+import com.condelar.cader.app.entiti.Movement;
 import com.condelar.cader.app.dto.movement.MovementDTO;
 import com.condelar.cader.app.dto.movement.MovementFilterDTO;
 import com.condelar.cader.app.dto.movement.MovementListDTO;

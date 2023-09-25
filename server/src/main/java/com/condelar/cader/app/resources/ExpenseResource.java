@@ -1,7 +1,7 @@
 package com.condelar.cader.app.resources;
 
-import com.condelar.cader.app.domain.Expense;
-import com.condelar.cader.app.domain.ExpensePayment;
+import com.condelar.cader.app.entiti.Expense;
+import com.condelar.cader.app.entiti.ExpensePayment;
 import com.condelar.cader.app.dto.expense.ExpenseDTO;
 import com.condelar.cader.app.dto.expense.ExpenseFilterDTO;
 import com.condelar.cader.app.dto.expense.ExpenseListDTO;

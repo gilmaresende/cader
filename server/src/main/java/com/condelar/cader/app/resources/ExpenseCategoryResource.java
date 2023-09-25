@@ -1,6 +1,6 @@
 package com.condelar.cader.app.resources;
 
-import com.condelar.cader.app.domain.ExpenseCategory;
+import com.condelar.cader.app.entiti.ExpenseCategory;
 import com.condelar.cader.app.dto.expensecategory.ExpenseCategoryDTO;
 import com.condelar.cader.app.dto.expensecategory.ExpenseCategoryFilterDTO;
 import com.condelar.cader.app.dto.expensecategory.ExpenseCategoryListDTO;

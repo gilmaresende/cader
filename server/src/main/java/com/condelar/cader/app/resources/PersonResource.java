@@ -1,6 +1,6 @@
 package com.condelar.cader.app.resources;
 
-import com.condelar.cader.app.domain.Person;
+import com.condelar.cader.app.entiti.Person;
 import com.condelar.cader.app.dto.person.PersonDTO;
 import com.condelar.cader.app.dto.person.PersonFilterDTO;
 import com.condelar.cader.app.dto.person.PersonListDTO;

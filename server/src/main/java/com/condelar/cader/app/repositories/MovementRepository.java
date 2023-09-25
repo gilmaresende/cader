@@ -1,7 +1,6 @@
 package com.condelar.cader.app.repositories;
 
-import com.condelar.cader.app.domain.Movement;
-import com.condelar.cader.app.domain.Wallet;
+import com.condelar.cader.app.entiti.Movement;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

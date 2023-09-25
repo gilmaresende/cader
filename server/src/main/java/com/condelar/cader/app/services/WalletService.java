@@ -1,7 +1,7 @@
 package com.condelar.cader.app.services;
 
 import com.condelar.cader.app.constants.enuns.EnumYesNo;
-import com.condelar.cader.app.domain.Wallet;
+import com.condelar.cader.app.entiti.Wallet;
 import com.condelar.cader.app.dto.wallet.WalletDTO;
 import com.condelar.cader.app.dto.wallet.WalletFilterDTO;
 import com.condelar.cader.app.dto.wallet.WalletListDTO;

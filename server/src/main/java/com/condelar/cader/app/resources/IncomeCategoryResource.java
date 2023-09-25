@@ -1,6 +1,6 @@
 package com.condelar.cader.app.resources;
 
-import com.condelar.cader.app.domain.IncomeCategory;
+import com.condelar.cader.app.entiti.IncomeCategory;
 import com.condelar.cader.app.dto.incomecategory.IncomeCategoryDTO;
 import com.condelar.cader.app.dto.incomecategory.IncomeCategoryFilterDTO;
 import com.condelar.cader.app.dto.incomecategory.IncomeCategoryListDTO;

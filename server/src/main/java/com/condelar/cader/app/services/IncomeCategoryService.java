@@ -1,7 +1,7 @@
 package com.condelar.cader.app.services;
 
 import com.condelar.cader.app.constants.enuns.EnumYesNo;
-import com.condelar.cader.app.domain.IncomeCategory;
+import com.condelar.cader.app.entiti.IncomeCategory;
 import com.condelar.cader.app.dto.incomecategory.IncomeCategoryDTO;
 import com.condelar.cader.app.dto.incomecategory.IncomeCategoryFilterDTO;
 import com.condelar.cader.app.dto.incomecategory.IncomeCategoryListDTO;

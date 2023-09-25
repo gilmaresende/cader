@@ -1,7 +1,7 @@
 package com.condelar.cader.app.services;
 
 import com.condelar.cader.app.constants.enuns.EnumYesNo;
-import com.condelar.cader.app.domain.Person;
+import com.condelar.cader.app.entiti.Person;
 import com.condelar.cader.app.dto.person.PersonDTO;
 import com.condelar.cader.app.dto.person.PersonFilterDTO;
 import com.condelar.cader.app.dto.person.PersonListDTO;

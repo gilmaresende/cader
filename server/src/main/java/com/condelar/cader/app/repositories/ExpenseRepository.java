@@ -1,8 +1,7 @@
 package com.condelar.cader.app.repositories;
 
-import com.condelar.cader.app.domain.Expense;
-import com.condelar.cader.app.domain.ExpensePayment;
-import com.condelar.cader.core.domain.User;
+import com.condelar.cader.app.entiti.Expense;
+import com.condelar.cader.app.entiti.ExpensePayment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

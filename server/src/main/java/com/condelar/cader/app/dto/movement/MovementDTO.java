@@ -2,8 +2,7 @@ package com.condelar.cader.app.dto.movement;
 
 import com.condelar.cader.app.constants.enuns.EnumOriginMovement;
 import com.condelar.cader.app.constants.enuns.EnumTypeRevenueExpence;
-import com.condelar.cader.app.domain.Movement;
-import com.condelar.cader.app.domain.PaymentType;
+import com.condelar.cader.app.entiti.Movement;
 import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseDTO;
 import lombok.Data;

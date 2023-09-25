@@ -1,7 +1,7 @@
 package com.condelar.cader.app.services;
 
 import com.condelar.cader.app.constants.enuns.EnumYesNo;
-import com.condelar.cader.app.domain.Card;
+import com.condelar.cader.app.entiti.Card;
 import com.condelar.cader.app.dto.card.CardDTO;
 import com.condelar.cader.app.dto.card.CardFilterDTO;
 import com.condelar.cader.app.dto.card.CardListDTO;

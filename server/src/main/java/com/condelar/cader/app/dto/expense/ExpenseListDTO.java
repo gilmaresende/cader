@@ -1,12 +1,9 @@
 package com.condelar.cader.app.dto.expense;
 
-import com.condelar.cader.app.domain.Expense;
-import com.condelar.cader.app.domain.Movement;
+import com.condelar.cader.app.entiti.Expense;
 import com.condelar.cader.core.structure.BaseDTO;
 import com.condelar.cader.tool.formatter.ToolReais;
 import lombok.Data;
-
-import java.time.LocalDate;
 
 @Data
 public class ExpenseListDTO extends BaseDTO {

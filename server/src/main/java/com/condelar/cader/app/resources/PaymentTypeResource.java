@@ -1,6 +1,6 @@
 package com.condelar.cader.app.resources;
 
-import com.condelar.cader.app.domain.PaymentType;
+import com.condelar.cader.app.entiti.PaymentType;
 import com.condelar.cader.app.dto.paymenttype.PaymentTypeDTO;
 import com.condelar.cader.app.dto.paymenttype.PaymentTypeFilterDTO;
 import com.condelar.cader.app.dto.paymenttype.PaymentTypeListDTO;

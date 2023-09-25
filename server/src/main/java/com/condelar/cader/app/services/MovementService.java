@@ -2,8 +2,8 @@ package com.condelar.cader.app.services;
 
 import com.condelar.cader.app.constants.enuns.EnumOriginMovement;
 import com.condelar.cader.app.constants.enuns.EnumTypeRevenueExpence;
-import com.condelar.cader.app.domain.ExpensePayment;
-import com.condelar.cader.app.domain.Movement;
+import com.condelar.cader.app.entiti.ExpensePayment;
+import com.condelar.cader.app.entiti.Movement;
 import com.condelar.cader.app.dto.movement.MovementDTO;
 import com.condelar.cader.app.dto.movement.MovementFilterDTO;
 import com.condelar.cader.app.dto.movement.MovementListDTO;
@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service

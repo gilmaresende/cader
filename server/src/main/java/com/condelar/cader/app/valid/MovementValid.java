@@ -1,11 +1,8 @@
 package com.condelar.cader.app.valid;
 
 import com.condelar.cader.app.constants.enuns.EnumOriginMovement;
-import com.condelar.cader.app.constants.enuns.EnumTypeRevenueExpence;
-import com.condelar.cader.app.domain.Movement;
-import com.condelar.cader.app.domain.Wallet;
+import com.condelar.cader.app.entiti.Movement;
 import com.condelar.cader.app.dto.movement.MovementDTO;
-import com.condelar.cader.app.dto.wallet.WalletDTO;
 import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 

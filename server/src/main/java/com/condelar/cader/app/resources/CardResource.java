@@ -1,6 +1,6 @@
 package com.condelar.cader.app.resources;
 
-import com.condelar.cader.app.domain.Card;
+import com.condelar.cader.app.entiti.Card;
 import com.condelar.cader.app.dto.card.CardDTO;
 import com.condelar.cader.app.dto.card.CardFilterDTO;
 import com.condelar.cader.app.dto.card.CardListDTO;
