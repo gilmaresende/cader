@@ -1,5 +1,6 @@
 package com.condelar.cader.app.entiti;
 
+import com.condelar.cader.app.constants.enuns.EnumYesNo;
 import com.condelar.cader.core.domain.User;
 import com.condelar.cader.core.structure.BaseEntity;
 import jakarta.persistence.*;
@@ -32,7 +33,20 @@ public class Person extends BaseEntity {
     @JoinColumn(name = "id_usuario", foreignKey = @ForeignKey(name = "fk_pessoa_usuario"))
     private User user;
 
+    @Column(name = "nome")
+    private String name;
+
+    @Column(name = "ativo")
+    private Short active;
+
+
     public Person() {
+        setActive(EnumYesNo.YES.getValue());
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
 }
