@@ -10,6 +10,7 @@ import com.condelar.cader.app.dto.movement.MovementListDTO;
 import com.condelar.cader.app.repositories.MovementRepository;
 import com.condelar.cader.app.valid.MovementValid;
 import com.condelar.cader.core.domain.User;
+import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -49,9 +50,10 @@ public class MovementService extends BaseService<Movement, MovementDTO, Movement
 
     @Override
     public List<Movement> filter(MovementFilterDTO filter, User user) {
-        return getRepo().getFilter(user.getId(), filter.getIdWallet(),
-                filter.getTypeRevenueExpence(),
-                filter.getOrigin(),
+        return getRepo().getFilter(user.getId(),
+                DescriptionId.getIdLong(filter.getWallet()),
+                DescriptionId.getIdShort(filter.getTypeRevenueExpence()),
+                DescriptionId.getIdShort(filter.getOrigin()),
                 filter.getMovimentDateStart(),
                 filter.getMovimentDateEnd());
     }

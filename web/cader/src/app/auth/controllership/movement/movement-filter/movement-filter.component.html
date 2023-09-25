@@ -19,15 +19,15 @@
   </div>
   <div class="mt2">
     <dropdown
-      [list]="typeList"
-      formControlName="typeRevenueExpence"
+      [list]="origenList"
+      formControlName="origin"
       [label]="'Origem'"
     ></dropdown>
   </div>
 
   <div class="mt2">
     <autocomplete
-      formControlName="idWallet"
+      formControlName="wallet"
       [service]="serviceWallet"
       [label]="'Carteira'"
     />

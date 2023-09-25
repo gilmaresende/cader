@@ -17,4 +17,18 @@ public class DescriptionId {
         setId(r.getId());
         setDescription(r.toString());
     }
+
+    public static Long getIdLong(DescriptionId dI) {
+        if (dI == null) {
+            return 0L;
+        }
+        return dI.getId();
+    }
+
+    public static Short getIdShort(DescriptionId dI) {
+        if (dI == null) {
+            return 0;
+        }
+        return dI.getId().shortValue();
+    }
 }

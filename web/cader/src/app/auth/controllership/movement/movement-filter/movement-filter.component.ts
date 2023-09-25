@@ -27,16 +27,15 @@ export class MovementFilterComponent extends SFilter {
     private controller: ControlService,
     public serviceWallet: WalletService
   ) {
-    console.log('build conteudo modal');
     super(controller);
   }
 
   form = new FormGroup({
     movimentDateStart: new FormControl(getFirstDayMonth()),
     movimentDateEnd: new FormControl(getLastDayMonth()),
-    typeRevenueExpence: new FormControl(0),
-    origin: new FormControl(0),
-    idWallet: new FormControl(0),
+    typeRevenueExpence: new FormControl(EnumTypeRevenueExpenceFilter[0]),
+    origin: new FormControl(EnumOriginMovementFilter[1]),
+    wallet: new FormControl(),
   });
 
   getOb(): any {
@@ -44,9 +43,9 @@ export class MovementFilterComponent extends SFilter {
     const ob = {
       movimentDateStart: form.movimentDateStart.value as Date,
       movimentDateEnd: form.movimentDateEnd.value as Date,
-      typeRevenueExpence: form.typeRevenueExpence.value as number,
-      origin: form.origin.value as number,
-      idWallet: form.idWallet.value as number,
+      typeRevenueExpence: form.typeRevenueExpence.value as DescriptionId,
+      origin: form.origin.value as DescriptionId,
+      wallet: form.wallet.value as number,
     };
     return ob;
   }

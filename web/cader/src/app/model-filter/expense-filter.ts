@@ -4,8 +4,8 @@ import {
 } from '../core/utils/Date/date-util';
 
 export interface ExpenseFilter {
-  movimentDateStart?: Date;
-  movimentDateEnd?: Date;
+  dueDateStart?: Date;
+  dueDateEnd?: Date;
   status?: number;
   idWallet?: number;
   idPaymentType?: number;
@@ -15,7 +15,7 @@ export interface ExpenseFilter {
 
 export function newExpsenseFilter(): ExpenseFilter {
   return {
-    movimentDateStart: getFirstDayMonth(),
-    movimentDateEnd: getLastDayMonth(),
+    dueDateStart: getFirstDayMonth(),
+    dueDateEnd: getLastDayMonth(),
   };
 }

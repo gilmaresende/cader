@@ -1,5 +1,6 @@
 package com.condelar.cader.app.dto.movement;
 
+import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseDTO;
 import lombok.Data;
 
@@ -12,11 +13,11 @@ public class MovementFilterDTO extends BaseDTO {
 
     private LocalDate movimentDateEnd;
 
-    private Long idWallet;
+    private DescriptionId wallet;
 
-    private Short origin;
+    private DescriptionId origin;
 
-    private Short typeRevenueExpence;
+    private DescriptionId typeRevenueExpence;
 
     public MovementFilterDTO() {
     }
