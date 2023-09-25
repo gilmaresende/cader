@@ -1,4 +1,4 @@
-package com.condelar.cader.app.resources;
+package com.condelar.cader.app.controllers;
 
 import com.condelar.cader.app.entiti.Expense;
 import com.condelar.cader.app.entiti.ExpensePayment;

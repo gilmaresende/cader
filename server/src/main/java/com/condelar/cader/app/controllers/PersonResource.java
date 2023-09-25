@@ -1,4 +1,4 @@
-package com.condelar.cader.app.resources;
+package com.condelar.cader.app.controllers;
 
 import com.condelar.cader.app.entiti.Person;
 import com.condelar.cader.app.dto.person.PersonDTO;
