@@ -5,6 +5,7 @@ import com.condelar.cader.core.errors.exceptions.NotIsRegisterException;
 import com.condelar.cader.core.errors.exceptions.UpdateException;
 import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.util.PackageDT;
+import com.condelar.cader.toollibs.reflection.EntityScanner;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -48,6 +49,11 @@ public class BaseResource<Entity extends BaseEntity,
 
     @GetMapping("/{id}")
     public ResponseEntity<PackageDT<DTO>> get(@PathVariable Long id) {
+
+        EntityScanner es = new EntityScanner();
+        es.scanEntities();
+
+
         Entity ob = service.instance();
         if (ob instanceof RegisterEntity)
             ((RegisterEntity) ob).setActive(null);

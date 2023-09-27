@@ -3,6 +3,7 @@ package com.condelar.cader.app.entiti;
 import com.condelar.cader.app.constants.enuns.EnumYesNo;
 import com.condelar.cader.core.domain.User;
 import com.condelar.cader.core.structure.BaseEntity;
+import com.condelar.cader.core.structure.RegisterEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "pessoa")
-public class Person extends BaseEntity {
+public class Person extends BaseEntity implements RegisterEntity {
 
     private static final long serialVersionUID = 1L;
 
