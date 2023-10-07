@@ -23,6 +23,7 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
     super('Despesa', controller, service, activatedRoute);
   }
 
+  listPayments: any;
   form = new FormGroup({
     id: new FormControl(0),
     update: new FormControl(new Date()),
@@ -62,5 +63,7 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
     data.expenseCategory.setValue(ob.expenseCategory);
     data.paymentType.setValue(ob.paymentType);
     data.person.setValue(ob.person);
+
+    this.listPayments = ob.payments;
   }
 }

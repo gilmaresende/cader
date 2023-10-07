@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ControlService } from 'src/app/core/services/control.service';
-import { Expense } from 'src/app/model/expense';
 import { ExpenseCategoryService } from 'src/app/services/expense-category.service';
 import { PaymentTypeService } from 'src/app/services/payment-type.service';
 import { PersonService } from 'src/app/services/person.service';

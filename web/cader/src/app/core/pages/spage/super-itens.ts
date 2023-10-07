@@ -25,21 +25,20 @@ export abstract class SItems<
   //atributo que defini de o conteudo da tela(modal) sera exibido ou não
   exibir: boolean = false;
 
-  //objeto com as informações na tela
-  ob?: SEntidade;
-
   //-----------------------------------------------------------------------------------
   //gets e sets
   //-----------------------------------------------------------------------------------
 
   //recupera o objeto atual na tela
   getOb(): SEntidade {
-    return this.ob!;
+    return this.getByFirm();
   }
 
   //defini o objeto atual na tela
-  setOb(ob: SEntidade | undefined) {
-    this.ob = ob;
+  setOb(ob: Entidade | undefined) {
+    if (ob) {
+      this.populateForm(ob);
+    }
   }
 
   //-----------------------------------------------------------------------------------
@@ -59,7 +58,8 @@ export abstract class SItems<
   //chamada da api para salvar objeto atual da tela
   save() {
     this.controllerS.loading.showLoading();
-    this.serviceItem.create(this.serviceModalS.getOb()).subscribe({
+    const ob = this.serviceModalS.getOb();
+    this.serviceItem.create(ob as Entidade).subscribe({
       next: (res) => {
         this.controllerS.getControllerToast().showSucess(res.message);
         this.controllerS.reload();
@@ -75,7 +75,8 @@ export abstract class SItems<
   //chamada da api para apagar objeto atual da tela
   delete() {
     this.controllerS.loading.showLoading();
-    this.serviceItem.delete(this.serviceModalS.getOb().id).subscribe({
+    const id = this.serviceModalS.getOb().id!;
+    this.serviceItem.delete(id).subscribe({
       next: (res) => {
         this.controllerS.getControllerToast().showSucess(res.message);
         this.controllerS.reload();
@@ -87,4 +88,10 @@ export abstract class SItems<
       },
     });
   }
+
+  //chama a implementação do form para popular a tela
+  abstract populateForm(ob: Entidade): void;
+
+  //implementar a transformar form em objeto
+  abstract getByFirm(): Entidade;
 }

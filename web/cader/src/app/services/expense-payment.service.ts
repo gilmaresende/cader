@@ -16,6 +16,7 @@ export class ExpensePaymentService extends BaseHttpService<ExpensePayment> {
       observation: '',
       payDay: new Date(),
       value: 0,
+      idExpense: 0,
     };
   }
   override rote: string = 'expense/expensePayment';

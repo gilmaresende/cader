@@ -2,11 +2,10 @@
   <div id="idItem0" class="mt2">
     <expense-detail [form]="form" [isDisabled]="isDisabled"></expense-detail>
   </div>
-  <!-- <div id="idItem1">
-      <expense-payment
-        *ngIf="ob"
-        [listPayments]="ob.payments"
-        [isDisabled]="!isDisabled"
-      ></expense-payment>
-    </div> -->
+  <div id="idItem1">
+    <expense-payment
+      [listPayments]="listPayments"
+      [isDisabled]="!isDisabled"
+    ></expense-payment>
+  </div>
 </abas-tab>

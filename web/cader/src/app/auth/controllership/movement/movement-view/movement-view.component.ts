@@ -67,9 +67,4 @@ export class MovementViewComponent extends SPage<Movement, MovementService> {
     this.origem = (form.origin.value as DescriptionId).description;
     return ob;
   }
-
-  show() {
-    const ob = this.getOb();
-    console.log(ob);
-  }
 }

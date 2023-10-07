@@ -1,44 +1,43 @@
-<div *ngIf="exibir">
-  <div class="linePayment line">
-    <auto-complete
-      [ob]="ob"
-      [atributo]="'idWallet'"
-      [label]="'Carteira'"
-      [placeholder]="'Carteira'"
-      [service]="serviceWallet"
-      [isDisabled]="isDisabled"
-    />
-    <auto-complete
-      [ob]="ob"
-      [atributo]="'idPaymentType'"
-      [label]="'Meio Pagamento'"
-      [placeholder]="'Meio Pagamento'"
-      [service]="servicePaymentTypeService"
-      [isDisabled]="isDisabled"
-    />
+<div [formGroup]="form" class="mt2 mX4">
+  <div class="linePayment lineLeft">
+    <div class="mr2">
+      <autocomplete
+        formControlName="wallet"
+        [service]="serviceWallet"
+        [label]="'Carteira'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div>
+      <autocomplete
+        formControlName="paymentType"
+        [service]="servicePaymentTypeService"
+        [label]="'Meio Pagamento'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
   </div>
-  <div class="linePayment line">
-    <input-date
-      [ob]="ob"
-      [atributo]="'payDay'"
-      [label]="'Data'"
-      [placeholder]="'Data'"
-      [isDisabled]="isDisabled"
-    />
-    <input-reais
+  <div class="linePayment lineLeft">
+    <div class="mr2">
+      <inputDate
+        formControlName="payDay"
+        [label]="'Data Pagamento'"
+        [isDisabled]="isDisabled"
+      ></inputDate>
+    </div>
+    <inputReais
+      formControlName="value"
       [label]="'Valor'"
-      [ob]="ob"
-      [atributo]="'value'"
       [isDisabled]="isDisabled"
     />
   </div>
-  <div class="linePayment lineObservation">
-    <input-text
-      [ob]="ob"
-      [atributo]="'observation'"
-      [label]="'Observação'"
-      [placeholder]="'Observação'"
-      [isDisabled]="isDisabled"
-    />
+  <div class="linePayment lineLeft">
+    <div class="fullW">
+      <inputText
+        formControlName="observation"
+        [label]="'Observação'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
   </div>
 </div>

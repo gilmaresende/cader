@@ -10,9 +10,6 @@ import { ModalImplComponent } from './modal-impl.component';
 export class ModalImplService {
   constructor() {}
 
-  //objeto do model
-  ob: any;
-
   //tela dentro do model, a que é exibida
   view?: SItems<SEntidade, BaseHttpService<SEntidade>>;
 
@@ -35,13 +32,12 @@ export class ModalImplService {
 
   //defini o objeto atual na tela
   setOb(ob: any) {
-    this.ob = ob;
     this.view!.setOb(ob);
   }
 
   //pega o objeto atual na tela
-  getOb() {
-    return this.ob;
+  getOb(): SEntidade {
+    return this.view!.getOb();
   }
 
   //defini o model, função usada para ter controle da instancia,

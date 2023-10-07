@@ -117,8 +117,8 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
 
         ToolEntity.cloneAttributes(dto, payment);
         payment.setExpense(expense);
-        payment.setPaymentType(paymentTypeService.findById(dto.getIdPaymentType()));
-        payment.setWallet(walletService.findById(dto.getIdWallet()));
+        payment.setPaymentType(paymentTypeService.findById(dto.getPaymentType().getId()));
+        payment.setWallet(walletService.findById(dto.getWallet().getId()));
         payment.setUser(getUser());
         payment.setUpdate(LocalDateTime.now());
         payment.setRegister(LocalDate.now());
