@@ -34,7 +34,7 @@ public class PaymentTypeService extends BaseService<PaymentType, PaymentTypeDTO,
     }
 
     @Override
-    public List<PaymentType> filter(PaymentTypeFilterDTO ob, User user) {
+    public List<PaymentType> filter(PaymentTypeFilterDTO ob) {
         return null;
     }
 

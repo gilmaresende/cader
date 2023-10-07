@@ -34,7 +34,7 @@ public class IncomeCategoryService extends BaseService<IncomeCategory, IncomeCat
     }
 
     @Override
-    public List<IncomeCategory> filter(IncomeCategoryFilterDTO ob, User user) {
+    public List<IncomeCategory> filter(IncomeCategoryFilterDTO ob) {
         return null;
     }
 

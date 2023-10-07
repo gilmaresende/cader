@@ -23,7 +23,7 @@ public class ExpensePayment extends BaseEntity {
     private LocalDateTime update;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "id_usuario", foreignKey = @ForeignKey(name = "exp_pay_user_fk"), nullable = false)
     private User user;
 
     @Column(name = "data_cadastro")

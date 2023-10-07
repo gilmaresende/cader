@@ -34,7 +34,7 @@ public class ExpenseCategoryService extends BaseService<ExpenseCategory, Expense
     }
 
     @Override
-    public List<ExpenseCategory> filter(ExpenseCategoryFilterDTO ob, User user) {
+    public List<ExpenseCategory> filter(ExpenseCategoryFilterDTO ob) {
         return null;
     }
 

@@ -63,7 +63,7 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
     }
 
     @Override
-    public List<Expense> filter(ExpenseFilterDTO filter, User user) {
+    public List<Expense> filter(ExpenseFilterDTO filter) {
         return getRepo().getFilter(
                 filter.getDueDateStart(),
                 filter.getDueDateEnd(),

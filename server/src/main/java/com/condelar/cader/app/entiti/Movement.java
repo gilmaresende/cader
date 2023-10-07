@@ -31,7 +31,7 @@ public class Movement extends BaseEntity {
     private LocalDate register;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario", foreignKey = @ForeignKey(name = "moviment_user_fk"), nullable = false)
+    @JoinColumn(name = "id_usuario", foreignKey = @ForeignKey(name = "mov_user_fk"), nullable = false)
     private User user;
 
     @Column(name = "data_movimento")

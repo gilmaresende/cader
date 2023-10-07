@@ -38,7 +38,7 @@ public class WalletService extends BaseService<Wallet, WalletDTO, WalletFilterDT
     }
 
     @Override
-    public List<Wallet> filter(WalletFilterDTO ob, User user) {
+    public List<Wallet> filter(WalletFilterDTO ob) {
         return null;
     }
 

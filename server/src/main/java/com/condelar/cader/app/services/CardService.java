@@ -48,7 +48,7 @@ public class CardService extends BaseService<Card, CardDTO, CardFilterDTO, CardL
     }
 
     @Override
-    public List<Card> filter(CardFilterDTO ob, User user) {
+    public List<Card> filter(CardFilterDTO ob) {
         return null;
     }
 

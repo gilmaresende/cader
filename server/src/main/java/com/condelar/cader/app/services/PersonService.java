@@ -34,7 +34,7 @@ public class PersonService extends BaseService<Person, PersonDTO, PersonFilterDT
     }
 
     @Override
-    public List<Person> filter(PersonFilterDTO ob, User user) {
+    public List<Person> filter(PersonFilterDTO ob) {
         return null;
     }
 
