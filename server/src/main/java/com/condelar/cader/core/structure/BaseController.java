@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BaseResource<Entity extends BaseEntity,
+public class BaseController<Entity extends BaseEntity,
         DTO extends BaseDTO,
         FilterDTO extends BaseDTO,
         ListDTO extends BaseDTO,
@@ -142,7 +142,7 @@ public class BaseResource<Entity extends BaseEntity,
             }).collect(Collectors.toList());
             res.setDatas(listDTO);
         } else {
-            List<Entity> list = service.filter(filter, getUser());
+            List<Entity> list = service.filter(filter);
             List<ListDTO> listDTO = list.stream().map(m -> {
                 ListDTO i = service.toListItem(m);
                 i.setUpdate(m.getUpdate());

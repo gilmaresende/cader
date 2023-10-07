@@ -9,14 +9,14 @@ import com.condelar.cader.app.dto.expense.ExpensePaymentDTO;
 import com.condelar.cader.app.repositories.ExpenseRepository;
 import com.condelar.cader.app.services.ExpenseService;
 import com.condelar.cader.app.valid.ExpenseValid;
-import com.condelar.cader.core.structure.BaseResource;
+import com.condelar.cader.core.structure.BaseController;
 import com.condelar.cader.core.structure.util.PackageDT;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/expense")
-public class ExpenseResource extends BaseResource<Expense, ExpenseDTO, ExpenseFilterDTO, ExpenseListDTO, ExpenseRepository, ExpenseService, ExpenseValid> {
+public class ExpenseController extends BaseController<Expense, ExpenseDTO, ExpenseFilterDTO, ExpenseListDTO, ExpenseRepository, ExpenseService, ExpenseValid> {
     @GetMapping("/expensePayment/predictPayment/{idExpense}")
     public ResponseEntity<PackageDT<ExpensePaymentDTO>> predictPayment(@PathVariable Long idExpense) {
 

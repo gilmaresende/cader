@@ -7,12 +7,12 @@ import com.condelar.cader.app.dto.movement.MovementListDTO;
 import com.condelar.cader.app.repositories.MovementRepository;
 import com.condelar.cader.app.services.MovementService;
 import com.condelar.cader.app.valid.MovementValid;
-import com.condelar.cader.core.structure.BaseResource;
+import com.condelar.cader.core.structure.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/movement")
-public class MovimentResource extends BaseResource<Movement, MovementDTO, MovementFilterDTO, MovementListDTO, MovementRepository, MovementService, MovementValid> {
+public class MovimentController extends BaseController<Movement, MovementDTO, MovementFilterDTO, MovementListDTO, MovementRepository, MovementService, MovementValid> {
 
 }

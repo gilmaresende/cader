@@ -126,7 +126,7 @@ public abstract class BaseService<
     public abstract DTO toDTO(Entity ob);
 
 
-    public abstract List<Entity> filter(FilterDTO ob, User user);
+    public abstract List<Entity> filter(FilterDTO ob);
 
     public abstract ListDTO toListItem(Entity ob);
 

@@ -7,12 +7,12 @@ import com.condelar.cader.app.dto.expensecategory.ExpenseCategoryListDTO;
 import com.condelar.cader.app.repositories.ExpenseCategoryRepository;
 import com.condelar.cader.app.services.ExpenseCategoryService;
 import com.condelar.cader.app.valid.ExpenseCategoryValid;
-import com.condelar.cader.core.structure.BaseResource;
+import com.condelar.cader.core.structure.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/expenseCategory")
-public class ExpenseCategoryResource extends BaseResource<ExpenseCategory, ExpenseCategoryDTO, ExpenseCategoryFilterDTO, ExpenseCategoryListDTO, ExpenseCategoryRepository, ExpenseCategoryService, ExpenseCategoryValid> {
+public class ExpenseCategoryController extends BaseController<ExpenseCategory, ExpenseCategoryDTO, ExpenseCategoryFilterDTO, ExpenseCategoryListDTO, ExpenseCategoryRepository, ExpenseCategoryService, ExpenseCategoryValid> {
 
 }
