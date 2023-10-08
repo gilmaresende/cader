@@ -26,15 +26,12 @@ export abstract class SPageListFilter<
   }
 
   public setOb(ob: Entidade) {
-    this.actions.showLoadingFalse();
     this.ob = ob;
     this.actions.setOb(ob);
-    this.actions.showLoadingFalse();
   }
 
   findFilter(filter: any) {
     this.actions.loading.showLoading();
-    this.actions.showLoadingTrue();
     this.actions
       .getService()
       .findFilter(filter)
@@ -47,7 +44,6 @@ export abstract class SPageListFilter<
         },
         error: (error) => {
           console.log(error); //TOFO-GF
-          this.actions.showLoadingFalse();
           this.actions.loading.dropLoading();
         },
       });

@@ -1,9 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
+import { StatePage } from '../../enuns/statePage';
 import { SEntidade } from '../../model/sentidade';
 import { BaseHttpService } from '../../services/base-http.service';
 import { ControlService } from '../../services/control.service';
-import { StatePage } from '../../enuns/statePage';
-import { FormGroup, NgForm } from '@angular/forms';
 
 export abstract class SPage<
   Entidade extends SEntidade,
@@ -11,7 +10,6 @@ export abstract class SPage<
 > {
   ob?: Entidade;
 
-  loading: boolean = true;
   isDisabled: boolean = true;
 
   constructor(
@@ -20,7 +18,6 @@ export abstract class SPage<
     private services: Service,
     private activatedRoutes: ActivatedRoute
   ) {
-    this.actions.showLoadingTrue();
     actions.build(this.ob, title, this, this.services);
     this.startView();
 
@@ -30,7 +27,6 @@ export abstract class SPage<
       this.actions.setStatePage(StatePage.VIEW);
     } else {
       this.actions.setStatePage(StatePage.INSERT);
-      this.actions.showLoadingFalse();
     }
   }
 
@@ -41,7 +37,6 @@ export abstract class SPage<
 
   async findById(id: number) {
     this.actions.loading.showLoading();
-    this.actions.showLoadingTrue();
     await this.services.findById(id).subscribe({
       next: (res) => {
         this.populatedForm(res.data);
@@ -58,10 +53,6 @@ export abstract class SPage<
         this.actions.getRouter().navigate([`cader/${this.services.rote}`]);
       },
     });
-  }
-
-  public alterLoading(isLoading: boolean) {
-    this.loading = isLoading;
   }
 
   public clearScreen() {

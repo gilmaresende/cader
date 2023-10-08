@@ -26,28 +26,23 @@ export abstract class SPageList<
   }
 
   public setOb(ob: Entidade) {
-    this.actions.showLoadingFalse();
     this.ob = ob;
     this.actions.setOb(ob);
-    this.actions.showLoadingFalse();
   }
 
   findAll() {
     this.actions.loading.showLoading();
-    this.actions.showLoadingTrue();
     this.actions
       .getService()
       .findAll()
       .subscribe({
         next: (res) => {
-          this.actions.showLoadingFalse();
           this.dataTableObserve.update(res.datas);
           this.list = res.datas;
           this.actions.loading.dropLoading();
         },
         error: (error) => {
           console.log(error);
-          this.actions.showLoadingFalse();
           this.actions.loading.dropLoading();
         },
       });

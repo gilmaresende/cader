@@ -157,7 +157,6 @@ export class ControlService {
   async save() {
     console.log('save');
     this.loading.showLoading();
-    this.showLoadingTrue();
     const obj: SEntidade = this.getOb();
     //TODO DELETAR OB
     if (obj.id! > 0) {
@@ -172,7 +171,6 @@ export class ControlService {
           } else {
             this.toastService!.catchErro(error);
           }
-          this.showLoadingFalse();
           this.setStatePage(StatePage.EDIT);
           this.loading.dropLoading();
         },
@@ -187,7 +185,6 @@ export class ControlService {
         error: (error) => {
           console.log(error);
           this.toastService!.catchErro(error);
-          this.showLoadingFalse();
           this.setStatePage(StatePage.EDIT);
           this.loading.dropLoading();
         },
@@ -205,7 +202,6 @@ export class ControlService {
           this.service.delete(this.ob!.id!).subscribe({
             next: (res) => {
               this.getOb()!.update = res.update;
-              this.showLoadingFalse();
               this.toastService!.showSucess(res.message);
               this.setStatePage(StatePage.LIST);
               this.router.navigate([`${this.rotaEntidade}/list`]);
@@ -217,7 +213,6 @@ export class ControlService {
               } else {
                 console.log(error);
               }
-              this.showLoadingFalse();
               this.setStatePage(StatePage.VIEW);
               this.loading.dropLoading();
             },
@@ -261,14 +256,6 @@ export class ControlService {
 
   showFilter() {
     this.filterView.showModel();
-  }
-
-  showLoadingFalse() {
-    this.page?.alterLoading(true);
-  }
-
-  showLoadingTrue() {
-    this.page?.alterLoading(false);
   }
 
   setStatePage(state: StatePage) {
