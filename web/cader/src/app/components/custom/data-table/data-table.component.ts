@@ -10,11 +10,11 @@ import { SEntidade } from 'src/app/core/model/sentidade';
 })
 export class DataTableComponent implements OnInit {
   //atributos fixos
-  listData: any[] = [];
   dataShow: any[] = [];
   selected: SEntidade | undefined;
 
-  //atributos de parametro
+  //lista com todos os dados
+  @Input() data: Array<{}> = [];
 
   //controlador da lista
   @Input() dataTableObs?: DataTableService<any>;
@@ -36,10 +36,9 @@ export class DataTableComponent implements OnInit {
   }
 
   public search(value: string) {
-    
     let filterMain: Array<{}> = [];
     for (let atr of this.atributos) {
-      let filter = this.listData.filter((res: any) => {
+      let filter = this.data.filter((res: any) => {
         if (res[atr]) {
           const str: string = res[atr].toString();
           return !str.toLocaleLowerCase().indexOf(value.toLocaleLowerCase());

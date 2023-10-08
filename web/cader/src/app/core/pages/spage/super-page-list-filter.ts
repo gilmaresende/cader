@@ -1,3 +1,4 @@
+import { DataTableService } from 'src/app/components/custom/data-table/data-table.service';
 import { StatePage } from '../../enuns/statePage';
 import { SEntidade } from '../../model/sentidade';
 import { BaseHttpService } from '../../services/base-http.service';
@@ -9,6 +10,7 @@ export abstract class SPageListFilter<
 > {
   public ob?: Entidade;
   public list: Array<{}> = [];
+  public dataTableObserve: DataTableService<any> = new DataTableService<any>();
 
   loading: boolean = true;
   isDisabled: boolean = false;
@@ -38,7 +40,8 @@ export abstract class SPageListFilter<
       .findFilter(filter)
       .subscribe({
         next: (res) => {
-          this.actions.showLoadingFalse();
+          // this.actions.showLoadingFalse();
+          this.dataTableObserve.update(res.datas);
           this.list = res.datas;
           this.actions.loading.dropLoading();
         },
@@ -63,7 +66,7 @@ export abstract class SPageListFilter<
   async findById(id: number) {}
 
   getFilterBase() {
-     console.log(this.services.getFilterBase());
+    console.log(this.services.getFilterBase());
     console.log(this.services.getFilterBase());
     return this.services.getFilterBase();
   }
