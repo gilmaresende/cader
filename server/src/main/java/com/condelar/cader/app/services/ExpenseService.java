@@ -92,9 +92,20 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
 
     public ExpensePayment getPaymentById(Long idPayment) {
         User user = getUser();
-        Optional<ExpensePayment> op = getRepo().findByIdAndUser(idPayment, user.getId());
+        Optional<ExpensePayment> op = getRepo().findPaymentByIdAndUser(idPayment, user.getId());
         return op.orElseThrow(() -> new ObjectNotFoundException("Data not found to object of type '" + instance().getClass().getName() + "' with id '" + idPayment + "'"));
+    }
 
+    public Expense findByIdPayment(Long idPayment) {
+        User user = getUser();
+        Optional<Expense> op = getRepo().findByIdPaymentAndUser(idPayment, user.getId());
+        return op.orElseThrow(() -> new ObjectNotFoundException("Data not found to object of type '" + instance().getClass().getName() + "' with id '" + idPayment + "'"));
+    }
+
+    public Expense deletePayment(Long id) {
+        Expense expense = findByIdPayment(id);
+        expense.getPayments().removeIf(f -> f.getId().equals(id));
+        return expense;
     }
 
     @Override
@@ -114,17 +125,30 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
     public Expense newPayment(ExpensePaymentDTO dto) {
         Expense expense = findById((dto.getIdExpense()));
         ExpensePayment payment = new ExpensePayment();
-
-        ToolEntity.cloneAttributes(dto, payment);
         payment.setExpense(expense);
+        payment = updateExpenseByDTO(payment, dto);
+        expense.getPayments().add(payment);
+        payment.setExpense(expense);
+
+        return expense;
+    }
+
+    public Expense updatePayment(ExpensePaymentDTO data) {
+        Expense expense = findById(data.getIdExpense());
+        ExpensePayment payment = expense.getPayments().stream().filter(f -> f.getId().equals(data.getId())).findFirst().orElseThrow();
+        updateExpenseByDTO(payment, data);
+        return expense;
+    }
+
+    private ExpensePayment updateExpenseByDTO(ExpensePayment payment, ExpensePaymentDTO dto) {
+        ToolEntity.cloneAttributes(dto, payment);
         payment.setPaymentType(paymentTypeService.findById(dto.getPaymentType().getId()));
         payment.setWallet(walletService.findById(dto.getWallet().getId()));
         payment.setUser(getUser());
         payment.setUpdate(LocalDateTime.now());
         payment.setRegister(LocalDate.now());
-        expense.getPayments().add(payment);
         Movement movement = movementService.newMovement(payment);
         payment.setMovement(movement);
-        return expense;
+        return payment;
     }
 }

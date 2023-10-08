@@ -63,8 +63,11 @@ public class MovementService extends BaseService<Movement, MovementDTO, Movement
     }
 
     public Movement newMovement(ExpensePayment paymentExpense) {
-        Movement movement = new Movement();
-        movement.setWallet(paymentExpense.getWallet());
+        Movement movement = paymentExpense.getMovement();
+        if (movement == null) {
+            movement = new Movement();
+            movement.setWallet(paymentExpense.getWallet());
+        }
         movement.setOrigin(EnumOriginMovement.DESPESA.getValue());
         movement.setUser(getUser());
         movement.setDescription(paymentExpense.getExpense().getDescription());

@@ -59,17 +59,31 @@ export abstract class SItems<
   save() {
     this.controllerS.loading.showLoading();
     const ob = this.serviceModalS.getOb();
-    this.serviceItem.create(ob as Entidade).subscribe({
-      next: (res) => {
-        this.controllerS.getControllerToast().showSucess(res.message);
-        this.controllerS.reload();
-        this.controllerS.loading.dropLoading();
-      },
-      error: (er) => {
-        this.controllerS.getControllerToast().catchErro(er);
-        this.controllerS.loading.dropLoading();
-      },
-    });
+    if (!ob.id) {
+      this.serviceItem.create(ob as Entidade).subscribe({
+        next: (res) => {
+          this.controllerS.getControllerToast().showSucess(res.message);
+          this.controllerS.reload();
+          this.controllerS.loading.dropLoading();
+        },
+        error: (er) => {
+          this.controllerS.getControllerToast().catchErro(er);
+          this.controllerS.loading.dropLoading();
+        },
+      });
+    } else {
+      this.serviceItem.update(ob as Entidade).subscribe({
+        next: (res) => {
+          this.controllerS.getControllerToast().showSucess(res.message);
+          this.controllerS.reload();
+          this.controllerS.loading.dropLoading();
+        },
+        error: (er) => {
+          this.controllerS.getControllerToast().catchErro(er);
+          this.controllerS.loading.dropLoading();
+        },
+      });
+    }
   }
 
   //chamada da api para apagar objeto atual da tela

@@ -44,5 +44,13 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
             "   INNER JOIN e.user u \n" +
             " WHERE (u.id = :idUser) \n" +
             " AND e.id = :idPayment\n")
-    Optional<ExpensePayment> findByIdAndUser(@Param("idPayment") Long idPayment, @Param("idUser") Long idUser);
+    Optional<ExpensePayment> findPaymentByIdAndUser(@Param("idPayment") Long idPayment, @Param("idUser") Long idUser);
+
+    @Query(value = " SELECT \n" +
+            " e.expense \n " +
+            " FROM ExpensePayment e \n" +
+            "   INNER JOIN e.user u \n" +
+            " WHERE (u.id = :idUser) \n" +
+            " AND e.id = :idPayment\n")
+    Optional<Expense> findByIdPaymentAndUser(@Param("idPayment") Long idPayment, @Param("idUser") Long idUser);
 }

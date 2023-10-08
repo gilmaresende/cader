@@ -33,21 +33,20 @@ public class ExpenseController extends BaseController<Expense, ExpenseDTO, Expen
 
     @PostMapping("/expensePayment")
     public ResponseEntity<PackageDT<ExpensePaymentDTO>> save(@RequestBody ExpensePaymentDTO data) {
-        System.out.println(data);
-
         Expense expense = getService().newPayment(data);
         getService().save(expense);
-
         PackageDT<ExpensePaymentDTO> pack = new PackageDT();
         pack.setMessage("Saved record");
         return ResponseEntity.ok().body(pack);
     }
 
     @PutMapping("/expensePayment/{id}")
-    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody ExpensePaymentDTO data) {
-        System.out.println(id);
-        System.out.println(data);
-        return ResponseEntity.ok().body("Updated record");
+    public ResponseEntity<PackageDT<ExpensePaymentDTO>> update(@PathVariable Long id, @RequestBody ExpensePaymentDTO data) {
+        Expense expense = getService().updatePayment(data);
+        getService().save(expense);
+        PackageDT<ExpensePaymentDTO> pack = new PackageDT();
+        pack.setMessage("Updated record");
+        return ResponseEntity.ok().body(pack);
     }
 
     @GetMapping("/expensePayment/{idPayment}")
@@ -60,9 +59,10 @@ public class ExpenseController extends BaseController<Expense, ExpenseDTO, Expen
 
     @DeleteMapping("/expensePayment/{id}")
     public ResponseEntity<PackageDT<ExpensePaymentDTO>> deleteExpensePayment(@PathVariable Long id) {
-        System.out.println(id);
-        PackageDT<ExpensePaymentDTO> res = new PackageDT<ExpensePaymentDTO>();
-        res.setMessage("Deleted record!");
-        return ResponseEntity.ok().body(res);
+        Expense expense = getService().deletePayment(id);
+        getService().save(expense);
+        PackageDT<ExpensePaymentDTO> pack = new PackageDT();
+        pack.setMessage("Deleted record");
+        return ResponseEntity.ok().body(pack);
     }
 }

@@ -51,6 +51,5 @@ public class ExpenseValid extends BaseValid<ExpenseDTO, Expense> {
         if (ob.getValue() - payValue <= 0) {
             addErrors("value", "Expense is closed!");
         }
-
     }
 }
