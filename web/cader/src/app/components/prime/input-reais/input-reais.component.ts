@@ -27,3 +27,4 @@ export class InputReaisComponent implements OnInit {
     this.ob[this.atributo] = this.value = 0;
   }
 }
+// pipe monetario reais | currency: "BRL"

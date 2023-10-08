@@ -13,6 +13,9 @@ import { InputReaisComponent } from './input-reais/input-reais.component';
 import { InputSwitchComponent } from './input-switch/input-switch.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { LabelTextComponent } from './label-text/label-text.component';
+import { DataTableComponent } from './data-table/data-table.component';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
@@ -33,6 +36,7 @@ import { LabelTextComponent } from './label-text/label-text.component';
     AutocompleteComponent,
     InputDateComponent,
     LabelTextComponent,
+    DataTableComponent,
   ],
   exports: [
     InputTextComponent,
@@ -42,6 +46,7 @@ import { LabelTextComponent } from './label-text/label-text.component';
     AutocompleteComponent,
     InputDateComponent,
     LabelTextComponent,
+    DataTableComponent,
   ],
 })
 export class CustomizedModule {}

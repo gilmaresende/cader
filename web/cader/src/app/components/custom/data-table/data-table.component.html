@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID. Despesa</th>
+      <th>Valor</th>
+      <th>Dia Pagamento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ob of listData">
+      <td>{{ ob.idExpense }}</td>
+      <td>{{ ob.value }}</td>
+      <td>{{ ob.payDay }}</td>
+    </tr>
+  </tbody>
+</table>

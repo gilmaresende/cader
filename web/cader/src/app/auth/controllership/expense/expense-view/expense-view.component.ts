@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { DataTableService } from 'src/app/components/custom/data-table/data-table.service';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { SPage } from 'src/app/core/pages/spage/super-page';
 import { ControlService } from 'src/app/core/services/control.service';
@@ -18,7 +19,8 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
   constructor(
     private controller: ControlService,
     private service: ExpenseService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private tadaTableService: DataTableService
   ) {
     super('Despesa', controller, service, activatedRoute);
   }
@@ -65,5 +67,7 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
     data.person.setValue(ob.person);
 
     this.listPayments = ob.payments;
+
+    this.tadaTableService.updateUsers(this.listPayments);
   }
 }
