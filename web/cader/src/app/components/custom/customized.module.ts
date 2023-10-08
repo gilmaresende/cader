@@ -16,7 +16,7 @@ import { LabelTextComponent } from './label-text/label-text.component';
 import { DataTableComponent } from './data-table/data-table.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { TableModule } from 'primeng/table';
 @NgModule({
   imports: [
     CommonModule,
@@ -27,6 +27,7 @@ import { BrowserModule } from '@angular/platform-browser';
     DropdownModule,
     AutoCompleteModule,
     CalendarModule,
+    TableModule,
   ],
   declarations: [
     InputTextComponent,
