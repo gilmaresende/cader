@@ -26,7 +26,7 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
   }
   dataTableServicePaymentys: DataTableService<ExpensePayment> =
     new DataTableService<ExpensePayment>();
-  listPayments: any;
+  listPayments: ExpensePayment[] = [];
   form = new FormGroup({
     id: new FormControl(0),
     update: new FormControl(new Date()),
@@ -67,7 +67,7 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
     data.paymentType.setValue(ob.paymentType);
     data.person.setValue(ob.person);
 
-    this.listPayments = ob.payments;
+    this.listPayments = ob.payments as ExpensePayment[];
 
     this.dataTableServicePaymentys.update(this.listPayments);
   }

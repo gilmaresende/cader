@@ -1,3 +1,4 @@
+import { DataTableService } from 'src/app/components/custom/data-table/data-table.service';
 import { StatePage } from '../../enuns/statePage';
 import { SEntidade } from '../../model/sentidade';
 import { BaseHttpService } from '../../services/base-http.service';
@@ -9,6 +10,7 @@ export abstract class SPageList<
 > {
   public ob?: Entidade;
   public list: Array<{}> = [];
+  public dataTableObserve: DataTableService<any> = new DataTableService<any>();
 
   loading: boolean = true;
   isDisabled: boolean = false;
@@ -39,6 +41,7 @@ export abstract class SPageList<
       .subscribe({
         next: (res) => {
           this.actions.showLoadingFalse();
+          this.dataTableObserve.update(res.datas);
           this.list = res.datas;
           this.actions.loading.dropLoading();
         },

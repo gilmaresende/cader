@@ -1,6 +1,9 @@
 <model-filter>
   <movement-filter></movement-filter>
 </model-filter>
-<div *ngIf="loading">
-  <data-table [data]="list" [header]="header" [atributos]="atributos" />
-</div>
+<dataTable
+  [data]="list"
+  [dataTableObs]="dataTableObserve"
+  [header]="header"
+  [atributos]="atributos"
+></dataTable>
