@@ -6,6 +6,7 @@ import { DescriptionId } from 'src/app/core/model/description-id';
 import { SPage } from 'src/app/core/pages/spage/super-page';
 import { ControlService } from 'src/app/core/services/control.service';
 import { Expense } from 'src/app/model/expense';
+import { ExpensePayment } from 'src/app/model/expense-payment';
 import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
@@ -19,12 +20,12 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
   constructor(
     private controller: ControlService,
     private service: ExpenseService,
-    private activatedRoute: ActivatedRoute,
-    private tadaTableService: DataTableService
+    private activatedRoute: ActivatedRoute
   ) {
     super('Despesa', controller, service, activatedRoute);
   }
-
+  dataTableServicePaymentys: DataTableService<ExpensePayment> =
+    new DataTableService<ExpensePayment>();
   listPayments: any;
   form = new FormGroup({
     id: new FormControl(0),
@@ -68,6 +69,6 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
 
     this.listPayments = ob.payments;
 
-    this.tadaTableService.updateUsers(this.listPayments);
+    this.dataTableServicePaymentys.update(this.listPayments);
   }
 }

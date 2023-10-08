@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ExpensePayment } from 'src/app/model/expense-payment';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataTableService } from './data-table.service';
 
 @Component({
@@ -8,12 +7,13 @@ import { DataTableService } from './data-table.service';
   styleUrls: ['./data-table.component.scss'],
 })
 export class DataTableComponent implements OnInit {
-  listData: ExpensePayment[] = [];
+  listData: any[] = [];
 
-  constructor(private dataTableService: DataTableService) {}
+  @Input() dataTableObs?: DataTableService<any>;
+  constructor() {}
 
   ngOnInit() {
-    this.dataTableService.users$.subscribe((listData) => {
+    this.dataTableObs?.dataOb$.subscribe((listData) => {
       this.listData = listData;
     });
   }
