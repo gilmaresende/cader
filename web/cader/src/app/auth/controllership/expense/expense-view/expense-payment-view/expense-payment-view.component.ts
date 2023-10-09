@@ -51,7 +51,7 @@ export class ExpensePaymentViewComponent extends SItems<
     data.paymentType.setValue(ob.paymentType);
   }
 
-  override getByFirm(): ExpensePayment {
+  override getByForm(): ExpensePayment {
     const form = this.form.controls;
     const ob: ExpensePayment = {
       id: form.id.value as number,

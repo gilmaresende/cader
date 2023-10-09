@@ -34,7 +34,7 @@ public class ExpenseController extends BaseController<Expense, ExpenseDTO, Expen
     @PostMapping("/expensePayment")
     public ResponseEntity<PackageDT<ExpensePaymentDTO>> save(@RequestBody ExpensePaymentDTO data) {
         Expense expense = getService().newPayment(data);
-        getService().save(expense);
+        //getService().save(expense);
         PackageDT<ExpensePaymentDTO> pack = new PackageDT();
         pack.setMessage("Saved record");
         return ResponseEntity.ok().body(pack);
@@ -43,7 +43,7 @@ public class ExpenseController extends BaseController<Expense, ExpenseDTO, Expen
     @PutMapping("/expensePayment/{id}")
     public ResponseEntity<PackageDT<ExpensePaymentDTO>> update(@PathVariable Long id, @RequestBody ExpensePaymentDTO data) {
         Expense expense = getService().updatePayment(data);
-        getService().save(expense);
+       // getService().save(expense);
         PackageDT<ExpensePaymentDTO> pack = new PackageDT();
         pack.setMessage("Updated record");
         return ResponseEntity.ok().body(pack);
@@ -60,7 +60,7 @@ public class ExpenseController extends BaseController<Expense, ExpenseDTO, Expen
     @DeleteMapping("/expensePayment/{id}")
     public ResponseEntity<PackageDT<ExpensePaymentDTO>> deleteExpensePayment(@PathVariable Long id) {
         Expense expense = getService().deletePayment(id);
-        getService().save(expense);
+     //   getService().save(expense);
         PackageDT<ExpensePaymentDTO> pack = new PackageDT();
         pack.setMessage("Deleted record");
         return ResponseEntity.ok().body(pack);

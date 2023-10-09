@@ -37,7 +37,6 @@ export abstract class SPageListFilter<
       .findFilter(filter)
       .subscribe({
         next: (res) => {
-          // this.actions.showLoadingFalse();
           this.dataTableObserve.update(res.datas);
           this.list = res.datas;
           this.actions.loading.dropLoading();

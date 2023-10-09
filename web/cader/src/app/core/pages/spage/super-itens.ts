@@ -23,7 +23,7 @@ export abstract class SItems<
   isDisabled: boolean = false;
 
   //atributo que defini de o conteudo da tela(modal) sera exibido ou não
-  exibir: boolean = false;
+  exibir: boolean = false; //TODO POSIVEL REMOVER
 
   //-----------------------------------------------------------------------------------
   //gets e sets
@@ -31,7 +31,7 @@ export abstract class SItems<
 
   //recupera o objeto atual na tela
   getOb(): SEntidade {
-    return this.getByFirm();
+    return this.getByForm();
   }
 
   //defini o objeto atual na tela
@@ -64,6 +64,7 @@ export abstract class SItems<
         next: (res) => {
           this.controllerS.getControllerToast().showSucess(res.message);
           this.controllerS.reload();
+          this.serviceModalS.disabledTrue();
           this.controllerS.loading.dropLoading();
         },
         error: (er) => {
@@ -76,6 +77,8 @@ export abstract class SItems<
         next: (res) => {
           this.controllerS.getControllerToast().showSucess(res.message);
           this.controllerS.reload();
+
+          this.serviceModalS.disabledTrue();
           this.controllerS.loading.dropLoading();
         },
         error: (er) => {
@@ -95,6 +98,7 @@ export abstract class SItems<
         this.controllerS.getControllerToast().showSucess(res.message);
         this.controllerS.reload();
         this.controllerS.loading.dropLoading();
+        this.serviceModalS.close();
       },
       error: (er) => {
         this.controllerS.getControllerToast().catchErro(er);
@@ -107,5 +111,5 @@ export abstract class SItems<
   abstract populateForm(ob: Entidade): void;
 
   //implementar a transformar form em objeto
-  abstract getByFirm(): Entidade;
+  abstract getByForm(): Entidade;
 }

@@ -17,6 +17,7 @@ import com.condelar.cader.core.structure.BaseService;
 import com.condelar.cader.tool.entity.ToolEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -102,9 +103,11 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         return op.orElseThrow(() -> new ObjectNotFoundException("Data not found to object of type '" + instance().getClass().getName() + "' with id '" + idPayment + "'"));
     }
 
+    @Transactional
     public Expense deletePayment(Long id) {
         Expense expense = findByIdPayment(id);
         expense.getPayments().removeIf(f -> f.getId().equals(id));
+        expense = getRepo().save(expense);
         return expense;
     }
 
@@ -122,6 +125,7 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         return super.beforeSave(ob);
     }
 
+    @Transactional
     public Expense newPayment(ExpensePaymentDTO dto) {
         Expense expense = findById((dto.getIdExpense()));
         ExpensePayment payment = new ExpensePayment();
@@ -129,14 +133,16 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         payment = updateExpenseByDTO(payment, dto);
         expense.getPayments().add(payment);
         payment.setExpense(expense);
-
+        expense = getRepo().save(expense);
         return expense;
     }
 
+    @Transactional
     public Expense updatePayment(ExpensePaymentDTO data) {
         Expense expense = findById(data.getIdExpense());
         ExpensePayment payment = expense.getPayments().stream().filter(f -> f.getId().equals(data.getId())).findFirst().orElseThrow();
         updateExpenseByDTO(payment, data);
+        expense = getRepo().save(expense);
         return expense;
     }
 

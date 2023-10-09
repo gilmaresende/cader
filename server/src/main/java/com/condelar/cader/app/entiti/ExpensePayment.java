@@ -43,7 +43,7 @@ public class ExpensePayment extends BaseEntity {
     @Column(name = "observacao")
     private String observation;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "id_despesa", foreignKey = @ForeignKey(name = "fk_baixa_despesa"), nullable = false)
     private Expense expense;
 

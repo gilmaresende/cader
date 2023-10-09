@@ -89,6 +89,11 @@ export class ModalImplService {
     this.view!.showViewTrue();
   }
 
+  public close() {
+    this.modal!.closeModal();
+    this.view!.showViewFalse();
+  }
+
   //faz a chamada para salvar o objeto atual na tela
   save() {
     this.getView().save();

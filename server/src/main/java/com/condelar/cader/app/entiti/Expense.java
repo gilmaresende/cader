@@ -4,6 +4,7 @@ import com.condelar.cader.core.domain.User;
 import com.condelar.cader.core.structure.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -64,8 +65,9 @@ public class Expense extends BaseEntity {
     @Column(name = "valor")
     private Double value;
 
-//    @OneToMany(mappedBy = "expense", cascade = CascadeType.MERGE, orphanRemoval = true)
-    @OneToMany(mappedBy = "expense", cascade = CascadeType.ALL, orphanRemoval = true)
+    //  @OneToMany(mappedBy = "expense", cascade = {CascadeType.MERGE, CascadeType.ALL}, orphanRemoval = true)
+    // @OneToMany(mappedBy = "expense", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @OneToMany(mappedBy = "expense", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
     private List<ExpensePayment> payments = new ArrayList<>();
 
 }
