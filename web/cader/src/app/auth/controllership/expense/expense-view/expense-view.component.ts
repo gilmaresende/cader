@@ -33,6 +33,8 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
     description: new FormControl('', Validators.required),
     dueDate: new FormControl(new Date()),
     value: new FormControl(0),
+    openValue: new FormControl(0),
+    amountPaid: new FormControl(0),
     expenseCategory: new FormControl(),
     paymentType: new FormControl(),
     wallet: new FormControl(),
@@ -62,11 +64,12 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
     data.description.setValue(ob.description);
     data.dueDate.setValue(ob.dueDate);
     data.value.setValue(ob.value);
+    data.amountPaid.setValue(ob.amountPaid as number);
+    data.openValue.setValue(ob.openValue as number);
     data.wallet.setValue(ob.wallet);
     data.expenseCategory.setValue(ob.expenseCategory);
     data.paymentType.setValue(ob.paymentType);
     data.person.setValue(ob.person);
-
     this.listPayments = ob.payments as ExpensePayment[];
 
     this.dataTableServicePaymentys.update(this.listPayments);

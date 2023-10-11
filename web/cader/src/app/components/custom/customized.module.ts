@@ -17,6 +17,7 @@ import { DataTableComponent } from './data-table/data-table.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { BrowserModule } from '@angular/platform-browser';
 import { TableModule } from 'primeng/table';
+import { TwoDecimalMaskDirective } from 'src/app/core/directives/mask/two-decimal';
 @NgModule({
   imports: [
     CommonModule,
@@ -38,6 +39,7 @@ import { TableModule } from 'primeng/table';
     InputDateComponent,
     LabelTextComponent,
     DataTableComponent,
+    TwoDecimalMaskDirective,
   ],
   exports: [
     InputTextComponent,

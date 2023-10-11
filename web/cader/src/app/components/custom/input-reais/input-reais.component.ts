@@ -38,7 +38,7 @@ export class InputReaisComponent implements ControlValueAccessor {
   teclar() {
     this.markAsTouched();
     if (!this.disabled) {
-      this.value = this.formatarMoeda(this.value);
+      // this.value = this.formatarMoeda(this.value);
       this.onChange(this.value);
     }
   }

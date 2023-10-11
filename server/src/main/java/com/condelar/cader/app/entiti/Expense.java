@@ -4,7 +4,6 @@ import com.condelar.cader.core.domain.User;
 import com.condelar.cader.core.structure.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

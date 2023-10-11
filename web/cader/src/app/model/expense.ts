@@ -8,6 +8,8 @@ export interface Expense extends SEntidade {
   dueDate: Date;
   origin?: number;
   value: number;
+  openValue?: number;
+  amountPaid?: number;
   expenseCategory?: DescriptionId;
   paymentType?: DescriptionId;
   wallet?: DescriptionId;

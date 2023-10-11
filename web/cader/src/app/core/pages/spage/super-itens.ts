@@ -22,9 +22,6 @@ export abstract class SItems<
   //atributo que defini se a tela(modal) esta em modo editavel ou não
   isDisabled: boolean = false;
 
-  //atributo que defini de o conteudo da tela(modal) sera exibido ou não
-  exibir: boolean = false; //TODO POSIVEL REMOVER
-
   //-----------------------------------------------------------------------------------
   //gets e sets
   //-----------------------------------------------------------------------------------
@@ -44,17 +41,6 @@ export abstract class SItems<
   //-----------------------------------------------------------------------------------
   //ações
   //-----------------------------------------------------------------------------------
-
-  //defini que o conteudo da tela vai ser exibido
-  showViewTrue() {
-    this.exibir = true;
-  }
-
-  //defini que o conteudo da tela nao vai ser exibido
-  showViewFalse() {
-    this.exibir = false;
-  }
-
   //chamada da api para salvar objeto atual da tela
   save() {
     this.controllerS.loading.showLoading();
@@ -64,7 +50,7 @@ export abstract class SItems<
         next: (res) => {
           this.controllerS.getControllerToast().showSucess(res.message);
           this.controllerS.reload();
-          this.serviceModalS.disabledTrue();
+          this.serviceModalS.close();
           this.controllerS.loading.dropLoading();
         },
         error: (er) => {
@@ -77,8 +63,7 @@ export abstract class SItems<
         next: (res) => {
           this.controllerS.getControllerToast().showSucess(res.message);
           this.controllerS.reload();
-
-          this.serviceModalS.disabledTrue();
+          this.serviceModalS.close();
           this.controllerS.loading.dropLoading();
         },
         error: (er) => {

@@ -75,23 +75,18 @@ export class ModalImplService {
   }
 
   //limpa o objeto atual na tela e na memoria
-  //e desabilita o conteudo do corpo do model
   //TODO-GF{SERA QUE PODE REMOVER O SHOWVIEWFALSE?}
   public clear() {
     this.view!.setOb(undefined);
-    this.view!.showViewFalse();
   }
 
   //mostra o modal aberto
-  //abilita o conteudo da tela para exição
   public show() {
     this.modal!.show();
-    this.view!.showViewTrue();
   }
 
   public close() {
     this.modal!.closeModal();
-    this.view!.showViewFalse();
   }
 
   //faz a chamada para salvar o objeto atual na tela
