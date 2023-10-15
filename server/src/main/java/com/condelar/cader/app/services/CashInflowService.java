@@ -21,7 +21,6 @@ public class CashInflowService extends BaseService<CashInflow, CashInflowDTO, Ca
 
     @Override
     public CashInflow toEntity(CashInflow ob, CashInflowDTO dto) {
-
         return ob;
     }
 
