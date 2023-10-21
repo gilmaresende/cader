@@ -98,6 +98,11 @@ public abstract class BaseService<
         }
     }
 
+    /**
+     * Função Generica para deletar registro
+     *
+     * @param ob
+     */
     public void delete(Entity ob) {
         try {
             valid.clear();

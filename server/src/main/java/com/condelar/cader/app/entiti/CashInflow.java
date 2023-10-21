@@ -60,7 +60,7 @@ public class CashInflow extends BaseEntity {
     private Double amountPaid;
 
     @Column(name = "valor_total")
-    private Double valorTotal;
+    private Double valueTotal;
 
     @Column(name = "valor_aberto")
     private Double openValue;
@@ -76,7 +76,5 @@ public class CashInflow extends BaseEntity {
 
     public CashInflow() {
     }
-
-
 }
 
