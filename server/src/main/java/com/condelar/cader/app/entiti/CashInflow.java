@@ -7,6 +7,8 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -73,6 +75,9 @@ public class CashInflow extends BaseEntity {
 
     @Column(name = "status")
     private Short status;
+
+    @OneToMany(mappedBy = "cashInflow", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
+    private List<CashInflowPayment> payments = new ArrayList<>();
 
     public CashInflow() {
     }
