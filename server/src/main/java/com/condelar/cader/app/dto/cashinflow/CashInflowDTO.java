@@ -41,6 +41,10 @@ public class CashInflowDTO extends BaseDTO {
 
     public CashInflowDTO(CashInflow ob) {
         super(ob);
+        setIncomeCategory(ob.getIncomeCategory().getDescriptionId());
+        setPaymentType(ob.getPaymentType().getDescriptionId());
+        setWallet(ob.getWallet().getDescriptionId());
+        setPerson(ob.getPerson().getDescriptionId());
     }
 
 }

@@ -20,6 +20,7 @@ import { TesteHqlComponent } from './dev/teste-hql/teste-hql.component';
 import { ExpenseViewComponent } from './controllership/expense/expense-view/expense-view.component';
 import { ExpenseDetailComponent } from './controllership/expense/expense-view/expense-detail/expense-detail.component';
 import { MovementViewComponent } from './controllership/movement/movement-view/movement-view.component';
+import { CashInflowListComponent } from './controllership/cashinflow/cash-inflow-list/cash-inflow-list.component';
 
 const routes: Routes = [
   {
@@ -100,6 +101,15 @@ const routes: Routes = [
           { path: ':id', component: ExpenseViewComponent },
         ],
       },
+      {
+        path: 'cash-inflow',
+        children: [
+          { path: '', component: ExpenseViewComponent },
+          { path: 'list', component: CashInflowListComponent },
+          { path: ':id', component: ExpenseViewComponent },
+        ],
+      },
+
       {
         path: 'testeHql',
         component: TesteHqlComponent,

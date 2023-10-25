@@ -6,6 +6,7 @@ import com.condelar.cader.app.dto.cashinflow.CashInflowListDTO;
 import com.condelar.cader.app.entiti.CashInflow;
 import com.condelar.cader.app.repositories.CashInflowRepository;
 import com.condelar.cader.app.valid.CashInflowValid;
+import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseService;
 import com.condelar.cader.tool.entity.ToolEntity;
 import lombok.RequiredArgsConstructor;
@@ -56,8 +57,16 @@ public class CashInflowService extends BaseService<CashInflow, CashInflowDTO, Ca
     }
 
     @Override
-    public List<CashInflow> filter(CashInflowFilterDTO ob) {
-        return null;
+    public List<CashInflow> filter(CashInflowFilterDTO filter) {
+        return getRepo().getFilter(
+                filter.getDueDateStart(),
+                filter.getDueDateEnd(),
+                DescriptionId.getIdShort(filter.getStatus()),
+                DescriptionId.getIdLong(filter.getWallet()),
+                DescriptionId.getIdLong(filter.getPaymentType()),
+                DescriptionId.getIdLong(filter.getPerson()),
+                DescriptionId.getIdLong(filter.getIncomeCategory())
+        );
     }
 
     @Override

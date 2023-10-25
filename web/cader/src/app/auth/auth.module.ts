@@ -32,6 +32,7 @@ import { MovementViewComponent } from './controllership/movement/movement-view/m
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrimeRModule } from '../components/prime-r/prime-r.module';
 import { CustomizedModule } from '../components/custom/customized.module';
+import { CashInflowListComponent } from './controllership/cashinflow/cash-inflow-list/cash-inflow-list.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { CustomizedModule } from '../components/custom/customized.module';
     ExpensePaymentComponent,
     ExpensePaymentViewComponent,
     MovementViewComponent,
+    CashInflowListComponent,
   ],
   imports: [
     CommonModule,
