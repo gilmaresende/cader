@@ -6,11 +6,12 @@ export interface CashInflow extends SEntidade {
   payments?: [];
   dueDate: Date;
   origin?: number;
-  value: number;
+  valueTotal: number;
   openValue?: number;
   amountPaid?: number;
-  expenseCategory?: DescriptionId;
+  incomeCategory?: DescriptionId;
   paymentType?: DescriptionId;
   wallet?: DescriptionId;
   person?: DescriptionId;
+  observation: string;
 }

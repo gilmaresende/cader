@@ -1,0 +1,43 @@
+<div [formGroup]="form" class="mt2 mX4">
+  <div class="linePayment lineLeft">
+    <div class="mr2">
+      <autocomplete
+        formControlName="wallet"
+        [service]="serviceWallet"
+        [label]="'Carteira'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div>
+      <autocomplete
+        formControlName="paymentType"
+        [service]="servicePaymentTypeService"
+        [label]="'Meio Pagamento'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+  </div>
+  <div class="linePayment lineLeft">
+    <div class="mr2">
+      <inputDate
+        formControlName="payDay"
+        [label]="'Data Pagamento'"
+        [isDisabled]="isDisabled"
+      ></inputDate>
+    </div>
+    <inputReais
+      formControlName="value"
+      [label]="'Valor'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+  <div class="linePayment lineLeft">
+    <div class="fullW">
+      <inputText
+        formControlName="observation"
+        [label]="'Observação'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+  </div>
+</div>

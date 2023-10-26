@@ -6,6 +6,9 @@ import com.condelar.cader.core.structure.BaseDTO;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class CashInflowDTO extends BaseDTO {
@@ -36,6 +39,8 @@ public class CashInflowDTO extends BaseDTO {
 
     private Short status;
 
+    private List<CashInflowPaymentListDTO> payments = new ArrayList<>();
+
     public CashInflowDTO() {
     }
 
@@ -45,6 +50,7 @@ public class CashInflowDTO extends BaseDTO {
         setPaymentType(ob.getPaymentType().getDescriptionId());
         setWallet(ob.getWallet().getDescriptionId());
         setPerson(ob.getPerson().getDescriptionId());
+        setPayments(ob.getPayments().stream().map(m -> new CashInflowPaymentListDTO(m)).collect(Collectors.toList()));
     }
 
 }

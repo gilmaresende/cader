@@ -53,3 +53,26 @@ export const EnumExpenseStatusFilter: Array<DescriptionId> = [
   { id: 99, description: 'ABERTO/PARCIAL' },
   ...EnumExpenseStatus,
 ];
+
+export const EnumCashInflowStatus: Array<DescriptionId> = [
+  { id: 1, description: 'ABERTO' },
+  { id: 2, description: 'LIQUIDADO' },
+  { id: 3, description: 'PARCIAL' },
+];
+
+export const EnumCashInflowStatusFilter: Array<DescriptionId> = [
+  { id: 0, description: 'TODOS' },
+  { id: 99, description: 'ABERTO/PARCIAL' },
+  ...EnumExpenseStatus,
+];
+
+export const EnumCashInflowOrigin: Array<DescriptionId> = [
+  { id: 1, description: 'LOTE RECEITA' },
+  { id: 2, description: 'COMPRA CARTAO TERCEIROS' },
+  { id: 3, description: 'MANUAL' },
+];
+
+export const EnumCashInflowOriginFilter: Array<DescriptionId> = [
+  { id: 0, description: 'TODOS' },
+  ...EnumExpenseOrigin,
+];

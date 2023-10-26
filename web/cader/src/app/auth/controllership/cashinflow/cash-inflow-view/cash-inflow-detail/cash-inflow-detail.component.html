@@ -1,0 +1,64 @@
+<div [formGroup]="form" class="mt2 mX4">
+  <div class="fullW">
+    <inputText
+      formControlName="description"
+      [label]="'Descrição'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+  <div class="lineBetween mt2">
+    <autocomplete
+      formControlName="wallet"
+      [service]="serviceWallet"
+      [label]="'Carteira'"
+      [isDisabled]="isDisabled"
+    />
+    <autocomplete
+      formControlName="paymentType"
+      [service]="servicePaymentTypeService"
+      [label]="'Meio de Pagamento'"
+      [isDisabled]="isDisabled"
+    />
+    <autocomplete
+      formControlName="person"
+      [service]="servicePerson"
+      [label]="'Pessoa'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+  <div class="lineBetween mt2 borderBottom">
+    <autocomplete
+      formControlName="incomeCategory"
+      [service]="servicePaymentTypeService"
+      [label]="'Categoria'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+  <div class="lineBetween mt2">
+    <inputDate
+      formControlName="dueDate"
+      [label]="'Data'"
+      [isDisabled]="isDisabled"
+    ></inputDate>
+    <inputReais
+      formControlName="openValue"
+      [label]="'Valor Aberto'"
+      [isDisabled]="true"
+    /><inputReais
+      formControlName="amountPaid"
+      [label]="'Valor Pago'"
+      [isDisabled]="true"
+    /><inputReais
+      formControlName="valueTotal"
+      [label]="'Valor Total'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+  <div class="fullW mt2">
+    <inputText
+      formControlName="observation"
+      [label]="'Observação'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+</div>

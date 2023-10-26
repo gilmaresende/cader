@@ -28,7 +28,7 @@ export class ControlService {
   confirmDialogService?: ConfirmDialogService;
   statePage: StatePage = StatePage.HOME;
   filterView!: ModelFilterService;
-  modalFilter!: SFilter;
+  modalFilter!: SFilter<any>;
   loading!: LoadingComponent;
 
   page?:
@@ -101,7 +101,7 @@ export class ControlService {
     return this.filterView;
   }
 
-  setModalFilter(modalFilter: SFilter) {
+  setModalFilter(modalFilter: SFilter<any>) {
     this.modalFilter = modalFilter;
   }
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SPageListFilter } from 'src/app/core/pages/spage/super-page-list-filter';
 import { ControlService } from 'src/app/core/services/control.service';
+import { newCashInflowFilter } from 'src/app/model-filter/cash-inflow-filter copy';
 import { CashInflow } from 'src/app/model/cash-inflow';
 import { CashInflowService } from 'src/app/services/cash-inflow.service';
 
@@ -51,6 +52,6 @@ export class CashInflowListComponent extends SPageListFilter<
   }
 
   override getFilterBase() {
-    return {};
+    return newCashInflowFilter();
   }
 }

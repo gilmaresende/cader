@@ -22,5 +22,12 @@ public class CashInflowValid extends BaseValid<CashInflowDTO, CashInflow> {
     public void validDelete(CashInflow ob) {
 
     }
+
+    public void validPreviewNewPayment(CashInflow ob) {
+        Double payValue = ob.getPayments().stream().mapToDouble(v -> v.getValue()).sum();
+        if (ob.getValueTotal() - payValue <= 0) {
+            addErrors("value", "Expense is closed!");
+        }
+    }
 }
 

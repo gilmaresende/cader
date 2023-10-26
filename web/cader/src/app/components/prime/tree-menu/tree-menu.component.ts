@@ -48,7 +48,7 @@ export class TreeMenuComponent implements OnInit {
           { label: 'Despesa', command: () => this.toGo('expense') },
           {
             label: 'Entrada de Caixa',
-            command: () => this.toGo('cash-inflow'),
+            command: () => this.toGo('cashInflow'),
           },
         ],
       },

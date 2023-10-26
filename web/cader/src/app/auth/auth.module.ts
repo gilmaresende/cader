@@ -33,6 +33,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PrimeRModule } from '../components/prime-r/prime-r.module';
 import { CustomizedModule } from '../components/custom/customized.module';
 import { CashInflowListComponent } from './controllership/cashinflow/cash-inflow-list/cash-inflow-list.component';
+import { CashInflowFilterComponent } from './controllership/cashinflow/cash-inflow-filter/cash-inflow-filter.component';
+import { CashInflowViewComponent } from './controllership/cashinflow/cash-inflow-view/cash-inflow-view.component';
+import { CashInflowDetailComponent } from './controllership/cashinflow/cash-inflow-view/cash-inflow-detail/cash-inflow-detail.component';
+import { CashInflowPaymentComponent } from './controllership/cashinflow/cash-inflow-view/cash-inflow-payment/cash-inflow-payment.component';
+import { CashInflowPaymentViewComponent } from './controllership/cashinflow/cash-inflow-view/cash-inflow-payment-view/cash-inflow-payment-view.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +66,11 @@ import { CashInflowListComponent } from './controllership/cashinflow/cash-inflow
     ExpensePaymentViewComponent,
     MovementViewComponent,
     CashInflowListComponent,
+    CashInflowFilterComponent,
+    CashInflowViewComponent,
+    CashInflowDetailComponent,
+    CashInflowPaymentComponent,
+    CashInflowPaymentViewComponent,
   ],
   imports: [
     CommonModule,

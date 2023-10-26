@@ -7,6 +7,7 @@ import {
   getFirstDayMonth,
   getLastDayMonth,
 } from 'src/app/core/utils/Date/date-util';
+import { MovimentFilter } from 'src/app/model-filter/moviment-filter';
 
 import { WalletService } from 'src/app/services/wallet.service';
 import {
@@ -19,7 +20,7 @@ import {
   templateUrl: './movement-filter.component.html',
   styleUrls: ['./movement-filter.component.scss'],
 })
-export class MovementFilterComponent extends SFilter {
+export class MovementFilterComponent extends SFilter<MovimentFilter> {
   typeList: Array<DescriptionId> = EnumTypeRevenueExpenceFilter;
   origenList: Array<DescriptionId> = EnumOriginMovementFilter;
 
@@ -38,7 +39,7 @@ export class MovementFilterComponent extends SFilter {
     wallet: new FormControl(),
   });
 
-  getOb(): any {
+  getOb(): MovimentFilter {
     const form = this.form.controls;
     const ob = {
       movimentDateStart: form.movimentDateStart.value as Date,

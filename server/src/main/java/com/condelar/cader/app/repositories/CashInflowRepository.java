@@ -1,13 +1,16 @@
 package com.condelar.cader.app.repositories;
 
 import com.condelar.cader.app.entiti.CashInflow;
+import com.condelar.cader.app.entiti.CashInflowPayment;
 import com.condelar.cader.app.entiti.Expense;
+import com.condelar.cader.app.entiti.ExpensePayment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface CashInflowRepository extends JpaRepository<CashInflow, Long> {
 
@@ -27,12 +30,28 @@ public interface CashInflowRepository extends JpaRepository<CashInflow, Long> {
             " AND (:pIncomeCategory = 0 or ic.id = :pIncomeCategory) \n"
     )
     List<CashInflow> getFilter(@Param("pDueDateStart") LocalDate pDueDateStart,
-                            @Param("pDueDateEnd") LocalDate pDueDateEnd,
-                            @Param("pStatus") Short pStatus,
-                            @Param("pWallet") Long pWallet,
-                            @Param("pPaymentType") Long pPaymentType,
-                            @Param("pPerson") Long pPerson,
-                            @Param("pIncomeCategory") Long pIncomeCategory
+                               @Param("pDueDateEnd") LocalDate pDueDateEnd,
+                               @Param("pStatus") Short pStatus,
+                               @Param("pWallet") Long pWallet,
+                               @Param("pPaymentType") Long pPaymentType,
+                               @Param("pPerson") Long pPerson,
+                               @Param("pIncomeCategory") Long pIncomeCategory
     );
+
+    @Query(value = " SELECT \n" +
+            " e \n " +
+            " FROM CashInflowPayment e \n" +
+            "   INNER JOIN e.user u \n" +
+            " WHERE (u.id = :idUser) \n" +
+            " AND e.id = :idPayment\n")
+    Optional<CashInflowPayment> findPaymentByIdAndUser(@Param("idPayment") Long idPayment, @Param("idUser") Long idUser);
+
+    @Query(value = " SELECT \n" +
+            " e.cashInflow \n " +
+            " FROM CashInflowPayment e \n" +
+            "   INNER JOIN e.user u \n" +
+            " WHERE (u.id = :idUser) \n" +
+            " AND e.id = :idPayment\n")
+    Optional<CashInflow> findByIdPaymentAndUser(@Param("idPayment") Long idPayment, @Param("idUser") Long idUser);
 }
 

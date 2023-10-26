@@ -7,38 +7,35 @@ import {
   getFirstDayMonth,
   getLastDayMonth,
 } from 'src/app/core/utils/Date/date-util';
-import {
-  ExpenseFilter,
-  newExpsenseFilter,
-} from 'src/app/model-filter/expense-filter';
-import { ExpenseCategoryService } from 'src/app/services/expense-category.service';
+import { CashInflowFilter } from 'src/app/model-filter/cash-inflow-filter copy';
+import { IncomeCategoryService } from 'src/app/services/income-category.service';
 import { PaymentTypeService } from 'src/app/services/payment-type.service';
 import { PersonService } from 'src/app/services/person.service';
 import { WalletService } from 'src/app/services/wallet.service';
 import {
-  EnumExpenseOriginFilter,
-  EnumExpenseStatusFilter,
+  EnumCashInflowOriginFilter,
+  EnumCashInflowStatusFilter,
 } from 'src/data/combos-enum';
 
 @Component({
-  selector: 'expense-filter',
-  templateUrl: './expense-filter.component.html',
-  styleUrls: ['./expense-filter.component.scss'],
+  selector: 'cash-inflow-filter',
+  templateUrl: './cash-inflow-filter.component.html',
+  styleUrls: ['./cash-inflow-filter.component.scss'],
 })
-export class ExpenseFilterComponent extends SFilter<ExpenseFilter> {
+export class CashInflowFilterComponent extends SFilter<CashInflowFilter> {
   constructor(
     private controller: ControlService,
     public serviceWallet: WalletService,
     public servicePaymentTypeService: PaymentTypeService,
     public servicePerson: PersonService,
-    public serviceExpenseCategory: ExpenseCategoryService
+    public serviceIncomeCategory: IncomeCategoryService
   ) {
     super(controller);
   }
 
-  originList: Array<DescriptionId> = EnumExpenseOriginFilter;
+  statusList: Array<DescriptionId> = EnumCashInflowStatusFilter;
 
-  statusList: Array<DescriptionId> = EnumExpenseStatusFilter;
+  originList: Array<DescriptionId> = EnumCashInflowOriginFilter;
 
   form = new FormGroup({
     dueDateStart: new FormControl(getFirstDayMonth()),
@@ -47,11 +44,11 @@ export class ExpenseFilterComponent extends SFilter<ExpenseFilter> {
     wallet: new FormControl(),
     paymentType: new FormControl(),
     person: new FormControl(),
-    expenseCategory: new FormControl(),
+    incomeCategory: new FormControl(),
     origin: new FormControl(),
   });
 
-  override getOb(): ExpenseFilter {
+  override getOb(): CashInflowFilter {
     const form = this.form.controls;
     const ob = {
       dueDateStart: form.dueDateStart.value as Date,
@@ -60,8 +57,8 @@ export class ExpenseFilterComponent extends SFilter<ExpenseFilter> {
       wallet: form.wallet.value as DescriptionId,
       paymentType: form.paymentType.value as DescriptionId,
       person: form.person.value as DescriptionId,
-      expenseCategory: form.expenseCategory.value as DescriptionId,
       origin: form.origin.value as DescriptionId,
+      incomeCategory: form.incomeCategory.value as DescriptionId,
     };
     return ob;
   }

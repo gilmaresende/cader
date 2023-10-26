@@ -107,7 +107,7 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
     public Expense deletePayment(Long id) {
         Expense expense = findByIdPayment(id);
         expense.getPayments().removeIf(f -> f.getId().equals(id));
-        expense = getRepo().save(expense);
+        expense = save(expense);
         return expense;
     }
 
@@ -133,7 +133,7 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         payment = updateExpenseByDTO(payment, dto);
         expense.getPayments().add(payment);
         payment.setExpense(expense);
-        expense = getRepo().save(expense);
+        expense = save(expense);
         return expense;
     }
 
@@ -142,7 +142,7 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         Expense expense = findById(data.getIdExpense());
         ExpensePayment payment = expense.getPayments().stream().filter(f -> f.getId().equals(data.getId())).findFirst().orElseThrow();
         updateExpenseByDTO(payment, data);
-        expense = getRepo().save(expense);
+        expense = save(expense);
         return expense;
     }
 

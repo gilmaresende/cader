@@ -2,6 +2,7 @@ package com.condelar.cader.app.services;
 
 import com.condelar.cader.app.constants.enuns.EnumOriginMovement;
 import com.condelar.cader.app.constants.enuns.EnumTypeRevenueExpence;
+import com.condelar.cader.app.entiti.CashInflowPayment;
 import com.condelar.cader.app.entiti.ExpensePayment;
 import com.condelar.cader.app.entiti.Movement;
 import com.condelar.cader.app.dto.movement.MovementDTO;
@@ -75,6 +76,24 @@ public class MovementService extends BaseService<Movement, MovementDTO, Movement
         movement.setUpdate(paymentExpense.getUpdate());
         movement.setMovementDate(paymentExpense.getPayDay());
         movement.setTypeRevenueExpence(EnumTypeRevenueExpence.DESPESA.getValue());
+        movement.setRegister(LocalDate.now());
+
+        return movement;
+    }
+
+    public Movement newMovement(CashInflowPayment payment) {
+        Movement movement = payment.getMovement();
+        if (movement == null) {
+            movement = new Movement();
+            movement.setWallet(payment.getWallet());
+        }
+        movement.setOrigin(EnumOriginMovement.RECEITA.getValue());
+        movement.setUser(getUser());
+        movement.setDescription(payment.getCashInflow().getDescription());
+        movement.setValue(payment.getValue());
+        movement.setUpdate(payment.getUpdate());
+        movement.setMovementDate(payment.getPayDay());
+        movement.setTypeRevenueExpence(EnumTypeRevenueExpence.RECEITA.getValue());
         movement.setRegister(LocalDate.now());
 
         return movement;
