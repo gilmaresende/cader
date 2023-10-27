@@ -5,12 +5,13 @@ import InputPasswordImpl from "../../components/InputImpl/InputPasswordImpl";
 import ButtonImpl from "../../components/button/ButtonImpl";
 import logarApi from "../../services/LoginService";
 
-export default function LoginView() {
+export default function LoginView(props: { navigation: any }) {
 	const [login, setLogin] = React.useState("");
 	const [password, setPassword] = React.useState("");
 
 	const logar = function () {
-		logarApi({ login, password });
+		console.log(props.navigation);
+		logarApi({ login, password }, props.navigation);
 	};
 
 	return (
