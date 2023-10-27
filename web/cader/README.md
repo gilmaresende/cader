@@ -1,3 +1,6 @@
+#buld projeto
+ng build
+
 #instalar server
 npm install -g http-server
 

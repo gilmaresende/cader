@@ -63,7 +63,7 @@ export const EnumCashInflowStatus: Array<DescriptionId> = [
 export const EnumCashInflowStatusFilter: Array<DescriptionId> = [
   { id: 0, description: 'TODOS' },
   { id: 99, description: 'ABERTO/PARCIAL' },
-  ...EnumExpenseStatus,
+  ...EnumCashInflowStatus,
 ];
 
 export const EnumCashInflowOrigin: Array<DescriptionId> = [
