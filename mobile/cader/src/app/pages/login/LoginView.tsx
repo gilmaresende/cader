@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import InputImpl from "../../components/InputImpl/InputImpl";
 import InputPasswordImpl from "../../components/InputImpl/InputPasswordImpl";
 import ButtonImpl from "../../components/button/ButtonImpl";
 import logarApi from "../../services/LoginService";
+import Storage from "../../library/storage/AsyncStorageImpl";
 
 export default function LoginView(props: { navigation: any }) {
 	const [login, setLogin] = React.useState("");
@@ -13,6 +14,18 @@ export default function LoginView(props: { navigation: any }) {
 		console.log(props.navigation);
 		logarApi({ login, password }, props.navigation);
 	};
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const data = await Storage.readDataStorage("tokenApi");
+			if (data) {
+				props.navigation.navigate("homeView");
+			}
+		};
+		fetchData()
+			// make sure to catch any error
+			.catch(console.error);
+	}, []);
 
 	return (
 		<View style={styles.container}>

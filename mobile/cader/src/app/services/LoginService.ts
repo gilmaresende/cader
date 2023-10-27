@@ -1,9 +1,10 @@
-import { sendGet, sendPost } from "../library/axios/AxiosImpl";
+import AxiosImp, { sendGet } from "../library/axios/AxiosImpl";
 import Login from "../models/Login";
-
+import Storage from "../library/storage/AsyncStorageImpl";
 function logarApi(login: Login, navigation: any) {
-	sendPost("user/login", login, (data: any) => {
-		navigation.navigate("homeView", data);
+	AxiosImp.sendPost("user/login", login, (data: any) => {
+		Storage.saveDataStorage("tokenApi", data);
+		navigation.navigate("homeView");
 	});
 }
 
