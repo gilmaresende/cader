@@ -33,42 +33,45 @@ public class CardBuy extends BaseEntity {
     private User user;
 
     @Column(name = "descricao", nullable = false, length = 150)
-    private String descricao;
+    private String description;
 
     @Column(name = "valor", nullable = false)
-    private Double valor;
+    private Double value;
 
     @Column(name = "numero_parcelas", nullable = false)
-    private Integer numeroParcelas;
+    private Integer launchesNumber;
 
     @ManyToOne
     @JoinColumn(name = "id_cartao", foreignKey = @ForeignKey(name = "fk_compra_cartao_cartao"), nullable = false)
     private Card card;
 
     @Column(name = "data_compra", nullable = false)
-    private LocalDate datebuy;
+    private LocalDate buyDate;
 
-    @OneToMany(mappedBy = "compraCartao", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cardBuy", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CardBuyLaunch> launch;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria", foreignKey = @ForeignKey(name = "fk_compra_cartao_categoria"), nullable = false)
     private ExpenseCategory expenseCategory;
 
-    @ManyToOne
-    @JoinColumn(name = "id_categoria_terceiros", foreignKey = @ForeignKey(name = "fk_com_catr_tercei"))
-    private IncomeCategory incomeCategoryThe3rd;
-
-    @ManyToOne
-    @JoinColumn(name = "id_mpg_terceiros", foreignKey = @ForeignKey(name = "fk_cc_mpg_tercei"))
-    private PaymentType paymentType;
-
     @Column(name = "cancelada", nullable = false)
     private Short canceled;
 
 /*
 
+
 //informações de compra de terceiros, criar novo objeto
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_mpg_terceiros", foreignKey = @ForeignKey(name = "fk_cc_mpg_tercei"))
+    private PaymentType paymentType;
+
+    @ManyToOne
+    @JoinColumn(name = "id_categoria_terceiros", foreignKey = @ForeignKey(name = "fk_com_catr_tercei"))
+    private IncomeCategory incomeCategoryThe3rd;
+
     @Column(name = "compra_terceiros", nullable = false)
     private Short buyThe3rd;
 
