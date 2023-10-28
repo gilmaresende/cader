@@ -10,11 +10,7 @@ import java.time.LocalDate;
 @Data
 public class CardBuyLaunchListDTO extends BaseDTO {
 
-    LocalDate dateLaunch;
 
-    Double value;
-
-    Integer number;
 
     public CardBuyLaunchListDTO() {
     }

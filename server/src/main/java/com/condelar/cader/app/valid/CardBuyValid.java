@@ -22,5 +22,8 @@ public class CardBuyValid extends BaseValid<CardBuyDTO, CardBuy> {
     public void validDelete(CardBuy ob) {
 
     }
+
+    public void validBuildLaunches(CardBuyDTO e) {
+    }
 }
 

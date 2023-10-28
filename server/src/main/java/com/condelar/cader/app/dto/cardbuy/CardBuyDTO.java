@@ -23,7 +23,7 @@ public class CardBuyDTO extends BaseDTO {
 
     private DescriptionId card;
 
-    private List<CardBuyLaunchListDTO> launches;
+    private List<CardBuyLaunchDTO> launches;
 
     private Short canceled;
 
@@ -34,7 +34,7 @@ public class CardBuyDTO extends BaseDTO {
         super(ob);
         setExpenseCategory(ob.getExpenseCategory().getDescriptionId());
         setCard(ob.getCard().getDescriptionId());
-        setLaunches(ob.getLaunch().stream().map(m -> new CardBuyLaunchListDTO(m)).toList());
+        setLaunches(ob.getLaunch().stream().map(m -> new CardBuyLaunchDTO(m)).toList());
     }
 
 }
