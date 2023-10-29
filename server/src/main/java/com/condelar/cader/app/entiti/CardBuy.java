@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -48,8 +49,8 @@ public class CardBuy extends BaseEntity {
     @Column(name = "data_compra", nullable = false)
     private LocalDate buyDate;
 
-    @OneToMany(mappedBy = "cardBuy", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CardBuyLaunch> launch;
+    @OneToMany(mappedBy = "cardBuy", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
+    private List<CardBuyLaunch> launch = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "id_categoria", foreignKey = @ForeignKey(name = "fk_compra_cartao_categoria"), nullable = false)
