@@ -11,7 +11,6 @@ export default function LoginView(props: { navigation: any }) {
 	const [password, setPassword] = React.useState("");
 
 	const logar = function () {
-		console.log(props.navigation);
 		logarApi({ login, password }, props.navigation);
 	};
 
