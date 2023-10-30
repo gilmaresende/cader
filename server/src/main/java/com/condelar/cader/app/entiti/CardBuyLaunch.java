@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "lancamento_fatura_cartao")
 public class CardBuyLaunch extends BaseEntity {
 
-  	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,13 +33,13 @@ public class CardBuyLaunch extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_compra_cartao", foreignKey = @ForeignKey(name = "fk_lancamento_compra"), nullable = false)
-    CardBuy cardBuy;
+    private CardBuy cardBuy;
 
     @Column(name = "data_lancamento", nullable = false)
-    LocalDate dateLaunch;
+    private LocalDate dateLaunch;
 
     @Column(name = "valor", nullable = false)
-    Double value;
+    private Double value;
 
     /*@ManyToOne
     @JoinColumn(name = "id_fatura", foreignKey = @ForeignKey(name = "fk_lancamento_fatura"))

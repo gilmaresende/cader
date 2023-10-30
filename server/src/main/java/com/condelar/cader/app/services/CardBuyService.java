@@ -9,6 +9,7 @@ import com.condelar.cader.app.entiti.CardBuy;
 import com.condelar.cader.app.entiti.CardBuyLaunch;
 import com.condelar.cader.app.repositories.CardBuyRepository;
 import com.condelar.cader.app.valid.CardBuyValid;
+import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseService;
 import com.condelar.cader.tool.entity.ToolEntity;
 import lombok.RequiredArgsConstructor;
@@ -53,17 +54,17 @@ public class CardBuyService extends BaseService<CardBuy, CardBuyDTO, CardBuyFilt
     }
 
     private void createUpdateLaunches(CardBuy ob, CardBuyDTO dto) {
-        List<CardBuyLaunch> launches = ob.getLaunch();
+        List<CardBuyLaunch> launches = ob.getLaunches();
         if (launches.isEmpty()) {
             launches = createLaunches(dto);
         } else {
             launches = updateLaunches(ob, dto);
         }
-        ob.setLaunch(launches);
+        ob.setLaunches(launches);
     }
 
     private List<CardBuyLaunch> updateLaunches(CardBuy ob, CardBuyDTO dto) {
-        List<CardBuyLaunch> launches = ob.getLaunch();
+        List<CardBuyLaunch> launches = ob.getLaunches();
         List<CardBuyLaunch> launchesClone = new ArrayList<>();
         launchesClone.addAll(launches);
         launches.clear();
@@ -99,7 +100,12 @@ public class CardBuyService extends BaseService<CardBuy, CardBuyDTO, CardBuyFilt
 
     @Override
     public List<CardBuy> filter(CardBuyFilterDTO ob) {
-        return getRepo().getFilter();
+        return getRepo().getFilter(ob.getBuyDateStart(),
+                ob.getBuyDateEnd(),
+                DescriptionId.getIdLong(ob.getCard()),
+                ob.getLaunchDateStart(),
+                ob.getLaunchDateEnd(),
+                getUser().getId());
     }
 
     @Override
@@ -130,7 +136,7 @@ public class CardBuyService extends BaseService<CardBuy, CardBuyDTO, CardBuyFilt
 
     @Override
     public CardBuy beforeSave(CardBuy ob) {
-        ob.getLaunch().forEach(i -> {
+        ob.getLaunches().forEach(i -> {
             i.setCardBuy(ob);
             i.setUpdate(LocalDateTime.now());
             i.setUser(getUser());

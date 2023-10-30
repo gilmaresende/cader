@@ -50,7 +50,7 @@ public class CardBuy extends BaseEntity {
     private LocalDate buyDate;
 
     @OneToMany(mappedBy = "cardBuy", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
-    private List<CardBuyLaunch> launch = new ArrayList<>();
+    private List<CardBuyLaunch> launches = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "id_categoria", foreignKey = @ForeignKey(name = "fk_compra_cartao_categoria"), nullable = false)

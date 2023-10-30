@@ -34,7 +34,7 @@ public class CardBuyDTO extends BaseDTO {
         super(ob);
         setExpenseCategory(ob.getExpenseCategory().getDescriptionId());
         setCard(ob.getCard().getDescriptionId());
-        setLaunches(ob.getLaunch().stream().map(m -> new CardBuyLaunchDTO(m)).toList());
+        setLaunches(ob.getLaunches().stream().map(m -> new CardBuyLaunchDTO(m)).toList());
     }
 
 }
