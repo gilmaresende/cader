@@ -12,6 +12,7 @@ export function sendGet(rote: string, action: any) {
 		})
 		.catch((error) => {
 			if (error.response) {
+				console.log(1);
 				console.log(error.response);
 			} else if (error.request) {
 				console.log(2);
@@ -33,7 +34,6 @@ const sendPostAuth = async (rote: string, data: any, action: any) => {
 			},
 		})
 		.then((response) => {
-			console.log(response.data.datas);
 			action(response.data.datas);
 		})
 		.catch((error) => {

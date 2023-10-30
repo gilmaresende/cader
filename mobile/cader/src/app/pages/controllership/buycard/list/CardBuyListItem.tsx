@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function CardBuyListItem(props: { buyCard: any }) {
 	const { buyCard } = props;
 	return (
+		
 		<View style={style.container}>
 			<View style={style.detailContainer}>
 				<Text>{buyCard.description}</Text>

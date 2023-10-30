@@ -10,7 +10,24 @@ const Stack = createStackNavigator();
 function App() {
 	return (
 		<NavigationContainer>
-			<Stack.Navigator>
+			<Stack.Navigator
+				screenOptions={{
+					headerStyle: {
+						backgroundColor: "#6ca2f7",
+						borderBottomWidth: 1,
+						borderBottomColor: "#c5c5c5",
+					},
+					headerTitleStyle: {
+						color: "#fff",
+						fontSize: 25,
+						// textAlign: 'center',
+						// justifyContent: 'center',
+						// alignItems: 'center',
+						alignSelf: "center",
+					},
+					headerTintColor: "#fff",
+				}}
+			>
 				<Stack.Screen
 					name="login"
 					component={LoginView}
