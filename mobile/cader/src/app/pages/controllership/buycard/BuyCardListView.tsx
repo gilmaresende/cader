@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import filterCompraCartao from "../../../services/CardBuyService";
+import filterCompraCartao from "../../../services/CardBuyService2";
 import CardBuyList from "./list/CardBuyList";
 import Loading from "../../../components/loagind/Loading";
 

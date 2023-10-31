@@ -1,18 +1,37 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import Storage from "../../library/storage/AsyncStorageImpl";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import ButtonImpl from "../../components/button/ButtonImpl";
+import { logout } from "../../services/LoginService";
 
 export default function HomeView(props: { navigation: any }) {
+	const sair = () => {
+		logout(props.navigation);
+	};
+
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity
 				onPress={() => {
-					props.navigation.navigate("buyCardList");
+					props.navigation.navigate("buyCardFilter");
 				}}
 			>
 				<View style={styles.item}>
 					<Text style={styles.text}>Compra Cartão</Text>
 				</View>
 			</TouchableOpacity>
+			<TouchableOpacity
+				onPress={() => {
+					props.navigation.navigate("buyCardList");
+				}}
+			>
+				<View style={styles.item}>
+					<Text style={styles.text}>Compra Cartão Lista</Text>
+				</View>
+			</TouchableOpacity>
+			<View>
+				<Text>
+					<ButtonImpl label="Sair" click={sair} />;
+				</Text>
+			</View>
 		</View>
 	);
 }

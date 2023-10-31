@@ -4,6 +4,7 @@ import React from "react";
 import HomeView from "./src/app/pages/home/HomeView";
 import LoginView from "./src/app/pages/login/LoginView";
 import BuyCardListView from "./src/app/pages/controllership/buycard/BuyCardListView";
+import CardBuyFilterView from "./src/app/pages/controllership/buycard/filter/CardBuyFilterView";
 
 const Stack = createStackNavigator();
 
@@ -47,6 +48,13 @@ function App() {
 					component={BuyCardListView}
 					options={{
 						title: "Compra Cartão",
+					}}
+				/>
+				<Stack.Screen
+					name="buyCardFilter"
+					component={CardBuyFilterView}
+					options={{
+						title: "Compra Cartão Filtro",
 					}}
 				/>
 			</Stack.Navigator>

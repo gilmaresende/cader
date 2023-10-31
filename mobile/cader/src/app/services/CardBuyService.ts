@@ -1,9 +1,15 @@
-import AxiosImp, { sendGet } from "../library/axios/AxiosImpl";
-import Login from "../models/Login";
-import Storage from "../library/storage/AsyncStorageImpl";
+import ServiceBase from "../../core/services/ServiceBase";
 
-const filterCompraCartao = async (filter: any, setData: any) => {
-	await AxiosImp.sendPostAuth("cardBuy/list", filter, setData);
-};
+export default class ButyCardService extends ServiceBase {
+	constructor() {
+		super("cardBuy");
+	}
 
-export default filterCompraCartao;
+	// async prever(dto) {
+	// 	return this.post("/prever", dto);
+	// }
+
+	// async cancelarCompra(dto) {
+	// 	return this.post("/cancelar", dto);
+	// }
+}

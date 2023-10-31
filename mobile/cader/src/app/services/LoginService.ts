@@ -8,4 +8,9 @@ function logarApi(login: Login, navigation: any) {
 	});
 }
 
+export function logout(navigation: any) {
+	Storage.saveDataStorage("tokenApi", null);
+	navigation.navigate("login");
+}
+
 export default logarApi;
