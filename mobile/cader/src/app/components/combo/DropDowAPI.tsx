@@ -4,7 +4,11 @@ import ServiceBase from "../../../core/services/ServiceBase";
 import DropDow from "./DropDow";
 import { DescriptionId } from "../../structuc/dto/DescritionId";
 
-const DropDowAPI = (props: { service: ServiceBase }) => {
+const DropDowAPI = (props: {
+	service: ServiceBase;
+	ob: any;
+	atribute: string;
+}) => {
 	const [itens, setItens] = useState<DescriptionId[]>([]);
 	const service = props.service as ServiceBase;
 	const all: DescriptionId = { id: 0, description: "Todos" };
@@ -31,7 +35,17 @@ const DropDowAPI = (props: { service: ServiceBase }) => {
 			.catch(console.error);
 	}, []);
 
-	return <DropDow itens={itens} value={all} />;
+	return (
+		<DropDow
+			itens={itens}
+			value={all}
+			selectItem={(item: DescriptionId) => {
+				if (props && props.ob && props.atribute) {
+					props.ob[props.atribute] = item;
+				}
+			}}
+		/>
+	);
 };
 
 const styles = StyleSheet.create({

@@ -1,6 +1,6 @@
 import ServiceBase from "../../core/services/ServiceBase";
 
-export default class ButyCardService extends ServiceBase {
+export default class CardBuyService extends ServiceBase {
 	constructor() {
 		super("cardBuy");
 	}
