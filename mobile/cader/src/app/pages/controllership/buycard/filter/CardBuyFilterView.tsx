@@ -1,6 +1,9 @@
 import { Text, View } from "react-native";
 import ViewFilter from "../../../../../core/views/ViewFilter";
 import InputDateImpl from "../../../../components/InputImpl/InputDateImpl";
+import DropDow from "../../../../components/combo/DropDow";
+import DropDowAPI from "../../../../components/combo/DropDowAPI";
+import CardService from "../../../../services/CardService";
 
 export default class CardBuyFilterView extends ViewFilter {
 	show() {
@@ -26,6 +29,7 @@ export default class CardBuyFilterView extends ViewFilter {
 					value=""
 					setValue={(v: string) => console.log(v)}
 				/>
+				<DropDowAPI service={new CardService()} />
 			</View>
 		);
 	}

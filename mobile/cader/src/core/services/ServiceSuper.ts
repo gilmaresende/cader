@@ -1,7 +1,8 @@
 import axios from "axios";
+import Storage from "../../app/library/storage/AsyncStorageImpl";
 
 const httpClient = axios.create({
-	baseURL: `http://192.168.0.105:8081`,
+	baseURL: "http://condelar.ddns.net:3003/",
 });
 
 class ServiceSuper {
@@ -34,6 +35,16 @@ class ServiceSuper {
 	filterBase(ob: any) {
 		const requestUrl = `${this.apiurl}/list`;
 		return httpClient.post(requestUrl, ob);
+	}
+
+	async getByURL(url: string) {
+		const token = await Storage.readDataStorage("tokenApi");
+		const requestUrl = `${this.apiurl}/${url}`;
+		return httpClient.get(requestUrl, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
 	}
 }
 

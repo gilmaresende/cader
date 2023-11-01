@@ -25,6 +25,10 @@ export default class ServiceBase extends ServiceSuper {
 		return this.filterBase(filter);
 	}
 
+	async getCombo() {
+		return this.getByURL("combo");
+	}
+
 	// async getAll(dto) {
 	// 	return this.post("/get-all", dto);
 	// }
