@@ -4,6 +4,7 @@ import InputDateImpl from "../../../../components/InputImpl/InputDateImpl";
 import DropDow from "../../../../components/combo/DropDow";
 import DropDowAPI from "../../../../components/combo/DropDowAPI";
 import CardService from "../../../../services/CardService";
+import ButtonImpl from "../../../../components/button/ButtonImpl";
 
 export default class CardBuyFilterView extends ViewFilter {
 	show() {
@@ -30,6 +31,8 @@ export default class CardBuyFilterView extends ViewFilter {
 					setValue={(v: string) => console.log(v)}
 				/>
 				<DropDowAPI service={new CardService()} />
+				<ButtonImpl label="Buscar" click={() => {}} />
+				<ButtonImpl label="Novo" click={() => {}} />
 			</View>
 		);
 	}
