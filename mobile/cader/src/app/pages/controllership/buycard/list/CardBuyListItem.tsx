@@ -1,19 +1,28 @@
 import { StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function CardBuyListItem(props: { buyCard: any }) {
+export default function CardBuyListItem(props: {
+	buyCard: any;
+	navigation: any;
+}) {
 	const { buyCard } = props;
 	return (
-		
-		<View style={style.container}>
-			<View style={style.detailContainer}>
-				<Text>{buyCard.description}</Text>
-				<Text>{buyCard.card}</Text>
-				<Text>{buyCard.buyDate}</Text>
+		<TouchableOpacity
+			onPress={() => {
+				props.navigation.navigate("buyCardEntiti");
+			}}
+		>
+			<View style={style.container}>
+				<View style={style.detailContainer}>
+					<Text>{buyCard.description}</Text>
+					<Text>{buyCard.card}</Text>
+					<Text>{buyCard.buyDate}</Text>
+				</View>
+				<View style={style.detailContainer}>
+					<Text style={style.value}>{buyCard.value}</Text>
+				</View>
 			</View>
-			<View style={style.detailContainer}>
-				<Text style={style.value}>{buyCard.value}</Text>
-			</View>
-		</View>
+		</TouchableOpacity>
 	);
 }
 

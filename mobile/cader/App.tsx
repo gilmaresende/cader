@@ -5,6 +5,7 @@ import CardBuyFilterView from "./src/app/pages/controllership/buycard/filter/Car
 import CardBuyListView from "./src/app/pages/controllership/buycard/list/CardBuyListView";
 import HomeView from "./src/app/pages/home/HomeView";
 import LoginView from "./src/app/pages/login/LoginView";
+import CardBuyEntityView from "./src/app/pages/controllership/buycard/view/CardBuyEntityView";
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,13 @@ function App() {
 					}}
 				/>
 				<Stack.Screen
+					name="buyCardFilter"
+					component={CardBuyFilterView}
+					options={{
+						title: "Compra Cartão Filtro",
+					}}
+				/>
+				<Stack.Screen
 					name="buyCardList"
 					component={CardBuyListView}
 					options={{
@@ -51,10 +59,10 @@ function App() {
 					}}
 				/>
 				<Stack.Screen
-					name="buyCardFilter"
-					component={CardBuyFilterView}
+					name="buyCardEntiti"
+					component={CardBuyEntityView}
 					options={{
-						title: "Compra Cartão Filtro",
+						title: "Compra Cartão",
 					}}
 				/>
 			</Stack.Navigator>

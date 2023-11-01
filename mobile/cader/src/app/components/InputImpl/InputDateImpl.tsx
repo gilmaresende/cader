@@ -7,14 +7,21 @@ import {
 	View,
 } from "react-native";
 import Modal from "react-native-modal";
-import { formatDateToAPI } from "../../util/ToolDate";
+import { formatDateToAPI, formatDateToView } from "../../util/ToolDate";
 import CalendarImpl from "./base/CalendarImpl";
 
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-const InputDateImpl = (props: { ob: any; atribute: string; label: string }) => {
-	const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+const InputDateImpl = (props: {
+	ob: any;
+	atribute: string;
+	label: string;
+	value?: Date | string;
+}) => {
+	const [selectedDate, setSelectedDate] = useState<Date | string | null>(
+		props.value ? props.value : null
+	);
 	const [isCalendarVisible, setCalendarVisible] = useState(false);
 	const onTextInputPress = () => {
 		setCalendarVisible(true);
@@ -30,7 +37,7 @@ const InputDateImpl = (props: { ob: any; atribute: string; label: string }) => {
 	};
 
 	const onDateChange = (date: Date) => {
-		setSelectedDate(date);
+		setSelectedDate(formatDateToView(date));
 		if (props && props.ob && props.atribute) {
 			props.ob[props.atribute] = formatDateToAPI(date);
 		}

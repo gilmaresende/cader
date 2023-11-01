@@ -1,6 +1,6 @@
 import ServiceSuper from "./ServiceSuper";
 
-export default class ServiceBase extends ServiceSuper {
+export default abstract class ServiceBase extends ServiceSuper {
 	constructor(rota: string) {
 		super(rota);
 	}
@@ -28,6 +28,10 @@ export default class ServiceBase extends ServiceSuper {
 	async getCombo() {
 		return this.getByURL("combo");
 	}
+
+	abstract getPageList(): string;
+
+	abstract getPageView(): string;
 
 	// async getAll(dto) {
 	// 	return this.post("/get-all", dto);

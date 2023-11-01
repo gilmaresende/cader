@@ -15,7 +15,7 @@ export default class CardBuyListView extends ViewList {
 	show() {
 		return (
 			<View>
-				<CardBuyList itens={this.state.list} />
+				<CardBuyList itens={this.state.list} navigation={this.navigation} />
 			</View>
 		);
 	}
