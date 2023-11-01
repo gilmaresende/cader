@@ -32,9 +32,14 @@ class ServiceSuper {
 		return httpClient.get(requestUrl);
 	}
 
-	filterBase(ob: any) {
+	async filterBase(ob: any) {
+		const token = await Storage.readDataStorage("tokenApi");
 		const requestUrl = `${this.apiurl}/list`;
-		return httpClient.post(requestUrl, ob);
+		return httpClient.post(requestUrl, ob, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
 	}
 
 	async getByURL(url: string) {

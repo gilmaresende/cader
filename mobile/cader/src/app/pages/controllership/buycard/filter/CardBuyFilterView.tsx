@@ -4,12 +4,11 @@ import InputDateImpl from "../../../../components/InputImpl/InputDateImpl";
 import ButtonImpl from "../../../../components/button/ButtonImpl";
 import DropDowAPI from "../../../../components/combo/DropDowAPI";
 import CardService from "../../../../services/CardService";
+import CardBuyService from "../../../../services/CardBuyService";
 
 export default class CardBuyFilterView extends ViewFilter {
-	state = { ob: {} };
-
 	constructor(props: any) {
-		super(props);
+		super(props, new CardBuyService());
 	}
 
 	show() {
@@ -43,13 +42,13 @@ export default class CardBuyFilterView extends ViewFilter {
 				<ButtonImpl
 					label="Buscar"
 					click={() => {
-						console.log(this.state.ob);
+						this.toFilter();
 					}}
 				/>
 				<ButtonImpl
 					label="Novo"
 					click={() => {
-						console.log(this.state.ob);
+						this.toNew();
 					}}
 				/>
 			</View>

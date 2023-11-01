@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -6,16 +6,23 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
-import CalendarPicker from "react-native-calendar-picker";
-import CalendarImpl from "./base/CalendarImpl";
 import Modal from "react-native-modal";
+import { formatDateToAPI } from "../../util/ToolDate";
+import CalendarImpl from "./base/CalendarImpl";
+
+import { faX } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 const InputDateImpl = (props: { ob: any; atribute: string; label: string }) => {
 	const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 	const [isCalendarVisible, setCalendarVisible] = useState(false);
-	const calendarRef = useRef<CalendarPicker | null>(null);
 	const onTextInputPress = () => {
 		setCalendarVisible(true);
+	};
+
+	const onClear = () => {
+		setSelectedDate(null);
+		props.ob[props.atribute] = undefined;
 	};
 
 	const closeModal = () => {
@@ -25,7 +32,7 @@ const InputDateImpl = (props: { ob: any; atribute: string; label: string }) => {
 	const onDateChange = (date: Date) => {
 		setSelectedDate(date);
 		if (props && props.ob && props.atribute) {
-			props.ob[props.atribute] = date;
+			props.ob[props.atribute] = formatDateToAPI(date);
 		}
 		setCalendarVisible(false);
 	};
@@ -33,14 +40,23 @@ const InputDateImpl = (props: { ob: any; atribute: string; label: string }) => {
 	return (
 		<View style={styles.container}>
 			<Text>{props.label}</Text>
-			<TouchableOpacity onPress={onTextInputPress}>
-				<TextInput
-					style={styles.input}
-					placeholder="Toque para selecionar a data"
-					editable={false}
-					value={selectedDate ? selectedDate.toString() : ""}
-				/>
-			</TouchableOpacity>
+			<View style={styles.line}>
+				<View style={styles.inputView}>
+					<TouchableOpacity onPress={onTextInputPress}>
+						<TextInput
+							style={styles.input}
+							placeholder="Toque para selecionar a data"
+							editable={false}
+							value={selectedDate ? selectedDate.toString() : ""}
+						/>
+					</TouchableOpacity>
+				</View>
+				<View>
+					<TouchableOpacity style={styles.button} onPress={onClear}>
+						<FontAwesomeIcon color="#ff2424" icon={faX} />
+					</TouchableOpacity>
+				</View>
+			</View>
 			<Modal
 				isVisible={isCalendarVisible}
 				onBackdropPress={closeModal}
@@ -74,6 +90,19 @@ const styles = StyleSheet.create({
 		width: "100%",
 		margin: 0,
 		padding: 0,
+	},
+	line: {
+		flexDirection: "row",
+		alignItems: "center",
+	},
+	inputView: {
+		flex: 1,
+	},
+	button: {
+		backgroundColor: "#cccccc",
+		padding: 10,
+		borderTopRightRadius: 4,
+		borderBottomRightRadius: 4,
 	},
 });
 

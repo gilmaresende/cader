@@ -1,10 +1,10 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
+import CardBuyFilterView from "./src/app/pages/controllership/buycard/filter/CardBuyFilterView";
+import CardBuyListView from "./src/app/pages/controllership/buycard/list/CardBuyListView";
 import HomeView from "./src/app/pages/home/HomeView";
 import LoginView from "./src/app/pages/login/LoginView";
-import BuyCardListView from "./src/app/pages/controllership/buycard/BuyCardListView";
-import CardBuyFilterView from "./src/app/pages/controllership/buycard/filter/CardBuyFilterView";
 
 const Stack = createStackNavigator();
 
@@ -45,9 +45,9 @@ function App() {
 				/>
 				<Stack.Screen
 					name="buyCardList"
-					component={BuyCardListView}
+					component={CardBuyListView}
 					options={{
-						title: "Compra Cartão",
+						title: "Compra Cartão Filtro",
 					}}
 				/>
 				<Stack.Screen

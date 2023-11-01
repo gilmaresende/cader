@@ -15,7 +15,7 @@ export default function HomeView(props: { navigation: any }) {
 				}}
 			>
 				<View style={styles.item}>
-					<Text style={styles.text}>Compra Cartão</Text>
+					<Text style={styles.text}>Compra Cartão Fitro</Text>
 				</View>
 			</TouchableOpacity>
 			<TouchableOpacity
