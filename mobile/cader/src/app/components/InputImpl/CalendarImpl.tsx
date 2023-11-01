@@ -2,13 +2,9 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import CalendarPicker from "react-native-calendar-picker";
 
-export default function InputDateImpl(props: {
-	label: string;
-	value: string;
-	setValue: any;
-}) {
+export default function CalendarImpl(props: { setSelectedDate: any }) {
 	const onDateChange = (date: any) => {
-		console.log(date);
+		props.setSelectedDate(date);
 	};
 
 	return (

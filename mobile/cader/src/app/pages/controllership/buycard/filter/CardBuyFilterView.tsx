@@ -5,34 +5,25 @@ import DropDow from "../../../../components/combo/DropDow";
 import DropDowAPI from "../../../../components/combo/DropDowAPI";
 import CardService from "../../../../services/CardService";
 import ButtonImpl from "../../../../components/button/ButtonImpl";
+import InputDateImpl2 from "../../../../components/InputImpl/InputDateImpl2";
 
 export default class CardBuyFilterView extends ViewFilter {
+	state = { ob: {} };
+
+	constructor(props: any) {
+		super(props);
+	}
+
 	show() {
 		return (
 			<View>
-				<InputDateImpl
-					label="Data Compra Inicial"
-					value=""
-					setValue={(v: string) => console.log(v)}
+				<InputDateImpl2 ob={this.state.ob} atribute="cadastro" />
+				<ButtonImpl
+					label="View"
+					click={() => {
+						console.log(this.state.ob);
+					}}
 				/>
-				<InputDateImpl
-					label="Data Compra Final"
-					value=""
-					setValue={(v: string) => console.log(v)}
-				/>
-				<InputDateImpl
-					label="Data Lançamento Inicial"
-					value=""
-					setValue={(v: string) => console.log(v)}
-				/>
-				<InputDateImpl
-					label="Data Lançamento Final"
-					value=""
-					setValue={(v: string) => console.log(v)}
-				/>
-				<DropDowAPI service={new CardService()} />
-				<ButtonImpl label="Buscar" click={() => {}} />
-				<ButtonImpl label="Novo" click={() => {}} />
 			</View>
 		);
 	}
