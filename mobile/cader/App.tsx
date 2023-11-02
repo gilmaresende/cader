@@ -6,6 +6,7 @@ import CardBuyListView from "./src/app/pages/controllership/buycard/list/CardBuy
 import HomeView from "./src/app/pages/home/HomeView";
 import LoginView from "./src/app/pages/login/LoginView";
 import CardBuyEntityView from "./src/app/pages/controllership/buycard/view/CardBuyEntityView";
+import ErrorView from "./src/app/pages/erroview/ErrorView";
 
 const Stack = createStackNavigator();
 
@@ -63,6 +64,13 @@ function App() {
 					component={CardBuyEntityView}
 					options={{
 						title: "Compra Cartão",
+					}}
+				/>
+				<Stack.Screen
+					name="errorView"
+					component={ErrorView}
+					options={{
+						title: "Error Detail",
 					}}
 				/>
 			</Stack.Navigator>

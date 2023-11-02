@@ -10,8 +10,8 @@ export default function LoginView(props: { navigation: any }) {
 	const [login, setLogin] = React.useState("");
 	const [password, setPassword] = React.useState("");
 
-	const logar = function () {
-		logarApi({ login, password }, props.navigation);
+	const logar = async () => {
+		await logarApi({ login, password }, props.navigation);
 	};
 
 	useEffect(() => {

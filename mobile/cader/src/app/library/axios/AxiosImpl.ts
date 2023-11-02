@@ -3,28 +3,35 @@ import Storage from "../storage/AsyncStorageImpl";
 
 const server = "http://condelar.ddns.net:3003/";
 
-export function sendGet(rote: string, action: any) {
+export function sendGet(rote: string, action: any, actionError: any) {
 	const url = `${server}${rote}`;
 	axios
-		.get(url)
+		.get(url, {
+			headers: {
+				"Content-Type": "multipart/form-data",
+				Accept: "application/json",
+			},
+		})
 		.then((response) => {
 			action(response.data);
 		})
 		.catch((error) => {
 			if (error.response) {
-				console.log(1);
-				console.log(error.response);
+				actionError(error.response);
 			} else if (error.request) {
-				console.log(2);
-				console.log(error.request);
+				actionError(error.request);
 			} else {
-				console.log(3);
-				console.log(error);
+				actionError(error);
 			}
 		});
 }
 
-const sendPostAuth = async (rote: string, data: any, action: any) => {
+const sendPostAuth = async (
+	rote: string,
+	data: any,
+	action: any,
+	actionError: any
+) => {
 	const url = `${server}${rote}`;
 	const token = await Storage.readDataStorage("tokenApi");
 	axios
@@ -38,23 +45,22 @@ const sendPostAuth = async (rote: string, data: any, action: any) => {
 		})
 		.catch((error) => {
 			if (error.response) {
-				console.log(1);
-				console.log(error.response);
+				actionError(error.response);
 			} else if (error.request) {
-				console.log(2);
-
-				console.log(error.request);
+				actionError(error.request);
 			} else {
-				console.log(3);
-				console.log(error);
+				actionError(error);
 			}
 		});
 };
 
-const sendPost = async (rote: string, data: any, action: any) => {
+const sendPost = async (
+	rote: string,
+	data: any,
+	action: any,
+	actionError: any
+) => {
 	const url = `${server}${rote}`;
-	console.log(url);
-
 	axios
 		.post(url, data)
 		.then((response) => {
@@ -62,15 +68,11 @@ const sendPost = async (rote: string, data: any, action: any) => {
 		})
 		.catch((error) => {
 			if (error.response) {
-				console.log(1);
-				console.log(error.response);
+				actionError(error.response);
 			} else if (error.request) {
-				console.log(2);
-
-				console.log(error.request);
+				actionError(error.request);
 			} else {
-				console.log(3);
-				console.log(error);
+				actionError(error);
 			}
 		});
 };

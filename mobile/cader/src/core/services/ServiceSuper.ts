@@ -51,6 +51,11 @@ class ServiceSuper {
 			},
 		});
 	}
+
+	async postSuper(ob: any, url: string) {
+		const requestUrl = `${this.apiurl}/${url}`;
+		return httpClient.post(requestUrl, ob);
+	}
 }
 
 export default ServiceSuper;

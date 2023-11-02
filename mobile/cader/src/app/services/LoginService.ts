@@ -1,12 +1,20 @@
-import AxiosImp, { sendGet } from "../library/axios/AxiosImpl";
-import Login from "../models/Login";
+import AxiosImp from "../library/axios/AxiosImpl";
 import Storage from "../library/storage/AsyncStorageImpl";
-function logarApi(login: Login, navigation: any) {
-	AxiosImp.sendPost("user/login", login, (data: any) => {
-		Storage.saveDataStorage("tokenApi", data);
-		navigation.navigate("homeView");
-	});
-}
+import Login from "../models/Login";
+const logarApi = async (login: Login, navigation: any) => {
+	AxiosImp.sendPost(
+		"user/login",
+		login,
+		(data: any) => {
+			Storage.saveDataStorage("tokenApi", data);
+			navigation.navigate("homeView");
+		},
+		(error: any) => {
+			const erroStr = JSON.stringify(error);
+			navigation.navigate("errorView", { msg1: erroStr });
+		}
+	);
+};
 
 export function logout(navigation: any) {
 	Storage.saveDataStorage("tokenApi", null);

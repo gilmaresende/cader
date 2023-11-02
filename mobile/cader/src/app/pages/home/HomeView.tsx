@@ -29,7 +29,7 @@ export default function HomeView(props: { navigation: any }) {
 			</TouchableOpacity>
 			<View>
 				<Text>
-					<ButtonImpl label="Sair" click={sair} />;
+					<ButtonImpl label="Sair" click={sair} />
 				</Text>
 			</View>
 		</View>
