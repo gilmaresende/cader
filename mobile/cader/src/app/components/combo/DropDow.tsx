@@ -16,7 +16,6 @@ const DropDow = (props: {
 				<Picker
 					selectedValue={selectedValue}
 					onValueChange={(itemValue) => {
-						console.log(itemValue);
 						setSelectedValue(itemValue);
 						if (props.selectItem) {
 							props.selectItem(itemValue);

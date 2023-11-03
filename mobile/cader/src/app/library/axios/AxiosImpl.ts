@@ -1,7 +1,17 @@
 import axios from "axios";
 import Storage from "../storage/AsyncStorageImpl";
 
-const server = "http://condelar.ddns.net:3003/";
+let server = "http://condelar.ddns.net:3003/";
+
+let httpClient = axios.create({
+	baseURL: "",
+});
+
+Storage.readDataStorage("urlAPI")
+	.then((response) => {
+		server = response;
+	})
+	.catch((error) => {});
 
 export function sendGet(rote: string, action: any, actionError: any) {
 	const url = `${server}${rote}`;

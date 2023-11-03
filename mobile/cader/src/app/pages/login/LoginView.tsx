@@ -14,6 +14,10 @@ export default function LoginView(props: { navigation: any }) {
 		await logarApi({ login, password }, props.navigation);
 	};
 
+	const config = async () => {
+		props.navigation.navigate("configView");
+	};
+
 	useEffect(() => {
 		const fetchData = async () => {
 			const data = await Storage.readDataStorage("tokenApi");
@@ -35,6 +39,7 @@ export default function LoginView(props: { navigation: any }) {
 				value={password}
 			/>
 			<ButtonImpl label="Logar" click={logar} />
+			<ButtonImpl label="Config" click={config} />
 		</View>
 	);
 }

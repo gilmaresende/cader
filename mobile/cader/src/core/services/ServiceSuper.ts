@@ -1,9 +1,21 @@
 import axios from "axios";
 import Storage from "../../app/library/storage/AsyncStorageImpl";
 
-const httpClient = axios.create({
-	baseURL: "http://condelar.ddns.net:3003/",
+let httpClient = axios.create({
+	baseURL: "",
 });
+
+Storage.readDataStorage("urlAPI")
+	.then((response) => {
+		httpClient = axios.create({
+			baseURL: response,
+		});
+	})
+	.catch((error) => {
+		httpClient = axios.create({
+			baseURL: "",
+		});
+	});
 
 class ServiceSuper {
 	private apiurl: string;
