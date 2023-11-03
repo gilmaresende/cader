@@ -7,6 +7,7 @@ import HomeView from "./src/app/pages/home/HomeView";
 import LoginView from "./src/app/pages/login/LoginView";
 import CardBuyEntityView from "./src/app/pages/controllership/buycard/view/CardBuyEntityView";
 import ErrorView from "./src/app/pages/erroview/ErrorView";
+import ConfigView from "./src/app/pages/config/ConfigView";
 
 const Stack = createStackNavigator();
 
@@ -71,6 +72,13 @@ function App() {
 					component={ErrorView}
 					options={{
 						title: "Error Detail",
+					}}
+				/>
+				<Stack.Screen
+					name="configView"
+					component={ConfigView}
+					options={{
+						title: "Config",
 					}}
 				/>
 			</Stack.Navigator>
