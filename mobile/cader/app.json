@@ -2,10 +2,11 @@
   "expo": {
     "name": "cader",
     "slug": "cader",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon2.png",
     "userInterfaceStyle": "light",
+    "usesCleartextTraffic": true,
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -19,7 +20,6 @@
     },
     "android": {
       "package": "com.condelar.cader",
-      "usesCleartextTraffic": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -27,6 +27,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "adcd25d9-e310-44ee-ab6b-13ecdaa4addf"
+      }
     }
   }
 }

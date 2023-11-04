@@ -3,10 +3,6 @@ import Storage from "../storage/AsyncStorageImpl";
 
 let server = "http://condelar.ddns.net:3003/";
 
-let httpClient = axios.create({
-	baseURL: "",
-});
-
 Storage.readDataStorage("urlAPI")
 	.then((response) => {
 		server = response;
