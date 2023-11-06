@@ -2,14 +2,10 @@
   "expo": {
     "name": "cader",
     "slug": "cader",
-    "version": "1.0.6",
+    "version": "1.0.9",
     "android": {
-      "package": "com.condelar.cader",
-      "config": {
-        "cleartext": {
-          "usesCleartextTraffic": true
-        }
-      }
+      "package": "com.condelar.people",
+      "useNextNetworkStack": true
     },
     "extra": {
       "eas": {
