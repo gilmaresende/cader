@@ -3,6 +3,26 @@
 .pt1 {
 	padding-top: 1rem;
 }
+
+.pb1 {
+	padding-bottom: 1rem;
+}
+
+.pb2 {
+	padding-bottom: 2rem;
+}
+.pb3 {
+	padding-bottom: 3rem;
+}
+
+.pb4 {
+	padding-bottom: 4rem;
+}
+
+.pb7 {
+	padding-bottom: 7rem;
+}
+
 .pt2 {
 	padding-top: 2rem;
 }
@@ -20,13 +40,16 @@
 
 // padding horizontal
 .ph1 {
-	padding: 0 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 
 .ph2 {
-	padding: 0 2rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
 }
 
 .ph3 {
-	padding: 0 3rem;
+	padding-left: 3rem;
+	padding-right: 3rem;
 }

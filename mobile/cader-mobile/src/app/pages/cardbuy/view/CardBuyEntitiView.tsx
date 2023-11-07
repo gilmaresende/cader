@@ -6,6 +6,8 @@ import InpuDate from "../../../../components/inputdate/InpuDate";
 import InputNumber from "../../../../components/inputnumber/InputNumber";
 import InputReais from "../../../../components/inputreais/InputReais";
 import Button1 from "../../../../components/button1/Button1";
+import CardBuyLaunchFrame from "./CardBuyLaunchFrame";
+import DropDow from "../../../../components/dropdow/DropDow";
 export default function CardBuyEntitiView() {
 	const location = useLocation();
 	const { id } = useParams();
@@ -15,6 +17,7 @@ export default function CardBuyEntitiView() {
 		id?: number;
 		description?: string;
 		buyDate?: string;
+		launches?: Array<{ number: number; dateLaunch: string }>;
 	}>({});
 
 	const service = new CardBuyService();
@@ -41,7 +44,7 @@ export default function CardBuyEntitiView() {
 		service
 			.toCalculeteLaunches(ob)
 			.then((response) => {
-				console.log(response.data);
+				setOb(response.data.data);
 				setLoading(false);
 			})
 			.catch((error) => console.log(error));
@@ -52,25 +55,41 @@ export default function CardBuyEntitiView() {
 	}
 
 	return (
-		<div>
-			<div className="mt2 ph1">
+		<div className="ph1 mb2">
+			<div className="mt2 ">
 				<InputText label="Descrição" ob={ob} attribute="description" />
 			</div>
-			<div className="mt1 ph1">
+			<div className="mt1 ">
+				<DropDow label="Cartão" ob={ob} />
+			</div>
+			<div className="mt1 ">
+				<DropDow label="Categoria Despesa" ob={ob} />
+			</div>
+			<div className="mt1 ">
 				<InpuDate attribute="buyDate" label="Data Compra" ob={ob} />
 			</div>
-			<div className="mt1 ph1">
+			<div className="mt1 ">
 				<InputNumber
 					attribute="launchesNumber"
 					label="Quantidade Parcelas"
 					ob={ob}
 				/>
 			</div>
-			<div className="mt1 ph1">
+			<div className="mt1 ">
 				<InputReais attribute="value" label="Valor" ob={ob} />
 			</div>
-			<div className="mt1 ph1">
+			<div className="mt1 ">
 				<Button1 click={toCalculeteLaunches} label="Calcular Lançamentos" />
+			</div>
+			{ob.launches && (
+				<div>
+					{ob.launches.map((launch) => (
+						<CardBuyLaunchFrame item={launch} />
+					))}
+				</div>
+			)}
+			<div className="mt1 ">
+				<Button1 click={toCalculeteLaunches} label="Salvar" />
 			</div>
 		</div>
 	);

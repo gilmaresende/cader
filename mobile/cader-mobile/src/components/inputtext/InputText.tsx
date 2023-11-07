@@ -19,7 +19,7 @@ function InputText(props: { label: string; ob: any; attribute: string }) {
 		}
 	};
 	return (
-		<div className="inputText">
+		<div className="">
 			<FormControl fullWidth>
 				<InputLabel htmlFor="outlined-adornment-amount">
 					{props.label}
