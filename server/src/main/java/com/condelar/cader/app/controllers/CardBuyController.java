@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cardBuy")
 public class CardBuyController extends BaseController<CardBuy, CardBuyDTO, CardBuyFilterDTO, CardBuyListDTO, CardBuyRepository, CardBuyService, CardBuyValid> {
 
-    @PostMapping("/prever")
-    public ResponseEntity<PackageDT<CardBuyDTO>> predict(@RequestBody CardBuyDTO cardBuyPredict) {
+    @PostMapping("/toCalculeteLaunches")
+    public ResponseEntity<PackageDT<CardBuyDTO>> toCalculeteLaunches(@RequestBody CardBuyDTO cardBuyPredict) {
         getValid().clear();
         getValid().validBuildLaunches(cardBuyPredict);
         getValid().hasError();

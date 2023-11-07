@@ -11,27 +11,27 @@ export default abstract class ServiceApi extends SuperService {
 
 	async findById(id: number) {
 		const url = `${this.rota}/${id}`;
-		return this.axios.get(url);
+		return this.axios.getAuth(url);
 	}
 
 	async delete(id: number) {
 		const url = `${this.rota}/${id}`;
-		return this.axios.delete(url);
+		return this.axios.deleteAuth(url);
 	}
 
 	async update(id: number, ob: {}) {
 		const url = `${this.rota}/${id}`;
-		return this.axios.put(url, ob);
+		return this.axios.putAuth(url, ob);
 	}
 
 	async filter(filter: {}) {
 		const url = `${this.rota}/list`;
-		return this.axios.post(this.rota, filter);
+		return this.axios.postAuth(url, filter);
 	}
 
 	async getCombo() {
 		const url = `${this.rota}/combo`;
-		return this.axios.post(this.rota, {});
+		return this.axios.postAuth(url, {});
 	}
 
 	abstract getPageList(): string;

@@ -1,26 +1,36 @@
-import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import dayjs from "dayjs";
-import { useState } from "react";
-import "./style.scss";
+import * as React from "react";
+import dayjs, { Dayjs } from "dayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-function InpuDate(props: {
+export default function InpuDate(props: {
 	label: string;
 	ob: any;
 	attribute: string;
-	value: string;
 }) {
-	const [value, setValue] = useState(props.value);
-	const onChange = (value: string) => {
+	const [value, setValue] = React.useState<Dayjs | null>(
+		dayjs(props.ob[props.attribute])
+	);
+
+	const onChange = (value: any) => {
 		setValue(value);
 		if (props && props.ob) {
-			props.ob[props.attribute] = value;
+			const dataFormatada = value.format("YYYY-MM-DD"); // Formate a data para "ano-mês-dia"
+			props.ob[props.attribute] = dataFormatada;
 		}
 	};
+
 	return (
-		<div className="inputText">
-			<MobileDatePicker defaultValue={dayjs("2022-04-17")} />
-		</div>
+		<LocalizationProvider dateAdapter={AdapterDayjs}>
+			<DemoContainer components={["DatePicker", "DatePicker"]}>
+				<DatePicker
+					label={props.label}
+					value={value}
+					onChange={(newValue) => onChange(newValue)}
+				/>
+			</DemoContainer>
+		</LocalizationProvider>
 	);
 }
-
-export default InpuDate;

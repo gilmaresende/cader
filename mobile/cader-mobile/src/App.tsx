@@ -9,6 +9,8 @@ import "./styles/margins.scss";
 import "./styles/paddings.scss";
 import HomeView from "./app/pages/home/HomeView";
 import CardBuyFilterView from "./app/pages/cardbuy/filter/CardBuyFilterView";
+import CardBuyListView from "./app/pages/cardbuy/list/CardBuyListView";
+import CardBuyEntitiView from "./app/pages/cardbuy/view/CardBuyEntitiView";
 
 function App() {
 	return (
@@ -17,6 +19,8 @@ function App() {
 				<Route path="/" Component={LoginView} />
 				<Route path="/home" Component={HomeView} />
 				<Route path="/cardBuyFilter" Component={CardBuyFilterView} />
+				<Route path="/cardBuyListView" Component={CardBuyListView} />
+				<Route path="/cardBuyEntitiView/:id?" Component={CardBuyEntitiView} />
 			</Routes>
 		</Router>
 	);

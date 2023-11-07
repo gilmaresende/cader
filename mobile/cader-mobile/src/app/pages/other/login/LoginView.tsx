@@ -23,15 +23,10 @@ function LoginView() {
 	return (
 		<div className="ph1">
 			<div className="mt7">
-				<InputText label="Login" ob={ob} attribute="login" value=""></InputText>
+				<InputText label="Login" ob={ob} attribute="login"></InputText>
 			</div>
 			<div className="mt3">
-				<InputPassword
-					label="password"
-					ob={ob}
-					attribute="password"
-					value=""
-				></InputPassword>
+				<InputPassword label="password" ob={ob} attribute="password" value="" />
 			</div>
 			<div>
 				<Button1 label="Login" click={logar}></Button1>

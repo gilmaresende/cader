@@ -3,7 +3,7 @@ import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
 import "./style.scss";
 import { useEffect, useState } from "react";
 
-function InputText(props: { label: string; ob: any; attribute: string }) {
+function InputReais(props: { label: string; ob: any; attribute: string }) {
 	const [value, setValue] = useState("");
 
 	useEffect(() => {
@@ -26,6 +26,7 @@ function InputText(props: { label: string; ob: any; attribute: string }) {
 				</InputLabel>
 				<OutlinedInput
 					id="outlined-adornment-amount"
+					type="number"
 					label={props.label}
 					value={value}
 					onChange={(v) => onChange(v.target.value)}
@@ -35,4 +36,4 @@ function InputText(props: { label: string; ob: any; attribute: string }) {
 	);
 }
 
-export default InputText;
+export default InputReais;

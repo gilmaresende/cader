@@ -5,13 +5,8 @@ function saveLocal(key: string, data: string) {
 }
 
 const getLocal = async (key: string) => {
-	AsyncStorage.getItem(key)
-		.then((value) => {
-			console.log("Valor recuperado do AsyncStorage:", value);
-		})
-		.catch((error) => {
-			console.error("Erro ao recuperar valor:", error);
-		});
+	const value = localStorage.getItem(key);
+	return value;
 };
 
 const cleanLocal = async (key: string) => {
