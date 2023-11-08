@@ -3,11 +3,11 @@ import AutoCompleteAPI from "../../../../components/autocomplete/AutoCompleteAPI
 import Button1 from "../../../../components/button1/Button1";
 import InpuDate from "../../../../components/inputdate/InpuDate";
 import CardBuyService from "../../../services/CardBuyService";
+import CardService from "../../../services/CardService";
 import {
 	firstDayOfMonthAPI,
 	lastDayOfMonthAPI,
 } from "../../../utils/DateUtils";
-import CardService from "../../../services/CardService";
 
 export default function CardBuyFilterView() {
 	const ob = {
@@ -17,11 +17,11 @@ export default function CardBuyFilterView() {
 	const navigator = useNavigate();
 
 	const toList = (data: any) => {
-		navigator("/cardBuyListView", { state: { data: data } });
+		navigator("/cader/cardBuyListView", { state: { data: data } });
 	};
 
 	const toNew = () => {
-		navigator("/cardBuyEntitiView");
+		navigator("/cader/cardBuyEntitiView");
 	};
 
 	const findFilter = () => {
@@ -33,8 +33,8 @@ export default function CardBuyFilterView() {
 	};
 
 	return (
-		<div className="ph2 mv2">
-			<div className="mt1 ">
+		<div>
+			<div className="">
 				<InpuDate
 					attribute="buyDateStart"
 					label="Data Compra Inicial"
@@ -66,8 +66,12 @@ export default function CardBuyFilterView() {
 					service={new CardService()}
 				/>
 			</div>
-			<Button1 label="Buscar" click={findFilter}></Button1>
-			<Button1 click={toNew} label="Novo"></Button1>
+			<div className="mt1 ">
+				<Button1 label="Buscar" click={findFilter}></Button1>
+			</div>
+			<div className="mt1 ">
+				<Button1 click={toNew} label="Novo"></Button1>
+			</div>
 		</div>
 	);
 }

@@ -4,7 +4,7 @@ import Menu from "../../../components/menu/Menu";
 import Storage from "../../../core/libs/storage/Storage";
 import "./style.scss";
 
-function HomeView() {
+function CaderView() {
 	const ob = {};
 	const navigator = useNavigate();
 	const sair = () => {
@@ -12,7 +12,14 @@ function HomeView() {
 		navigator("/");
 	};
 
-	return <div className="ph1">Pagina home</div>;
+	return (
+		<div className="">
+			<Menu sair={sair} />
+			<div className="ph1">
+				<Outlet />
+			</div>
+		</div>
+	);
 }
 
-export default HomeView;
+export default CaderView;

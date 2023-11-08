@@ -71,7 +71,7 @@ export default function CardBuyEntitiView() {
 	}
 
 	return (
-		<div className="ph1 mb2">
+		<div className="">
 			<div className="mt2 ">
 				<InputText label="Descrição" ob={ob} attribute="description" />
 			</div>

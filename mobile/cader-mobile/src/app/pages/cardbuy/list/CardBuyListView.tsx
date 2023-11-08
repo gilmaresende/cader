@@ -5,7 +5,7 @@ export default function CardBuyListView() {
 	const dados = location.state?.data;
 
 	return (
-		<div className="ph1 mv1">
+		<div className="mt1">
 			{dados.map((item: any) => (
 				<CardBuyItem key={item.id} item={item} />
 			))}

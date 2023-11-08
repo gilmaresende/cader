@@ -42,6 +42,8 @@ export default abstract class ServiceApi extends SuperService {
 		return this.axios.getAuth(url);
 	}
 
+	abstract getListView(): string;
+
 	// async getAll(dto) {
 	// 	return this.post("/get-all", dto);
 	// }

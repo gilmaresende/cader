@@ -16,7 +16,7 @@ function LoginView() {
 			.logar(ob)
 			.then((response) => {
 				Storage.setToken(response.data);
-				navigate("home");
+				navigate("/cader");
 			})
 			.catch((error) => {
 				setOb({});
@@ -31,7 +31,7 @@ function LoginView() {
 			<div className="mt3">
 				<InputPassword label="password" ob={ob} attribute="password" value="" />
 			</div>
-			<div>
+			<div className="mt3">
 				<Button1 label="Login" click={logar}></Button1>
 			</div>
 		</div>

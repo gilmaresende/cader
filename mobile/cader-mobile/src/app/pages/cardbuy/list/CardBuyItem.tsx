@@ -4,7 +4,7 @@ export default function CardBuyItem(props: { item: any }) {
 	const { item } = props;
 	const navigator = useNavigate();
 	const loadindCardBuy = () => {
-		navigator(`/cardBuyEntitiView/${item.id}`);
+		navigator(`/cader/cardBuyEntitiView/${item.id}`);
 	};
 
 	return (

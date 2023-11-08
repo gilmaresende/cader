@@ -4,7 +4,7 @@ import { CardBuyLaunch } from "../../../model/CardBuyLaunch";
 import "./styles.scss";
 export default function CardBuyLaunchFrame(props: { item: CardBuyLaunch }) {
 	return (
-		<div className="cardBuyLaunchItem ph1 mh1 mt1 pb1">
+		<div className="cardBuyLaunchItem ph1 mt1 pb1">
 			<div className="mt1">
 				<label>Número: {props.item.number}</label>
 			</div>

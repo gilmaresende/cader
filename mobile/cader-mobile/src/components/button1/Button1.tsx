@@ -1,7 +1,7 @@
 import "./style.scss";
 function Button1(props: { click: () => void; label: string }) {
 	return (
-		<div className="mt2">
+		<div className="">
 			<button className="botao1" onClick={props.click}>
 				{props.label}
 			</button>
