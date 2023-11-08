@@ -10,3 +10,29 @@
 	border-radius: 5px;
 	height: 3rem;
 }
+
+.btnReload {
+	width: 3.5rem;
+	height: 3.5rem;
+	background: none;
+	border: none;
+	color: #69bbff;
+}
+
+.btnReload:active {
+	background-color: #d1eaff;
+	color: #fff;
+}
+
+.btnClean {
+	width: 3.5rem;
+	height: 3.5rem;
+	background: none;
+	border: none;
+	color: #ff6969;
+}
+
+.btnClean:active {
+	background-color: #ffd1d1;
+	color: #fff;
+}

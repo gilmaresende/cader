@@ -8,6 +8,9 @@ function Menu() {
 					<li>
 						<Link to="/cardBuyFilter">Compra Cartão</Link>
 					</li>
+					<li>
+						<Link to="/home/2">Home 2</Link>
+					</li>
 				</ul>
 			</nav>
 		</div>

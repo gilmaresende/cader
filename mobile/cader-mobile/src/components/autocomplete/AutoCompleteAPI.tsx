@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { DescriptionId } from "../../core/model/DescriptionId";
-import AutoComplete from "./AutoComplete";
 import ServiceApi from "../../core/services/ServiceApi";
+import ButtonReload from "../button1/ButtonReload";
+import AutoComplete from "./AutoComplete";
+import "./style.scss";
 
 function AutoCompleteAPI(props: {
 	label: string;
@@ -28,14 +30,18 @@ function AutoCompleteAPI(props: {
 	}, []);
 
 	return (
-		<div>
-			<AutoComplete
-				label={props.label}
-				ob={props.ob}
-				attribute={props.attribute}
-				list={list}
-			/>
-			<button onClick={reaload}>reload</button>
+		<div className="line">
+			<div className="autC">
+				<AutoComplete
+					label={props.label}
+					ob={props.ob}
+					attribute={props.attribute}
+					list={list}
+				/>
+			</div>
+			<div>
+				<ButtonReload click={reaload} />
+			</div>
 		</div>
 	);
 }

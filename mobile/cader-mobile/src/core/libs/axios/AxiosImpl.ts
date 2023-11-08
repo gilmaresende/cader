@@ -1,8 +1,12 @@
 import axios from "axios";
 import Storage from "../storage/Storage";
 
+const apiServer = `http://192.168.0.99:8000/`;
+
+const apiLocal = `http://192.168.0.107:8080/`;
+
 const httpClient = axios.create({
-	baseURL: `http://192.168.0.99:8000/`,
+	baseURL: apiServer,
 });
 
 class AxiosImpl {
@@ -25,7 +29,7 @@ class AxiosImpl {
 	}
 
 	async postAuth(url: string, objeto: {}) {
-		const token = await Storage.getLocal("tokenLogin");
+		const token = Storage.getLocalData().token;
 		return httpClient.post(url, objeto, {
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -34,7 +38,7 @@ class AxiosImpl {
 	}
 
 	async putAuth(url: string, objeto: {}) {
-		const token = await Storage.getLocal("tokenLogin");
+		const token = Storage.getLocalData().token;
 		return httpClient.put(url, objeto, {
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -43,7 +47,7 @@ class AxiosImpl {
 	}
 
 	async deleteAuth(url: string) {
-		const token = await Storage.getLocal("tokenLogin");
+		const token = Storage.getLocalData().token;
 		return httpClient.delete(url, {
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -52,7 +56,7 @@ class AxiosImpl {
 	}
 
 	async getAuth(url: string) {
-		const token = await Storage.getLocal("tokenLogin");
+		const token = Storage.getLocalData().token;
 		return httpClient.get(url, {
 			headers: {
 				Authorization: `Bearer ${token}`,

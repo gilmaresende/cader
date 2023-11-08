@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button1 from "../../../../components/button1/Button1";
 import InputPassword from "../../../../components/inputpassword/InputPassword";
@@ -7,17 +8,19 @@ import AuthService from "../../../services/AuthService";
 import "./style.scss";
 
 function LoginView() {
-	const ob = {};
+	const [ob, setOb] = useState({});
 	const navigate = useNavigate();
 	const logar = () => {
 		const service = new AuthService();
 		service
 			.logar(ob)
 			.then((response) => {
-				Storage.saveLocal("tokenLogin", response.data);
+				Storage.setToken(response.data);
 				navigate("home");
 			})
-			.catch((error) => console.log(error));
+			.catch((error) => {
+				setOb({});
+			});
 	};
 
 	return (

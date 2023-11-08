@@ -1,16 +1,21 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-function saveLocal(key: string, data: string) {
-	AsyncStorage.setItem(key, data);
+let localData: { token: string } | null = null;
+
+function getLocalData(): { token: string } {
+	if (!localData) {
+		localData = { token: "" };
+	}
+	return localData;
 }
 
-const getLocal = async (key: string) => {
-	const value = localStorage.getItem(key);
-	return value;
-};
+function setToken(token: string) {
+	getLocalData().token = token;
+}
 
-const cleanLocal = async (key: string) => {
-	AsyncStorage.removeItem(key);
-};
-const Storage = { saveLocal, getLocal, cleanLocal };
+function cleanToken() {
+	getLocalData().token = "";
+}
+
+const Storage = { getLocalData, setToken, cleanToken };
 export default Storage;
