@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import InputText from "../../../../components/inputtext/InputText";
-import CardBuyService from "../../../services/CardBuyService";
+import { useParams } from "react-router-dom";
+import AutoCompleteAPI from "../../../../components/autocomplete/AutoCompleteAPI";
+import Button1 from "../../../../components/button1/Button1";
 import InpuDate from "../../../../components/inputdate/InpuDate";
 import InputNumber from "../../../../components/inputnumber/InputNumber";
 import InputReais from "../../../../components/inputreais/InputReais";
-import Button1 from "../../../../components/button1/Button1";
+import InputText from "../../../../components/inputtext/InputText";
+import CardBuyService from "../../../services/CardBuyService";
+import CardService from "../../../services/CardService";
+import ExpenseCategoryService from "../../../services/ExpenseCategoryService";
 import CardBuyLaunchFrame from "./CardBuyLaunchFrame";
-import DropDow from "../../../../components/dropdow/DropDow";
 export default function CardBuyEntitiView() {
-	const location = useLocation();
 	const { id } = useParams();
-	const [loadin, setLoading] = useState(true);
+	const [loadin, setLoading] = useState(false);
 
 	const [ob, setOb] = useState<{
 		id?: number;
@@ -24,18 +25,18 @@ export default function CardBuyEntitiView() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			if (id)
-				service
-					.findById(parseInt(id))
-					.then((response) => {
-						setOb(response.data.data);
-						setLoading(false);
-					})
-					.catch((error) => {
-						console.log(error);
-					});
+			setLoading(true);
+			service
+				.findById(parseInt(id!))
+				.then((response) => {
+					setOb(response.data.data);
+					setLoading(false);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 		};
-		fetchData().catch(console.error);
+		if (id) fetchData();
 	}, []);
 
 	const toCalculeteLaunches = () => {
@@ -50,6 +51,21 @@ export default function CardBuyEntitiView() {
 			.catch((error) => console.log(error));
 	};
 
+	const save = () => {
+		setLoading(true);
+
+		service
+			.save(ob)
+			.then((response) => {
+				console.log(response.data);
+				setLoading(false);
+			})
+			.catch((error) => {
+				console.log(error);
+				setLoading(false);
+			});
+	};
+
 	if (loadin) {
 		return <div>loadin</div>;
 	}
@@ -60,10 +76,20 @@ export default function CardBuyEntitiView() {
 				<InputText label="Descrição" ob={ob} attribute="description" />
 			</div>
 			<div className="mt1 ">
-				<DropDow label="Cartão" ob={ob} />
+				<AutoCompleteAPI
+					label="Cartão"
+					ob={ob}
+					attribute="card"
+					service={new CardService()}
+				/>
 			</div>
 			<div className="mt1 ">
-				<DropDow label="Categoria Despesa" ob={ob} />
+				<AutoCompleteAPI
+					label="Categoria Despesa"
+					ob={ob}
+					attribute="expenseCategory"
+					service={new ExpenseCategoryService()}
+				/>
 			</div>
 			<div className="mt1 ">
 				<InpuDate attribute="buyDate" label="Data Compra" ob={ob} />
@@ -84,12 +110,12 @@ export default function CardBuyEntitiView() {
 			{ob.launches && (
 				<div>
 					{ob.launches.map((launch) => (
-						<CardBuyLaunchFrame item={launch} />
+						<CardBuyLaunchFrame key={launch.number} item={launch} />
 					))}
 				</div>
 			)}
 			<div className="mt1 ">
-				<Button1 click={toCalculeteLaunches} label="Salvar" />
+				<Button1 click={save} label="Salvar" />
 			</div>
 		</div>
 	);

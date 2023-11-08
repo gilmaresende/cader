@@ -11,7 +11,9 @@ export default function InpuDate(props: {
 	attribute: string;
 }) {
 	const [value, setValue] = React.useState<Dayjs | null>(
-		dayjs(props.ob[props.attribute])
+		props && props.ob && props.attribute && props.ob[props.attribute]
+			? dayjs(props.ob[props.attribute])
+			: null
 	);
 
 	const onChange = (value: any) => {

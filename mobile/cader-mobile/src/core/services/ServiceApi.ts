@@ -5,8 +5,16 @@ export default abstract class ServiceApi extends SuperService {
 		super(rota);
 	}
 
+	async save(ob: { id?: number }) {
+		if (ob.id) {
+			return await this.update(ob.id, ob);
+		} else {
+			return await this.insert(ob);
+		}
+	}
+
 	async insert(ob: {}) {
-		return this.axios.post(this.rota, ob);
+		return this.axios.postAuth(this.rota, ob);
 	}
 
 	async findById(id: number) {
@@ -31,12 +39,8 @@ export default abstract class ServiceApi extends SuperService {
 
 	async getCombo() {
 		const url = `${this.rota}/combo`;
-		return this.axios.postAuth(url, {});
+		return this.axios.getAuth(url);
 	}
-
-	abstract getPageList(): string;
-
-	abstract getPageView(): string;
 
 	// async getAll(dto) {
 	// 	return this.post("/get-all", dto);

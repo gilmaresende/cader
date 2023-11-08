@@ -17,16 +17,6 @@ export default abstract class ViewFilter<Filter> extends React.Component {
 
 	public abstract populatFilter(): Filter;
 
-	public toFilter() {
-		this.navigation.navigate(this.service.getPageList(), {
-			filter: this.filter,
-		});
-	}
-
-	public toNew() {
-		this.navigation.navigate(this.service.getPageList());
-	}
-
 	render() {
 		return <div></div>;
 	}

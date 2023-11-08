@@ -10,7 +10,11 @@ export default function CardBuyLaunchFrame(props: { item: CardBuyLaunch }) {
 			</div>
 
 			<div className="mt1">
-				<InpuDate attribute="buyDate" label="Data Lançamento" ob={props.item} />
+				<InpuDate
+					attribute="dateLaunch"
+					label="Data Lançamento"
+					ob={props.item}
+				/>
 			</div>
 			<div className="mt1">
 				<InputReais attribute="value" label="Valor" ob={props.item} />
