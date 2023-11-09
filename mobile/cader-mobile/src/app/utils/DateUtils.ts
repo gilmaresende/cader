@@ -20,7 +20,7 @@ export function formatDateToView(data: Date) {
 		month: "2-digit",
 	}); // Altere 'pt-BR' para o código do seu idioma
 
-	const dataFormatada = formatadorData.format(data);
+	const dataFormatada = formatadorData.format(new Date(data));
 	const day = dataFormatada.substring(0, 2);
 	const month = dataFormatada.substring(3, 5);
 	const year = dataFormatada.substring(6, 10);

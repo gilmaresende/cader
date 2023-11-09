@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 import AutoCompleteAPI from "../../../../components/autocomplete/AutoCompleteAPI";
 import Button1 from "../../../../components/button1/Button1";
 import InpuDate from "../../../../components/inputdate/InpuDate";
-import CardBuyService from "../../../services/CardBuyService";
+import FactoryService from "../../../../core/services/FactoryService";
+import { findFilter, toNew } from "../../../../core/services/FunctionsServices";
 import CardService from "../../../services/CardService";
 import {
 	firstDayOfMonthAPI,
@@ -10,26 +11,11 @@ import {
 } from "../../../utils/DateUtils";
 
 export default function CardBuyFilterView() {
+	const navigator = useNavigate();
+	const service = FactoryService.cardBuyService;
 	const ob = {
 		launchDateStart: firstDayOfMonthAPI(),
 		launchDateEnd: lastDayOfMonthAPI(),
-	};
-	const navigator = useNavigate();
-
-	const toList = (data: any) => {
-		navigator("/cader/cardBuyListView", { state: { data: data } });
-	};
-
-	const toNew = () => {
-		navigator("/cader/cardBuyEntitiView");
-	};
-
-	const findFilter = () => {
-		const service = new CardBuyService();
-		service
-			.filter(ob)
-			.then((response) => toList(response.data.datas))
-			.catch((error) => console.log(error));
 	};
 
 	return (
@@ -67,10 +53,13 @@ export default function CardBuyFilterView() {
 				/>
 			</div>
 			<div className="mt1 ">
-				<Button1 label="Buscar" click={findFilter}></Button1>
+				<Button1
+					label="Buscar"
+					click={() => findFilter(service, ob, navigator)}
+				></Button1>
 			</div>
 			<div className="mt1 ">
-				<Button1 click={toNew} label="Novo"></Button1>
+				<Button1 click={() => toNew(service, navigator)} label="Novo"></Button1>
 			</div>
 		</div>
 	);

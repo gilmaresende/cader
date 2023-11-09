@@ -1,23 +1,27 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import Button1 from "../../../components/button1/Button1";
+import Content from "../../../components/content/Content";
 import Menu from "../../../components/menu/Menu";
 import Storage from "../../../core/libs/storage/Storage";
 import "./style.scss";
+import Msg from "../../../components/msg/Msg";
 
 function CaderView() {
-	const ob = {};
 	const navigator = useNavigate();
+
 	const sair = () => {
 		Storage.cleanToken();
 		navigator("/");
 	};
 
 	return (
-		<div className="">
+		<div className="mb2">
 			<Menu sair={sair} />
-			<div className="ph1">
-				<Outlet />
-			</div>
+			<Msg />
+			<Content>
+				<div className="ph1">
+					<Outlet />
+				</div>
+			</Content>
 		</div>
 	);
 }

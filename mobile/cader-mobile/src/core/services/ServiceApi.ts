@@ -44,6 +44,8 @@ export default abstract class ServiceApi extends SuperService {
 
 	abstract getListView(): string;
 
+	abstract getEntitiView(): string;
+
 	// async getAll(dto) {
 	// 	return this.post("/get-all", dto);
 	// }

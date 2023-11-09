@@ -1,9 +1,8 @@
+import ControllerLoading from "../../components/content/ControllerLoagind";
+import ControllerMsg from "../../components/msg/ControllerMsg";
 import ServiceApi from "../../core/services/ServiceApi";
 
 export default class CardBuyService extends ServiceApi {
-	getListView(): string {
-		return "/cader/cardBuyListView";
-	}
 	constructor() {
 		super("cardBuy");
 	}
@@ -11,4 +10,26 @@ export default class CardBuyService extends ServiceApi {
 	toCalculeteLaunches(ob: {}) {
 		return this.axios.post(`${this.rota}/prever`, ob);
 	}
+
+	getListView(): string {
+		return "/cader/cardBuyListView";
+	}
+
+	getEntitiView(): string {
+		return "/cader/cardBuyEntitiView";
+	}
+
+	toCalculeteLaunche = (ob: {}, setOb: any) => {
+		ControllerLoading.showLoading();
+		this.toCalculeteLaunches(ob)
+			.then((response) => {
+				setOb(response.data.data);
+				ControllerLoading.dropLoading();
+			})
+			.catch((error) => {
+				const errorStr = JSON.stringify(error);
+				ControllerLoading.dropLoading();
+				ControllerMsg.show("Erro", errorStr);
+			});
+	};
 }

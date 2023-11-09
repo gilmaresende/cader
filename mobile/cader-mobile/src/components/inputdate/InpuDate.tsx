@@ -33,6 +33,7 @@ export default function InpuDate(props: {
 				<LocalizationProvider dateAdapter={AdapterDayjs}>
 					<DemoContainer components={["DatePicker", "DatePicker"]}>
 						<DatePicker
+							format="DD/MM/YYYY"
 							label={props.label}
 							value={value}
 							onChange={(newValue) => onChange(newValue)}
