@@ -17,6 +17,6 @@ public class MainActivity extends Activity {
         webView.getSettings().setJavaScriptEnabled(true); // Ative o JavaScript, se necessário.
         webView.setWebViewClient(new WebViewClient()); // Para carregar a página no WebView, em vez de abrir o navegador.
 
-        webView.loadUrl("http://localhost:3000/"); // Substitua com a URL do site que deseja carregar.
+        webView.loadUrl("http://192.168.0.107:3000/"); // Substitua com a URL do site que deseja carregar.
     }
 }
