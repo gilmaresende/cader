@@ -3,10 +3,12 @@ import Storage from "../storage/Storage";
 
 const apiServer = `http://192.168.0.99:8000/`;
 
+const apiServerOnline = `http://condelar.ddns.net:3003/`;
+
 const apiLocal = `http://192.168.0.107:8080/`;
 
 const httpClient = axios.create({
-	baseURL: apiServer,
+	baseURL: apiServerOnline,
 });
 
 class AxiosImpl {

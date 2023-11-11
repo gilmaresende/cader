@@ -8,7 +8,7 @@ export default class CardBuyService extends ServiceApi {
 	}
 
 	toCalculeteLaunches(ob: {}) {
-		return this.axios.post(`${this.rota}/prever`, ob);
+		return this.axios.post(`${this.rota}/toCalculeteLaunches`, ob);
 	}
 
 	getListView(): string {
@@ -27,9 +27,8 @@ export default class CardBuyService extends ServiceApi {
 				ControllerLoading.dropLoading();
 			})
 			.catch((error) => {
-				const errorStr = JSON.stringify(error);
 				ControllerLoading.dropLoading();
-				ControllerMsg.show("Erro", errorStr);
+				ControllerMsg.showError(error);
 			});
 	};
 }

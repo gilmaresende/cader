@@ -18,7 +18,7 @@ public class ResourceExceptionHandler {
                                                          HttpServletRequest request) {
         ex.getErros().setTimestamp(System.currentTimeMillis());
         ex.getErros().setStatus(HttpStatus.BAD_REQUEST.value());
-        ex.getErros().setError("Erro na Validação");
+        ex.getErros().setError("validation error");
         ex.getErros().setMessage(ex.getMessage());
         ex.getErros().setPath(request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getErros());
@@ -44,7 +44,7 @@ public class ResourceExceptionHandler {
     public ResponseEntity<StandardError> objNotFound(ObjectNotFoundException ex,
                                                      HttpServletRequest request) {
         StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
-                "Dado Não Encontrado", ex.getMessage(), request.getRequestURI());
+                "Data not found", ex.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 

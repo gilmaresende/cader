@@ -25,10 +25,10 @@ public class CardDTO extends BaseDTO {
 
     public CardDTO(Card ob) {
         super(ob);
-        setPersonExpense(ob.getPersonExpense().getDescriptionId());
+     /*   setPersonExpense(ob.getPersonExpense().getDescriptionId());
         setPaymentType(ob.getPaymentTypeExpense().getDescriptionId());
         setExpenseCategoryBuyCard(ob.getExpenseCategoryBuyCard().getDescriptionId());
-        setWalletExpense(ob.getWalletExpense().getDescriptionId());
+        setWalletExpense(ob.getWalletExpense().getDescriptionId());*/
     }
 
 }

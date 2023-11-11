@@ -43,7 +43,9 @@ public class ExpenseValid extends BaseValid<ExpenseDTO, Expense> {
 
     @Override
     public void validDelete(Expense ob) {
-
+        if (!ob.getPayments().isEmpty()) {
+            addErrors("", "Expense has payments!");
+        }
     }
 
     public void validPreviewNewPayment(Expense ob) {

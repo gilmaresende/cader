@@ -25,9 +25,8 @@ function LoginView() {
 				navigate("/cader");
 			})
 			.catch((error) => {
-				const errorStr = JSON.stringify(error);
 				ControllerLoading.dropLoading();
-				ControllerMsg.show("Erro", errorStr);
+				ControllerMsg.showError(error);
 			});
 	};
 

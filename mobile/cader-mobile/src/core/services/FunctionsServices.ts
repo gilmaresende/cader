@@ -13,9 +13,8 @@ const findFilter = (service: ServiceApi, ob: {}, navigator: any) => {
 			});
 		})
 		.catch((error) => {
-			const errorStr = JSON.stringify(error);
 			ControllerLoading.dropLoading();
-			ControllerMsg.show("Erro", errorStr);
+			ControllerMsg.showError(error);
 		});
 };
 
@@ -32,9 +31,8 @@ const findById = (service: ServiceApi, setOb: any, id: string) => {
 			ControllerLoading.dropLoading();
 		})
 		.catch((error) => {
-			const errorStr = JSON.stringify(error);
 			ControllerLoading.dropLoading();
-			ControllerMsg.show("Erro", errorStr);
+			ControllerMsg.showError(error);
 		});
 };
 
@@ -47,9 +45,8 @@ const save = (service: ServiceApi, ob: {}) => {
 			ControllerLoading.dropLoading();
 		})
 		.catch((error) => {
-			const errorStr = JSON.stringify(error);
 			ControllerLoading.dropLoading();
-			ControllerMsg.show("Erro", errorStr);
+			ControllerMsg.showError(error);
 		});
 };
 

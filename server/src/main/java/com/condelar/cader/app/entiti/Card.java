@@ -42,19 +42,19 @@ public class Card extends BaseEntity implements RegisterEntity {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "id_pessoa", foreignKey = @ForeignKey(name = "fk_pessoa_cartao"), nullable = false)
+    @JoinColumn(name = "id_pessoa", foreignKey = @ForeignKey(name = "fk_pessoa_cartao"))
     private Person personExpense;
 
     @ManyToOne
-    @JoinColumn(name = "id_meio_pagamento", foreignKey = @ForeignKey(name = "fk_mei_pag_cartao"), nullable = false)
+    @JoinColumn(name = "id_meio_pagamento", foreignKey = @ForeignKey(name = "fk_mei_pag_cartao"))
     private PaymentType paymentTypeExpense;
 
     @ManyToOne
-    @JoinColumn(name = "id_categoria_despesa", foreignKey = @ForeignKey(name = "fk_cat_des_cartao"), nullable = false)
+    @JoinColumn(name = "id_categoria_despesa", foreignKey = @ForeignKey(name = "fk_cat_des_cartao"))
     private ExpenseCategory expenseCategoryBuyCard;
 
     @ManyToOne
-    @JoinColumn(name = "id_carteira", foreignKey = @ForeignKey(name = "fk_cartei_cartao"), nullable = false)
+    @JoinColumn(name = "id_carteira", foreignKey = @ForeignKey(name = "fk_cartei_cartao"))
     private Wallet walletExpense;
 
     @Override
