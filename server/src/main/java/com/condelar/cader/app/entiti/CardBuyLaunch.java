@@ -41,12 +41,12 @@ public class CardBuyLaunch extends BaseEntity {
     @Column(name = "valor", nullable = false)
     private Double value;
 
-    /*@ManyToOne
-    @JoinColumn(name = "id_fatura", foreignKey = @ForeignKey(name = "fk_lancamento_fatura"))
-    FaturaCartao fatura;*/
-
     @Column(name = "numero", nullable = false)
     Integer number;
+
+    @ManyToOne
+    @JoinColumn(name = "id_fatura", foreignKey = @ForeignKey(name = "fk_lancamento_fatura"))
+    CardInvoice cardInvoice;
 
     public CardBuyLaunch() {
     }
