@@ -1,6 +1,8 @@
 package com.condelar.cader.app.services;
 
+import com.condelar.cader.app.constants.enuns.EnumExpenseOrigin;
 import com.condelar.cader.app.constants.enuns.EnumExpenseStatus;
+import com.condelar.cader.app.entiti.CardInvoice;
 import com.condelar.cader.app.entiti.Expense;
 import com.condelar.cader.app.entiti.ExpensePayment;
 import com.condelar.cader.app.entiti.Movement;
@@ -156,5 +158,29 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         Movement movement = movementService.newMovement(payment);
         payment.setMovement(movement);
         return payment;
+    }
+
+    public Expense buildExpenseByCardInvoice(CardInvoice invoice) {
+        Expense expense;
+        if (invoice.getExpense() == null) {
+            expense = instance();
+            expense.setUser(getUser());
+            expense.setRegister(LocalDate.now());
+        } else
+            expense = invoice.getExpense();
+
+        expense.setDescription("Invoice " + invoice.getCard().getName());
+        expense.setDueDate(invoice.getDueDate());
+        expense.setOrigin(EnumExpenseOrigin.FATURA_CARTAO.getValue());
+
+        expense.setPaymentType(invoice.getCard().getPaymentTypeExpense());
+        expense.setWallet(invoice.getCard().getWalletExpense());
+        expense.setExpenseCategory(invoice.getCard().getExpenseCategoryBuyCard());
+        expense.setPerson(invoice.getCard().getPersonExpense());
+        expense.setUser(getUser());
+        expense.setUpdate(LocalDateTime.now());
+        expense.setRegister(LocalDate.now());
+        expense.setValue(invoice.getValue());
+        return beforeSave(expense);
     }
 }

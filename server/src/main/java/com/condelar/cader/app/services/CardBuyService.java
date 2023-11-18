@@ -150,5 +150,9 @@ public class CardBuyService extends BaseService<CardBuy, CardBuyDTO, CardBuyFilt
     public List<CardBuyLaunch> getLauchesForInvoice(Long idCard, LocalDate closedDate) {
         return getRepo().getLauchesForInvoice(idCard, closedDate, getUser().getId());
     }
+
+    public CardBuyLaunch getLauchesById(Long id) {
+        return getRepo().getLauchesById(id, getUser().getId());
+    }
 }
 
