@@ -30,6 +30,11 @@ public class CardInvoiceValid extends BaseValid<CardInvoiceDTO, CardInvoice> {
 
     }
 
+    @Override
+    public void validUpdate(Long id, CardInvoiceDTO dto) {
+        addErrors("cardInvoice", "Card Invoice can not be updated.");
+    }
+
     public void findLaunches(CardInvoiceDTO cardInvoiceDTO) {
         if (isNull(cardInvoiceDTO.getCard())) {
             addErrors("card", "Card must be informed.");

@@ -11,11 +11,12 @@ import com.condelar.cader.app.repositories.CardInvoiceRepository;
 import com.condelar.cader.app.valid.CardInvoiceValid;
 import com.condelar.cader.core.structure.BaseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,21 +38,8 @@ public class CardInvoiceService extends BaseService<CardInvoice, CardInvoiceDTO,
         ob.setCard(cardService.getById(dto.getCard().getId()));
         ob.setClosedDate(dto.getClosedDate());
         ob.setDueDate(dto.getDueDate());
-        List<CardBuyLaunch> launchesOld = new ArrayList<>();
-        launchesOld.addAll(ob.getLaunches());
         ob.getLaunches().clear();
-        dto.getLaunches().forEach(launchDto -> {
-            Optional<CardBuyLaunch> opLaunch = launchesOld.stream().filter(f -> f.getId().equals(launchDto.getId())).findFirst();
-            if (opLaunch.isPresent()) {
-                ob.getLaunches().add(opLaunch.get());
-                launchesOld.remove(opLaunch.get());
-            } else {
-                ob.getLaunches().add(cardBuyService.getLauchesById(launchDto.getId()));
-            }
-        });
-        if (!launchesOld.isEmpty()) {
-            launchesOld.forEach(launch -> launch.setCardInvoice(null));
-        }
+        dto.getLaunches().forEach(launchDto -> ob.getLaunches().add(cardBuyService.getLauchesById(launchDto.getId())));
         return ob;
     }
 
@@ -96,5 +84,14 @@ public class CardInvoiceService extends BaseService<CardInvoice, CardInvoiceDTO,
         ob.setRefundValue(0d);
         ob.setExpense(expenseService.buildExpenseByCardInvoice(ob));
         return ob;
+    }
+
+    @Override
+    @Transactional
+    public CardInvoice beforeDelete(CardInvoice ob) {
+        ob.getLaunches().forEach(launch -> launch.setCardInvoice(null));
+        ob = getRepo().saveAndFlush(ob);
+        ob.getLaunches().clear();
+        return super.beforeDelete(ob);
     }
 }
