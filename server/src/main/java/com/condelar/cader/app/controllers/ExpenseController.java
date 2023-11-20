@@ -43,7 +43,7 @@ public class ExpenseController extends BaseController<Expense, ExpenseDTO, Expen
     @PutMapping("/expensePayment/{id}")
     public ResponseEntity<PackageDT<ExpensePaymentDTO>> update(@PathVariable Long id, @RequestBody ExpensePaymentDTO data) {
         Expense expense = getService().updatePayment(data);
-       // getService().save(expense);
+        getService().save(expense);
         PackageDT<ExpensePaymentDTO> pack = new PackageDT();
         pack.setMessage("Updated record");
         return ResponseEntity.ok().body(pack);

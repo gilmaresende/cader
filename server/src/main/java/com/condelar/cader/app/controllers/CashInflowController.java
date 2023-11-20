@@ -38,7 +38,7 @@ public class CashInflowController extends BaseController<CashInflow, CashInflowD
     @PostMapping("/cashInflowPayment")
     public ResponseEntity<PackageDT<CashInflowPaymentDTO>> save(@RequestBody CashInflowPaymentDTO data) {
         CashInflow payment = getService().newPayment(data);
-        //getService().save(expense);
+        getService().save(payment);
         PackageDT<CashInflowPaymentDTO> pack = new PackageDT();
         pack.setMessage("Saved record");
         return ResponseEntity.ok().body(pack);
