@@ -10,6 +10,13 @@ public class CardInvoiceValid extends BaseValid<CardInvoiceDTO, CardInvoice> {
 
     @Override
     public void validDtoToSave(CardInvoiceDTO dto) {
+        findLaunches(dto);
+        if (isNull(dto.getLaunches()) || dto.getLaunches().isEmpty()) {
+            addErrors("launches", "Launches must be loading.");
+        }
+        if (isNull(dto.getDueDate())) {
+            addErrors("dueDate", "Due date must be informed.");
+        }
 
     }
 
@@ -23,12 +30,17 @@ public class CardInvoiceValid extends BaseValid<CardInvoiceDTO, CardInvoice> {
 
     }
 
+    @Override
+    public void validUpdate(Long id, CardInvoiceDTO dto) {
+        addErrors("cardInvoice", "Card Invoice can not be updated.");
+    }
+
     public void findLaunches(CardInvoiceDTO cardInvoiceDTO) {
         if (isNull(cardInvoiceDTO.getCard())) {
-            addErrors("card", "Card must be informate.");
+            addErrors("card", "Card must be informed.");
         }
         if (isNull(cardInvoiceDTO.getClosedDate())) {
-            addErrors("closedDate", "Closed Date must be informate.");
+            addErrors("closedDate", "Closed date must be informed.");
         }
     }
 }

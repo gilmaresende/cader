@@ -103,10 +103,13 @@ public abstract class BaseService<
      *
      * @param ob
      */
+
+    @Transactional
     public void delete(Entity ob) {
         try {
             valid.clear();
             valid.validDelete(ob);
+            ob = beforeDelete(ob);
             valid.hasError();
             repository.delete(ob);
         } catch (JpaSystemException | DataIntegrityViolationException e) {
@@ -138,6 +141,10 @@ public abstract class BaseService<
     public abstract ListDTO toListItem(Entity ob);
 
     public Entity beforeSave(Entity ob) {
+        return ob;
+    }
+
+    public Entity beforeDelete(Entity ob) {
         return ob;
     }
 }

@@ -11,7 +11,9 @@ import com.condelar.cader.app.repositories.CardInvoiceRepository;
 import com.condelar.cader.app.valid.CardInvoiceValid;
 import com.condelar.cader.core.structure.BaseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,10 @@ public class CardInvoiceService extends BaseService<CardInvoice, CardInvoiceDTO,
 
     private final CardBuyService cardBuyService;
 
+    private final CardService cardService;
+
+    private final ExpenseService expenseService;
+
     @Override
     public CardInvoice instance() {
         return new CardInvoice();
@@ -29,6 +35,11 @@ public class CardInvoiceService extends BaseService<CardInvoice, CardInvoiceDTO,
 
     @Override
     public CardInvoice toEntity(CardInvoice ob, CardInvoiceDTO dto) {
+        ob.setCard(cardService.getById(dto.getCard().getId()));
+        ob.setClosedDate(dto.getClosedDate());
+        ob.setDueDate(dto.getDueDate());
+        ob.getLaunches().clear();
+        dto.getLaunches().forEach(launchDto -> ob.getLaunches().add(cardBuyService.getLauchesById(launchDto.getId())));
         return ob;
     }
 
@@ -60,7 +71,27 @@ public class CardInvoiceService extends BaseService<CardInvoice, CardInvoiceDTO,
         cardInvoiceDTO.setLaunches(launchesResponse.stream().map(m -> new CardInvoiceLaunchDTO(m)).toList());
         cardInvoiceDTO.setValueLaunches(launchesResponse.stream().mapToDouble(m -> m.getValue()).sum());
         cardInvoiceDTO.setValue(cardInvoiceDTO.getValueLaunches());
+        cardInvoiceDTO.setDueDate(cardInvoiceDTO.getDueDate());
         cardInvoiceDTO.setRefundValue(0D);
         return cardInvoiceDTO;
+    }
+
+    @Override
+    public CardInvoice beforeSave(CardInvoice ob) {
+        ob.getLaunches().forEach(launch -> launch.setCardInvoice(ob));
+        ob.setValueLaunches(ob.getLaunches().stream().mapToDouble(m -> m.getValue()).sum());
+        ob.setValue(ob.getValueLaunches());
+        ob.setRefundValue(0d);
+        ob.setExpense(expenseService.buildExpenseByCardInvoice(ob));
+        return ob;
+    }
+
+    @Override
+    @Transactional
+    public CardInvoice beforeDelete(CardInvoice ob) {
+        ob.getLaunches().forEach(launch -> launch.setCardInvoice(null));
+        ob = getRepo().saveAndFlush(ob);
+        ob.getLaunches().clear();
+        return super.beforeDelete(ob);
     }
 }

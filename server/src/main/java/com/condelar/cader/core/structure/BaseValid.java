@@ -26,6 +26,10 @@ public abstract class BaseValid<DTO extends BaseDTO, Entity extends BaseEntity> 
         this.errors = new ValidationError();
     }
 
+    public void validUpdate(Long id, DTO dto){
+
+    }
+
     public void hasError() {
         if (!errors.getErrors().isEmpty()) {
             throw new ValidException("Required fields", errors);

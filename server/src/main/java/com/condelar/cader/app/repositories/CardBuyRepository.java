@@ -44,11 +44,24 @@ public interface CardBuyRepository extends JpaRepository<CardBuy, Long> {
             " AND (launch.dateLaunch <= :pClosedDate) \n" +
             " AND (cardBuy.user.id = :pUser) \n" +
             " AND (launch.cardInvoice is null) \n" +
+            " AND (cardBuy.canceled <> 1) \n" +
+
             " ORDER BY cardBuy.buyDate"
     )
     List<CardBuyLaunch> getLauchesForInvoice(
             @Param("pCard") Long pCard,
             @Param("pClosedDate") LocalDate pClosedDate,
+            @Param("pUser") Long pUser
+    );
+
+    @Query(value = " SELECT \n" +
+            " launch \n" +
+            " FROM CardBuyLaunch launch \n" +
+            " WHERE (launch.id = :pIdLaunch) \n" +
+            " AND (launch.user.id = :pUser) \n"
+    )
+    CardBuyLaunch getLauchesById(
+            @Param("pIdLaunch") Long pCard,
             @Param("pUser") Long pUser
     );
 }

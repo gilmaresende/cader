@@ -50,10 +50,6 @@ public class BaseController<Entity extends BaseEntity,
     @GetMapping("/{id}")
     public ResponseEntity<PackageDT<DTO>> get(@PathVariable Long id) {
 
-        EntityScanner es = new EntityScanner();
-        es.scanEntities();
-
-
         Entity ob = service.instance();
         if (ob instanceof RegisterEntity)
             ((RegisterEntity) ob).setActive(null);
@@ -90,6 +86,7 @@ public class BaseController<Entity extends BaseEntity,
     public ResponseEntity<PackageDT<DTO>> update(@PathVariable Long id, @RequestBody DTO data) {
         valid.clear();
         valid.validDtoToSave(data);
+        valid.validUpdate(id, data);
         valid.hasError();
         Entity ob = service.instance();
         if (ob instanceof RegisterEntity)

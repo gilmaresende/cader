@@ -10,7 +10,7 @@ import java.util.List;
 
 public class EntityScanner {
 
-    public List<Class<?>> scanEntities() {
+    public List<Class<?>> scanEntities2() {
         String basePackage = "com.condelar.cader.app.entiti";
         List<Class<?>> entityClasses = new ArrayList<>();
 

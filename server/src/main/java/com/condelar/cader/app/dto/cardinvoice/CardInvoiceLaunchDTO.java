@@ -15,11 +15,17 @@ public class CardInvoiceLaunchDTO extends BaseDTO {
 
     Integer number;
 
+    String description;
+
+    Integer amountLaunches;
+
     public CardInvoiceLaunchDTO() {
     }
 
     public CardInvoiceLaunchDTO(CardBuyLaunch ob) {
         super(ob);
+        setDescription(ob.getCardBuy().getDescription());
+        setAmountLaunches(ob.getCardBuy().getLaunchesNumber());
     }
 
 }

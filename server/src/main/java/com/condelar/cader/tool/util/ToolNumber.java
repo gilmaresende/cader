@@ -10,4 +10,10 @@ public class ToolNumber {
         double val2 = bd.doubleValue();
         return val2;
     }
+
+    public static Double roundUp(Double valor, int nCasasDecimais){
+        BigDecimal bd = new BigDecimal(valor).setScale(nCasasDecimais, RoundingMode.UP);
+        double val2 = bd.doubleValue();
+        return val2;
+    }
 }
