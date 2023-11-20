@@ -1,8 +1,8 @@
 const urlInterna = `http://192.168.0.99:8000`;
 const urlOnline = `http://condelar.ddns.net:3003`;
-const urlLocal = `http://192.168.0.107:8000`;
+const urlLocal = `http://localhost:8080`;
 export const API_CONFIG = {
-  BASE_URL: urlOnline,
+  BASE_URL: urlLocal,
 };
 
 export const KEY_LOCAL = {

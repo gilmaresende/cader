@@ -125,7 +125,6 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         return super.beforeSave(ob);
     }
 
-    @Transactional
     public Expense newPayment(ExpensePaymentDTO dto) {
         Expense expense = findById((dto.getIdExpense()));
         ExpensePayment payment = new ExpensePayment();
@@ -133,7 +132,6 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         payment = updateExpenseByDTO(payment, dto);
         expense.getPayments().add(payment);
         payment.setExpense(expense);
-        expense = save(expense);
         return expense;
     }
 

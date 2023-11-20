@@ -7,6 +7,26 @@
     />
   </div>
   <div class="lineBetween mt2">
+    <inputDate
+      formControlName="dueDate"
+      [label]="'Data'"
+      [isDisabled]="isDisabled"
+    ></inputDate>
+    <inputReais
+      formControlName="openValue"
+      [label]="'Valor Aberto'"
+      [isDisabled]="true"
+    /><inputReais
+      formControlName="amountPaid"
+      [label]="'Valor Pago'"
+      [isDisabled]="true"
+    /><inputReais
+      formControlName="valueTotal"
+      [label]="'Valor Total'"
+      [isDisabled]="isDisabled"
+    />
+  </div>
+  <div class="lineBetween mt2">
     <autocomplete
       formControlName="wallet"
       [service]="serviceWallet"
@@ -34,26 +54,7 @@
       [isDisabled]="isDisabled"
     />
   </div>
-  <div class="lineBetween mt2">
-    <inputDate
-      formControlName="dueDate"
-      [label]="'Data'"
-      [isDisabled]="isDisabled"
-    ></inputDate>
-    <inputReais
-      formControlName="openValue"
-      [label]="'Valor Aberto'"
-      [isDisabled]="true"
-    /><inputReais
-      formControlName="amountPaid"
-      [label]="'Valor Pago'"
-      [isDisabled]="true"
-    /><inputReais
-      formControlName="valueTotal"
-      [label]="'Valor Total'"
-      [isDisabled]="isDisabled"
-    />
-  </div>
+
   <div class="fullW mt2">
     <inputText
       formControlName="observation"

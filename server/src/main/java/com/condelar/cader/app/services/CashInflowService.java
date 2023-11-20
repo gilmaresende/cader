@@ -100,7 +100,7 @@ public class CashInflowService extends BaseService<CashInflow, CashInflowDTO, Ca
         payment = updatePaymetByDTO(payment, data);
         cashInflow.getPayments().add(payment);
         payment.setCashInflow(cashInflow);
-        cashInflow = save(cashInflow);
+//        cashInflow = save(cashInflow);
         return cashInflow;
     }
 
@@ -116,7 +116,7 @@ public class CashInflowService extends BaseService<CashInflow, CashInflowDTO, Ca
         return payment;
     }
 
-    @Transactional
+    //@Transactional
     public CashInflow updatePayment(CashInflowPaymentDTO data) {
         CashInflow expense = findById(data.getIdCashInflow());
         CashInflowPayment payment = expense.getPayments().stream().filter(f -> f.getId().equals(data.getId())).findFirst().orElseThrow();

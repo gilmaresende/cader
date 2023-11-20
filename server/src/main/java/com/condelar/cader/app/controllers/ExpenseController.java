@@ -34,7 +34,7 @@ public class ExpenseController extends BaseController<Expense, ExpenseDTO, Expen
     @PostMapping("/expensePayment")
     public ResponseEntity<PackageDT<ExpensePaymentDTO>> save(@RequestBody ExpensePaymentDTO data) {
         Expense expense = getService().newPayment(data);
-        //getService().save(expense);
+        getService().save(expense);
         PackageDT<ExpensePaymentDTO> pack = new PackageDT();
         pack.setMessage("Saved record");
         return ResponseEntity.ok().body(pack);

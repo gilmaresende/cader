@@ -47,7 +47,7 @@ public class CashInflowController extends BaseController<CashInflow, CashInflowD
     @PutMapping("/cashInflowPayment/{id}")
     public ResponseEntity<PackageDT<CashInflowPaymentDTO>> update(@PathVariable Long id, @RequestBody CashInflowPaymentDTO data) {
         CashInflow cashInflow = getService().updatePayment(data);
-        // getService().save(expense);
+        getService().save(cashInflow);
         PackageDT<CashInflowPaymentDTO> pack = new PackageDT();
         pack.setMessage("Updated record");
         return ResponseEntity.ok().body(pack);
