@@ -23,6 +23,7 @@ import java.util.Optional;
 
 import static com.condelar.cader.tool.util.ToolDate.getDayInNextMonth;
 import static com.condelar.cader.tool.util.ToolNumber.roundDown;
+import static com.condelar.cader.tool.util.ToolNumber.roundUp;
 
 @Service
 @RequiredArgsConstructor
@@ -73,11 +74,12 @@ public class CardBuyService extends BaseService<CardBuy, CardBuyDTO, CardBuyFilt
             CardBuyLaunch launch;
             if (launchOp.isPresent()) {
                 launch = launchOp.get();
-                ToolEntity.cloneAttributes(launchDto, launch);
             } else {
                 launch = new CardBuyLaunch();
-                ToolEntity.cloneAttributes(launchDto, launch);
+                launch.setNumber(launchDto.getNumber());
             }
+            launch.setValue(launchDto.getValue());
+            launch.setDateLaunch(launchDto.getDateLaunch());
             launches.add(launch);
         });
         return launches;
@@ -130,7 +132,7 @@ public class CardBuyService extends BaseService<CardBuy, CardBuyDTO, CardBuyFilt
         cardBuy.setLaunches(launches);
         Double distributedValue = launches.stream().mapToDouble(m -> m.getValue()).sum();
         Double difference = cardBuy.getValue() - distributedValue;
-        launches.stream().findFirst().get().setValue(roundDown(difference + launchValue, 2));
+        launches.stream().findFirst().get().setValue(roundUp(difference + launchValue, 2));
         return cardBuy;
     }
 
