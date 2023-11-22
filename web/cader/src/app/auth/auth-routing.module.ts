@@ -22,6 +22,8 @@ import { ExpenseDetailComponent } from './controllership/expense/expense-view/ex
 import { MovementViewComponent } from './controllership/movement/movement-view/movement-view.component';
 import { CashInflowListComponent } from './controllership/cashinflow/cash-inflow-list/cash-inflow-list.component';
 import { CashInflowViewComponent } from './controllership/cashinflow/cash-inflow-view/cash-inflow-view.component';
+import { CardInvoiceListComponent } from './controllership/cardinvoice/card-invoice-list/card-invoice-list.component';
+import { CardInvoiceViewComponent } from './controllership/cardinvoice/card-invoice-view/card-invoice-view.component';
 
 const routes: Routes = [
   {
@@ -108,6 +110,14 @@ const routes: Routes = [
           { path: '', component: CashInflowViewComponent },
           { path: 'list', component: CashInflowListComponent },
           { path: ':id', component: CashInflowViewComponent },
+        ],
+      },
+      {
+        path: 'cardInvoice',
+        children: [
+          { path: '', component: CardInvoiceViewComponent },
+          { path: 'list', component: CardInvoiceListComponent },
+          { path: ':id', component: CardInvoiceViewComponent },
         ],
       },
 

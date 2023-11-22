@@ -38,6 +38,8 @@ import { CashInflowViewComponent } from './controllership/cashinflow/cash-inflow
 import { CashInflowDetailComponent } from './controllership/cashinflow/cash-inflow-view/cash-inflow-detail/cash-inflow-detail.component';
 import { CashInflowPaymentComponent } from './controllership/cashinflow/cash-inflow-view/cash-inflow-payment/cash-inflow-payment.component';
 import { CashInflowPaymentViewComponent } from './controllership/cashinflow/cash-inflow-view/cash-inflow-payment-view/cash-inflow-payment-view.component';
+import { CardInvoiceListComponent } from './controllership/cardinvoice/card-invoice-list/card-invoice-list.component';
+import { CardInvoiceViewComponent } from './controllership/cardinvoice/card-invoice-view/card-invoice-view.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { CashInflowPaymentViewComponent } from './controllership/cashinflow/cash
     CashInflowDetailComponent,
     CashInflowPaymentComponent,
     CashInflowPaymentViewComponent,
+    CardInvoiceListComponent,
+    CardInvoiceViewComponent,
   ],
   imports: [
     CommonModule,

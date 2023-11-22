@@ -50,6 +50,10 @@ export class TreeMenuComponent implements OnInit {
             label: 'Entrada de Caixa',
             command: () => this.toGo('cashInflow'),
           },
+          {
+            label: 'Fatura Cartão',
+            command: () => this.toGo('cardInvoice'),
+          },
         ],
       },
       {

@@ -7,7 +7,7 @@ import {
   getFirstDayMonth,
   getLastDayMonth,
 } from 'src/app/core/utils/Date/date-util';
-import { CashInflowFilter } from 'src/app/model-filter/cash-inflow-filter copy';
+import { CashInflowFilter } from 'src/app/model-filter/cash-inflow-filter';
 import { IncomeCategoryService } from 'src/app/services/income-category.service';
 import { PaymentTypeService } from 'src/app/services/payment-type.service';
 import { PersonService } from 'src/app/services/person.service';

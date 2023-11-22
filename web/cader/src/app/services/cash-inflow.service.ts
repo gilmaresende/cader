@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CashInflow } from '../model/cash-inflow';
 import { BaseHttpService } from '../core/services/base-http.service';
-import { newCashInflowFilter } from '../model-filter/cash-inflow-filter copy';
+import { newCashInflowFilter } from '../model-filter/cash-inflow-filter';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class CashInflowService extends BaseHttpService<CashInflow> {
       observation: '',
     };
   }
-  
+
   override getFilterBase(): {} {
     return newCashInflowFilter();
   }

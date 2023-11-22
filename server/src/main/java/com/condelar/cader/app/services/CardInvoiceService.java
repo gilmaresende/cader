@@ -9,6 +9,7 @@ import com.condelar.cader.app.entiti.CardBuyLaunch;
 import com.condelar.cader.app.entiti.CardInvoice;
 import com.condelar.cader.app.repositories.CardInvoiceRepository;
 import com.condelar.cader.app.valid.CardInvoiceValid;
+import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,12 @@ public class CardInvoiceService extends BaseService<CardInvoice, CardInvoiceDTO,
 
     @Override
     public List<CardInvoice> filter(CardInvoiceFilterDTO ob) {
-        return null;
+        return getRepo().getFilter(ob.getClosedDateStart(),
+                ob.getClosedDateEnd(),
+                ob.getDueDateStart(),
+                ob.getDueDateEnd(),
+                DescriptionId.getIdLong(ob.getCard()),
+                getUser().getId());
     }
 
     @Override
