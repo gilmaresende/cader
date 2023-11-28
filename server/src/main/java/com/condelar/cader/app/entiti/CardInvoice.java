@@ -48,7 +48,7 @@ public class CardInvoice extends BaseEntity {
     @Column(name = "valor_lancamentos", nullable = false)
     private Double valueLaunches;
 
-    @OneToMany(mappedBy = "cardInvoice", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "cardInvoice", cascade = CascadeType.MERGE)
     private List<CardBuyLaunch> launches = new ArrayList<>();
 
     @ManyToOne

@@ -18,7 +18,7 @@ public interface CardInvoiceRepository extends JpaRepository<CardInvoice, Long> 
             " FROM CardInvoice cain \n" +
             "   INNER JOIN cain.user user\n" +
             " WHERE (user.id = :pIdUser)\n" +
-            " AND (:pIdCard = 0 OR cain.card.id >= :pIdCard) \n" +
+            " AND (:pIdCard = 0 OR cain.card.id = :pIdCard) \n" +
             " AND (:pClosedDateStart IS NULL OR cain.closedDate >= :pClosedDateStart) \n" +
             " AND (:pClosedDateEnd IS NULL OR cain.closedDate <= :pClosedDateEnd) \n" +
             " AND (:pDueDateStart IS NULL OR cain.dueDate >= :pDueDateStart) \n" +

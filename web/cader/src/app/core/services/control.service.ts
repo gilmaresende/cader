@@ -194,12 +194,13 @@ export class ControlService {
 
   delete() {
     this.loading.showLoading();
-    if (this.ob!.id! > 0) {
+    const obj: SEntidade = this.getOb();
+    if (obj.id! > 0) {
       this.confirmDialogService!.showDialog(
         'Confirmar Exclusão',
         'Realmente deseja apagar este registro? Esta ação não pode ser desfeita!',
         () => {
-          this.service.delete(this.ob!.id!).subscribe({
+          this.service.delete(obj.id!).subscribe({
             next: (res) => {
               this.getOb()!.update = res.update;
               this.toastService!.showSucess(res.message);

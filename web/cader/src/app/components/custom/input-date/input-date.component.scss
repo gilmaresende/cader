@@ -1,0 +1,17 @@
+:host {
+  .btn {
+    background: none;
+    border: none;
+    width: 50px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .clean {
+    color: rgb(255, 175, 175);
+    &:hover {
+      color: red;
+    }
+  }
+}

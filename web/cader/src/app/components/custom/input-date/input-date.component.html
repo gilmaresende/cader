@@ -1,4 +1,4 @@
-<div>
+<div class="line">
   <span class="p-float-label">
     <p-calendar
       [(ngModel)]="value"
@@ -9,7 +9,9 @@
 
     <label>{{ label }}</label>
   </span>
-  <!-- <button (click)="cleanDate()" class="btn">
-    <i class="pi pi-times"></i>
-  </button> -->
+  <div>
+    <button (click)="clean()" class="btn clean" [disabled]="isDisabled">
+      <i class="pi pi-times"></i>
+    </button>
+  </div>
 </div>

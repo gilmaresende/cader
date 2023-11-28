@@ -42,11 +42,16 @@ export class InputDateComponent implements ControlValueAccessor, DoCheck {
   }
   teclar() {}
 
+  clean() {
+    this.onChange(undefined);
+    this.value = undefined;
+  }
+
   /////////////////////////////////////////////////////////////////////////////////////////////
   //que funções são essas?
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  onChange = (quantity: Date) => {};
+  onChange = (quantity: Date | undefined) => {};
 
   onTouched = () => {};
 
@@ -59,8 +64,8 @@ export class InputDateComponent implements ControlValueAccessor, DoCheck {
    * Forms sempre que o formulário pai
    * deseja definir um valor no controle filho.
    */
-  writeValue(value: Date) {
-    this.value = new Date(value);
+  writeValue(value: Date | undefined) {
+    if (value) this.value = new Date(value);
   }
 
   registerOnChange(onChange: any) {

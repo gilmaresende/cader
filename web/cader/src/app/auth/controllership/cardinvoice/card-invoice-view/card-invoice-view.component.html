@@ -1,1 +1,49 @@
-<p>card-invoice-view works!</p>
+<div [formGroup]="form" class="mt2 mX2 line">
+  <div class="line">
+    <div class="mt2 width25">
+      <div>
+        <autocomplete
+          formControlName="card"
+          [service]="cardService"
+          [isDisabled]="isDisabled"
+          [label]="'Cartão'"
+        />
+      </div>
+      <div class="mt3">
+        <inputDate
+          formControlName="closedDate"
+          [label]="'Data Fechamento'"
+          [isDisabled]="isDisabled"
+        ></inputDate>
+      </div>
+      <div class="mt3">
+        <inputDate
+          formControlName="dueDate"
+          [label]="'Data Vencimento'"
+          [isDisabled]="isDisabled"
+        ></inputDate>
+      </div>
+      <div class="mt3">
+        <btn-primary
+          (click)="findLauches()"
+          [isDisabled]="isDisabled"
+          [label]="'Buscar Lançamentos'"
+        ></btn-primary>
+      </div>
+      <div>
+        <div class="mt1">
+          Valor Lançamentos: {{ getValueLaunches() | currency : "BRL" }}
+        </div>
+        <div class="mt1">
+          Valor Extorno: {{ getRefundValue() | currency : "BRL" }}
+        </div>
+        <div class="mt1">
+          Valor Total: {{ getValueTotal() | currency : "BRL" }}
+        </div>
+      </div>
+    </div>
+    <div class="mt2 ml2 line">
+      <card-invoice-launch [listLaunches]="listLaunches" />
+    </div>
+  </div>
+</div>
