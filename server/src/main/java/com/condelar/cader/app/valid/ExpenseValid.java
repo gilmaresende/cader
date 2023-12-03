@@ -11,7 +11,7 @@ public class ExpenseValid extends BaseValid<ExpenseDTO, Expense> {
     @Override
     public void validDtoToSave(ExpenseDTO dto) {
         if (!hasContent(dto.getDescription())) {
-            addErrors("description", "Descrition can not is empty!");
+            addErrors("description", "Description can not is empty!");
         }
         if (isNull(dto.getDueDate())) {
             addErrors("duaDate", "Due Date can not is empty!");

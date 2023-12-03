@@ -21,13 +21,16 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
             " 	INNER JOIN e.paymentType pt \n" +
             " 	INNER JOIN e.person p \n" +
             " 	INNER JOIN e.expenseCategory ec \n" +
+            " 	INNER JOIN e.user user \n" +
             " WHERE (:pDueDateStart is null or e.dueDate > :pDueDateStart) \n" +
             " AND (:pDueDateEnd is null or e.dueDate < :pDueDateEnd) \n" +
             " AND (:pStatus = 0 or e.status = :pStatus or (:pStatus = 99 and e.status in (2,3))) \n" +
             " AND (:pWallet = 0 or w.id = :pWallet) \n" +
             " AND (:pPaymentType = 0 or pt.id = :pPaymentType) \n" +
             " AND (:pPerson = 0 or p.id = :pPerson) \n" +
-            " AND (:pExpenseCategory = 0 or ec.id = :pExpenseCategory) \n"
+            " AND (:pExpenseCategory = 0 or ec.id = :pExpenseCategory) \n" +
+            " AND (user.id = :pUser) \n"
+
     )
     List<Expense> getFilter(@Param("pDueDateStart") LocalDate pDueDateStart,
                             @Param("pDueDateEnd") LocalDate pDueDateEnd,
@@ -35,7 +38,8 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
                             @Param("pWallet") Long pWallet,
                             @Param("pPaymentType") Long pPaymentType,
                             @Param("pPerson") Long pPerson,
-                            @Param("pExpenseCategory") Long pExpenseCategory
+                            @Param("pExpenseCategory") Long pExpenseCategory,
+                            @Param("pUser") Long pUser
     );
 
     @Query(value = " SELECT \n" +

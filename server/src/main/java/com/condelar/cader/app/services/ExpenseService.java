@@ -2,10 +2,8 @@ package com.condelar.cader.app.services;
 
 import com.condelar.cader.app.constants.enuns.EnumExpenseOrigin;
 import com.condelar.cader.app.constants.enuns.EnumExpenseStatus;
-import com.condelar.cader.app.entiti.CardInvoice;
-import com.condelar.cader.app.entiti.Expense;
-import com.condelar.cader.app.entiti.ExpensePayment;
-import com.condelar.cader.app.entiti.Movement;
+import com.condelar.cader.app.dto.lotofexpense.ItemLotOfExpenseDTO;
+import com.condelar.cader.app.entiti.*;
 import com.condelar.cader.app.dto.expense.ExpenseDTO;
 import com.condelar.cader.app.dto.expense.ExpenseFilterDTO;
 import com.condelar.cader.app.dto.expense.ExpenseListDTO;
@@ -74,7 +72,8 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
                 DescriptionId.getIdLong(filter.getWallet()),
                 DescriptionId.getIdLong(filter.getPaymentType()),
                 DescriptionId.getIdLong(filter.getPerson()),
-                DescriptionId.getIdLong(filter.getExpenseCategory())
+                DescriptionId.getIdLong(filter.getExpenseCategory()),
+                getUser().getId()
         );
     }
 
@@ -179,5 +178,22 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         expense.setRegister(LocalDate.now());
         expense.setValue(invoice.getValue());
         return beforeSave(expense);
+    }
+
+
+    public void createExpense(ItemLotOfExpense itemOb, ItemLotOfExpenseDTO item) {
+        Expense expense = itemOb.getExpense();
+        expense.setValue(item.getValue());
+        expense.setDueDate(item.getDueDate());
+        expense.setOrigin(EnumExpenseOrigin.LOTE_DESPESA.getValue());
+        expense.setDescription(itemOb.getLot().getDescription());
+        expense.setPerson(itemOb.getLot().getPerson());
+        expense.setExpenseCategory(itemOb.getLot().getCategory());
+        expense.setPaymentType(itemOb.getLot().getPaymentType());
+        expense.setWallet(itemOb.getLot().getWallet());
+        expense.setRegister(itemOb.getRegister());
+        expense.setUpdate(itemOb.getUpdate());
+        expense.setUser(itemOb.getUser());
+        itemOb.setExpense(beforeSave(expense));
     }
 }
