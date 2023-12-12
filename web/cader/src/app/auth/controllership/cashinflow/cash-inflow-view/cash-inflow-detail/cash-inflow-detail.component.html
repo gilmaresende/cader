@@ -6,12 +6,19 @@
       [isDisabled]="isDisabled"
     />
   </div>
-  <div class="lineBetween mt2">
+  <div class="lineLeft mt2">
     <inputDate
       formControlName="dueDate"
-      [label]="'Data'"
+      [label]="'Data Abertura'"
       [isDisabled]="isDisabled"
     ></inputDate>
+    <inputDate
+      formControlName="openingDate"
+      [label]="'Data Vencimento'"
+      [isDisabled]="isDisabled"
+    ></inputDate>
+  </div>
+  <div class="lineBetween mt2">
     <inputReais
       formControlName="openValue"
       [label]="'Valor Aberto'"
@@ -49,12 +56,11 @@
   <div class="lineBetween mt2 borderBottom">
     <autocomplete
       formControlName="incomeCategory"
-      [service]="servicePaymentTypeService"
+      [service]="serviceIncomeCategory"
       [label]="'Categoria'"
       [isDisabled]="isDisabled"
     />
   </div>
-
   <div class="fullW mt2">
     <inputText
       formControlName="observation"

@@ -40,7 +40,7 @@ public class CashInflowValid extends BaseValid<CashInflowDTO, CashInflow> {
     @Override
     public void validObject(CashInflow ob) {
         Double payValue = ob.getPayments().stream().mapToDouble(v -> v.getValue()).sum();
-        if (ob.getValueTotal() - payValue <= 0) {
+        if (ob.getValueTotal() - payValue < 0) {
             addErrors("", "Value Payments is more that value total!");
         }
     }

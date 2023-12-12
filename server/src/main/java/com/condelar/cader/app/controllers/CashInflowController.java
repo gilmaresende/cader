@@ -29,9 +29,9 @@ public class CashInflowController extends BaseController<CashInflow, CashInflowD
         getValid().validPreviewNewPayment(cashInflow);
         getValid().hasError();
 
-        CashInflowPayment paymentPreviw = getService().predictPayment(cashInflow);
+        CashInflowPayment paymentPreview = getService().predictPayment(cashInflow);
         PackageDT<CashInflowPaymentDTO> pack = new PackageDT();
-        pack.setData(new CashInflowPaymentDTO(paymentPreviw));
+        pack.setData(new CashInflowPaymentDTO(paymentPreview));
         return ResponseEntity.ok().body(pack);
     }
 

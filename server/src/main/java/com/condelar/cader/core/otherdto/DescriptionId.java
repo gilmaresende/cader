@@ -3,8 +3,10 @@ package com.condelar.cader.core.otherdto;
 import com.condelar.cader.core.structure.RegisterEntity;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class DescriptionId {
+public class DescriptionId implements Serializable {
 
     private Long id;
 

@@ -39,6 +39,7 @@ export class CashInflowViewComponent extends SPage<
     description: new FormControl('', Validators.required),
     observation: new FormControl(''),
     dueDate: new FormControl(new Date()),
+    openingDate: new FormControl(new Date()),
     valueTotal: new FormControl(0),
     openValue: new FormControl(0),
     amountPaid: new FormControl(0),
@@ -55,6 +56,7 @@ export class CashInflowViewComponent extends SPage<
     data.description.setValue(ob.description);
     data.observation.setValue(ob.observation);
     data.dueDate.setValue(ob.dueDate);
+    data.openingDate.setValue(ob.openingDate);
     data.valueTotal.setValue(ob.valueTotal);
     data.amountPaid.setValue(ob.amountPaid as number);
     data.openValue.setValue(ob.openValue as number);
@@ -72,6 +74,7 @@ export class CashInflowViewComponent extends SPage<
       update: form.update.value as Date,
       description: form.description.value as string,
       dueDate: form.dueDate.value as Date,
+      openingDate: form.openingDate.value as Date,
       valueTotal: form.valueTotal.value as number,
       incomeCategory: form.incomeCategory.value as DescriptionId,
       paymentType: form.paymentType.value as DescriptionId,

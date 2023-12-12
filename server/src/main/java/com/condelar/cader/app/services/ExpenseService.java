@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.condelar.cader.tool.util.Tools.isPositive;
+
 @Service
 @RequiredArgsConstructor
 public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilterDTO, ExpenseListDTO, ExpenseRepository, ExpenseValid> {
@@ -44,8 +46,9 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
 
     @Override
     public Expense toEntity(Expense expense, ExpenseDTO dto) {
-        if (expense.getId() == null) {
+        if (!isPositive(expense.getId())) {
             expense.setPayments(new ArrayList<>());
+            expense.setOrigin(EnumExpenseOrigin.MANUAL.getValue());
         }
         ToolEntity.cloneAttributes(dto, expense);
         expense.setPaymentType(paymentTypeService.findById(dto.getPaymentType().getId()));

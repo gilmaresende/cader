@@ -50,7 +50,7 @@ public class ExpenseValid extends BaseValid<ExpenseDTO, Expense> {
 
     public void validPreviewNewPayment(Expense ob) {
         Double payValue = ob.getPayments().stream().mapToDouble(v -> v.getValue()).sum();
-        if (ob.getValue() - payValue <= 0) {
+        if (ob.getValue() - payValue < 0) {
             addErrors("value", "Expense is closed!");
         }
     }

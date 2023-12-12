@@ -1,5 +1,6 @@
 package com.condelar.cader.app.services;
 
+import com.condelar.cader.app.constants.enuns.EnumCashInflowOrigin;
 import com.condelar.cader.app.constants.enuns.EnumCashInflowStatus;
 import com.condelar.cader.app.dto.cashinflow.CashInflowDTO;
 import com.condelar.cader.app.dto.cashinflow.CashInflowFilterDTO;
@@ -25,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.condelar.cader.tool.util.Tools.isPositive;
+
 @Service
 @RequiredArgsConstructor
 public class CashInflowService extends BaseService<CashInflow, CashInflowDTO, CashInflowFilterDTO, CashInflowListDTO, CashInflowRepository, CashInflowValid> {
@@ -45,10 +48,14 @@ public class CashInflowService extends BaseService<CashInflow, CashInflowDTO, Ca
 
     @Override
     public CashInflow toEntity(CashInflow ob, CashInflowDTO dto) {
-        if (ob.getId() == null) {
+        if (!isPositive(ob.getId())) {
             ob.setPayments(new ArrayList<>());
+            ob.setOrigin(EnumCashInflowOrigin.MANUAL.getValue());
         }
-        ToolEntity.cloneAttributes(dto, ob);
+        ob.setDescription(dto.getDescription());
+        ob.setValueTotal(dto.getValueTotal());
+        ob.setDueDate(dto.getDueDate());
+        ob.setOpeningDate(dto.getOpeningDate());
         ob.setPaymentType(paymentTypeService.findById(dto.getPaymentType().getId()));
         ob.setWallet(walletService.findById(dto.getWallet().getId()));
         ob.setIncomeCategory(incomeCategoryService.findById(dto.getIncomeCategory().getId()));
