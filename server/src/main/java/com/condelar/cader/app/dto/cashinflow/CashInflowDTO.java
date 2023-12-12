@@ -15,9 +15,9 @@ public class CashInflowDTO extends BaseDTO {
 
     private String description;
 
-    private Long openingDate;
+    private LocalDate openingDate;
 
-    private Long dueDate;
+    private LocalDate dueDate;
 
     private DescriptionId wallet;
 
@@ -46,8 +46,8 @@ public class CashInflowDTO extends BaseDTO {
 
     public CashInflowDTO(CashInflow ob) {
         super(ob);
-        setDueDate(ob.getDueDate().longValue());
-        setOpeningDate(ob.getOpeningDate().longValue());
+        setDueDate(ob.getDueDate());
+        setOpeningDate(ob.getOpeningDate());
         setIncomeCategory(ob.getIncomeCategory().getDescriptionId());
         setPaymentType(ob.getPaymentType().getDescriptionId());
         setWallet(ob.getWallet().getDescriptionId());

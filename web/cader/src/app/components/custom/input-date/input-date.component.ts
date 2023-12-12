@@ -65,7 +65,13 @@ export class InputDateComponent implements ControlValueAccessor, DoCheck {
    * deseja definir um valor no controle filho.
    */
   writeValue(value: Date | undefined) {
-    if (value) this.value = new Date(value);
+    if (value) {
+      //this.value = new Date(value);
+      const year = Number(value.toString().substring(0, 4));
+      const month = Number(value.toString().substring(5, 7));
+      const day = Number(value.toString().substring(8, 10));
+      this.value = new Date(year, month - 1, day);
+    }
   }
 
   registerOnChange(onChange: any) {

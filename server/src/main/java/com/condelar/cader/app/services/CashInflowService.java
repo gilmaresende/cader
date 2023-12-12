@@ -51,6 +51,7 @@ public class CashInflowService extends BaseService<CashInflow, CashInflowDTO, Ca
         if (!isPositive(ob.getId())) {
             ob.setPayments(new ArrayList<>());
             ob.setOrigin(EnumCashInflowOrigin.MANUAL.getValue());
+            ob.setRegister(LocalDate.now());
         }
         ob.setDescription(dto.getDescription());
         ob.setValueTotal(dto.getValueTotal());
@@ -62,7 +63,6 @@ public class CashInflowService extends BaseService<CashInflow, CashInflowDTO, Ca
         ob.setPerson(personService.findById(dto.getPerson().getId()));
         ob.setUser(getUser());
         ob.setUpdate(LocalDateTime.now());
-        ob.setRegister(LocalDate.now());
         return ob;
     }
 

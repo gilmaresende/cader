@@ -37,10 +37,10 @@ public class CashInflow extends BaseEntity {
     private String description;
 
     @Column(name = "data_abertura")
-    private Long openingDate;
+    private LocalDate openingDate;
 
     @Column(name = "data_vencimento")
-    private Long dueDate;
+    private LocalDate dueDate;
 
     @ManyToOne
     @JoinColumn(name = "id_carteira")
