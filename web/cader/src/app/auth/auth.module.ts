@@ -42,6 +42,12 @@ import { CardInvoiceListComponent } from './controllership/cardinvoice/card-invo
 import { CardInvoiceViewComponent } from './controllership/cardinvoice/card-invoice-view/card-invoice-view.component';
 import { CardInvoiceFilterComponent } from './controllership/cardinvoice/card-invoice-filter/card-invoice-filter.component';
 import { CardInvoiceLaunchComponent } from './controllership/cardinvoice/card-invoice-view/card-invoice-launch/card-invoice-launch.component';
+import { CreateComponent } from './dev/bi/create/create.component';
+import { CreateBiComponent } from './dev/bi/create-bi/create-bi.component';
+import { BIQueryItemComponent } from './dev/bi/create-bi/components/biquery-item/biquery-item.component';
+import { BIItemParametroViewComponent } from './dev/bi/create-bi/components/biquery-item/biitem-parametro-view/biitem-parametro-view.component';
+import { BIParameterItemComponent } from './dev/bi/create-bi/components/biparameter-item/biparameter-item.component';
+import { FormParameterBIViewComponent } from './dev/bi/create-bi/components/biparameter-item/form-parameter-biview/form-parameter-biview.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +85,12 @@ import { CardInvoiceLaunchComponent } from './controllership/cardinvoice/card-in
     CardInvoiceViewComponent,
     CardInvoiceFilterComponent,
     CardInvoiceLaunchComponent,
+    CreateComponent,
+    CreateBiComponent,
+    BIQueryItemComponent,
+    BIItemParametroViewComponent,
+    BIParameterItemComponent,
+    FormParameterBIViewComponent,
   ],
   imports: [
     CommonModule,

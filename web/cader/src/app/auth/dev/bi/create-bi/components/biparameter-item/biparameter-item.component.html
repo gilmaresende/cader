@@ -1,0 +1,10 @@
+<div class="itemQuery lineLeft" *ngFor="let p of parameters">
+  <label> {{ p.name }} </label>
+  <div class="complete">
+    <div class="lineLeft toRight">
+      <button class="btn btn-primary btnIcon" (click)="itemToView(p)">
+        <span class="material-icons"> visibility </span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div [formGroup]="form">
+  <div class="fullW p1">
+    <button class="btn btn-primary mb2 mr1" (click)="addParametro()">
+      Save
+    </button>
+    <button class="btn btn-danger mb2">Delete</button>
+    <div class="lineLeft">
+      <div class="mr1">
+        <inputText formControlName="name" [label]="'Nome'" />
+      </div>
+      <div class="mr1">
+        <inputText formControlName="key" [label]="'Key'" />
+      </div>
+      <div>
+        <inputRadio
+          (change)="(alterForm)"
+          [label]="'Primitivo'"
+          [id]="'typeInputBasic'"
+          [name]="'typeInput'"
+          [valueFix]="1"
+          formControlName="typeInput"
+          (valueChanged)="alterForm($event)"
+        />
+        <inputRadio
+          (change)="(alterForm)"
+          [label]="'Registros'"
+          [id]="'typeInputRegister'"
+          [name]="'typeInput'"
+          [valueFix]="2"
+          formControlName="typeInput"
+          (valueChanged)="alterForm($event)"
+        />
+        <inputRadio
+          (change)="(alterForm)"
+          [label]="'Customizados'"
+          [id]="'typeInputRegister'"
+          [name]="'typeInput'"
+          [valueFix]="3"
+          formControlName="typeInput"
+          (valueChanged)="alterForm($event)"
+        />
+      </div>
+    </div>
+    <div class="fullW">
+      <div *ngIf="typeInput === 1">
+        <div class="drop">
+          <dropdownstr
+            formControlName="type"
+            [list]="listTypes"
+            [onChangeImpl]="alterForm"
+          ></dropdownstr>
+        </div>
+      </div>
+      <div *ngIf="typeInput === 2">
+        <div class="drop">
+          <dropdownstr formControlName="clasS" [list]="listClass"></dropdownstr>
+        </div>
+      </div>
+      <div *ngIf="typeInput === 3">Formulario com listas persolalizada</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="fullW">
+  <span class="p-float-label fullW">
+    <p-dropdown
+      class="fullW"
+      [options]="list"
+      [(ngModel)]="selected"
+      optionLabel="description"
+      [style]="{ width: '100%' }"
+      [disabled]="isDisabled"
+    ></p-dropdown>
+    <label>{{ label }} </label>
+  </span>
+</div>

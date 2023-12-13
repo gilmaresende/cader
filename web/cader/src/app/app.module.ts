@@ -10,6 +10,7 @@ import { MaterialModule } from './components/material/material.module';
 import { PrimeModule } from './components/prime/prime.module';
 import { CoreModule } from './core/core.module';
 import { AuthInterceptorProvider } from './core/interceptors/auth.interceptor';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { AuthInterceptorProvider } from './core/interceptors/auth.interceptor';
     BrowserAnimationsModule,
     FusionModule,
     CustomizedModule,
+    FontAwesomeModule,
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent],

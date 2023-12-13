@@ -22,3 +22,12 @@
   display: flex;
   justify-content: space-between;
 }
+
+.complete {
+  flex-grow: 1;
+}
+
+.toRight {
+  display: flex;
+  justify-content: flex-end;
+}

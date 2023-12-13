@@ -24,6 +24,7 @@ import { CashInflowListComponent } from './controllership/cashinflow/cash-inflow
 import { CashInflowViewComponent } from './controllership/cashinflow/cash-inflow-view/cash-inflow-view.component';
 import { CardInvoiceListComponent } from './controllership/cardinvoice/card-invoice-list/card-invoice-list.component';
 import { CardInvoiceViewComponent } from './controllership/cardinvoice/card-invoice-view/card-invoice-view.component';
+import { CreateBiComponent } from './dev/bi/create-bi/create-bi.component';
 
 const routes: Routes = [
   {
@@ -124,6 +125,10 @@ const routes: Routes = [
       {
         path: 'testeHql',
         component: TesteHqlComponent,
+      },
+      {
+        path: 'bi',
+        component: CreateBiComponent,
       },
     ],
   },

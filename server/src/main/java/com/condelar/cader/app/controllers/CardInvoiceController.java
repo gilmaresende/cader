@@ -9,6 +9,8 @@ import com.condelar.cader.app.services.CardInvoiceService;
 import com.condelar.cader.app.valid.CardInvoiceValid;
 import com.condelar.cader.core.structure.BaseController;
 import com.condelar.cader.core.structure.util.PackageDT;
+import com.condelar.cader.report.service.BIService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

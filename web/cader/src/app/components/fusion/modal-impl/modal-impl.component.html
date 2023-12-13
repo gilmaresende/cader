@@ -6,19 +6,19 @@
           {{ title }}
         </div>
         <div class="actionBtn">
-          <btn-icon *ngIf="!stateView" (click)="save()"
-            ><i class="pi pi-save"></i
-          ></btn-icon>
+          <btn-icon *ngIf="!stateView" (click)="save()">
+            <span class="material-icons"> save </span>
+          </btn-icon>
           <!-- <btn-icon><i class="pi pi-spin pi-save"></i></btn-icon> -->
-          <btn-icon *ngIf="stateView" (click)="editData()"
-            ><i class="pi pi-pencil"></i
-          ></btn-icon>
-          <btn-icon *ngIf="stateView" (click)="deleteData()"
-            ><i class="pi pi-trash"></i
-          ></btn-icon>
-          <btn-icon (click)="closeModal()"
-            ><i class="pi pi-times"></i
-          ></btn-icon>
+          <btn-icon *ngIf="stateView" (click)="editData()">
+            <span class="material-icons"> edit </span>
+          </btn-icon>
+          <btn-icon *ngIf="stateView" (click)="deleteData()">
+            <span class="material-icons"> delete </span>
+          </btn-icon>
+          <btn-icon (click)="closeModal()">
+            <span class="material-icons"> clear </span>
+          </btn-icon>
         </div>
       </div>
     </div>

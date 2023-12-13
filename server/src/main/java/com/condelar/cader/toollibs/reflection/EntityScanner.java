@@ -1,8 +1,11 @@
 package com.condelar.cader.toollibs.reflection;
 
+import com.condelar.cader.report.dto.TypeSearch;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -60,4 +63,51 @@ public class EntityScanner {
 
         return entityClasses;
     }
+
+    public static List<TypeSearch> scanEntities3() {
+        String basePackage = "com.condelar.cader.app.entiti";
+        List<TypeSearch> typeSearches = new ArrayList<>();
+
+        try {
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            String path = basePackage.replace('.', '/');
+            Enumeration<URL> resources = classLoader.getResources(path);
+
+            while (resources.hasMoreElements()) {
+                URL resource = resources.nextElement();
+                File directory = new File(resource.getFile());
+
+                if (directory.exists()) {
+                    File[] files = directory.listFiles(file -> file.getName().endsWith(".class"));
+
+                    if (files != null) {
+                        for (File file : files) {
+                            String className = basePackage + '.' + file.getName().replace(".class", "");
+                            try {
+                                Class<?> clazz = Class.forName(className);
+
+                                Type[] interfaces = clazz.getInterfaces();
+
+                                for (Type inte : interfaces) {
+                                    if (inte.toString().equals("interface com.condelar.cader.core.structure.RegisterEntity")) {
+                                        TypeSearch t = new TypeSearch();
+                                        t.setName(clazz.getSimpleName());
+                                        t.setPathClass(clazz.getName());
+                                        typeSearches.add(t);
+                                    }
+                                }
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace(); // Handle appropriately
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle appropriately
+        }
+
+        return typeSearches;
+    }
+
 }

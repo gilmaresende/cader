@@ -1,0 +1,11 @@
+<div class="form-group">
+  <label>{{ label }}</label>
+  <textarea
+    class="form-control"
+    rows="{{ nLine }}"
+    [placeholder]="placeholder"
+    [disabled]="isDisabled"
+    (keyup)="teclar()"
+    [(ngModel)]="value"
+  ></textarea>
+</div>

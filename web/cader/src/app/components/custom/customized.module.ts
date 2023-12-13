@@ -18,6 +18,11 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { BrowserModule } from '@angular/platform-browser';
 import { TableModule } from 'primeng/table';
 import { TwoDecimalMaskDirective } from 'src/app/core/directives/mask/two-decimal';
+import { InputAreaComponent } from './input-area/input-area.component';
+import { AbaHComponent } from './aba/aba-h/aba-h.component';
+import { AbaHItemComponent } from './aba/aba-hitem/aba-hitem.component';
+import { DropdownstrComponent } from './dropdownstr/dropdownstr.component';
+import { InputRadioComponent } from './input-radio/input-radio.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -40,6 +45,11 @@ import { TwoDecimalMaskDirective } from 'src/app/core/directives/mask/two-decima
     LabelTextComponent,
     DataTableComponent,
     TwoDecimalMaskDirective,
+    InputAreaComponent,
+    AbaHComponent,
+    AbaHItemComponent,
+    DropdownstrComponent,
+    InputRadioComponent,
   ],
   exports: [
     InputTextComponent,
@@ -50,6 +60,11 @@ import { TwoDecimalMaskDirective } from 'src/app/core/directives/mask/two-decima
     InputDateComponent,
     LabelTextComponent,
     DataTableComponent,
+    InputAreaComponent,
+    AbaHComponent,
+    AbaHItemComponent,
+    DropdownstrComponent,
+    InputRadioComponent,
   ],
 })
 export class CustomizedModule {}

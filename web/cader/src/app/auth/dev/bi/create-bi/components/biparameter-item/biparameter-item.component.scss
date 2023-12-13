@@ -1,0 +1,23 @@
+:host {
+  .itemQuery {
+    width: 100%;
+    border: solid 1px rgb(182, 182, 255);
+    background: #fff;
+    padding: 0.5rem 1rem;
+    margin: 0.1rem 0;
+  }
+
+  .listQuery {
+    padding-left: 5px;
+  }
+
+  .btnIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+  }
+}
