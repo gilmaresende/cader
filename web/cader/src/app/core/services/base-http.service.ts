@@ -10,6 +10,16 @@ import { SEntidade } from '../model/sentidade';
 export abstract class BaseHttpService<Entiti extends SEntidade> {
   rote: string = '';
 
+  ob?: Entiti;
+
+  public setOb(ob: Entiti) {
+    this.ob = ob;
+  }
+
+  public getOb() {
+    return this.ob;
+  }
+
   constructor(private http: HttpClient) {}
 
   public getHttp(): HttpClient {

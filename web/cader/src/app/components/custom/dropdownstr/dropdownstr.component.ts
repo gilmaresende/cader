@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, DoCheck } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  DoCheck,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -31,7 +38,8 @@ export class DropdownstrComponent
   @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;
   @Input() list: Array<DescriptionStr> = [];
-  @Input() onChangeImpl: any;
+
+  @Output() valueChanged = new EventEmitter<any>();
 
   selected?: DescriptionStr;
 
@@ -56,11 +64,7 @@ export class DropdownstrComponent
 
   //////////////////////////////////////////////////////////////////////////////
 
-  onChange = (ob: DescriptionStr) => {
-    if (this.onChangeImpl) {
-      this.onChangeImpl(ob);
-    }
-  };
+  onChange = (ob: DescriptionStr) => {};
 
   onTouched = () => {};
 
@@ -109,5 +113,13 @@ export class DropdownstrComponent
       };
     }
     return null;
+  }
+
+  change() {
+    if (this.selected) {
+      this.onChange(this.selected);
+      this.onTouched();
+      this.valueChanged.emit(this.selected);
+    }
   }
 }

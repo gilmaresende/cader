@@ -6,6 +6,14 @@ import { FormParameterBIViewComponent } from './form-parameter-biview.component'
   providedIn: 'root',
 })
 export class FormParameterBIViewService {
+  getNewParameter(): BIParameter {
+    return {
+      name: '',
+      key: '',
+      typeInput: 1,
+      valueDefault: '',
+    };
+  }
   view?: FormParameterBIViewComponent;
 
   constructor() {}

@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { API_CONFIG } from 'src/environments/environments';
-import { BI } from '../model-bi/bi';
 import { BaseHttpService } from '../core/services/base-http.service';
+import { BI } from '../model-bi/bi';
 
 @Injectable({
   providedIn: 'root',
@@ -29,8 +27,13 @@ export class BiService extends BaseHttpService<BI> {
     return this.getHttp().get(url);
   }
 
+  getTypeOptionDate() {
+    const url = `${API_CONFIG.BASE_URL}/${this.rote}/typeOptionDate`;
+    return this.getHttp().get(url);
+  }
+
   getBI(): BI {
-    return {
+    const bi = {
       update: new Date(),
       bIParameters: [
         {
@@ -39,6 +42,7 @@ export class BiService extends BaseHttpService<BI> {
           name: 'Filtrar Cartão',
           defined: [],
           typeInput: 2,
+          valueDefault: '',
         },
         {
           key: 'pCartao',
@@ -46,6 +50,7 @@ export class BiService extends BaseHttpService<BI> {
           name: 'Cartão',
           defined: [],
           typeInput: 3,
+          valueDefault: '',
         },
       ],
       name: 'BI Teste',
@@ -76,5 +81,8 @@ export class BiService extends BaseHttpService<BI> {
         ],
       },
     };
+
+    this.setOb(bi);
+    return bi;
   }
 }

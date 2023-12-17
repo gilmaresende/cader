@@ -1,10 +1,17 @@
+import { DescriptionId } from '../core/model/description-id';
+import { DescriptionStr } from '../core/model/description-str';
 import { BIParameterDefined } from './biparameterdefind';
 
 export interface BIParameter {
-  type: string;
-  register?: string;
-  key: string;
   name: string;
+  key: string;
   typeInput: number;
-  defined: Array<BIParameterDefined>;
+  typePrimitive?: DescriptionStr;
+  valueDefault?: string;
+  subTypeDate?: DescriptionId;
+  typeClass?: DescriptionStr;
+
+  /* type: string;
+  register?: string;
+  defined: Array<BIParameterDefined>;*/
 }

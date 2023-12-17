@@ -1,8 +1,10 @@
 package com.condelar.cader.report.controllers;
 
 import com.condelar.cader.app.dto.cardinvoice.CardInvoiceDTO;
+import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.otherdto.DescriptionStr;
 import com.condelar.cader.core.structure.util.PackageDT;
+import com.condelar.cader.report.constants.EnumOptionDate;
 import com.condelar.cader.report.constants.EnumTypeParameter;
 import com.condelar.cader.report.dto.TypeSearch;
 import com.condelar.cader.report.entity.BI;
@@ -44,7 +46,7 @@ public class BIController {
         List<DescriptionStr> res = new ArrayList<>();
         Map map = new HashMap();
         types.forEach(m -> res.add(new DescriptionStr(m.getName(), m.getName()))
-              //  map.put(m.getName(), m.getName())
+                //  map.put(m.getName(), m.getName())
         );
         return ResponseEntity.ok().body(res);
     }
@@ -52,5 +54,10 @@ public class BIController {
     @GetMapping("/typesEnum")
     public ResponseEntity<List<DescriptionStr>> getTypesEnum() {
         return ResponseEntity.ok().body(EnumTypeParameter.toList());
+    }
+
+    @GetMapping("/typeOptionDate")
+    public ResponseEntity<List<DescriptionId>> tgetTpeOptionDate() {
+        return ResponseEntity.ok().body(EnumOptionDate.toList());
     }
 }

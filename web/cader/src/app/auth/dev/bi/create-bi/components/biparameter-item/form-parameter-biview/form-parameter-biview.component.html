@@ -1,9 +1,12 @@
 <div [formGroup]="form">
   <div class="fullW p1">
+    <button class="btn btn-success mb2 mr1" (click)="addNew()">Novo</button>
     <button class="btn btn-primary mb2 mr1" (click)="addParametro()">
       Save
     </button>
-    <button class="btn btn-danger mb2">Delete</button>
+    <button class="btn btn-danger mb2" (click)="removeParameter()">
+      Delete
+    </button>
     <div class="lineLeft">
       <div class="mr1">
         <inputText formControlName="name" [label]="'Nome'" />
@@ -33,7 +36,7 @@
         <inputRadio
           (change)="(alterForm)"
           [label]="'Customizados'"
-          [id]="'typeInputRegister'"
+          [id]="'typeInputCustom'"
           [name]="'typeInput'"
           [valueFix]="3"
           formControlName="typeInput"
@@ -45,18 +48,42 @@
       <div *ngIf="typeInput === 1">
         <div class="drop">
           <dropdownstr
-            formControlName="type"
+            [label]="'Tipo Primitivo'"
+            formControlName="typePrimitive"
             [list]="listTypes"
-            [onChangeImpl]="alterForm"
+            (valueChanged)="checkDate($event)"
           ></dropdownstr>
         </div>
+        <div *ngIf="showTypeDate; else valueDefaut">
+          <div class="drop mt2">
+            <dropdown
+              [label]="'Tipo Data'"
+              formControlName="subTypeDate"
+              [list]="listTypesOptionDate"
+            />
+          </div>
+        </div>
+        <ng-template #valueDefaut>
+          <div class="drop mt2">
+            <inputText
+              formControlName="valueDefault"
+              [label]="'Valor Padrão'"
+            />
+          </div>
+        </ng-template>
       </div>
       <div *ngIf="typeInput === 2">
         <div class="drop">
-          <dropdownstr formControlName="clasS" [list]="listClass"></dropdownstr>
+          <dropdownstr
+            formControlName="typeClass"
+            [list]="listClass"
+            [label]="'Class'"
+          />
         </div>
       </div>
-      <div *ngIf="typeInput === 3">Formulario com listas persolalizada</div>
+      <div class="defind" *ngIf="typeInput === 3">
+        Formulario com listas persolalizada
+      </div>
     </div>
   </div>
 </div>

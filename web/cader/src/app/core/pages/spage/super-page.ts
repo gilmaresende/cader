@@ -39,6 +39,7 @@ export abstract class SPage<
     this.actions.loading.showLoading();
     await this.services.findById(id).subscribe({
       next: (res) => {
+        this.setOb(res.data);
         this.populatedForm(res.data);
         this.actions.setStatePage(StatePage.VIEW);
         this.actions.loading.dropLoading();
