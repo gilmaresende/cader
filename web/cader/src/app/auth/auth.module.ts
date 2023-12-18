@@ -48,6 +48,7 @@ import { BIQueryItemComponent } from './dev/bi/create-bi/components/biquery-item
 import { BIItemParametroViewComponent } from './dev/bi/create-bi/components/biquery-item/biitem-parametro-view/biitem-parametro-view.component';
 import { BIParameterItemComponent } from './dev/bi/create-bi/components/biparameter-item/biparameter-item.component';
 import { FormParameterBIViewComponent } from './dev/bi/create-bi/components/biparameter-item/form-parameter-biview/form-parameter-biview.component';
+import { DefinedParameterViewComponent } from './dev/bi/create-bi/components/biparameter-item/form-parameter-biview/defined-parameter-view/defined-parameter-view.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { FormParameterBIViewComponent } from './dev/bi/create-bi/components/bipa
     BIItemParametroViewComponent,
     BIParameterItemComponent,
     FormParameterBIViewComponent,
+    DefinedParameterViewComponent,
   ],
   imports: [
     CommonModule,

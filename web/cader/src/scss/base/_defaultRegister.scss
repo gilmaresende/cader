@@ -31,3 +31,18 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.btnIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.btnClean {
+  background: none;
+  
+}

@@ -1,0 +1,49 @@
+<hr />
+<div class="lineLeft">
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Label</th>
+          <th>Valor</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sim</td>
+          <td>1</td>
+          <td>
+            <button class="btnClean">
+              <span class="material-icons"> visibility </span>
+            </button>
+          </td>
+          <td>
+            <button class="btnClean">
+              <span class="material-icons"> visibility </span>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Não</td>
+          <td>0</td>
+          <td>
+            <button class="btnClean">
+              <span class="material-icons"> visibility </span>
+            </button>
+          </td>
+          <td>
+            <button class="btnClean">
+              <span class="material-icons"> visibility </span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <inputText formControlName="name" [label]="'Nome'" />
+    <inputText formControlName="value" [label]="'Valor'" />
+  </div>
+</div>
