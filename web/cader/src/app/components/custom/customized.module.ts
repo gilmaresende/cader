@@ -23,6 +23,7 @@ import { AbaHComponent } from './aba/aba-h/aba-h.component';
 import { AbaHItemComponent } from './aba/aba-hitem/aba-hitem.component';
 import { DropdownstrComponent } from './dropdownstr/dropdownstr.component';
 import { InputRadioComponent } from './input-radio/input-radio.component';
+import { CheckComponent } from './check/check.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -50,6 +51,7 @@ import { InputRadioComponent } from './input-radio/input-radio.component';
     AbaHItemComponent,
     DropdownstrComponent,
     InputRadioComponent,
+    CheckComponent,
   ],
   exports: [
     InputTextComponent,
@@ -65,6 +67,7 @@ import { InputRadioComponent } from './input-radio/input-radio.component';
     AbaHItemComponent,
     DropdownstrComponent,
     InputRadioComponent,
+    CheckComponent,
   ],
 })
 export class CustomizedModule {}

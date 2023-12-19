@@ -19,4 +19,16 @@
   tr:hover {
     background-color: #f5f5f5;
   }
+
+  .label {
+    width: 150px;
+  }
+
+  .icon {
+    width: 25px;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  }
 }

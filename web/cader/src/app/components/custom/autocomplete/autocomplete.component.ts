@@ -11,11 +11,6 @@ import { DescriptionId } from 'src/app/core/model/description-id';
 import { SEntidade } from 'src/app/core/model/sentidade';
 import { BaseHttpService } from 'src/app/core/services/base-http.service';
 
-interface ItemDrop {
-  description: string;
-  id: number;
-}
-
 @Component({
   selector: 'autocomplete',
   templateUrl: './autocomplete.component.html',

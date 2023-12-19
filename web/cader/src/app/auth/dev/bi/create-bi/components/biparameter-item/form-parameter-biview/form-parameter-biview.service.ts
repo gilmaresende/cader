@@ -12,6 +12,8 @@ export class FormParameterBIViewService {
       key: '',
       typeInput: 1,
       valueDefault: '',
+      customizade: false,
+      optionsDefined: [],
     };
   }
   view?: FormParameterBIViewComponent;

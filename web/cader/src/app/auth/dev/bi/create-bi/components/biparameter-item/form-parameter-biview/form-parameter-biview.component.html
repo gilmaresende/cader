@@ -16,61 +16,67 @@
       </div>
       <div>
         <inputRadio
-          (change)="(alterForm)"
           [label]="'Primitivo'"
           [id]="'typeInputBasic'"
           [name]="'typeInput'"
           [valueFix]="1"
           formControlName="typeInput"
-          (valueChanged)="alterForm($event)"
+          (valueChanged)="alterTypeImput($event)"
         />
         <inputRadio
-          (change)="(alterForm)"
           [label]="'Registros'"
           [id]="'typeInputRegister'"
           [name]="'typeInput'"
           [valueFix]="2"
           formControlName="typeInput"
-          (valueChanged)="alterForm($event)"
-        />
-        <inputRadio
-          (change)="(alterForm)"
-          [label]="'Customizados'"
-          [id]="'typeInputCustom'"
-          [name]="'typeInput'"
-          [valueFix]="3"
-          formControlName="typeInput"
-          (valueChanged)="alterForm($event)"
+          (valueChanged)="alterTypeImput($event)"
         />
       </div>
     </div>
     <div class="fullW">
       <div *ngIf="typeInput === 1">
-        <div class="drop">
-          <dropdownstr
-            [label]="'Tipo Primitivo'"
-            formControlName="typePrimitive"
-            [list]="listTypes"
-            (valueChanged)="checkDate($event)"
-          ></dropdownstr>
-        </div>
-        <div *ngIf="showTypeDate; else valueDefaut">
-          <div class="drop mt2">
-            <dropdown
-              [label]="'Tipo Data'"
-              formControlName="subTypeDate"
-              [list]="listTypesOptionDate"
-            />
+        <hr />
+        <div>
+          <div class="lineLeft mt2">
+            <div class="drop mr1">
+              <dropdownstr
+                [label]="'Tipo Primitivo'"
+                formControlName="typePrimitive"
+                [list]="listTypes"
+                (valueChanged)="checkDate($event)"
+              ></dropdownstr>
+            </div>
+            <div *ngIf="showTypeDate; else valueDefaut">
+              <div class="drop mr1">
+                <dropdown
+                  [label]="'Tipo Data'"
+                  formControlName="subTypeDate"
+                  [list]="listTypesOptionDate"
+                />
+              </div>
+            </div>
+            <ng-template #valueDefaut>
+              <div class="line">
+                <div class="drop">
+                  <inputText
+                    formControlName="valueDefault"
+                    [label]="'Valor Padrão'"
+                  />
+                </div>
+                <div class="ml1">
+                  <check
+                    [label]="'Customizado'"
+                    formControlName="customizade"
+                    (valueChanged)="checkCustom($event)"
+                  ></check>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+          <div *ngIf="showCustomizade">
+            <defined-parameter-view [list]="parameters" />
           </div>
         </div>
-        <ng-template #valueDefaut>
-          <div class="drop mt2">
-            <inputText
-              formControlName="valueDefault"
-              [label]="'Valor Padrão'"
-            />
-          </div>
-        </ng-template>
       </div>
       <div *ngIf="typeInput === 2">
         <div class="drop">
@@ -80,9 +86,6 @@
             [label]="'Class'"
           />
         </div>
-      </div>
-      <div class="defind" *ngIf="typeInput === 3">
-        <defined-parameter-view></defined-parameter-view>
       </div>
     </div>
   </div>

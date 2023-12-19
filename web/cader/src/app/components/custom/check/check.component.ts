@@ -1,11 +1,5 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  DoCheck,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -13,58 +7,41 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
-import { DescriptionStr } from 'src/app/core/model/description-str';
 
 @Component({
-  selector: 'dropdownstr',
-  templateUrl: './dropdownstr.component.html',
-  styleUrls: ['./dropdownstr.component.scss'],
+  selector: 'check',
+  templateUrl: './check.component.html',
+  styleUrls: ['./check.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: DropdownstrComponent,
+      useExisting: CheckComponent,
     },
     {
       provide: NG_VALIDATORS,
       multi: true,
-      useExisting: DropdownstrComponent,
+      useExisting: CheckComponent,
     },
   ],
 })
-export class DropdownstrComponent
-  implements OnInit, DoCheck, ControlValueAccessor
-{
+export class CheckComponent implements ControlValueAccessor {
   @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;
-  @Input() list: Array<DescriptionStr> = [];
+  @Input() id: string | null = null;
+  value = '';
 
   @Output() valueChanged = new EventEmitter<any>();
 
-  selected?: DescriptionStr;
-
   touched = false;
 
-  description = 'dev';
+  disabled = false;
 
-  ngOnInit() {
-    this.markAsTouched();
-    if (this.selected) {
-      this.onChange(this.selected);
-    }
-  }
+  /////////////////////////////////////////////////////////////////////////////////////////////
+  //que funções são essas?
+  /////////////////////////////////////////////////////////////////////////////////////////////
 
-  ngDoCheck(): void {
-    this.markAsTouched();
-    if (!this.isDisabled && this.selected) {
-      this.description = this.selected.description;
-      this.onChange(this.selected);
-    }
-  }
-
-  //////////////////////////////////////////////////////////////////////////////
-
-  onChange = (ob: DescriptionStr) => {};
+  onChange = (quantity: string) => {};
 
   onTouched = () => {};
 
@@ -77,8 +54,8 @@ export class DropdownstrComponent
    * Forms sempre que o formulário pai
    * deseja definir um valor no controle filho.
    */
-  writeValue(ob: DescriptionStr) {
-    this.selected = ob;
+  writeValue(value: string) {
+    this.value = value;
   }
 
   registerOnChange(onChange: any) {
@@ -97,7 +74,7 @@ export class DropdownstrComponent
   }
 
   setDisabledState(disabled: boolean) {
-    // this.isDisabled = disabled;
+    this.disabled = disabled;
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
@@ -113,10 +90,8 @@ export class DropdownstrComponent
   }
 
   change() {
-    if (this.selected) {
-      this.onChange(this.selected);
-      this.onTouched();
-      this.valueChanged.emit(this.selected);
-    }
+    this.onChange(this.value);
+    this.onTouched();
+    this.valueChanged.emit(this.value);
   }
 }

@@ -33,24 +33,29 @@ export class BiService extends BaseHttpService<BI> {
   }
 
   getBI(): BI {
-    const bi = {
+    const bi: BI = {
       update: new Date(),
       bIParameters: [
         {
           key: 'pAno',
-          type: 'String',
           name: 'Filtrar Cartão',
-          defined: [],
-          typeInput: 2,
+          typeInput: 1,
+          typePrimitive: { id: 'LOCAL_DATE', description: 'LOCAL_DATE' },
           valueDefault: '',
+          customizade: true,
+          optionsDefined: [
+            { name: 'Sim', value: '1' },
+            { name: 'Nâo', value: '0' },
+          ],
         },
         {
           key: 'pCartao',
-          type: 'String',
           name: 'Cartão',
-          defined: [],
-          typeInput: 3,
+          typeInput: 2,
+          typePrimitive: { id: 'String', description: 'String' },
           valueDefault: '',
+          customizade: false,
+          optionsDefined: [],
         },
       ],
       name: 'BI Teste',

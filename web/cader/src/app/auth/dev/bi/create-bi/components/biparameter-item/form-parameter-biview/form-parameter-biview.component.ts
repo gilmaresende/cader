@@ -5,6 +5,7 @@ import { DescriptionStr } from 'src/app/core/model/description-str';
 import { BIParameter } from 'src/app/model-bi/biparameter';
 import { BiService } from 'src/app/services/bi.service';
 import { FormParameterBIViewService } from './form-parameter-biview.service';
+import { BIParameterDefined } from 'src/app/model-bi/biparameterdefind';
 
 @Component({
   selector: 'form-parameter-biview',
@@ -26,16 +27,23 @@ export class FormParameterBIViewComponent implements OnInit {
     form.name.setValue(item.name);
     form.key.setValue(item.key);
     form.typeInput.setValue(item.typeInput);
+    form.customizade.setValue(item.customizade);
+    form.typeClass.setValue(item.typeClass);
+    form.typePrimitive.setValue(item.typePrimitive);
 
-    this.alterForm(item.typeInput);
+    this.parameters = item.optionsDefined;
+    this.alterTypeImput(item.typeInput);
+    this.checkCustom(item.customizade);
   }
 
   typeInput = 1;
   showTypeDate = false;
+  showCustomizade = false;
 
   listTypes: Array<DescriptionStr> = [];
   listClass: Array<DescriptionStr> = [];
   listTypesOptionDate: Array<DescriptionId> = [];
+  parameters: Array<BIParameterDefined> = [];
 
   form = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -45,6 +53,7 @@ export class FormParameterBIViewComponent implements OnInit {
     valueDefault: new FormControl(''),
     subTypeDate: new FormControl(),
     typeClass: new FormControl(),
+    customizade: new FormControl(false),
   });
 
   getOb(): BIParameter {
@@ -56,6 +65,8 @@ export class FormParameterBIViewComponent implements OnInit {
     this.item!.valueDefault = form.valueDefault.value as string;
     this.item!.subTypeDate = form.subTypeDate.value as DescriptionId;
     this.item!.typeClass = form.typeClass.value as DescriptionStr;
+    this.item!.customizade = form.customizade.value as boolean;
+
     return this.item!;
   }
 
@@ -101,20 +112,6 @@ export class FormParameterBIViewComponent implements OnInit {
     });
   }
 
-  alterForm(value: number) {
-    const form = this.form.controls;
-    form.typeInput.setValue(value);
-    this.typeInput = value;
-  }
-
-  checkDate(select: DescriptionStr) {
-    if (select.id == 'LOCAL_DATE') {
-      this.showTypeDate = true;
-    } else {
-      this.showTypeDate = false;
-    }
-  }
-
   addNew() {
     const parametro: BIParameter = this.serviceForm.getNewParameter();
     this.populateForm(parametro);
@@ -136,5 +133,29 @@ export class FormParameterBIViewComponent implements OnInit {
       const items = parametro?.bIParameters.filter((f) => f != this.item);
       parametro!.bIParameters = items!;
     }
+  }
+
+  alterTypeImput(value: number) {
+    const form = this.form.controls;
+    this.typeInput = value;
+    const type = form.typePrimitive;
+    if (type) {
+      this.checkDate(type.value);
+    }
+  }
+
+  checkDate(select: DescriptionStr) {
+    if (select.id == 'LOCAL_DATE') {
+      this.showTypeDate = true;
+    } else {
+      this.showTypeDate = false;
+    }
+    this.checkCustom(false);
+  }
+
+  checkCustom(value: boolean) {
+    const form = this.form.controls;
+    form.customizade.setValue(value);
+    this.showCustomizade = value;
   }
 }

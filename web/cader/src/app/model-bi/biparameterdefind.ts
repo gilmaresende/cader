@@ -1,5 +1,4 @@
 export interface BIParameterDefined {
-  type: string;
-  key: string;
+  value: string;
   name: string;
 }

@@ -10,7 +10,8 @@ export interface BIParameter {
   valueDefault?: string;
   subTypeDate?: DescriptionId;
   typeClass?: DescriptionStr;
-
+  customizade: boolean;
+  optionsDefined: Array<BIParameterDefined>;
   /* type: string;
   register?: string;
   defined: Array<BIParameterDefined>;*/

@@ -4,37 +4,23 @@
     <table>
       <thead>
         <tr>
-          <th>Label</th>
-          <th>Valor</th>
-          <th></th>
-          <th></th>
+          <th class="label">Label</th>
+          <th class="label">Valor</th>
+          <th class="icon"></th>
+          <th class="icon"></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Sim</td>
-          <td>1</td>
+        <tr *ngFor="let item of list">
+          <td>{{ item.name }}</td>
+          <td>{{ item.value }}</td>
           <td>
-            <button class="btnClean">
-              <span class="material-icons"> visibility </span>
+            <button class="btnClean" (click)="remove(item)">
+              <span class="material-symbols-outlined"> delete_sweep </span>
             </button>
           </td>
           <td>
-            <button class="btnClean">
-              <span class="material-icons"> visibility </span>
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Não</td>
-          <td>0</td>
-          <td>
-            <button class="btnClean">
-              <span class="material-icons"> visibility </span>
-            </button>
-          </td>
-          <td>
-            <button class="btnClean">
+            <button class="btnClean" (click)="toForm(item)">
               <span class="material-icons"> visibility </span>
             </button>
           </td>
@@ -42,8 +28,16 @@
       </tbody>
     </table>
   </div>
-  <div>
-    <inputText formControlName="name" [label]="'Nome'" />
-    <inputText formControlName="value" [label]="'Valor'" />
+  <div class="ml1" [formGroup]="form">
+    <div>
+      <button class="btn btn-success">Novo</button>
+      <button class="ml1 btn btn-primary">Salvar</button>
+    </div>
+    <div class="mt2">
+      <inputText formControlName="name" [label]="'Nome'" />
+    </div>
+    <div class="mt2">
+      <inputText formControlName="value" [label]="'Valor'" />
+    </div>
   </div>
 </div>
