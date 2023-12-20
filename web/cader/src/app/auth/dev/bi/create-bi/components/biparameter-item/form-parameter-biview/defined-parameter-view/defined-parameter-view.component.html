@@ -30,8 +30,8 @@
   </div>
   <div class="ml1" [formGroup]="form">
     <div>
-      <button class="btn btn-success">Novo</button>
-      <button class="ml1 btn btn-primary">Salvar</button>
+      <button class="btn btn-success" (click)="toNew()">Novo</button>
+      <button class="ml1 btn btn-primary" (click)="save()">Salvar</button>
     </div>
     <div class="mt2">
       <inputText formControlName="name" [label]="'Nome'" />
