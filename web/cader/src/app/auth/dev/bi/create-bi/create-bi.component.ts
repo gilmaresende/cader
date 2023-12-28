@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { SPage } from 'src/app/core/pages/spage/super-page';
 import { ControlService } from 'src/app/core/services/control.service';
 import { HttpServerService } from 'src/app/core/services/http-server.service';
 import { BI } from 'src/app/model-bi/bi';
@@ -11,48 +13,41 @@ import { BiService } from 'src/app/services/bi.service';
   templateUrl: './create-bi.component.html',
   styleUrls: ['./create-bi.component.scss'],
 })
-export class CreateBiComponent implements OnInit {
+export class CreateBiComponent extends SPage<BI, BiService> implements OnInit {
   constructor(
     private controller: ControlService,
     private http: HttpServerService,
-    private service: BiService
+    private service: BiService,
+    private activatedRoute: ActivatedRoute
   ) {
-    controller.setTitle('Bi Manager');
+    super('Bi Manager', controller, service, activatedRoute);
   }
 
   typesParameter: Array<{ value: string; label: string }> = [];
 
   ngOnInit(): void {
-    this.populateForm();
+    this.populatedForm(this.service.getBI());
   }
 
   form = new FormGroup({
     id: new FormControl(0),
     name: new FormControl('', Validators.required),
-    update: new FormControl(new Date()),
   });
 
   query?: BIQuery;
   bi?: BI;
 
-  populateForm() {
-    const ob = this.service.getBI();
+  override populatedForm(ob: BI) {
     this.bi = ob;
     const form = this.form.controls;
     form.name.setValue(ob.name);
-
     this.query = ob.query;
-
-    this.setDad(this.query);
   }
 
-  setDad(item: BIQuery) {
-    const id = Math.random() + new Date().getTime();
-    item.id = id.toString();
-    for (let i of item.queriesChildren) {
-      i.dad = item;
-
-      this.setDad(i);
-    }
+  override getOb(): BI {
+    const form = this.form.controls;
+    this.bi!.id = form.id.value as number;
+    this.bi!.name = form.name.value as string;
+    return this.bi!;
   }
 }

@@ -38,4 +38,14 @@ export class BIItemParametroViewComponent {
   delete() {
     this.service.remove(this.item!);
   }
+
+  newSub() {
+    this.item?.queriesChildren.push({
+      id: '0',
+      name: 'dev',
+      query: '',
+      queriesChildren: [],
+    });
+    console.log(this.item);
+  }
 }

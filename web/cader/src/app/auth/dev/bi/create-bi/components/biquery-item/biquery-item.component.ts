@@ -28,7 +28,6 @@ export class BIQueryItemComponent {
       name: 'new',
       query: 'new select',
       queriesChildren: [],
-      dad: this.query,
     };
     this.query?.queriesChildren.push(newItem);
     this.service.setItem(newItem);

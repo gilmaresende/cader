@@ -3,8 +3,11 @@
     <button *ngIf="item" class="btn btn-primary mb2 mr1" (click)="save()">
       Save
     </button>
-    <button *ngIf="item?.dad" class="btn btn-danger mb2" (click)="delete()">
+    <!-- <button *ngIf="item?.dad" class="btn btn-danger mb2" (click)="delete()">
       Delete
+    </button> -->
+    <button *ngIf="item" class="btn btn-primary mb2 mr1" (click)="newSub()">
+      Novo Sub
     </button>
     <inputText formControlName="name" [label]="'Nome'" />
   </div>

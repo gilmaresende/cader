@@ -3,5 +3,4 @@ export interface BIQuery {
   name: string;
   query: string;
   queriesChildren: Array<BIQuery>;
-  dad?: BIQuery;
 }

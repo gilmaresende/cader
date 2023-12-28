@@ -26,9 +26,10 @@ public class BIController {
     @Autowired
     BIService biService;
 
-    @PostMapping("/estrutura")
+    @PostMapping
     public ResponseEntity<BI> findLaunches(@RequestBody BI bi) {
         bi = biService.save();
+        System.out.println(bi);
 
         return ResponseEntity.ok().body(bi);
     }

@@ -18,11 +18,11 @@ export class BIItemParametroViewService {
   }
 
   remove(item: BIQuery) {
-    var indiceParaRemover = item.dad?.queriesChildren.indexOf(item);
-    if (indiceParaRemover !== -1) {
-      if (indiceParaRemover !== undefined) {
-        item.dad?.queriesChildren.splice(indiceParaRemover, 1);
-      }
-    }
+    // var indiceParaRemover = item.dad?.queriesChildren.indexOf(item);
+    // if (indiceParaRemover !== -1) {
+    //   if (indiceParaRemover !== undefined) {
+    //     item.dad?.queriesChildren.splice(indiceParaRemover, 1);
+    //   }
+    // }
   }
 }

@@ -155,7 +155,6 @@ export class ControlService {
   //----------------------------------------------------------Actions----------------------------------------
 
   async save() {
-    console.log('save');
     this.loading.showLoading();
     const obj: SEntidade = this.getOb();
     //TODO DELETAR OB
@@ -176,6 +175,7 @@ export class ControlService {
         },
       });
     } else {
+      console.log(this.service);
       await this.service.create(obj).subscribe({
         next: (res) => {
           this.router.navigate([`cader/${res.rotaOb}`]);
