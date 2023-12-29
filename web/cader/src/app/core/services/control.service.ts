@@ -177,7 +177,8 @@ export class ControlService {
     } else {
       await this.service.create(obj).subscribe({
         next: (res) => {
-          this.router.navigate([`cader/${res.rotaOb}`]);
+          console.log(res.rotaOb);
+          // this.router.navigate([`cader/${res.rotaOb}`]);
           this.toastService!.showSucess(res.message);
           this.loading.dropLoading();
         },

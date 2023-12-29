@@ -13,6 +13,7 @@ import com.condelar.cader.report.dto.TypeSearch;
 import com.condelar.cader.report.dto.BIDTO;
 import com.condelar.cader.report.entity.BI;
 import com.condelar.cader.report.service.BIService;
+import com.condelar.cader.tool.util.ToolLink;
 import com.condelar.cader.toollibs.ggson.GJsonImp;
 import com.condelar.cader.toollibs.reflection.EntityScanner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,7 @@ public class BIController {
         ob = biService.save(ob);
         dto.setId(ob.getId());
         PackageDT<BIDTO> pack = new PackageDT();
+        pack.setRotaOb(ToolLink.createURI(ob).getPath());
         pack.setData(dto);
         return ResponseEntity.ok().body(pack);
     }
@@ -61,6 +63,7 @@ public class BIController {
     public ResponseEntity<PackageDT<BIDTO>> update(@PathVariable Long id, @RequestBody BIDtoStr bi) {
         BIDTO dto = GJsonImp.toObject(BIDTO.class, bi.getStr());
         BI ob = biService.getById(id);
+        ob.setName(dto.getName());
         ob.setBody(GJsonImp.getInstance().toString(dto).getBytes());
         ob = biService.save(ob);
         dto.setId(ob.getId());

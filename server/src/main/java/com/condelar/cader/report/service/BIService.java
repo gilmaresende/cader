@@ -29,6 +29,7 @@ public class BIService {
 
     public BIDTO toDTO(BI bi){
         BIDTO dto = GJsonImp.toObject(BIDTO.class, new String(bi.getBody()));
+        dto.setId(bi.getId());
         return dto;
     }
 

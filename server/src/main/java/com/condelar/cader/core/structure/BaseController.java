@@ -5,6 +5,7 @@ import com.condelar.cader.core.errors.exceptions.NotIsRegisterException;
 import com.condelar.cader.core.errors.exceptions.UpdateException;
 import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.util.PackageDT;
+import com.condelar.cader.tool.util.ToolLink;
 import com.condelar.cader.toollibs.reflection.EntityScanner;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +78,7 @@ public class BaseController<Entity extends BaseEntity,
         ob = service.save(ob);
 
         PackageDT<DTO> pack = new PackageDT();
-        pack.setRotaOb(createURI(ob).getPath());
+        pack.setRotaOb(ToolLink.createURI(ob).getPath());
         pack.setMessage("Saved record");
         return ResponseEntity.ok().body(pack);
     }
@@ -166,18 +167,6 @@ public class BaseController<Entity extends BaseEntity,
         res.setMessage("Deleted record!");
         return ResponseEntity.ok().body(res);
     }
-
-    private URI createURI(Entity ob) {
-        if (ob == null) {
-            URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                    .buildAndExpand().toUri();
-            return uri;
-        }
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(ob.getId()).toUri();
-        return uri;
-    }
-
     private void replayEquals(Entity ob, DTO dto) {
         BeanUtils.copyProperties(dto, ob);
     }

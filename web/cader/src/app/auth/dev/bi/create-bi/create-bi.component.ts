@@ -45,10 +45,10 @@ export class CreateBiComponent extends SPage<BI, BiService> implements OnInit {
   });
 
   override populatedForm(ob: BI) {
+    console.log(ob);
     this.bi = ob;
     const form = this.form.controls;
     form.name.setValue(ob.name);
-
     const t = ob as any;
     this.observableParameter.update(ob.bIParameters);
     this.queryOb.update([ob.query]);
@@ -56,13 +56,7 @@ export class CreateBiComponent extends SPage<BI, BiService> implements OnInit {
 
   override getOb(): BI {
     const form = this.form.controls;
-    this.bi!.id = form.id.value as number;
     this.bi!.name = form.name.value as string;
     return this.bi!;
-  }
-
-  show() {
-    const bi = this.getOb();
-    console.log(bi);
   }
 }
