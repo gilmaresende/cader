@@ -68,7 +68,7 @@ export class TreeMenuComponent implements OnInit {
         label: 'Dev',
         items: [
           { label: 'Teste HQL', command: () => this.toGoPage('testeHql') },
-          { label: 'BI Manager', command: () => this.toGoPage('bi') },
+          { label: 'BI Manager', command: () => this.toGo('bi') },
         ],
       },
       {

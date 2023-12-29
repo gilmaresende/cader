@@ -25,6 +25,7 @@ import { CashInflowViewComponent } from './controllership/cashinflow/cash-inflow
 import { CardInvoiceListComponent } from './controllership/cardinvoice/card-invoice-list/card-invoice-list.component';
 import { CardInvoiceViewComponent } from './controllership/cardinvoice/card-invoice-view/card-invoice-view.component';
 import { CreateBiComponent } from './dev/bi/create-bi/create-bi.component';
+import { ListBiComponent } from './dev/bi/create-bi/list-bi/list-bi.component';
 
 const routes: Routes = [
   {
@@ -128,7 +129,11 @@ const routes: Routes = [
       },
       {
         path: 'bi',
-        component: CreateBiComponent,
+        children: [
+          { path: '', component: CreateBiComponent },
+          { path: 'list', component: ListBiComponent },
+          { path: ':id', component: CreateBiComponent },
+        ],
       },
     ],
   },

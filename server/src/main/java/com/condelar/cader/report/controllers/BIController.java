@@ -2,8 +2,10 @@ package com.condelar.cader.report.controllers;
 
 import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.otherdto.DescriptionStr;
+import com.condelar.cader.core.structure.util.PackageDT;
 import com.condelar.cader.report.constants.EnumOptionDate;
 import com.condelar.cader.report.constants.EnumTypeParameter;
+import com.condelar.cader.report.dto.BIDTOList;
 import com.condelar.cader.report.dto.TypeSearch;
 import com.condelar.cader.report.dto.BIDTO;
 import com.condelar.cader.report.service.BIService;
@@ -30,6 +32,14 @@ public class BIController {
         System.out.println(bi);
 
         return ResponseEntity.ok().body(bi);
+    }
+
+    @PostMapping("/list")
+    public ResponseEntity<PackageDT<BIDTOList>> filter(@RequestBody BIDTOList filter) {
+        PackageDT<BIDTOList> res = new PackageDT<BIDTOList>();
+        List<BIDTOList> all = biService.getAll();
+        res.setDatas(all);
+        return ResponseEntity.ok().body(res);
     }
 
     @PostMapping("/showClasses")
