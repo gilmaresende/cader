@@ -1,6 +1,6 @@
 <div class="lineLeft">
-  <div class="p1">
-    <tree [list]="items" (action)="toForm($event)" />
+  <div class="p1 listTree">
+    <tree [dataTableObs]="queryOb" (action)="toForm($event)" />
   </div>
   <div class="complete">
     <div [formGroup]="form">
@@ -22,13 +22,13 @@
         </button>
 
         <button
-          *ngIf="this.item && this.query != this.item"
+          *ngIf="this.item && this.item.main === false"
           class="btn btn-danger mb2 mr1"
           (click)="delete()"
         >
           Delete
         </button>
-        <inputText formControlName="name" [label]="'Nome'" />
+        <inputText formControlName="label" [label]="'Nome'" />
       </div>
       <div class="p1">
         <inputArea

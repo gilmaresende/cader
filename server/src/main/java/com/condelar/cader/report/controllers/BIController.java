@@ -2,6 +2,7 @@ package com.condelar.cader.report.controllers;
 
 import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.otherdto.DescriptionStr;
+import com.condelar.cader.core.structure.RegisterEntity;
 import com.condelar.cader.core.structure.util.PackageDT;
 import com.condelar.cader.report.constants.EnumOptionDate;
 import com.condelar.cader.report.constants.EnumTypeParameter;
@@ -40,6 +41,14 @@ public class BIController {
         List<BIDTOList> all = biService.getAll();
         res.setDatas(all);
         return ResponseEntity.ok().body(res);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PackageDT<BIDTO>> get(@PathVariable Long id) {
+        BIDTO bi = biService.getById(id);
+        PackageDT<BIDTO> pack = new PackageDT();
+        pack.setData(bi);
+        return ResponseEntity.ok().body(pack);
     }
 
     @PostMapping("/showClasses")

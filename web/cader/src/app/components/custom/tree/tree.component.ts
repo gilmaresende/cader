@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TreeNode } from 'primeng/api';
+import { ObservableTreeService } from './observable-tree.service';
 
 @Component({
   selector: 'tree',
@@ -10,9 +11,10 @@ export class TreeComponent {
   files!: TreeNode[];
 
   @Output() action = new EventEmitter<any>();
-  @Input() list: Array<any> = [];
 
   selectedFile!: TreeNode;
+
+  @Input() dataTableObs?: ObservableTreeService<any>;
 
   constructor() {}
 
@@ -21,9 +23,9 @@ export class TreeComponent {
   }
 
   ngOnInit() {
-    this.files = this.list;
-    this.selectedFile = this.files[0];
-    // this.nodeService.getFiles().then((data) => (this.files = data));
+    this.dataTableObs?.dataOb$.subscribe((listData) => {
+      this.files = listData;
+    });
   }
 
   getTreeNodesData() {

@@ -3,4 +3,5 @@ export interface BIQuery {
   label: string;
   data: string;
   children: Array<BIQuery>;
+  main: boolean;
 }

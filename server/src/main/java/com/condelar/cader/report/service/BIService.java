@@ -1,5 +1,6 @@
 package com.condelar.cader.report.service;
 
+import com.condelar.cader.core.errors.exceptions.ObjectNotFoundException;
 import com.condelar.cader.report.dto.BIDTO;
 import com.condelar.cader.report.dto.BIDTOList;
 import com.condelar.cader.report.entity.BI;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BIService {
@@ -39,4 +41,10 @@ public class BIService {
         return allDTO;
     }
 
+    public BIDTO getById(Long id) {
+        Optional<BI> biOp = biRepository.findById(id);
+        BI bi = biOp.orElseThrow(() -> new ObjectNotFoundException("Report not found"));
+        BIDTO dto = GJsonImp.toObject(BIDTO.class, new String(bi.getBody()));
+        return dto;
+    }
 }

@@ -1,4 +1,4 @@
-export function gerarNumeroUnico() {
+export function newId() {
   // Gera um número de ponto flutuante entre 0 (inclusive) e 1 (exclusivo)
   const numeroAleatorio = Math.random();
 

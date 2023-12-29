@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { BIQuery } from 'src/app/model-bi/biquery';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { ObservableTreeService } from 'src/app/components/custom/tree/observable-tree.service';
 import { BiService } from 'src/app/services/bi.service';
 
 @Component({
@@ -13,16 +13,19 @@ import { BiService } from 'src/app/services/bi.service';
   styleUrls: ['./biquery-item.component.scss'],
 })
 export class BIQueryItemComponent implements OnInit {
-  @Input() query?: BIQuery;
   item?: BIQuery;
   items: Array<any> = [];
+  queryMain?: BIQuery;
 
-  faCoffee = faCoffee;
+  @Input() queryOb?: ObservableTreeService<BIQuery>;
 
   constructor(private serviceBi: BiService) {}
 
   ngOnInit(): void {
-    if (this.query) this.items.push(this.query);
+    this.queryOb?.dataOb$.subscribe((listData) => {
+      this.items = listData;
+      this.queryMain = listData[0];
+    });
   }
 
   toForm(item: any) {
@@ -33,28 +36,28 @@ export class BIQueryItemComponent implements OnInit {
 
   form = new FormGroup({
     id: new FormControl(''),
-    name: new FormControl('', Validators.required),
+    label: new FormControl('', Validators.required),
     query: new FormControl('', Validators.required),
   });
 
   popularForm(item: BIQuery) {
     this.item = item;
     const form = this.form.controls;
-    form.name.setValue(item.label);
+    form.label.setValue(item.label);
     form.query.setValue(item.data);
   }
 
   toOb() {
     const form = this.form.controls;
     this.item!.data = form.query.value as string;
-    this.item!.label = form.name.value as string;
+    this.item!.label = form.label.value as string;
     this.clean();
   }
 
   clean() {
     this.item = undefined;
     const form = this.form.controls;
-    form.name.setValue('');
+    form.label.setValue('');
     form.query.setValue('');
   }
 
@@ -63,8 +66,8 @@ export class BIQueryItemComponent implements OnInit {
     this.item?.children.push(newItem);
   }
   delete() {
-    if (this.query) {
-      this.remove(this.query);
+    if (this.queryMain) {
+      this.remove(this.queryMain);
     }
   }
 

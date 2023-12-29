@@ -1,6 +1,5 @@
 package com.condelar.cader.report.dto;
 
-import com.condelar.cader.report.entity.BI;
 import lombok.Data;
 
 import java.util.ArrayList;

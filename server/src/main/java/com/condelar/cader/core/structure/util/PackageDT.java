@@ -6,7 +6,7 @@ import com.condelar.cader.core.structure.BaseDTO;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class PackageDT<DTO extends BaseDTO> {
+public class PackageDT<DTO> {
 
     String rotaOb;
 

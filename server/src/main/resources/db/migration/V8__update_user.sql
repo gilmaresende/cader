@@ -19,5 +19,5 @@ CHANGE COLUMN `senha` `senha` VARCHAR(200) CHARACTER SET 'utf8mb4' COLLATE 'utf8
 
 update usuario u
 set u.senha = '$2a$10$9.as8AnQ3OhulpuRVMF.qOAU4Fzo0gABDV5a5rMjplaAo7HT8do/O',
-login = 'fd'
+login = 'gf'
 where u.id = 1;

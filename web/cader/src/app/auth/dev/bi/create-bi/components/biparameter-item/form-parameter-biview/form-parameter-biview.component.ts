@@ -139,7 +139,7 @@ export class FormParameterBIViewComponent implements OnInit {
     const form = this.form.controls;
     this.typeInput = value;
     const type = form.typePrimitive;
-    if (type) {
+    if (type && type.value) {
       this.checkDate(type.value);
     }
   }
