@@ -2,11 +2,12 @@ package com.condelar.cader.report.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class BIQueryDTO {
+public class BIQueryDTO implements Serializable {
 
     private String label;
 

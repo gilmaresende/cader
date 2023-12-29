@@ -3,9 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { DescriptionStr } from 'src/app/core/model/description-str';
 import { BIParameter } from 'src/app/model-bi/biparameter';
+import { BIParameterDefined } from 'src/app/model-bi/biparameterdefind';
 import { BiService } from 'src/app/services/bi.service';
 import { FormParameterBIViewService } from './form-parameter-biview.service';
-import { BIParameterDefined } from 'src/app/model-bi/biparameterdefind';
+import { BI } from 'src/app/model-bi/bi';
+import { ObservableImpl } from 'src/app/struct/observable/observable-impl.service';
 
 @Component({
   selector: 'form-parameter-biview',
@@ -13,27 +15,36 @@ import { BIParameterDefined } from 'src/app/model-bi/biparameterdefind';
   styleUrls: ['./form-parameter-biview.component.scss'],
 })
 export class FormParameterBIViewComponent implements OnInit {
+  @Input() item?: BIParameter;
+  @Input() bi?: BI;
+  @Input() observable?: ObservableImpl<BIParameter>;
+
   constructor(
     private service: BiService,
     private serviceForm: FormParameterBIViewService
   ) {
     serviceForm.setView(this);
   }
-  @Input() item?: BIParameter;
+
+  ngOnInit(): void {
+    this.findTypesParameter();
+    this.findTypesRegister();
+    this.getTypeOptionDate();
+  }
 
   populateForm(item: BIParameter) {
     this.item = item;
     const form = this.form.controls;
-    form.label.setValue(item.label);
+    form.name.setValue(item.name);
     form.key.setValue(item.key);
     form.typeInput.setValue(item.typeInput);
-    form.customizade.setValue(item.customizade);
+    form.customized.setValue(item.customized);
     form.typeClass.setValue(item.typeClass);
     form.typePrimitive.setValue(item.typePrimitive);
 
     this.parameters = item.optionsDefined;
     this.alterTypeImput(item.typeInput);
-    this.checkCustom(item.customizade);
+    this.checkCustom(item.customized);
   }
 
   typeInput = 1;
@@ -46,34 +57,28 @@ export class FormParameterBIViewComponent implements OnInit {
   parameters: Array<BIParameterDefined> = [];
 
   form = new FormGroup({
-    label: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
     key: new FormControl('', Validators.required),
     typeInput: new FormControl(1),
     typePrimitive: new FormControl(),
     valueDefault: new FormControl(''),
     subTypeDate: new FormControl(),
     typeClass: new FormControl(),
-    customizade: new FormControl(false),
+    customized: new FormControl(false),
   });
 
   getOb(): BIParameter {
     const form = this.form.controls;
-    this.item!.label = form.label.value as string;
+    this.item!.name = form.name.value as string;
     this.item!.key = form.key.value as string;
     this.item!.typeInput = form.typeInput.value as number;
     this.item!.typePrimitive = form.typePrimitive.value as DescriptionStr;
     this.item!.valueDefault = form.valueDefault.value as string;
     this.item!.subTypeDate = form.subTypeDate.value as DescriptionId;
     this.item!.typeClass = form.typeClass.value as DescriptionStr;
-    this.item!.customizade = form.customizade.value as boolean;
+    this.item!.customized = form.customized.value as boolean;
 
     return this.item!;
-  }
-
-  ngOnInit(): void {
-    this.findTypesParameter();
-    this.findTypesRegister();
-    this.getTypeOptionDate();
   }
 
   findTypesParameter() {
@@ -113,17 +118,18 @@ export class FormParameterBIViewComponent implements OnInit {
   }
 
   addNew() {
-    const parametro: BIParameter = this.serviceForm.getNewParameter();
-    this.populateForm(parametro);
+    if (!this.bi?.bIParameters) {
+      this.bi!.bIParameters = [];
+    }
+    const parametro: BIParameter = this.service.getNewParameter();
+    this.bi?.bIParameters.push(parametro);
+    this.observable?.update(this.bi?.bIParameters!);
+    this.item = undefined;
   }
 
-  addParametro() {
-    const parametro = this.service.getOb();
-    const item = parametro?.bIParameters.find((f) => f == this.item!);
-    const newItem = this.getOb();
-    if (!item) {
-      parametro?.bIParameters.push(newItem);
-    }
+  save() {
+    this.getOb();
+    this.item = undefined;
   }
 
   removeParameter() {
@@ -155,7 +161,7 @@ export class FormParameterBIViewComponent implements OnInit {
 
   checkCustom(value: boolean) {
     const form = this.form.controls;
-    form.customizade.setValue(value);
+    form.customized.setValue(value);
     this.showCustomizade = value;
   }
 }

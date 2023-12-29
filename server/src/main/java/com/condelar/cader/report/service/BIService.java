@@ -19,16 +19,22 @@ public class BIService {
     @Autowired
     private BIRepository biRepository;
 
-    public BIDTO save(BIDTO dto) {
+    public BI toOb(BIDTO dto) {
         String body = GJsonImp.getInstance().toString(dto);
-
         BI bi = new BI();
         bi.setName(dto.getName());
         bi.setBody(body.getBytes());
+        return bi;
+    }
 
-        bi = biRepository.save(bi);
-        dto.setId(bi.getId());
+    public BIDTO toDTO(BI bi){
+        BIDTO dto = GJsonImp.toObject(BIDTO.class, new String(bi.getBody()));
         return dto;
+    }
+
+    public BI save(BI bi) {
+        bi = biRepository.save(bi);
+        return bi;
     }
 
     public List<BIDTOList> getAll() {
@@ -41,10 +47,9 @@ public class BIService {
         return allDTO;
     }
 
-    public BIDTO getById(Long id) {
+    public BI getById(Long id) {
         Optional<BI> biOp = biRepository.findById(id);
         BI bi = biOp.orElseThrow(() -> new ObjectNotFoundException("Report not found"));
-        BIDTO dto = GJsonImp.toObject(BIDTO.class, new String(bi.getBody()));
-        return dto;
+        return bi;
     }
 }

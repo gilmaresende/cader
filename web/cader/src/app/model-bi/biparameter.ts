@@ -4,12 +4,12 @@ import { BIParameterDefined } from './biparameterdefind';
 
 export interface BIParameter {
   key: string;
-  label: string;
+  name: string;
   typeInput: number;
   typePrimitive?: DescriptionStr;
   valueDefault?: string;
   subTypeDate?: DescriptionId;
   typeClass?: DescriptionStr;
-  customizade: boolean;
+  customized: boolean;
   optionsDefined: Array<BIParameterDefined>;
 }

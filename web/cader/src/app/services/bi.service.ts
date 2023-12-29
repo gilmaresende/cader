@@ -4,6 +4,9 @@ import { BaseHttpService } from '../core/services/base-http.service';
 import { BI } from '../model-bi/bi';
 import { BIQuery } from '../model-bi/biquery';
 import { newId } from '../core/utils/Factories/generator';
+import { BIParameter } from '../model-bi/biparameter';
+import { Observable } from 'rxjs';
+import { ResponseServe } from '../core/model/response-serve';
 
 @Injectable({
   providedIn: 'root',
@@ -47,5 +50,46 @@ export class BiService extends BaseHttpService<BI> {
       children: [],
       main: false,
     };
+  }
+
+  getNewParameter(): BIParameter {
+    return {
+      name: 'new',
+      key: '',
+      typeInput: 1,
+      valueDefault: '',
+      customized: false,
+      optionsDefined: [],
+    };
+  }
+
+  override create(ob: BI): Observable<ResponseServe> {
+    const jsonString = JSON.stringify(ob, (key, value) => {
+      if (key === 'parent') {
+        return undefined; // Evitar referências circulares
+      }
+      return value;
+    });
+    const str = { str: jsonString };
+    const response = this.getHttp().post<ResponseServe>(
+      `${API_CONFIG.BASE_URL}/${this.rote}`,
+      str
+    );
+    return response;
+  }
+
+  override update(ob: BI): Observable<ResponseServe> {
+    const jsonString = JSON.stringify(ob, (key, value) => {
+      if (key === 'parent') {
+        return undefined; // Evitar referências circulares
+      }
+      return value;
+    });
+    const str = { str: jsonString };
+    const response = this.getHttp().put<ResponseServe>(
+      `${API_CONFIG.BASE_URL}/${this.rote}/${ob.id}`,
+      str
+    );
+    return response;
   }
 }

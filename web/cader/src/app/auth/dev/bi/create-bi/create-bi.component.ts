@@ -8,6 +8,8 @@ import { BI } from 'src/app/model-bi/bi';
 import { BIQuery } from 'src/app/model-bi/biquery';
 import { BiService } from 'src/app/services/bi.service';
 import { ObservableTreeService } from 'src/app/components/custom/tree/observable-tree.service';
+import { BIParameter } from 'src/app/model-bi/biparameter';
+import { ObservableImpl } from 'src/app/struct/observable/observable-impl.service';
 
 @Component({
   selector: 'app-create-bi',
@@ -19,6 +21,9 @@ export class CreateBiComponent extends SPage<BI, BiService> implements OnInit {
   typesParameter: Array<{ value: string; label: string }> = [];
   public queryOb: ObservableTreeService<BIQuery> =
     new ObservableTreeService<BIQuery>();
+
+  public observableParameter: ObservableImpl<BIParameter> =
+    new ObservableImpl<BIParameter>();
 
   constructor(
     private controller: ControlService,
@@ -44,6 +49,8 @@ export class CreateBiComponent extends SPage<BI, BiService> implements OnInit {
     const form = this.form.controls;
     form.name.setValue(ob.name);
 
+    const t = ob as any;
+    this.observableParameter.update(ob.bIParameters);
     this.queryOb.update([ob.query]);
   }
 

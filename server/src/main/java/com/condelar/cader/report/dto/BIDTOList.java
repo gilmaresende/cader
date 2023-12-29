@@ -4,11 +4,12 @@ import com.condelar.cader.core.structure.BaseDTO;
 import com.condelar.cader.report.entity.BI;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class BIDTOList extends BaseDTO {
+public class BIDTOList extends BaseDTO implements Serializable {
     private String name;
 
     public BIDTOList(BI bi) {

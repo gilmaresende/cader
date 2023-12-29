@@ -1,0 +1,2 @@
+ALTER TABLE `report`
+CHANGE COLUMN `body` `body` BLOB NULL DEFAULT NULL ;

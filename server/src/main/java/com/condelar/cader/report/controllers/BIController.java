@@ -1,5 +1,6 @@
 package com.condelar.cader.report.controllers;
 
+import com.condelar.cader.core.errors.exceptions.UpdateException;
 import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.otherdto.DescriptionStr;
 import com.condelar.cader.core.structure.RegisterEntity;
@@ -7,9 +8,12 @@ import com.condelar.cader.core.structure.util.PackageDT;
 import com.condelar.cader.report.constants.EnumOptionDate;
 import com.condelar.cader.report.constants.EnumTypeParameter;
 import com.condelar.cader.report.dto.BIDTOList;
+import com.condelar.cader.report.dto.BIDtoStr;
 import com.condelar.cader.report.dto.TypeSearch;
 import com.condelar.cader.report.dto.BIDTO;
+import com.condelar.cader.report.entity.BI;
 import com.condelar.cader.report.service.BIService;
+import com.condelar.cader.toollibs.ggson.GJsonImp;
 import com.condelar.cader.toollibs.reflection.EntityScanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,11 +32,14 @@ public class BIController {
     BIService biService;
 
     @PostMapping
-    public ResponseEntity<BIDTO> findLaunches(@RequestBody BIDTO bi) {
-        bi = biService.save(bi);
-        System.out.println(bi);
-
-        return ResponseEntity.ok().body(bi);
+    public ResponseEntity<PackageDT<BIDTO>> save(@RequestBody BIDtoStr bi) {
+        BIDTO dto = GJsonImp.toObject(BIDTO.class, bi.getStr());
+        BI ob = biService.toOb(dto);
+        ob = biService.save(ob);
+        dto.setId(ob.getId());
+        PackageDT<BIDTO> pack = new PackageDT();
+        pack.setData(dto);
+        return ResponseEntity.ok().body(pack);
     }
 
     @PostMapping("/list")
@@ -45,9 +52,20 @@ public class BIController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PackageDT<BIDTO>> get(@PathVariable Long id) {
-        BIDTO bi = biService.getById(id);
+        BIDTO bi = biService.toDTO(biService.getById(id));
         PackageDT<BIDTO> pack = new PackageDT();
         pack.setData(bi);
+        return ResponseEntity.ok().body(pack);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<PackageDT<BIDTO>> update(@PathVariable Long id, @RequestBody BIDtoStr bi) {
+        BIDTO dto = GJsonImp.toObject(BIDTO.class, bi.getStr());
+        BI ob = biService.getById(id);
+        ob.setBody(GJsonImp.getInstance().toString(dto).getBytes());
+        ob = biService.save(ob);
+        dto.setId(ob.getId());
+        PackageDT<BIDTO> pack = new PackageDT();
+        pack.setData(dto);
         return ResponseEntity.ok().body(pack);
     }
 

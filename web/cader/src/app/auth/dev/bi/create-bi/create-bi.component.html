@@ -1,3 +1,4 @@
+<button class="btn btn-primary" (click)="show()">show</button>
 <div class="pt1">
   <abaH>
     <li class="nav-item">
@@ -71,10 +72,10 @@
     >
       <div class="lineLeft">
         <div class="divLists m1">
-          <biparameterItem [parameters]="bi?.bIParameters" />
+          <biparameterItem [observable]="observableParameter" />
         </div>
         <div class="divForm">
-          <form-parameter-biview />
+          <form-parameter-biview [observable]="observableParameter" [bi]="bi" />
         </div>
       </div>
     </div>
