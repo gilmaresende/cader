@@ -3,8 +3,8 @@ import { DescriptionStr } from '../core/model/description-str';
 import { BIParameterDefined } from './biparameterdefind';
 
 export interface BIParameter {
-  name: string;
   key: string;
+  label: string;
   typeInput: number;
   typePrimitive?: DescriptionStr;
   valueDefault?: string;
@@ -12,7 +12,4 @@ export interface BIParameter {
   typeClass?: DescriptionStr;
   customizade: boolean;
   optionsDefined: Array<BIParameterDefined>;
-  /* type: string;
-  register?: string;
-  defined: Array<BIParameterDefined>;*/
 }

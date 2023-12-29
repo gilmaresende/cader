@@ -8,7 +8,7 @@ import { FormParameterBIViewComponent } from './form-parameter-biview.component'
 export class FormParameterBIViewService {
   getNewParameter(): BIParameter {
     return {
-      name: '',
+      label: '',
       key: '',
       typeInput: 1,
       valueDefault: '',

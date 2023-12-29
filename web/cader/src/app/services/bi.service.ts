@@ -2,13 +2,21 @@ import { Injectable } from '@angular/core';
 import { API_CONFIG } from 'src/environments/environments';
 import { BaseHttpService } from '../core/services/base-http.service';
 import { BI } from '../model-bi/bi';
+import { BIQuery } from '../model-bi/biquery';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BiService extends BaseHttpService<BI> {
   override newInstance(): BI {
-    throw new Error('Method not implemented.');
+    const bi: BI = {
+      update: new Date(),
+      bIParameters: [],
+      name: '',
+      query: this.newQuery(),
+    };
+
+    return bi;
   }
   override getFilterBase(): {} {
     throw new Error('Method not implemented.');
@@ -32,62 +40,12 @@ export class BiService extends BaseHttpService<BI> {
     return this.getHttp().get(url);
   }
 
-  getBI(): BI {
-    const bi: BI = {
-      update: new Date(),
-      bIParameters: [
-        {
-          key: 'pAno',
-          name: 'Filtrar Cartão',
-          typeInput: 1,
-          typePrimitive: { id: 'LOCAL_DATE', description: 'LOCAL_DATE' },
-          valueDefault: '',
-          customizade: true,
-          optionsDefined: [
-            { name: 'Sim', value: '1' },
-            { name: 'Nâo', value: '0' },
-          ],
-        },
-        {
-          key: 'pCartao',
-          name: 'Cartão',
-          typeInput: 2,
-          typePrimitive: { id: 'String', description: 'String' },
-          valueDefault: '',
-          customizade: false,
-          optionsDefined: [],
-        },
-      ],
-      name: 'BI Teste',
-      query: {
-        id: 'a1',
-        name: 'Ano',
-        query: 'select',
-        queriesChildren: [
-          {
-            id: 'b1',
-            name: 'Mes',
-            query: 'select 2',
-            queriesChildren: [],
-          },
-          {
-            id: 'b2',
-            name: 'Mes 2',
-            query: 'select 2a',
-            queriesChildren: [
-              {
-                id: 'c1',
-                name: 'c1 2',
-                query: 'select c1',
-                queriesChildren: [],
-              },
-            ],
-          },
-        ],
-      },
+  newQuery(): BIQuery {
+    return {
+      key: '',
+      data: '',
+      label: 'new',
+      children: [],
     };
-
-    this.setOb(bi);
-    return bi;
   }
 }

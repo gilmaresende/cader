@@ -16,6 +16,7 @@ import { LabelTextComponent } from './label-text/label-text.component';
 import { DataTableComponent } from './data-table/data-table.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { BrowserModule } from '@angular/platform-browser';
+import { TreeModule } from 'primeng/tree';
 import { TableModule } from 'primeng/table';
 import { TwoDecimalMaskDirective } from 'src/app/core/directives/mask/two-decimal';
 import { InputAreaComponent } from './input-area/input-area.component';
@@ -24,6 +25,7 @@ import { AbaHItemComponent } from './aba/aba-hitem/aba-hitem.component';
 import { DropdownstrComponent } from './dropdownstr/dropdownstr.component';
 import { InputRadioComponent } from './input-radio/input-radio.component';
 import { CheckComponent } from './check/check.component';
+import { TreeComponent } from './tree/tree.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { CheckComponent } from './check/check.component';
     AutoCompleteModule,
     CalendarModule,
     TableModule,
+    TreeModule,
   ],
   declarations: [
     InputTextComponent,
@@ -52,6 +55,7 @@ import { CheckComponent } from './check/check.component';
     DropdownstrComponent,
     InputRadioComponent,
     CheckComponent,
+    TreeComponent,
   ],
   exports: [
     InputTextComponent,
@@ -68,6 +72,7 @@ import { CheckComponent } from './check/check.component';
     DropdownstrComponent,
     InputRadioComponent,
     CheckComponent,
+    TreeComponent,
   ],
 })
 export class CustomizedModule {}

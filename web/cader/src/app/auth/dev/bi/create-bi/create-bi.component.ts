@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SPage } from 'src/app/core/pages/spage/super-page';
@@ -13,7 +13,7 @@ import { BiService } from 'src/app/services/bi.service';
   templateUrl: './create-bi.component.html',
   styleUrls: ['./create-bi.component.scss'],
 })
-export class CreateBiComponent extends SPage<BI, BiService> implements OnInit {
+export class CreateBiComponent extends SPage<BI, BiService> {
   constructor(
     private controller: ControlService,
     private http: HttpServerService,
@@ -24,10 +24,6 @@ export class CreateBiComponent extends SPage<BI, BiService> implements OnInit {
   }
 
   typesParameter: Array<{ value: string; label: string }> = [];
-
-  ngOnInit(): void {
-    this.populatedForm(this.service.getBI());
-  }
 
   form = new FormGroup({
     id: new FormControl(0),

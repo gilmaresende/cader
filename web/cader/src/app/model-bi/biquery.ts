@@ -1,6 +1,6 @@
 export interface BIQuery {
-  id: string;
-  name: string;
-  query: string;
-  queriesChildren: Array<BIQuery>;
+  key: string;
+  label: string;
+  data: string;
+  children: Array<BIQuery>;
 }

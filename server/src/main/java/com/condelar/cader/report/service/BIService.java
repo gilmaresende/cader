@@ -1,15 +1,11 @@
 package com.condelar.cader.report.service;
 
-import com.condelar.cader.report.constants.EnumTypeParameter;
+import com.condelar.cader.report.dto.BIDTO;
 import com.condelar.cader.report.entity.BI;
-import com.condelar.cader.report.entity.BIParameter;
-import com.condelar.cader.report.entity.BIQuery;
 import com.condelar.cader.report.repository.BIRepository;
+import com.condelar.cader.toollibs.ggson.GJsonImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class BIService {
@@ -17,35 +13,16 @@ public class BIService {
     @Autowired
     private BIRepository biRepository;
 
-    public BI save() {
+    public BIDTO save(BIDTO dto) {
+        String body = GJsonImp.getInstance().toString(dto);
+
         BI bi = new BI();
-        bi.setName("Lista despesas em Aberto");
+        bi.setName(dto.getName());
+        bi.setBody(body.getBytes());
 
-        BIQuery query = new BIQuery();
-        query.setQuery("select coisa tal");
-
-        List<BIQuery> queries = new ArrayList<>();
-
-        BIQuery qItem = new BIQuery();
-        qItem.setQuery("select coisa tal");
-        queries.add(qItem);
-
-        query.setQueriesChildren(queries);
-        bi.setQuery(query);
-
-        BIParameter p1 = new BIParameter();
-        p1.setKey("pCard");
-        p1.setType(EnumTypeParameter.REGISTER);
-        p1.setRegister("Card");
-
-        BIParameter p2 = new BIParameter();
-        p2.setKey("pAno");
-        p2.setType(EnumTypeParameter.INTEGER);
-
-        bi.getBIParameters().add(p1);
-        bi.getBIParameters().add(p2);
-
-        return biRepository.save(bi);
+        bi = biRepository.save(bi);
+        dto.setId(bi.getId());
+        return dto;
     }
 
 }

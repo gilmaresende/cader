@@ -1,24 +1,20 @@
 package com.condelar.cader.report.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
-@Document(collection = "bi")
+@Entity
+@Table(name = "report")
 public class BI {
 
     @Id
-    private String id;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
 
-    private BIQuery query;
-
-    private List<BIParameter> bIParameters = new ArrayList<BIParameter>();
-
-
+    @Lob
+    private byte[] body;
 }

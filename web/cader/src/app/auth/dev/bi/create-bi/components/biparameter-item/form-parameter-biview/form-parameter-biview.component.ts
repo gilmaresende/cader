@@ -24,7 +24,7 @@ export class FormParameterBIViewComponent implements OnInit {
   populateForm(item: BIParameter) {
     this.item = item;
     const form = this.form.controls;
-    form.name.setValue(item.name);
+    form.label.setValue(item.label);
     form.key.setValue(item.key);
     form.typeInput.setValue(item.typeInput);
     form.customizade.setValue(item.customizade);
@@ -46,7 +46,7 @@ export class FormParameterBIViewComponent implements OnInit {
   parameters: Array<BIParameterDefined> = [];
 
   form = new FormGroup({
-    name: new FormControl('', Validators.required),
+    label: new FormControl('', Validators.required),
     key: new FormControl('', Validators.required),
     typeInput: new FormControl(1),
     typePrimitive: new FormControl(),
@@ -58,7 +58,7 @@ export class FormParameterBIViewComponent implements OnInit {
 
   getOb(): BIParameter {
     const form = this.form.controls;
-    this.item!.name = form.name.value as string;
+    this.item!.label = form.label.value as string;
     this.item!.key = form.key.value as string;
     this.item!.typeInput = form.typeInput.value as number;
     this.item!.typePrimitive = form.typePrimitive.value as DescriptionStr;

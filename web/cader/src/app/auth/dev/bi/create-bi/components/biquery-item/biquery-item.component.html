@@ -1,26 +1,42 @@
-<div class="itemQuery lineLeft">
-  {{ query?.name }}
-  <div class="complete">
-    <div class="lineLeft toRight">
-      <button
-        class="btn btn-primary mr1 btnIcon"
-        type="button"
-        data-toggle="collapse"
-        [attr.data-target]="'#' + query?.id + '-itemQuery'"
-        aria-expanded="false"
-        aria-controls="collapseExample"
-        (click)="cleanView()"
-      >
-        <span class="material-icons"> arrow_circle_down </span>
-      </button>
-      <button class="btn btn-primary btnIcon mr1" (click)="setItem()">
-        <span class="material-icons"> visibility </span>
-      </button>
-    </div>
+<div class="lineLeft">
+  <div class="p1">
+    <tree [list]="items" (action)="toForm($event)" />
   </div>
-</div>
-<div class="collapse listQuery" id="{{ query?.id }}-itemQuery">
-  <div *ngFor="let item of query?.queriesChildren">
-    <biquery-item [query]="item" />
+  <div class="complete">
+    <div [formGroup]="form">
+      <div class="fullW p1">
+        <button
+          *ngIf="this.item"
+          class="btn btn-primary mb2 mr1"
+          (click)="toOb()"
+        >
+          Save
+        </button>
+
+        <button
+          *ngIf="this.item"
+          class="btn btn-primary mb2 mr1"
+          (click)="newChildreen()"
+        >
+          Novo Sub
+        </button>
+
+        <button
+          *ngIf="this.item && this.query != this.item"
+          class="btn btn-danger mb2 mr1"
+          (click)="delete()"
+        >
+          Delete
+        </button>
+        <inputText formControlName="name" [label]="'Nome'" />
+      </div>
+      <div class="p1">
+        <inputArea
+          formControlName="query"
+          [label]="'Query'"
+          [placeholder]="'select'"
+        />
+      </div>
+    </div>
   </div>
 </div>

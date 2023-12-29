@@ -1,10 +1,10 @@
-package com.condelar.cader.report.entity;
+package com.condelar.cader.report.dto;
 
 import com.condelar.cader.report.constants.EnumTypeParameter;
 import lombok.Data;
 
 @Data
-public class BIParameter {
+public class BIParameterDTO {
 
     private EnumTypeParameter type;
 

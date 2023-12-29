@@ -175,7 +175,6 @@ export class ControlService {
         },
       });
     } else {
-      console.log(this.service);
       await this.service.create(obj).subscribe({
         next: (res) => {
           this.router.navigate([`cader/${res.rotaOb}`]);

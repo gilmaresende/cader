@@ -1,13 +1,11 @@
 package com.condelar.cader.report.controllers;
 
-import com.condelar.cader.app.dto.cardinvoice.CardInvoiceDTO;
 import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.otherdto.DescriptionStr;
-import com.condelar.cader.core.structure.util.PackageDT;
 import com.condelar.cader.report.constants.EnumOptionDate;
 import com.condelar.cader.report.constants.EnumTypeParameter;
 import com.condelar.cader.report.dto.TypeSearch;
-import com.condelar.cader.report.entity.BI;
+import com.condelar.cader.report.dto.BIDTO;
 import com.condelar.cader.report.service.BIService;
 import com.condelar.cader.toollibs.reflection.EntityScanner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +25,8 @@ public class BIController {
     BIService biService;
 
     @PostMapping
-    public ResponseEntity<BI> findLaunches(@RequestBody BI bi) {
-        bi = biService.save();
+    public ResponseEntity<BIDTO> findLaunches(@RequestBody BIDTO bi) {
+        bi = biService.save(bi);
         System.out.println(bi);
 
         return ResponseEntity.ok().body(bi);

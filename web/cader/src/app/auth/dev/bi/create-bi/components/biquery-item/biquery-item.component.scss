@@ -1,12 +1,4 @@
 :host {
-  .itemQuery {
-    width: 100%;
-    border: solid 1px rgb(182, 182, 255);
-    background: #fff;
-    padding: 0.5rem 1rem;
-    margin: 0.1rem 0;
-  }
-
   .listQuery {
     padding-left: 5px;
   }
@@ -19,5 +11,10 @@
     color: #ffffff;
     border: none;
     cursor: pointer;
+  }
+
+  .divForm {
+    width: 70%;
+    height: calc(100vh - 200px);
   }
 }
