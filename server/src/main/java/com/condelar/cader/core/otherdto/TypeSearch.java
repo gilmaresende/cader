@@ -1,4 +1,4 @@
-package com.condelar.cader.report.dto;
+package com.condelar.cader.core.otherdto;
 
 import lombok.Data;
 

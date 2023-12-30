@@ -1,4 +1,4 @@
-package com.condelar.cader.report.dto;
+package com.condelar.cader.app.dto.bi;
 
 import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.otherdto.DescriptionStr;

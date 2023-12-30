@@ -1,12 +1,10 @@
-package com.condelar.cader.report.dto;
+package com.condelar.cader.app.dto.bi;
 
 import com.condelar.cader.core.structure.BaseDTO;
-import com.condelar.cader.report.entity.BI;
+import com.condelar.cader.app.entiti.BI;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 public class BIDTOList extends BaseDTO implements Serializable {

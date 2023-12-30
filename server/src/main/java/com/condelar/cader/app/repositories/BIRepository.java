@@ -1,6 +1,6 @@
-package com.condelar.cader.report.repository;
+package com.condelar.cader.app.repositories;
 
-import com.condelar.cader.report.entity.BI;
+import com.condelar.cader.app.entiti.BI;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

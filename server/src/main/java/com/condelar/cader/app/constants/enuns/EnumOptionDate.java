@@ -1,4 +1,4 @@
-package com.condelar.cader.report.constants;
+package com.condelar.cader.app.constants.enuns;
 
 import com.condelar.cader.core.otherdto.DescriptionId;
 

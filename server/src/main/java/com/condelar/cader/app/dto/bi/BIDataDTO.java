@@ -1,4 +1,4 @@
-package com.condelar.cader.report.dto;
+package com.condelar.cader.app.dto.bi;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class BIDTO implements Serializable {
+public class BIDataDTO implements Serializable {
 
     private Long id;
 
@@ -19,6 +19,6 @@ public class BIDTO implements Serializable {
     @JsonProperty("bIParameters")
     private List<BIParameterDTO> bIParameters = new ArrayList<BIParameterDTO>();
 
-    public BIDTO(){}
+    public BIDataDTO(){}
 
 }

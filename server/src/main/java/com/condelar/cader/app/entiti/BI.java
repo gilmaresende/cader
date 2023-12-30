@@ -1,4 +1,4 @@
-package com.condelar.cader.report.entity;
+package com.condelar.cader.app.entiti;
 
 import com.condelar.cader.core.domain.User;
 import com.condelar.cader.core.structure.BaseEntity;

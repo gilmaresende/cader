@@ -1,6 +1,6 @@
 package com.condelar.cader.toollibs.reflection;
 
-import com.condelar.cader.report.dto.TypeSearch;
+import com.condelar.cader.core.otherdto.TypeSearch;
 
 import java.io.File;
 import java.io.IOException;
