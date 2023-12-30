@@ -7,12 +7,15 @@ import lombok.Data;
 @Data
 public class BIListDTO extends BaseDTO {
 
+    private String name;
+
     public BIListDTO() {
     }
 
     public BIListDTO(BI ob) {
         super(ob);
+        setId(ob.getId());
+        this.name = ob.getName();
     }
-
 }
 

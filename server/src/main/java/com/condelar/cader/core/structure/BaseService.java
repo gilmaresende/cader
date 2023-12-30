@@ -38,6 +38,7 @@ public abstract class BaseService<
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
+    @Transactional(readOnly = true)
     public Entity get(Entity base) {
         User u = new User();
         u.setId(getUser().getId());
@@ -52,6 +53,7 @@ public abstract class BaseService<
         return op.orElse(null);
     }
 
+    @Transactional(readOnly = true)
     public Entity find(Entity base) {
         User u = new User();
         u.setId(getUser().getId());
