@@ -25,9 +25,15 @@ import {
   ],
 })
 export class InputTextComponent implements ControlValueAccessor {
+  @Input() customValidators: ((value: any) => ValidationErrors | null)[] = [];
+
   @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
+
+  hasError: boolean = false;
+  errorMessage: string = '';
+  isTooltipVisible: boolean = false;
 
   value = '';
 
@@ -40,6 +46,13 @@ export class InputTextComponent implements ControlValueAccessor {
     if (!this.disabled) {
       this.onChange(this.value);
     }
+  }
+
+  externalControl: AbstractControl | null = null;
+
+  // Este método será chamado pelo FormControl externo
+  setFormControl(externalControl: AbstractControl | null) {
+    this.externalControl = externalControl;
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,16 +94,21 @@ export class InputTextComponent implements ControlValueAccessor {
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
   }
-
   validate(control: AbstractControl): ValidationErrors | null {
-    const quantity = control.value;
-    if (quantity <= 0) {
-      return {
-        mustBePositive: {
-          quantity,
-        },
-      };
+    // Execute os validadores personalizados
+    for (const validatorFn of this.customValidators) {
+      const result = validatorFn(this.value);
+
+      if (result) {
+        this.hasError = true;
+        console.log(result); //result.message
+        this.errorMessage = 'Campo inválido';
+        return result;
+      }
     }
+
+    this.hasError = false;
+    this.errorMessage = '';
     return null;
   }
 }

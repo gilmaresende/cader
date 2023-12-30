@@ -69,4 +69,9 @@ export class CreateBiComponent extends SPage<BI, BiService> implements OnInit {
       name: form.name.value as string,
     };
   }
+
+  show() {
+    this.form.errors;
+    console.log(this.form.errors);
+  }
 }

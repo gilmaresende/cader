@@ -14,7 +14,11 @@
     </button>
     <div class="lineLeft">
       <div class="mr1">
-        <inputText formControlName="name" [label]="'Nome'" />
+        <inputText
+          formControlName="name"
+          [label]="'Nome'"
+          [customValidators]="[validateCustom]"
+        ></inputText>
       </div>
       <div class="mr1">
         <inputText formControlName="key" [label]="'Key'" />

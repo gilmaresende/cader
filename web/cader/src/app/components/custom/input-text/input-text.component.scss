@@ -2,4 +2,30 @@
   input {
     width: 100%;
   }
+
+  /* No seu arquivo de estilo CSS */
+  .container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    opacity: 0; /* Começa transparente */
+    transition: opacity 0.3s; /* Adiciona uma transição suave */
+    min-width: 150px;
+  }
+
+  .container:hover .tooltip {
+    opacity: 1; /* Torna a div visível quando o mouse está sobre a div container */
+  }
 }

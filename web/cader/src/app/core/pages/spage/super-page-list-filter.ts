@@ -61,8 +61,6 @@ export abstract class SPageListFilter<
   async findById(id: number) {}
 
   getFilterBase() {
-    console.log(this.services.getFilterBase());
-    console.log(this.services.getFilterBase());
     return this.services.getFilterBase();
   }
 

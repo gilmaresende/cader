@@ -1,5 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { DescriptionStr } from 'src/app/core/model/description-str';
 import { BIParameter } from 'src/app/model-bi/biparameter';
@@ -58,8 +64,9 @@ export class FormParameterBIViewComponent implements OnInit {
   parameters: Array<BIParameterDefined> = [];
 
   form = new FormGroup({
-    name: new FormControl('', Validators.required),
-    key: new FormControl('', Validators.required),
+    name: new FormControl('', [Validators.required, Validators.max(5)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    key: new FormControl(''),
     typeInput: new FormControl(1),
     typePrimitive: new FormControl(),
     valueDefault: new FormControl(''),
@@ -164,5 +171,14 @@ export class FormParameterBIViewComponent implements OnInit {
     const form = this.form.controls;
     form.customized.setValue(value);
     this.showCustomizade = value;
+  }
+
+  validateCustom(value: any): ValidationErrors | null {
+    if (value && value.length > 5) {
+      return {
+        maxLength: { message: 'O valor deve ter no máximo 5 caracteres.' },
+      };
+    }
+    return null;
   }
 }
