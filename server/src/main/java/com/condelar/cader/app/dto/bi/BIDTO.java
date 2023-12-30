@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class BIDTO extends BaseDTO {
 
-    String str;
+    String data;
 
     String name;
 
@@ -15,7 +15,7 @@ public class BIDTO extends BaseDTO {
     }
 
     public BIDTO(BI bi) {
-        setStr(new String(bi.getBody()));
+        setData(new String(bi.getBody()));
         setId(bi.getId());
         setName(bi.getName());
     }

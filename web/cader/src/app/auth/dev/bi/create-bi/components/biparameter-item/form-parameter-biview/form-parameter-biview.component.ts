@@ -8,6 +8,7 @@ import { BiService } from 'src/app/services/bi.service';
 import { FormParameterBIViewService } from './form-parameter-biview.service';
 import { BI } from 'src/app/model-bi/bi';
 import { ObservableImpl } from 'src/app/struct/observable/observable-impl.service';
+import { BIData } from 'src/app/model-bi/bidata';
 
 @Component({
   selector: 'form-parameter-biview',
@@ -16,7 +17,7 @@ import { ObservableImpl } from 'src/app/struct/observable/observable-impl.servic
 })
 export class FormParameterBIViewComponent implements OnInit {
   @Input() item?: BIParameter;
-  @Input() bi?: BI;
+  @Input() bi?: BIData;
   @Input() observable?: ObservableImpl<BIParameter>;
 
   constructor(
@@ -133,12 +134,12 @@ export class FormParameterBIViewComponent implements OnInit {
   }
 
   removeParameter() {
-    const parametro = this.service.getOb();
-    const item = parametro?.bIParameters.filter((f) => f == this.item);
-    if (item) {
-      const items = parametro?.bIParameters.filter((f) => f != this.item);
-      parametro!.bIParameters = items!;
-    }
+    // const parametro = this.service.getOb();
+    // const item = parametro?.bIParameters.filter((f) => f == this.item);
+    // if (item) {
+    //   const items = parametro?.bIParameters.filter((f) => f != this.item);
+    //   parametro!.bIParameters = items!;
+    // }
   }
 
   alterTypeImput(value: number) {

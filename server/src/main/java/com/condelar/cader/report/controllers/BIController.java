@@ -23,7 +23,7 @@ public class BIController {
 
    // @PostMapping
     public ResponseEntity<PackageDT<BIDataDTO>> save(@RequestBody BIDTO bi) {
-        BIDataDTO dto = GJsonImp.toObject(BIDataDTO.class, bi.getStr());
+        BIDataDTO dto = GJsonImp.toObject(BIDataDTO.class, bi.getData());
         BI ob = biService.toOb(dto);
         ob = biService.save(ob);
         dto.setId(ob.getId());
@@ -50,7 +50,7 @@ public class BIController {
     }
    // @PutMapping("/{id}")
     public ResponseEntity<PackageDT<BIDataDTO>> update(@PathVariable Long id, @RequestBody BIDTO bi) {
-        BIDataDTO dto = GJsonImp.toObject(BIDataDTO.class, bi.getStr());
+        BIDataDTO dto = GJsonImp.toObject(BIDataDTO.class, bi.getData());
         BI ob = biService.getById(id);
         ob.setName(dto.getName());
         ob.setBody(GJsonImp.getInstance().toString(dto).getBytes());

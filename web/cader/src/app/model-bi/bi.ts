@@ -1,9 +1,7 @@
 import { SEntidade } from '../core/model/sentidade';
-import { BIParameter } from './biparameter';
-import { BIQuery } from './biquery';
+import { BIData } from './bidata';
 
 export interface BI extends SEntidade {
+  data: string;
   name: string;
-  query: BIQuery;
-  bIParameters: Array<BIParameter>;
 }

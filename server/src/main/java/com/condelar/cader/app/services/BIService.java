@@ -24,7 +24,7 @@ public class BIService extends BaseService<BI, BIDTO, BIFilterDTO, BIListDTO, BI
         // BIDTO dto = GJsonImp.toObject(BIDTO.class, str.getStr());
         //String body = GJsonImp.getInstance().toString(dto);
         ob.setName(str.getName());
-        ob.setBody(str.getStr().getBytes());
+        ob.setBody(str.getData().getBytes());
         return ob;
     }
 
