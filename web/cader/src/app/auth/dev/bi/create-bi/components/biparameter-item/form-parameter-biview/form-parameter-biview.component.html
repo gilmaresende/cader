@@ -17,11 +17,15 @@
         <inputText
           formControlName="name"
           [label]="'Nome'"
-          [customValidators]="[validateCustom]"
+          [observableValid]="validName"
         ></inputText>
       </div>
       <div class="mr1">
-        <inputText formControlName="key" [label]="'Key'" />
+        <inputText
+          formControlName="key"
+          [label]="'Key'"
+          [observableValid]="validKey"
+        />
       </div>
       <div>
         <inputRadio
@@ -70,6 +74,7 @@
                   <inputText
                     formControlName="valueDefault"
                     [label]="'Valor Padrão'"
+                    [observableValid]="validValueDefault"
                   />
                 </div>
                 <div class="ml1">

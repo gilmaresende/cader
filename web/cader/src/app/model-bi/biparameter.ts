@@ -7,7 +7,7 @@ export interface BIParameter {
   name: string;
   typeInput: number;
   typePrimitive?: DescriptionStr;
-  valueDefault?: string;
+  valueDefault: string;
   subTypeDate?: DescriptionId;
   typeClass?: DescriptionStr;
   customized: boolean;

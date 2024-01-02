@@ -7,6 +7,7 @@
   .container {
     position: relative;
     display: inline-block;
+    width: 10px;
   }
 
   .tooltip {
@@ -27,5 +28,10 @@
 
   .container:hover .tooltip {
     opacity: 1; /* Torna a div visível quando o mouse está sobre a div container */
+  }
+
+  .borderErro {
+    border: 1px solid red;
+    border-radius: 6px;
   }
 }

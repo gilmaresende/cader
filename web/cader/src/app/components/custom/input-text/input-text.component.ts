@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -6,6 +6,7 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
+import { ObservableValid } from 'src/app/struct/observable/observable-valid-impl.service';
 
 @Component({
   selector: 'inputText',
@@ -24,16 +25,25 @@ import {
     },
   ],
 })
-export class InputTextComponent implements ControlValueAccessor {
-  @Input() customValidators: ((value: any) => ValidationErrors | null)[] = [];
-
+export class InputTextComponent implements ControlValueAccessor, OnInit {
   @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
+  @Input() observableValid?: ObservableValid;
 
   hasError: boolean = false;
   errorMessage: string = '';
   isTooltipVisible: boolean = false;
+
+  ngOnInit(): void {
+    this.observableValid?.observable$.subscribe((data) => {
+      this.showErros(data);
+    });
+  }
+  showErros(data: Array<string>) {
+    this.hasError = true;
+    this.errorMessage = data.toString();
+  }
 
   value = '';
 
@@ -42,12 +52,17 @@ export class InputTextComponent implements ControlValueAccessor {
   disabled = false;
 
   teclar() {
+    this.cleanErros();
     this.markAsTouched();
     if (!this.disabled) {
       this.onChange(this.value);
     }
   }
 
+  cleanErros() {
+    this.hasError = false;
+    this.errorMessage = '';
+  }
   externalControl: AbstractControl | null = null;
 
   // Este método será chamado pelo FormControl externo
@@ -95,20 +110,6 @@ export class InputTextComponent implements ControlValueAccessor {
     this.disabled = disabled;
   }
   validate(control: AbstractControl): ValidationErrors | null {
-    // Execute os validadores personalizados
-    for (const validatorFn of this.customValidators) {
-      const result = validatorFn(this.value);
-
-      if (result) {
-        this.hasError = true;
-        console.log(result); //result.message
-        this.errorMessage = 'Campo inválido';
-        return result;
-      }
-    }
-
-    this.hasError = false;
-    this.errorMessage = '';
     return null;
   }
 }

@@ -1,20 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { DescriptionStr } from 'src/app/core/model/description-str';
+import { hasContent } from 'src/app/core/utils/Validators/tool-validators';
+import { BIData } from 'src/app/model-bi/bidata';
 import { BIParameter } from 'src/app/model-bi/biparameter';
 import { BIParameterDefined } from 'src/app/model-bi/biparameterdefind';
 import { BiService } from 'src/app/services/bi.service';
-import { FormParameterBIViewService } from './form-parameter-biview.service';
-import { BI } from 'src/app/model-bi/bi';
 import { ObservableImpl } from 'src/app/struct/observable/observable-impl.service';
-import { BIData } from 'src/app/model-bi/bidata';
+import { ObservableValid } from 'src/app/struct/observable/observable-valid-impl.service';
+import { FormParameterBIViewService } from './form-parameter-biview.service';
 
 @Component({
   selector: 'form-parameter-biview',
@@ -39,6 +34,11 @@ export class FormParameterBIViewComponent implements OnInit {
     this.getTypeOptionDate();
   }
 
+  cleanScreen() {
+    const item = this.service.getNewParameter();
+    this.populateForm(item);
+  }
+
   populateForm(item: BIParameter) {
     this.item = item;
     const form = this.form.controls;
@@ -48,6 +48,7 @@ export class FormParameterBIViewComponent implements OnInit {
     form.customized.setValue(item.customized);
     form.typeClass.setValue(item.typeClass);
     form.typePrimitive.setValue(item.typePrimitive);
+    form.valueDefault.setValue(item.valueDefault);
 
     this.parameters = item.optionsDefined;
     this.alterTypeImput(item.typeInput);
@@ -64,8 +65,7 @@ export class FormParameterBIViewComponent implements OnInit {
   parameters: Array<BIParameterDefined> = [];
 
   form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.max(5)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    name: new FormControl(''),
     key: new FormControl(''),
     typeInput: new FormControl(1),
     typePrimitive: new FormControl(),
@@ -74,6 +74,10 @@ export class FormParameterBIViewComponent implements OnInit {
     typeClass: new FormControl(),
     customized: new FormControl(false),
   });
+
+  validName: ObservableValid = new ObservableValid();
+  validKey: ObservableValid = new ObservableValid();
+  validValueDefault: ObservableValid = new ObservableValid();
 
   getOb(): BIParameter {
     const form = this.form.controls;
@@ -132,12 +136,17 @@ export class FormParameterBIViewComponent implements OnInit {
     const parametro: BIParameter = this.service.getNewParameter();
     this.bi?.bIParameters.push(parametro);
     this.observable?.update(this.bi?.bIParameters!);
+    this.cleanScreen();
     this.item = undefined;
   }
 
   save() {
-    this.getOb();
-    this.item = undefined;
+    const hasErro = this.validation();
+    if (!hasErro) {
+      this.getOb();
+      this.cleanScreen();
+      this.item = undefined;
+    }
   }
 
   removeParameter() {
@@ -173,12 +182,23 @@ export class FormParameterBIViewComponent implements OnInit {
     this.showCustomizade = value;
   }
 
-  validateCustom(value: any): ValidationErrors | null {
-    if (value && value.length > 5) {
-      return {
-        maxLength: { message: 'O valor deve ter no máximo 5 caracteres.' },
-      };
+  validation(): boolean {
+    const form = this.form.controls;
+    let hasErro = false;
+    if (!hasContent(form.name.value)) {
+      hasErro = true;
+      this.validName.emmiter(['Nome é Obrigatório']);
     }
-    return null;
+    if (!hasContent(form.key.value)) {
+      hasErro = true;
+      this.validKey.emmiter(['Key é Obrigatório']);
+    }
+    if (form.typePrimitive.value.id !== 'LOCAL_DATE') {
+      if (!hasContent(form.valueDefault.value)) {
+        this.validValueDefault.emmiter(['Valor Padrão é Obrigatório']);
+      }
+    }
+
+    return hasErro;
   }
 }

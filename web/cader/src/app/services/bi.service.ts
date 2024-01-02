@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { API_CONFIG } from 'src/environments/environments';
 import { BaseHttpService } from '../core/services/base-http.service';
-import { BIData } from '../model-bi/bidata';
-import { BIQuery } from '../model-bi/biquery';
 import { newId } from '../core/utils/Factories/generator';
-import { BIParameter } from '../model-bi/biparameter';
-import { Observable } from 'rxjs';
-import { ResponseServe } from '../core/model/response-serve';
 import { BI } from '../model-bi/bi';
+import { BIParameter } from '../model-bi/biparameter';
+import { BIQuery } from '../model-bi/biquery';
 
 @Injectable({
   providedIn: 'root',
@@ -64,7 +61,8 @@ export class BiService extends BaseHttpService<BI> {
       name: 'new',
       key: '',
       typeInput: 1,
-      valueDefault: '',
+      valueDefault: '0',
+      typePrimitive: { id: 'INTEGER', description: 'INTEGER' },
       customized: false,
       optionsDefined: [],
     };

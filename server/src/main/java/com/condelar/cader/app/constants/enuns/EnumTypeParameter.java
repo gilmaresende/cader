@@ -12,8 +12,7 @@ public enum EnumTypeParameter {
     DOUBLE,
     STRING,
     LOCAL_DATE,
-    REGISTER,
-    COMBO_CUSTOM;
+    REGISTER;
 
 
     public static Map toMap() {

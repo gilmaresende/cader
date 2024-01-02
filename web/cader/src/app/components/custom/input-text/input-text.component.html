@@ -1,18 +1,19 @@
-<div class="tooltip-container">
-  <span class="p-float-label">
-    <input
-      pInputText
-      type="text"
-      [placeholder]="placeholder"
-      [disabled]="isDisabled"
-      (keyup)="teclar()"
-      [(ngModel)]="value"
-    />
-    <label htmlFor="username">{{ label }}</label>
-  </span>
-</div>
-
-<div *ngIf="hasError" class="container">
-  <div class="trigger">Erro?</div>
-  <div class="tooltip">{{ errorMessage }}</div>
+<div class="lineLeft">
+  <div [ngClass]="{ borderErro: hasError }">
+    <span class="p-float-label">
+      <input
+        pInputText
+        type="text"
+        [placeholder]="placeholder"
+        [disabled]="isDisabled"
+        (keyup)="teclar()"
+        [(ngModel)]="value"
+      />
+      <label htmlFor="username">{{ label }}</label>
+    </span>
+  </div>
+  <div *ngIf="hasError" class="container">
+    <div class="trigger">?</div>
+    <div class="tooltip">{{ errorMessage }}</div>
+  </div>
 </div>
