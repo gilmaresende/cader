@@ -67,7 +67,12 @@ export class InputDateComponent implements ControlValueAccessor, DoCheck {
    */
   writeValue(value: Date | undefined) {
     if (value) {
-      this.value = new Date(value.getTime());
+      let milissegundos;
+      if (value instanceof Date) {
+        this.value = new Date(value.getTime());
+      } else {
+        milissegundos = value;
+      }
     }
   }
 
