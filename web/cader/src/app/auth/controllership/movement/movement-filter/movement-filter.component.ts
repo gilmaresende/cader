@@ -5,7 +5,9 @@ import { SFilter } from 'src/app/core/pages/spage/super-filter';
 import { ControlService } from 'src/app/core/services/control.service';
 import {
   getFirstDayMonth,
+  getFirstDayMonthYYYYMMDD,
   getLastDayMonth,
+  getLastDayMonthYYYYMMDD,
 } from 'src/app/core/utils/Date/date-util';
 import { MovimentFilter } from 'src/app/model-filter/moviment-filter';
 
@@ -32,8 +34,8 @@ export class MovementFilterComponent extends SFilter<MovimentFilter> {
   }
 
   form = new FormGroup({
-    movimentDateStart: new FormControl(getFirstDayMonth()),
-    movimentDateEnd: new FormControl(getLastDayMonth()),
+    movimentDateStart: new FormControl(getFirstDayMonthYYYYMMDD()),
+    movimentDateEnd: new FormControl(getLastDayMonthYYYYMMDD()),
     typeRevenueExpence: new FormControl(EnumTypeRevenueExpenceFilter[0]),
     origin: new FormControl(EnumOriginMovementFilter[1]),
     wallet: new FormControl(),
@@ -42,8 +44,8 @@ export class MovementFilterComponent extends SFilter<MovimentFilter> {
   getOb(): MovimentFilter {
     const form = this.form.controls;
     const ob = {
-      movimentDateStart: form.movimentDateStart.value as Date,
-      movimentDateEnd: form.movimentDateEnd.value as Date,
+      movimentDateStart: form.movimentDateStart.value,
+      movimentDateEnd: form.movimentDateEnd.value,
       typeRevenueExpence: form.typeRevenueExpence.value as DescriptionId,
       origin: form.origin.value as DescriptionId,
       wallet: form.wallet.value as DescriptionId,

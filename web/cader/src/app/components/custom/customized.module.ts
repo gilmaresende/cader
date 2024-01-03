@@ -26,6 +26,8 @@ import { DropdownstrComponent } from './dropdownstr/dropdownstr.component';
 import { InputRadioComponent } from './input-radio/input-radio.component';
 import { CheckComponent } from './check/check.component';
 import { TreeComponent } from './tree/tree.component';
+import { IkMaskDirective } from './directive/ik-mask.directive';
+import { IkMoneyDirective } from './directive/ik-money.directive';
 @NgModule({
   imports: [
     CommonModule,
@@ -56,6 +58,8 @@ import { TreeComponent } from './tree/tree.component';
     InputRadioComponent,
     CheckComponent,
     TreeComponent,
+    IkMaskDirective,
+    IkMoneyDirective,
   ],
   exports: [
     InputTextComponent,
@@ -73,6 +77,8 @@ import { TreeComponent } from './tree/tree.component';
     InputRadioComponent,
     CheckComponent,
     TreeComponent,
+    IkMaskDirective,
+    IkMoneyDirective,
   ],
 })
 export class CustomizedModule {}

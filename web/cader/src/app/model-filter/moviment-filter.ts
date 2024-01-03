@@ -5,8 +5,8 @@ import {
 } from '../core/utils/Date/date-util';
 
 export interface MovimentFilter {
-  movimentDateStart?: Date;
-  movimentDateEnd?: Date;
+  movimentDateStart?: any;
+  movimentDateEnd?: any;
   wallet?: DescriptionId;
   origin?: DescriptionId;
   typeRevenueExpence?: DescriptionId;

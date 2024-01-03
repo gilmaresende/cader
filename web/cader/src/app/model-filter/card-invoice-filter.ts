@@ -5,10 +5,10 @@ import {
 } from '../core/utils/Date/date-util';
 
 export interface CardInvoiceFilter {
-  closedDateStart?: Date;
-  closedDateEnd?: Date;
-  dueDateStart?: Date;
-  dueDateEnd?: Date;
+  closedDateStart?: any;
+  closedDateEnd?: any;
+  dueDateStart?: any;
+  dueDateEnd?: any;
   card?: DescriptionId;
 }
 

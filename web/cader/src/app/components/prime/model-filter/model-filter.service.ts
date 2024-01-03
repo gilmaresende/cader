@@ -10,7 +10,6 @@ export class ModelFilterService {
   ob: any;
 
   constructor(private controlService: ControlService) {
-    console.log('build model filter');
     controlService.setFilterService(this);
   }
 
