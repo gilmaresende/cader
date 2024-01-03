@@ -4,10 +4,10 @@ import { ControlService } from 'src/app/core/services/control.service';
 
 @Component({
   selector: 'toolbar',
-  templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss'],
+  templateUrl: './tool-bar.component.html',
+  styleUrls: ['./tool-bar.component.scss'],
 })
-export class ToolbarComponent implements OnInit {
+export class ToolBarComponent implements OnInit {
   constructor(private controller: ControlService) {}
   title: string = '';
 

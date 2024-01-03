@@ -1,35 +1,39 @@
-<div [formGroup]="form" class="mt4 mX6">
-  <div class="mt2 line">
-    <inputDate
-      formControlName="movimentDateStart"
-      [label]="'Data Inicial'"
-    ></inputDate>
-    <inputDate
-      formControlName="movimentDateEnd"
-      [label]="'Data Final'"
-    ></inputDate>
+<div [formGroup]="form" class="mX2">
+  <div class="row">
+    <div class="col-xs-12 col-md-3 mt2">
+      <inputDate
+        formControlName="movimentDateStart"
+        [label]="'Data Inicial'"
+      ></inputDate>
+    </div>
+    <div class="col-xs-12 col-md-3 mt2">
+      <inputDate
+        formControlName="movimentDateEnd"
+        [label]="'Data Final'"
+      ></inputDate>
+    </div>
   </div>
-
-  <div class="mt2">
-    <dropdown
-      [list]="typeList"
-      formControlName="typeRevenueExpence"
-      [label]="'Tipo'"
-    ></dropdown>
-  </div>
-  <div class="mt2">
-    <dropdown
-      [list]="origenList"
-      formControlName="origin"
-      [label]="'Origem'"
-    ></dropdown>
-  </div>
-
-  <div class="mt2">
-    <autocomplete
-      formControlName="wallet"
-      [service]="serviceWallet"
-      [label]="'Carteira'"
-    />
+  <div class="row">
+    <div class="col-xs-12 col-md-3 mt2">
+      <dropdown
+        [list]="typeList"
+        formControlName="typeRevenueExpence"
+        [label]="'Tipo'"
+      ></dropdown>
+    </div>
+    <div class="col-xs-12 col-md-3 mt2">
+      <dropdown
+        [list]="origenList"
+        formControlName="origin"
+        [label]="'Origem'"
+      ></dropdown>
+    </div>
+    <div class="col-xs-12 col-md-4 mt2">
+      <autocomplete
+        formControlName="wallet"
+        [service]="serviceWallet"
+        [label]="'Carteira'"
+      />
+    </div>
   </div>
 </div>

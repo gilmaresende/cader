@@ -1,37 +1,39 @@
 <div [formGroup]="form" class="m2">
-  <div class="fullW">
-    <inputText
-      formControlName="name"
-      [label]="'Nome'"
-      [isDisabled]="isDisabled"
-    />
-  </div>
-  <div class="mt2">
-    <inputSwitch
-      formControlName="active"
-      [label]="'Ativo'"
-      [isDisabled]="isDisabled"
-    />
-  </div>
-  <div class="mt2">
-    <inputSwitch
-      formControlName="canBeNegative"
-      [label]="'Permite Saldo Negativo'"
-      [isDisabled]="isDisabled"
-    />
-  </div>
-  <div class="mt2">
-    <inputSwitch
-      formControlName="reserved"
-      [label]="'Reservada'"
-      [isDisabled]="isDisabled"
-    />
-  </div>
-  <div class="mt2">
-    <inputReais
-      formControlName="balance"
-      [label]="'Saldo'"
-      [isDisabled]="true"
-    />
+  <div class="row">
+    <div class="col-xs-12 col-md-5 mt2">
+      <inputText
+        formControlName="name"
+        [label]="'Nome'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div class="col-xs-12 col-md-3 mt2">
+      <inputReais
+        formControlName="balance"
+        [label]="'Saldo'"
+        [isDisabled]="true"
+      />
+    </div>
+    <div>
+      <inputSwitch
+        formControlName="active"
+        [label]="'Ativo'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div>
+      <inputSwitch
+        formControlName="canBeNegative"
+        [label]="'Permite Saldo Negativo'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div>
+      <inputSwitch
+        formControlName="reserved"
+        [label]="'Reservada'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
   </div>
 </div>

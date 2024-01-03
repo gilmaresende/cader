@@ -6,11 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomizedModule } from './components/custom/customized.module';
 import { FusionModule } from './components/fusion/fusion.module';
-import { MaterialModule } from './components/material/material.module';
 import { PrimeModule } from './components/prime/prime.module';
 import { CoreModule } from './core/core.module';
 import { AuthInterceptorProvider } from './core/interceptors/auth.interceptor';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TemplatesModule } from './templates/templates.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserModule,
     AppRoutingModule,
     PrimeModule,
-    MaterialModule,
+    TemplatesModule,
     CoreModule,
     BrowserAnimationsModule,
     FusionModule,

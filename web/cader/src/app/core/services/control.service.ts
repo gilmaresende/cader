@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ViewComponent } from 'src/app/auth/view/view.component';
-import { ToolbarComponent } from 'src/app/components/material/toolbar/toolbar.component';
 import { SidebarComponent } from 'src/app/components/prime/sidebar/sidebar.component';
 import { ToastService } from 'src/app/components/prime/toast/toast.service';
 import { SEntidade } from '../model/sentidade';
@@ -14,6 +13,7 @@ import { SPageListFilter } from '../pages/spage/super-page-list-filter';
 import { ModelFilterService } from 'src/app/components/prime/model-filter/model-filter.service';
 import { SFilter } from '../pages/spage/super-filter';
 import { LoadingComponent } from 'src/app/components/fusion/loading/loading.component';
+import { ToolBarComponent } from 'src/app/templates/tool-bar/tool-bar.component';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class ControlService {
   //----------------------------------------//relacionado ao core da aplicacao--------------------------------
 
   title: string = '';
-  toobar!: ToolbarComponent;
+  toobar!: ToolBarComponent;
   sidebar!: SidebarComponent;
   toastService?: ToastService;
   confirmDialogService?: ConfirmDialogService;
@@ -77,7 +77,7 @@ export class ControlService {
     }
   }
 
-  setTooBar(tooBar: ToolbarComponent) {
+  setTooBar(tooBar: ToolBarComponent) {
     this.toobar = tooBar;
   }
 

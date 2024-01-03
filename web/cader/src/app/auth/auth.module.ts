@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { FusionModule } from '../components/fusion/fusion.module';
-import { MaterialModule } from '../components/material/material.module';
 import { PrimeModule } from '../components/prime/prime.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { HomeComponent } from './home/home.component';
@@ -49,6 +48,7 @@ import { BIParameterItemComponent } from './dev/bi/create-bi/components/biparame
 import { FormParameterBIViewComponent } from './dev/bi/create-bi/components/biparameter-item/form-parameter-biview/form-parameter-biview.component';
 import { DefinedParameterViewComponent } from './dev/bi/create-bi/components/biparameter-item/form-parameter-biview/defined-parameter-view/defined-parameter-view.component';
 import { ListBiComponent } from './dev/bi/create-bi/list-bi/list-bi.component';
+import { TemplatesModule } from '../templates/templates.module';
 
 @NgModule({
   declarations: [
@@ -98,7 +98,7 @@ import { ListBiComponent } from './dev/bi/create-bi/list-bi/list-bi.component';
     CommonModule,
     AuthRoutingModule,
     PrimeModule,
-    MaterialModule,
+    TemplatesModule,
     FusionModule,
     ReactiveFormsModule,
     PrimeRModule,
