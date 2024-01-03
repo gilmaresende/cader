@@ -23,38 +23,39 @@
     border: 1px solid #888;
     width: 80%;
     padding-bottom: 5rem;
+    border-radius: 0;
   }
 
-  /* Estilo do botão de fechar */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  .bg-blue {
+    background-color: rgb(65, 65, 255);
   }
 
-  .actionBtn {
-    float: right;
+  .icon-write {
+    color: #fff;
   }
 
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
+  .linkBtn {
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
   }
 
-  .barActions {
-    border-bottom: #888 solid 0.3px;
-    background-color: blue;
-    height: 2.5rem;
+  .linkBtn:hover {
+    background: rgb(45, 45, 255);
   }
 
   .title {
+    padding-left: 15px;
     color: #fff;
-    padding-top: 0.7rem;
-    padding-left: 0.7rem;
-    font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+  }
+
+  .ationBtn {
+    padding-right: 15px;
+    display: flex;
   }
 }

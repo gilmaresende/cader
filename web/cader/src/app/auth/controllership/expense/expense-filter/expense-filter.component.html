@@ -1,48 +1,53 @@
-<div [formGroup]="form" class="mt4 mX6">
-  <div class="mt2 line">
+<div [formGroup]="form" class="row mX1">
+  <div class="mt2 col-xs-12 col-md-4">
     <inputDate
       formControlName="dueDateStart"
       [label]="'Data Inicial'"
     ></inputDate>
+  </div>
+  <div class="mt2 col-xs-12 col-md-4">
     <inputDate formControlName="dueDateEnd" [label]="'Data Final'"></inputDate>
   </div>
-  <div class="mt2">
-    <autocomplete
-      formControlName="wallet"
-      [service]="serviceWallet"
-      [label]="'Carteira'"
-    />
+  <div class="row">
+    <div class="mt2 col-xs-12 col-md-6 col-lg-4">
+      <autocomplete
+        formControlName="wallet"
+        [service]="serviceWallet"
+        [label]="'Carteira'"
+      />
+    </div>
+    <div class="mt2 col-xs-12 col-md-6 col-lg-4">
+      <autocomplete
+        formControlName="person"
+        [service]="servicePerson"
+        [label]="'Pessoa'"
+      />
+    </div>
+    <div class="mt2 col-xs-12 col-md-6 col-lg-4">
+      <autocomplete
+        formControlName="paymentType"
+        [service]="servicePaymentTypeService"
+        [label]="'Meio de Pagamento'"
+      />
+    </div>
   </div>
-  <div class="mt2">
-    <autocomplete
-      formControlName="person"
-      [service]="servicePerson"
-      [label]="'Pessoa'"
-    />
-  </div>
-  <div class="mt2">
-    <autocomplete
-      formControlName="paymentType"
-      [service]="servicePaymentTypeService"
-      [label]="'Meio de Pagamento'"
-    />
-  </div>
-  <div class="mt2">
-    <autocomplete
-      formControlName="expenseCategory"
-      [service]="serviceExpenseCategory"
-      [label]="'Categoria'"
-    />
-  </div>
-  <div class="mt2 lineBetween">
-    <div class="fullW pr2">
+
+  <div class="row">
+    <div class="mt2 col-xs-12 col-md-6 col-lg-4">
+      <autocomplete
+        formControlName="expenseCategory"
+        [service]="serviceExpenseCategory"
+        [label]="'Categoria'"
+      />
+    </div>
+    <div class="mt2 col-xs-12 col-md-6 col-lg-4">
       <dropdown
         [list]="originList"
         formControlName="origin"
         [label]="'Origem'"
       ></dropdown>
     </div>
-    <div class="fullW pl2">
+    <div class="mt2 col-xs-12 col-md-6 col-lg-4">
       <dropdown
         [list]="statusList"
         formControlName="status"

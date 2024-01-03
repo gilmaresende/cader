@@ -1,16 +1,18 @@
 <div class="modal" [ngClass]="{ show: visible }">
   <div class="modal-content">
-    <div class="barActions">
-      <div class="lineBetween">
-        <div class="title">Filtro</div>
-        <div class="actionBtn">
-          <btn-icon (click)="toFilert()"><i class="pi pi-search"></i></btn-icon>
-          <btn-icon (click)="closeModal()"
-            ><i class="pi pi-times"></i
-          ></btn-icon>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-blue">
+      <span class="title">Filtro</span>
+      <div class="complete toRight">
+        <ul class="navbar-nav ml-auto ationBtn line">
+          <li class="linkBtn nav-item" type="button" (click)="toFilert()">
+            <span class="material-symbols-outlined icon-write"> search </span>
+          </li>
+          <li class="linkBtn nav-item" type="button" (click)="closeModal()">
+            <span class="material-symbols-outlined icon-write"> close </span>
+          </li>
+        </ul>
       </div>
-    </div>
+    </nav>
     <ng-content></ng-content>
   </div>
 </div>

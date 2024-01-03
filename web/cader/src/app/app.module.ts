@@ -9,7 +9,6 @@ import { FusionModule } from './components/fusion/fusion.module';
 import { PrimeModule } from './components/prime/prime.module';
 import { CoreModule } from './core/core.module';
 import { AuthInterceptorProvider } from './core/interceptors/auth.interceptor';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TemplatesModule } from './templates/templates.module';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { TemplatesModule } from './templates/templates.module';
     BrowserAnimationsModule,
     FusionModule,
     CustomizedModule,
-    FontAwesomeModule,
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent],
