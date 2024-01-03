@@ -5,8 +5,8 @@ import {
 } from '../core/utils/Date/date-util';
 
 export interface ExpenseFilter {
-  dueDateStart?: any;
-  dueDateEnd?: any;
+  dueDateStart?: Date;
+  dueDateEnd?: Date;
   status?: DescriptionId;
   wallet?: DescriptionId;
   paymentType?: DescriptionId;

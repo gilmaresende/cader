@@ -5,9 +5,7 @@ import { SFilter } from 'src/app/core/pages/spage/super-filter';
 import { ControlService } from 'src/app/core/services/control.service';
 import {
   getFirstDayMonth,
-  getFirstDayMonthYYYYMMDD,
   getLastDayMonth,
-  getLastDayMonthYYYYMMDD,
 } from 'src/app/core/utils/Date/date-util';
 import { CardInvoiceFilter } from 'src/app/model-filter/card-invoice-filter';
 import { CardService } from 'src/app/services/card.service';
@@ -26,8 +24,8 @@ export class CardInvoiceFilterComponent extends SFilter<CardInvoiceFilter> {
   }
 
   form = new FormGroup({
-    dueDateStart: new FormControl(getFirstDayMonthYYYYMMDD()),
-    dueDateEnd: new FormControl(getLastDayMonthYYYYMMDD()),
+    dueDateStart: new FormControl(getFirstDayMonth()),
+    dueDateEnd: new FormControl(getLastDayMonth()),
     closedDateStart: new FormControl(),
     closedDateEnd: new FormControl(),
     card: new FormControl(),
@@ -35,8 +33,8 @@ export class CardInvoiceFilterComponent extends SFilter<CardInvoiceFilter> {
   override getOb(): CardInvoiceFilter {
     const form = this.form.controls;
     return {
-      dueDateStart: form.dueDateStart.value,
-      dueDateEnd: form.dueDateEnd.value,
+      dueDateStart: form.dueDateStart.value as Date,
+      dueDateEnd: form.dueDateEnd.value as Date,
       closedDateStart: form.closedDateStart.value as Date,
       closedDateEnd: form.closedDateEnd.value as Date,
       card: form.card.value as DescriptionId,

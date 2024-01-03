@@ -5,9 +5,7 @@ import { SFilter } from 'src/app/core/pages/spage/super-filter';
 import { ControlService } from 'src/app/core/services/control.service';
 import {
   getFirstDayMonth,
-  getFirstDayMonthYYYYMMDD,
   getLastDayMonth,
-  getLastDayMonthYYYYMMDD,
 } from 'src/app/core/utils/Date/date-util';
 import { CashInflowFilter } from 'src/app/model-filter/cash-inflow-filter';
 import { IncomeCategoryService } from 'src/app/services/income-category.service';
@@ -40,8 +38,8 @@ export class CashInflowFilterComponent extends SFilter<CashInflowFilter> {
   originList: Array<DescriptionId> = EnumCashInflowOriginFilter;
 
   form = new FormGroup({
-    dueDateStart: new FormControl(getFirstDayMonthYYYYMMDD()),
-    dueDateEnd: new FormControl(getLastDayMonthYYYYMMDD()),
+    dueDateStart: new FormControl(getFirstDayMonth()),
+    dueDateEnd: new FormControl(getLastDayMonth()),
     status: new FormControl(),
     wallet: new FormControl(),
     paymentType: new FormControl(),
@@ -53,8 +51,8 @@ export class CashInflowFilterComponent extends SFilter<CashInflowFilter> {
   override getOb(): CashInflowFilter {
     const form = this.form.controls;
     const ob = {
-      dueDateStart: form.dueDateStart.value,
-      dueDateEnd: form.dueDateEnd.value,
+      dueDateStart: form.dueDateStart.value as Date,
+      dueDateEnd: form.dueDateEnd.value as Date,
       status: form.status.value as DescriptionId,
       wallet: form.wallet.value as DescriptionId,
       paymentType: form.paymentType.value as DescriptionId,
