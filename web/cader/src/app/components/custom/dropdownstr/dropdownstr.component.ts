@@ -14,6 +14,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { DescriptionStr } from 'src/app/core/model/description-str';
+import { ObservableImpl } from 'src/app/struct/observable/observable-impl.service';
 
 @Component({
   selector: 'dropdownstr',
@@ -40,6 +41,7 @@ export class DropdownstrComponent
   @Input() list: Array<DescriptionStr> = [];
 
   @Output() valueChanged = new EventEmitter<any>();
+  @Input() observableList?: ObservableImpl<DescriptionStr>;
 
   selected?: DescriptionStr;
 
@@ -51,6 +53,11 @@ export class DropdownstrComponent
     this.markAsTouched();
     if (this.selected) {
       this.onChange(this.selected);
+    }
+    if (this.observableList) {
+      this.observableList.dataOb$.subscribe((data) => {
+        this.list = data;
+      });
     }
   }
 
@@ -78,7 +85,6 @@ export class DropdownstrComponent
    * deseja definir um valor no controle filho.
    */
   writeValue(ob: DescriptionStr) {
-    console.log(ob);
     this.selected = ob;
   }
 

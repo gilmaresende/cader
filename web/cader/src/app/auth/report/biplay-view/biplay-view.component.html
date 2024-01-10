@@ -25,21 +25,34 @@
             />
           </div>
           <div *ngIf="parameterCurrent?.typePrimitive?.id == 'LOCAL_DATE'">
-            DATE
+            <inputDate
+              formControlName="value"
+              [label]="parameterCurrent!.name"
+              (valueChanged)="newValue($event)"
+            />
           </div>
           <div *ngIf="parameterCurrent?.typePrimitive?.id == 'DOUBLE'">
-            DOUBLE
+            <inputReais
+              formControlName="value"
+              [label]="parameterCurrent!.name"
+              (valueChanged)="newValue($event)"
+            />
           </div>
         </ng-template>
       </div>
-      <div *ngIf="parameterCurrent?.typeInput == 2">combo entidades</div>
+      <div *ngIf="parameterCurrent?.typeInput == 2">
+        <dropdownstr
+          [label]="parameterCurrent!.name"
+          formControlName="value"
+          (valueChanged)="newValue($event)"
+          [observableList]="observableList"
+        ></dropdownstr>
+      </div>
       <div class="row">
         <button type="button" class="btn btn-primary mt-2" (click)="playBi()">
           Play
         </button>
       </div>
-
-      {{ data | json }}
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -29,6 +29,8 @@ export class InputReaisComponent implements ControlValueAccessor {
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
 
+  @Output() valueChanged = new EventEmitter<any>();
+
   value = 0;
 
   touched = false;
@@ -38,7 +40,7 @@ export class InputReaisComponent implements ControlValueAccessor {
   teclar() {
     this.markAsTouched();
     if (!this.disabled) {
-      // this.value = this.formatarMoeda(this.value);
+      this.valueChanged.emit(this.value);
       this.onChange(this.value);
     }
   }

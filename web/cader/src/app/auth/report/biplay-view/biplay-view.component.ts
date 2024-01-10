@@ -37,16 +37,24 @@ export class BIPlayViewComponent
 
   ngOnInit(): void {}
 
+  id: number = 0;
   bi?: BIData;
   parametros: Array<ModalTree> = [];
   parameterCurrent?: BIParameter;
   data: any;
-
+  combo: { class: string; list: Array<DescriptionStr> } = {
+    class: '',
+    list: [],
+  };
   value: any;
   observableParametros: ObservableTreeService<ModalTree> =
     new ObservableTreeService();
 
+  observableList?: ObservableImpl<DescriptionStr> =
+    new ObservableImpl<DescriptionStr>();
+
   override populatedForm(ob: BI) {
+    this.id = ob.id!;
     this.controller.setTitle(`${ob.name}`);
     this.bi = JSON.parse(ob.data);
     this.bi?.bIParameters.forEach((item) => {
@@ -87,6 +95,9 @@ export class BIPlayViewComponent
     this.form.controls.value.setValue(item.data.valor);
     this.data = item.data;
     this.parameterCurrent = item.data.item;
+    if (this.data.item.typeInput == 2) {
+      this.toListEntity(this.data.item);
+    }
   }
 
   newValue(event: any) {
@@ -94,10 +105,20 @@ export class BIPlayViewComponent
   }
 
   playBi() {
-    console.log(this.parametros);
+    const parameter: Array<any> = [];
+
     this.parametros.forEach((item) => {
-      console.log(item.key);
-      console.log(item.data.valor);
+      parameter.push({ key: item.key, value: item.data.valor });
+    });
+
+    this.service.playReport({ idBI: this.id, parameter: parameter }).subscribe({
+      next: (res) => {
+        this.combo = res.data;
+        this.observableList?.update(res.data);
+      },
+      error: (error) => {
+        console.log(error);
+      },
     });
   }
 
@@ -107,5 +128,25 @@ export class BIPlayViewComponent
       options.push({ id: item.value, description: item.name })
     );
     return options;
+  }
+
+  toListEntity(item: BIParameter) {
+    if (
+      this.combo.class !== item!.typeClass!.id ||
+      this.combo.list.length < 0
+    ) {
+      this.combo.class = item!.typeClass!.id;
+      this.service.findComboReport(item!.typeClass!.id).subscribe({
+        next: (res) => {
+          this.combo = res.data;
+          this.observableList?.update(res.data);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    }
+
+    return [];
   }
 }
