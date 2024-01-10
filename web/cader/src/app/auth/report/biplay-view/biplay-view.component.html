@@ -1,10 +1,9 @@
-<button class="btn btn-primary" (click)="playBi()">Play</button>
-<div [formGroup]="form">
+<div [formGroup]="form" class="m2">
   <div class="row">
-    <div class="col-3">
+    <div class="col-5">
       <tree [dataTableObs]="observableParametros" (action)="toForm($event)" />
     </div>
-    <div class="col-9">
+    <div class="col-7">
       <div *ngIf="parameterCurrent?.typeInput == 1">
         <div *ngIf="parameterCurrent?.customized; else noCuston">
           <dropdownstr
@@ -34,6 +33,12 @@
         </ng-template>
       </div>
       <div *ngIf="parameterCurrent?.typeInput == 2">combo entidades</div>
+      <div class="row">
+        <button type="button" class="btn btn-primary mt-2" (click)="playBi()">
+          Play
+        </button>
+      </div>
+
       {{ data | json }}
     </div>
   </div>

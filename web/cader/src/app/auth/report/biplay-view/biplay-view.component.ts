@@ -28,7 +28,7 @@ export class BIPlayViewComponent
     private service: BIPlayService,
     private activatedRoute: ActivatedRoute
   ) {
-    super('Bi Manager', controller, service, activatedRoute);
+    super('Play Bi', controller, service, activatedRoute);
   }
 
   form = new FormGroup({
@@ -47,11 +47,12 @@ export class BIPlayViewComponent
     new ObservableTreeService();
 
   override populatedForm(ob: BI) {
+    this.controller.setTitle(`${ob.name}`);
     this.bi = JSON.parse(ob.data);
     this.bi?.bIParameters.forEach((item) => {
       this.parametros.push({
         label: item.name,
-        data: { valor: item.valueDefault, item },
+        data: { valor: this.getValueDefault(item), item },
         key: item.key,
         children: [],
       });
@@ -63,7 +64,26 @@ export class BIPlayViewComponent
     return this.service.newInstance();
   }
 
-  toForm(item: ModalTree) {
+  getValueDefault(item: BIParameter): DescriptionStr | string {
+    if (item.customized) {
+      const opSelection = item.optionsDefined.find((i) => {
+        return i.value == item.valueDefault;
+      });
+
+      if (opSelection) {
+        return {
+          id: opSelection.value,
+          description: opSelection.name,
+        };
+      } else {
+        return '';
+      }
+    } else {
+      return item.valueDefault;
+    }
+  }
+
+  async toForm(item: ModalTree) {
     this.form.controls.value.setValue(item.data.valor);
     this.data = item.data;
     this.parameterCurrent = item.data.item;

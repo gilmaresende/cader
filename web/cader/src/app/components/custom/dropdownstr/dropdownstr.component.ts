@@ -78,6 +78,7 @@ export class DropdownstrComponent
    * deseja definir um valor no controle filho.
    */
   writeValue(ob: DescriptionStr) {
+    console.log(ob);
     this.selected = ob;
   }
 
