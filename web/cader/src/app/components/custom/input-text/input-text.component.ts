@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -30,7 +30,7 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
   @Input() observableValid?: ObservableValid;
-
+  @Output() valueChanged = new EventEmitter<string>();
   hasError: boolean = false;
   errorMessage: string = '';
   isTooltipVisible: boolean = false;
@@ -52,9 +52,9 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
   disabled = false;
 
   teclar() {
-    this.cleanErros();
     this.markAsTouched();
     if (!this.disabled) {
+      this.valueChanged.emit(this.value);
       this.onChange(this.value);
     }
   }

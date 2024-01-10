@@ -49,6 +49,8 @@ import { FormParameterBIViewComponent } from './dev/bi/create-bi/components/bipa
 import { DefinedParameterViewComponent } from './dev/bi/create-bi/components/biparameter-item/form-parameter-biview/defined-parameter-view/defined-parameter-view.component';
 import { ListBiComponent } from './dev/bi/create-bi/list-bi/list-bi.component';
 import { TemplatesModule } from '../templates/templates.module';
+import { BIPlayListComponent } from './report/biplay-list/biplay-list.component';
+import { BIPlayViewComponent } from './report/biplay-view/biplay-view.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +95,8 @@ import { TemplatesModule } from '../templates/templates.module';
     FormParameterBIViewComponent,
     DefinedParameterViewComponent,
     ListBiComponent,
+    BIPlayListComponent,
+    BIPlayViewComponent,
   ],
   imports: [
     CommonModule,

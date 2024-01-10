@@ -2,6 +2,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TreeNode } from 'primeng/api';
 import { ObservableTreeService } from './observable-tree.service';
 
+export interface ModalTree {
+  key: string;
+  label: string;
+  data: any;
+  icon?: string;
+  children: Array<ModalTree>;
+}
+
 @Component({
   selector: 'tree',
   templateUrl: './tree.component.html',
@@ -10,7 +18,7 @@ import { ObservableTreeService } from './observable-tree.service';
 export class TreeComponent {
   files!: TreeNode[];
 
-  @Output() action = new EventEmitter<any>();
+  @Output() action = new EventEmitter<ModalTree>();
 
   selectedFile!: TreeNode;
 

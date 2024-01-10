@@ -1,0 +1,40 @@
+<button class="btn btn-primary" (click)="playBi()">Play</button>
+<div [formGroup]="form">
+  <div class="row">
+    <div class="col-3">
+      <tree [dataTableObs]="observableParametros" (action)="toForm($event)" />
+    </div>
+    <div class="col-9">
+      <div *ngIf="parameterCurrent?.typeInput == 1">
+        <div *ngIf="parameterCurrent?.customized; else noCuston">
+          <dropdownstr
+            [label]="parameterCurrent!.name"
+            formControlName="value"
+            [list]="toListStr(parameterCurrent?.optionsDefined)"
+            (valueChanged)="newValue($event)"
+          ></dropdownstr>
+        </div>
+        <ng-template #noCuston>
+          <div *ngIf="parameterCurrent?.typePrimitive?.id == 'INTEGER'">
+            INTEGER
+          </div>
+          <div *ngIf="parameterCurrent?.typePrimitive?.id == 'STRING'">
+            <inputText
+              formControlName="value"
+              [label]="parameterCurrent!.name"
+              (valueChanged)="newValue($event)"
+            />
+          </div>
+          <div *ngIf="parameterCurrent?.typePrimitive?.id == 'LOCAL_DATE'">
+            DATE
+          </div>
+          <div *ngIf="parameterCurrent?.typePrimitive?.id == 'DOUBLE'">
+            DOUBLE
+          </div>
+        </ng-template>
+      </div>
+      <div *ngIf="parameterCurrent?.typeInput == 2">combo entidades</div>
+      {{ data | json }}
+    </div>
+  </div>
+</div>

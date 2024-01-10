@@ -20,6 +20,7 @@ export class FormParameterBIViewComponent implements OnInit {
   @Input() item?: BIParameter;
   @Input() bi?: BIData;
   @Input() observable?: ObservableImpl<BIParameter>;
+  observableCustom?: ObservableImpl<BIParameterDefined> = new ObservableImpl();
 
   constructor(
     private service: BiService,
@@ -53,6 +54,8 @@ export class FormParameterBIViewComponent implements OnInit {
     this.parameters = item.optionsDefined;
     this.alterTypeImput(item.typeInput);
     this.checkCustom(item.customized);
+
+    this.observableCustom?.update(item.optionsDefined);
   }
 
   typeInput = 1;
@@ -157,6 +160,8 @@ export class FormParameterBIViewComponent implements OnInit {
     //   parametro!.bIParameters = items!;
     // }
   }
+
+  checkCustomized() {}
 
   alterTypeImput(value: number) {
     const form = this.form.controls;
