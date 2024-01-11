@@ -1,6 +1,8 @@
 package com.condelar.cader.tool.util;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class ToolDate {
 
@@ -29,6 +31,11 @@ public class ToolDate {
     public static Boolean isLeapYear(LocalDate dt) {
         int year = dt.getYear();
         return year % 4 == 0 && (year % 400 == 0 || year % 100 != 0);
+    }
+
+    public static LocalDate convertLongToLocalDate(long timestamp) {
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        return instant.atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
 }

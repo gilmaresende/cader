@@ -65,4 +65,9 @@ public class QueryHqlService {
         return query;
     }
 
+    public QueryExecutor newQuery(String queryHQL) {
+        return new QueryExecutor(createdQuery(queryHQL));
+    }
+
+
 }

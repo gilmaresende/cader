@@ -26,8 +26,13 @@ public class ToolCsv {
             StringBuilder lineSb = new StringBuilder();
             for (String key : keys) {
                 Object value = line.getOrDefault(key, "-");
-                String obStr = value.toString();
-                lineSb.append(obStr).append(";");
+                if (value != null) {
+                    String obStr = value.toString();
+                    lineSb.append(obStr).append(";");
+                } else {
+                    lineSb.append("-").append(";");
+                }
+
             }
             body.append(lineSb.toString()).append("\n");
         }

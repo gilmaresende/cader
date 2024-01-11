@@ -7,6 +7,10 @@ import { DescriptionStr } from 'src/app/core/model/description-str';
 import { SPage } from 'src/app/core/pages/spage/super-page';
 import { ControlService } from 'src/app/core/services/control.service';
 import { HttpServerService } from 'src/app/core/services/http-server.service';
+import {
+  getFirstDayMonth,
+  getLastDayMonth,
+} from 'src/app/core/utils/Date/date-util';
 import { BI } from 'src/app/model-bi/bi';
 import { BIData } from 'src/app/model-bi/bidata';
 import { BIParameter } from 'src/app/model-bi/biparameter';
@@ -92,16 +96,36 @@ export class BIPlayViewComponent
   }
 
   async toForm(item: ModalTree) {
-    this.form.controls.value.setValue(item.data.valor);
     this.data = item.data;
     this.parameterCurrent = item.data.item;
     if (this.data.item.typeInput == 2) {
       this.toListEntity(this.data.item);
     }
+    const parameter = this.data.item as BIParameter;
+    if (parameter.typePrimitive?.id == 'LOCAL_DATE') {
+      console.log(parameter.valueDefault);
+      if (parameter.valueDefault == '0') {
+        console.log(getFirstDayMonth());
+        this.form.controls.value.setValue(getFirstDayMonth());
+      } else {
+        this.form.controls.value.setValue(getLastDayMonth());
+      }
+    } else {
+      this.form.controls.value.setValue(item.data.valor);
+    }
   }
 
   newValue(event: any) {
-    this.data.valor = event;
+    if (event instanceof Date) {
+      const dt = event as Date;
+      this.data.valor = dt.getTime();
+      //this.value = new Date(value.getTime());
+    } else {
+      console.log('no data');
+
+      //   milissegundos = value;
+      this.data.valor = event;
+    }
   }
 
   playBi() {
@@ -111,15 +135,40 @@ export class BIPlayViewComponent
       parameter.push({ key: item.key, value: item.data.valor });
     });
 
+    this.http
+      .post('biPlay/playBi', { idBI: this.id, parameter: parameter })
+      .subscribe({
+        next: (res) => {
+          const blobUrl = URL.createObjectURL(res);
+
+          const downloadLink = document.createElement('a');
+          downloadLink.href = blobUrl;
+          downloadLink.download = 'DOWNLOAD_FILE.CSV';
+          downloadLink.click();
+          downloadLink.remove();
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    /*
     this.service.playReport({ idBI: this.id, parameter: parameter }).subscribe({
       next: (res) => {
-        this.combo = res.data;
-        this.observableList?.update(res.data);
+        const blobUrl = URL.createObjectURL(res);
+
+        const downloadLink = document.createElement('a');
+        downloadLink.href = blobUrl;
+        downloadLink.download = 'DOWNLOAD_FILE.CSV';
+        downloadLink.click();
+        downloadLink.remove();
+
+        //this.combo = res.data;
+        // this.observableList?.update(res.data);
       },
       error: (error) => {
         console.log(error);
       },
-    });
+    });*/
   }
 
   toListStr(data: any) {
