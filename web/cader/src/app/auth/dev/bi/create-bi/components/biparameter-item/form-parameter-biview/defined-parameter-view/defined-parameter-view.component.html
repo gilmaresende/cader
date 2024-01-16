@@ -1,5 +1,5 @@
 <hr />
-<div class="lineLeft">
+<div class="lineLeft mt2">
   <div>
     <table>
       <thead>
@@ -21,7 +21,7 @@
           </td>
           <td>
             <button class="btnClean" (click)="toForm(item)">
-              <span class="material-icons"> visibility </span>
+              <span class="material-symbols-outlined"> visibility </span>
             </button>
           </td>
         </tr>
@@ -30,14 +30,13 @@
   </div>
   <div class="ml1" [formGroup]="form">
     <div>
-      <button class="btn btn-success" (click)="toNew()">Novo</button>
-      <button class="ml1 btn btn-primary" (click)="save()">Salvar</button>
-    </div>
-    <div class="mt2">
       <inputText formControlName="name" [label]="'Nome'" />
     </div>
     <div class="mt2">
       <inputText formControlName="value" [label]="'Valor'" />
+    </div>
+    <div>
+      <button class="mt1 btn btn-primary" (click)="save()">Salvar</button>
     </div>
   </div>
 </div>

@@ -5,10 +5,10 @@ import { BIParameterDefined } from './biparameterdefind';
 export interface BIParameter {
   key: string;
   name: string;
-  typeInput: number;
-  typePrimitive?: DescriptionStr;
+  typePrimitiveOrEntity: number;
+  typePrimitive: number;
   valueDefault: string;
-  subTypeDate?: DescriptionId;
+  subTypeDate?: number;
   typeClass?: DescriptionStr;
   customized: boolean;
   optionsDefined: Array<BIParameterDefined>;

@@ -4,7 +4,7 @@
       <tree [dataTableObs]="observableParametros" (action)="toForm($event)" />
     </div>
     <div class="col-7">
-      <div *ngIf="parameterCurrent?.typeInput == 1">
+      <div *ngIf="parameterCurrent?.typePrimitiveOrEntity == 1">
         <div *ngIf="parameterCurrent?.customized; else noCuston">
           <dropdownstr
             [label]="parameterCurrent!.name"
@@ -14,24 +14,22 @@
           ></dropdownstr>
         </div>
         <ng-template #noCuston>
-          <div *ngIf="parameterCurrent?.typePrimitive?.id == 'INTEGER'">
-            INTEGER
-          </div>
-          <div *ngIf="parameterCurrent?.typePrimitive?.id == 'STRING'">
+          <div *ngIf="parameterCurrent?.typePrimitive == 1">INTEGER</div>
+          <div *ngIf="parameterCurrent?.typePrimitive == 2">
             <inputText
               formControlName="value"
               [label]="parameterCurrent!.name"
               (valueChanged)="newValue($event)"
             />
           </div>
-          <div *ngIf="parameterCurrent?.typePrimitive?.id == 'LOCAL_DATE'">
+          <div *ngIf="parameterCurrent?.typePrimitive == 3">
             <inputDate
               formControlName="value"
               [label]="parameterCurrent!.name"
               (valueChanged)="newValue($event)"
             />
           </div>
-          <div *ngIf="parameterCurrent?.typePrimitive?.id == 'DOUBLE'">
+          <div *ngIf="parameterCurrent?.typePrimitive == 4">
             <inputReais
               formControlName="value"
               [label]="parameterCurrent!.name"
@@ -40,7 +38,7 @@
           </div>
         </ng-template>
       </div>
-      <div *ngIf="parameterCurrent?.typeInput == 2">
+      <div *ngIf="parameterCurrent?.typePrimitiveOrEntity == 2">
         <dropdownstr
           [label]="parameterCurrent!.name"
           formControlName="value"

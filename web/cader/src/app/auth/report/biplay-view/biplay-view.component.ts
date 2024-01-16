@@ -11,6 +11,7 @@ import {
   getFirstDayMonth,
   getLastDayMonth,
 } from 'src/app/core/utils/Date/date-util';
+import { ConstBITypeDate } from 'src/app/data';
 import { BI } from 'src/app/model-bi/bi';
 import { BIData } from 'src/app/model-bi/bidata';
 import { BIParameter } from 'src/app/model-bi/biparameter';
@@ -40,6 +41,8 @@ export class BIPlayViewComponent
   });
 
   ngOnInit(): void {}
+
+  constTypeDateBI = ConstBITypeDate;
 
   id: number = 0;
   bi?: BIData;
@@ -102,12 +105,12 @@ export class BIPlayViewComponent
       this.toListEntity(this.data.item);
     }
     const parameter = this.data.item as BIParameter;
-    if (parameter.typePrimitive?.id == 'LOCAL_DATE') {
+    if (parameter.typePrimitive == 1) {
       console.log(parameter.valueDefault);
-      if (parameter.valueDefault == '0') {
+      if (parameter.subTypeDate == this.constTypeDateBI.FIST_DAY_MONTH) {
         console.log(getFirstDayMonth());
         this.form.controls.value.setValue(getFirstDayMonth());
-      } else {
+      } else if (parameter.subTypeDate == this.constTypeDateBI.LAST_DAY_MONTH) {
         this.form.controls.value.setValue(getLastDayMonth());
       }
     } else {
@@ -134,7 +137,7 @@ export class BIPlayViewComponent
     this.parametros.forEach((item) => {
       parameter.push({ key: item.key, value: item.data.valor });
     });
-
+    console.log(parameter);
     this.http
       .post('biPlay/playBi', { idBI: this.id, parameter: parameter })
       .subscribe({

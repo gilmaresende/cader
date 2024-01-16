@@ -15,6 +15,6 @@ export class FormParameterBIViewService {
   }
 
   setItem(item: BIParameter) {
-    if (this.view) this.view.populateForm(item);
+    //if (this.view) this.view.populateForm(item);
   }
 }

@@ -5,6 +5,7 @@ import { newId } from '../core/utils/Factories/generator';
 import { BI } from '../model-bi/bi';
 import { BIParameter } from '../model-bi/biparameter';
 import { BIQuery } from '../model-bi/biquery';
+import { ConstBIPrimitiveOrEntity, ConstBITypeInput } from '../data';
 
 @Injectable({
   providedIn: 'root',
@@ -41,11 +42,6 @@ export class BiService extends BaseHttpService<BI> {
     return this.getHttp().get(url);
   }
 
-  getTypeOptionDate() {
-    const url = `${API_CONFIG.BASE_URL}/${this.rote}/typeOptionDate`;
-    return this.getHttp().get(url);
-  }
-
   newQuery(): BIQuery {
     return {
       key: newId().toString(),
@@ -60,9 +56,9 @@ export class BiService extends BaseHttpService<BI> {
     return {
       name: 'new',
       key: '',
-      typeInput: 1,
+      typePrimitiveOrEntity: ConstBIPrimitiveOrEntity.PRIMITIVE,
       valueDefault: '0',
-      typePrimitive: { id: 'INTEGER', description: 'INTEGER' },
+      typePrimitive: ConstBITypeInput.INTEGER,
       customized: false,
       optionsDefined: [],
     };

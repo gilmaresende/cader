@@ -19,7 +19,7 @@ public class BIParameterDTO implements Serializable {
 
     private String valueDefault;
 
-    private DescriptionId subTypeDate;
+    private Short subTypeDate;
 
     private DescriptionStr typeClass;
 
