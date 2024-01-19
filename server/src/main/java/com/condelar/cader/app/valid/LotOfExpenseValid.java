@@ -5,7 +5,6 @@ import com.condelar.cader.app.entiti.LotOfExpense;
 import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 
-@Component
 public class LotOfExpenseValid extends BaseValid<LotOfExpenseDTO, LotOfExpense> {
 
     @Override

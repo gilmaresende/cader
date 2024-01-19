@@ -89,6 +89,11 @@ public class LotOfExpenseService extends BaseService<LotOfExpense, LotOfExpenseD
         return new LotOfExpenseListDTO(ob);
     }
 
+    @Override
+    public LotOfExpenseValid getValid() {
+        return new LotOfExpenseValid();
+    }
+
     public void previewExpenses(LotOfExpenseDTO lotOfExpenseDTO) {
         LocalDate dueDate = lotOfExpenseDTO.getFirstDue();
         int dayDueDate = dueDate.getDayOfMonth();

@@ -5,7 +5,7 @@ import com.condelar.cader.app.entiti.BI;
 import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class BIValid extends BaseValid<BIDTO, BI> {
 
     @Override

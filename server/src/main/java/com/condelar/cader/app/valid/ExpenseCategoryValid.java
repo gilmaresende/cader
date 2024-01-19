@@ -5,7 +5,6 @@ import com.condelar.cader.app.dto.expensecategory.ExpenseCategoryDTO;
 import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 
-@Component
 public class ExpenseCategoryValid extends BaseValid<ExpenseCategoryDTO, ExpenseCategory> {
 
     @Override

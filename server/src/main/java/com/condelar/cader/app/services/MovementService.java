@@ -63,6 +63,11 @@ public class MovementService extends BaseService<Movement, MovementDTO, Movement
         return new MovementListDTO(ob);
     }
 
+    @Override
+    public MovementValid getValid() {
+        return new MovementValid();
+    }
+
     public Movement newMovement(ExpensePayment paymentExpense) {
         Movement movement = paymentExpense.getMovement();
         if (movement == null) {

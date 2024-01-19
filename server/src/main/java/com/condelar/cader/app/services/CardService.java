@@ -57,4 +57,9 @@ public class CardService extends BaseService<Card, CardDTO, CardFilterDTO, CardL
     public CardListDTO toListItem(Card ob) {
         return new CardListDTO(ob);
     }
+
+    @Override
+    public CardValid getValid() {
+        return new CardValid();
+    }
 }

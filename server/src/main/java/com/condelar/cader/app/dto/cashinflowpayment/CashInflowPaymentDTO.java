@@ -1,6 +1,6 @@
-package com.condelar.cader.app.dto.expense;
+package com.condelar.cader.app.dto.cashinflowpayment;
 
-import com.condelar.cader.app.entiti.ExpensePayment;
+import com.condelar.cader.app.entiti.CashInflowPayment;
 import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseDTO;
 import lombok.Data;
@@ -8,20 +8,21 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class ExpensePaymentDTO extends BaseDTO {
-    Long idExpense;
+public class CashInflowPaymentDTO extends BaseDTO {
+
+    Long idCashInflow;
     DescriptionId wallet;
     DescriptionId paymentType;
     Double value;
     LocalDate payDay;
     String observation;
 
-    public ExpensePaymentDTO() {
+    public CashInflowPaymentDTO() {
     }
 
-    public ExpensePaymentDTO(ExpensePayment ob) {
+    public CashInflowPaymentDTO(CashInflowPayment ob) {
         super(ob);
-        setIdExpense(ob.getExpense().getId());
+        setIdCashInflow(ob.getCashInflow().getId());
         setWallet(ob.getWallet().getDescriptionId());
         setPaymentType(ob.getPaymentType().getDescriptionId());
         setPayDay(ob.getPayDay());
@@ -30,3 +31,4 @@ public class ExpensePaymentDTO extends BaseDTO {
     }
 
 }
+

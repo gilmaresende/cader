@@ -6,7 +6,6 @@ import com.condelar.cader.app.dto.movement.MovementDTO;
 import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 
-@Component
 public class MovementValid extends BaseValid<MovementDTO, Movement> {
 
     @Override

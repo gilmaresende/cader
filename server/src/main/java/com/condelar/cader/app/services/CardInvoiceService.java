@@ -100,4 +100,9 @@ public class CardInvoiceService extends BaseService<CardInvoice, CardInvoiceDTO,
         ob.getLaunches().clear();
         return super.beforeDelete(ob);
     }
+
+    @Override
+    public CardInvoiceValid getValid() {
+        return new CardInvoiceValid();
+    }
 }

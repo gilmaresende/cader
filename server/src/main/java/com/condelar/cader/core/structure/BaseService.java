@@ -1,9 +1,12 @@
 package com.condelar.cader.core.structure;
 
+import com.condelar.cader.app.valid.BIValid;
 import com.condelar.cader.core.domain.User;
 import com.condelar.cader.core.errors.exceptions.DeleteException;
 import com.condelar.cader.core.errors.exceptions.ObjectNotFoundException;
 import com.condelar.cader.core.errors.exceptions.SaveException;
+import org.hibernate.HibernateException;
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
@@ -30,9 +33,6 @@ public abstract class BaseService<
     public Repository getRepo() {
         return repository;
     }
-
-    @Autowired
-    Valid valid;
 
     public User getUser() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -87,14 +87,17 @@ public abstract class BaseService<
 
     @Transactional
     public Entity save(Entity ob) {
+        ob = beforeSave(ob);
+        Valid valid = getValid();
         valid.clear();
         valid.validObject(ob);
-        ob = beforeSave(ob);
         valid.hasError();
         try {
             return (Entity) repository.save(ob);
         } catch (JpaSystemException e) {
             throw new SaveException(e);
+        } catch (HibernateException e) {
+            throw new SaveException(e.getMessage() + e.getCause());
         } catch (Exception e) {
             throw new SaveException(e.getMessage() + e.getCause());
         }
@@ -109,6 +112,7 @@ public abstract class BaseService<
     @Transactional
     public void delete(Entity ob) {
         try {
+            Valid valid = getValid();
             valid.clear();
             valid.validDelete(ob);
             ob = beforeDelete(ob);
@@ -149,4 +153,6 @@ public abstract class BaseService<
     public Entity beforeDelete(Entity ob) {
         return ob;
     }
+
+    public abstract Valid getValid();
 }

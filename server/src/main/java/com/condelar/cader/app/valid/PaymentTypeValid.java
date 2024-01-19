@@ -5,7 +5,6 @@ import com.condelar.cader.app.dto.paymenttype.PaymentTypeDTO;
 import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 
-@Component
 public class PaymentTypeValid extends BaseValid<PaymentTypeDTO, PaymentType> {
 
     @Override

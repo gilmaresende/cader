@@ -60,6 +60,11 @@ public class BIService extends BaseService<BI, BIDTO, BIFilterDTO, BIListDTO, BI
     }
 
     @Override
+    public BIValid getValid() {
+        return new BIValid();
+    }
+
+    @Override
     public BI find(BI base) {
         Optional<BI> biOp = getRepo().findById(base.getId());
         BI bi = biOp.orElseThrow(() -> new ObjectNotFoundException("Report not found"));

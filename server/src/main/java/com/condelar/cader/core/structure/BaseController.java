@@ -37,11 +37,10 @@ public class BaseController<Entity extends BaseEntity,
         return service;
     }
 
-    @Autowired
-    private Valid valid;
-
     public Valid getValid() {
-        return this.valid;
+        Valid valid = this.service.getValid();
+        valid.clear();
+        return valid;
     }
 
     private User getUser() {
@@ -65,6 +64,7 @@ public class BaseController<Entity extends BaseEntity,
 
     @PostMapping
     public ResponseEntity<PackageDT<DTO>> save(@RequestBody DTO data) {
+        Valid valid = getValid();
         valid.clear();
         valid.validDtoToSave(data);
         valid.hasError();
@@ -74,7 +74,6 @@ public class BaseController<Entity extends BaseEntity,
         ob = service.toEntity(ob, data);
         ob.setRegister(LocalDate.now());
         ob.setUser(getUser());
-       // ob = service.beforeSave(ob);
         ob = service.save(ob);
 
         PackageDT<DTO> pack = new PackageDT();
@@ -85,6 +84,7 @@ public class BaseController<Entity extends BaseEntity,
 
     @PutMapping("/{id}")
     public ResponseEntity<PackageDT<DTO>> update(@PathVariable Long id, @RequestBody DTO data) {
+        Valid valid = getValid();
         valid.clear();
         valid.validDtoToSave(data);
         valid.validUpdate(id, data);
@@ -98,7 +98,6 @@ public class BaseController<Entity extends BaseEntity,
         if (ob.getUpdate().equals(data.getUpdate())) {
             replayEquals(ob, data);
             ob = service.toEntity(ob, data);
-           // ob = service.beforeSave(ob);
             ob = service.save(ob);
             PackageDT<DTO> pack = new PackageDT();
             pack.setUpdate(ob.getUpdate());
@@ -167,6 +166,7 @@ public class BaseController<Entity extends BaseEntity,
         res.setMessage("Deleted record!");
         return ResponseEntity.ok().body(res);
     }
+
     private void replayEquals(Entity ob, DTO dto) {
         BeanUtils.copyProperties(dto, ob);
     }

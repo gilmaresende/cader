@@ -46,4 +46,9 @@ public class WalletService extends BaseService<Wallet, WalletDTO, WalletFilterDT
     public WalletListDTO toListItem(Wallet ob) {
         return new WalletListDTO(ob);
     }
+
+    @Override
+    public WalletValid getValid() {
+        return new WalletValid();
+    }
 }

@@ -42,4 +42,9 @@ public class IncomeCategoryService extends BaseService<IncomeCategory, IncomeCat
     public IncomeCategoryListDTO toListItem(IncomeCategory ob) {
         return new IncomeCategoryListDTO(ob);
     }
+
+    @Override
+    public IncomeCategoryValid getValid() {
+        return new IncomeCategoryValid();
+    }
 }

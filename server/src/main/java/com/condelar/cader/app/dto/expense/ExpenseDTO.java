@@ -1,6 +1,7 @@
 package com.condelar.cader.app.dto.expense;
 
-import com.condelar.cader.app.entiti.*;
+import com.condelar.cader.app.dto.expensepayment.ExpensePaymentListDTO;
+import com.condelar.cader.app.entiti.Expense;
 import com.condelar.cader.core.otherdto.DescriptionId;
 import com.condelar.cader.core.structure.BaseDTO;
 import lombok.Data;
@@ -50,5 +51,4 @@ public class ExpenseDTO extends BaseDTO {
         setOpenValue(getValue() - getAmountPaid());
         setPayments(ob.getPayments().stream().map(m -> new ExpensePaymentListDTO(m)).collect(Collectors.toList()));
     }
-
 }

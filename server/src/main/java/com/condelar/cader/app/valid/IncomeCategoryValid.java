@@ -5,7 +5,6 @@ import com.condelar.cader.app.dto.incomecategory.IncomeCategoryDTO;
 import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 
-@Component
 public class IncomeCategoryValid extends BaseValid<IncomeCategoryDTO, IncomeCategory> {
 
     @Override

@@ -5,7 +5,6 @@ import com.condelar.cader.app.dto.person.PersonDTO;
 import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 
-@Component
 public class PersonValid extends BaseValid<PersonDTO, Person> {
 
     @Override

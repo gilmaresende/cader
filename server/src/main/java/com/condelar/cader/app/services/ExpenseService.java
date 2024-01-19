@@ -2,12 +2,13 @@ package com.condelar.cader.app.services;
 
 import com.condelar.cader.app.constants.enuns.EnumExpenseOrigin;
 import com.condelar.cader.app.constants.enuns.EnumExpenseStatus;
-import com.condelar.cader.app.dto.lotofexpense.ItemLotOfExpenseDTO;
-import com.condelar.cader.app.entiti.*;
 import com.condelar.cader.app.dto.expense.ExpenseDTO;
 import com.condelar.cader.app.dto.expense.ExpenseFilterDTO;
 import com.condelar.cader.app.dto.expense.ExpenseListDTO;
-import com.condelar.cader.app.dto.expense.ExpensePaymentDTO;
+import com.condelar.cader.app.dto.lotofexpense.ItemLotOfExpenseDTO;
+import com.condelar.cader.app.entiti.CardInvoice;
+import com.condelar.cader.app.entiti.Expense;
+import com.condelar.cader.app.entiti.ItemLotOfExpense;
 import com.condelar.cader.app.repositories.ExpenseRepository;
 import com.condelar.cader.app.valid.ExpenseValid;
 import com.condelar.cader.core.domain.User;
@@ -17,7 +18,6 @@ import com.condelar.cader.core.structure.BaseService;
 import com.condelar.cader.tool.entity.ToolEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,7 +33,7 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
 
     private final WalletService walletService;
     private final PaymentTypeService paymentTypeService;
-    private final MovementService movementService;
+
 
     private final ExpenseCategoryService expenseCategoryService;
 
@@ -85,21 +85,6 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         return new ExpenseListDTO(ob);
     }
 
-    public ExpensePayment predictPayment(Expense expense) {
-        ExpensePayment expensePayment = new ExpensePayment();
-        expensePayment.setExpense(expense);
-        expensePayment.setPaymentType(expense.getPaymentType());
-        expensePayment.setPayDay(LocalDate.now());
-        expensePayment.setWallet(expense.getWallet());
-        expensePayment.setValue(expense.getValue() - expense.getPayments().stream().mapToDouble(m -> m.getValue()).sum());
-        return expensePayment;
-    }
-
-    public ExpensePayment getPaymentById(Long idPayment) {
-        User user = getUser();
-        Optional<ExpensePayment> op = getRepo().findPaymentByIdAndUser(idPayment, user.getId());
-        return op.orElseThrow(() -> new ObjectNotFoundException("Data not found to object of type '" + instance().getClass().getName() + "' with id '" + idPayment + "'"));
-    }
 
     public Expense findByIdPayment(Long idPayment) {
         User user = getUser();
@@ -107,13 +92,6 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         return op.orElseThrow(() -> new ObjectNotFoundException("Data not found to object of type '" + instance().getClass().getName() + "' with id '" + idPayment + "'"));
     }
 
-    @Transactional
-    public Expense deletePayment(Long id) {
-        Expense expense = findByIdPayment(id);
-        expense.getPayments().removeIf(f -> f.getId().equals(id));
-        expense = save(expense);
-        return expense;
-    }
 
     @Override
     public Expense beforeSave(Expense ob) {
@@ -129,34 +107,9 @@ public class ExpenseService extends BaseService<Expense, ExpenseDTO, ExpenseFilt
         return super.beforeSave(ob);
     }
 
-    @Transactional
-    public Expense newPayment(ExpensePaymentDTO dto) {
-        Expense expense = findById((dto.getIdExpense()));
-        ExpensePayment payment = new ExpensePayment();
-        payment.setExpense(expense);
-        payment = updateExpenseByDTO(payment, dto);
-        expense.getPayments().add(payment);
-        payment.setExpense(expense);
-        return expense;
-    }
-
-    public Expense updatePayment(ExpensePaymentDTO data) {
-        Expense expense = findById(data.getIdExpense());
-        ExpensePayment payment = expense.getPayments().stream().filter(f -> f.getId().equals(data.getId())).findFirst().orElseThrow();
-        updateExpenseByDTO(payment, data);
-        return expense;
-    }
-
-    private ExpensePayment updateExpenseByDTO(ExpensePayment payment, ExpensePaymentDTO dto) {
-        ToolEntity.cloneAttributes(dto, payment);
-        payment.setPaymentType(paymentTypeService.findById(dto.getPaymentType().getId()));
-        payment.setWallet(walletService.findById(dto.getWallet().getId()));
-        payment.setUser(getUser());
-        payment.setUpdate(LocalDateTime.now());
-        payment.setRegister(LocalDate.now());
-        Movement movement = movementService.newMovement(payment);
-        payment.setMovement(movement);
-        return payment;
+    @Override
+    public ExpenseValid getValid() {
+        return new ExpenseValid();
     }
 
     public Expense buildExpenseByCardInvoice(CardInvoice invoice) {

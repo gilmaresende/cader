@@ -6,7 +6,6 @@ import com.condelar.cader.app.entiti.CardBuy;
 import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 
-@Component
 public class CardBuyValid extends BaseValid<CardBuyDTO, CardBuy> {
 
     @Override

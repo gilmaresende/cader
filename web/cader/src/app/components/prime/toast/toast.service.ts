@@ -37,7 +37,7 @@ export class ToastService {
           this.showAlert(element.message);
         });
       } else if (erros.error) {
-        this.showAlert(erros.error);
+        this.showAlert(erros.message);
       }
     } else {
       console.log('code', error.status);

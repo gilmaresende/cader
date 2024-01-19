@@ -42,4 +42,9 @@ public class ExpenseCategoryService extends BaseService<ExpenseCategory, Expense
     public ExpenseCategoryListDTO toListItem(ExpenseCategory ob) {
         return new ExpenseCategoryListDTO(ob);
     }
+
+    @Override
+    public ExpenseCategoryValid getValid() {
+        return new ExpenseCategoryValid();
+    }
 }

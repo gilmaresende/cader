@@ -42,4 +42,9 @@ public class PersonService extends BaseService<Person, PersonDTO, PersonFilterDT
     public PersonListDTO toListItem(Person ob) {
         return new PersonListDTO(ob);
     }
+
+    @Override
+    public PersonValid getValid() {
+        return new PersonValid();
+    }
 }

@@ -149,6 +149,11 @@ public class CardBuyService extends BaseService<CardBuy, CardBuyDTO, CardBuyFilt
         return super.beforeSave(ob);
     }
 
+    @Override
+    public CardBuyValid getValid() {
+        return new CardBuyValid();
+    }
+
     public List<CardBuyLaunch> getLauchesForInvoice(Long idCard, LocalDate closedDate) {
         return getRepo().getLauchesForInvoice(idCard, closedDate, getUser().getId());
     }

@@ -5,7 +5,6 @@ import com.condelar.cader.app.entiti.CashInflow;
 import com.condelar.cader.core.structure.BaseValid;
 import org.springframework.stereotype.Component;
 
-@Component
 public class CashInflowValid extends BaseValid<CashInflowDTO, CashInflow> {
 
     @Override
@@ -47,16 +46,8 @@ public class CashInflowValid extends BaseValid<CashInflowDTO, CashInflow> {
 
     @Override
     public void validDelete(CashInflow ob) {
-        if (ob.getPayments().isEmpty()) {
-            addErrors("", "Value Payments is more that value total!");
-        }
+
     }
 
-    public void validPreviewNewPayment(CashInflow ob) {
-        Double payValue = ob.getPayments().stream().mapToDouble(v -> v.getValue()).sum();
-        if (ob.getValueTotal() - payValue <= 0) {
-            addErrors("value", "Expense is closed!");
-        }
-    }
 }
 

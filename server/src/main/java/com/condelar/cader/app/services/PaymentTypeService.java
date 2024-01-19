@@ -42,4 +42,9 @@ public class PaymentTypeService extends BaseService<PaymentType, PaymentTypeDTO,
     public PaymentTypeListDTO toListItem(PaymentType ob) {
         return new PaymentTypeListDTO(ob);
     }
+
+    @Override
+    public PaymentTypeValid getValid() {
+        return new PaymentTypeValid();
+    }
 }
