@@ -16,12 +16,15 @@ export abstract class SPageListFilter<
   isDisabled: boolean = false;
   constructor(
     title: string,
-    private actions: PagesService,
+    private servicePage: PagesService,
     private services: Service
   ) {
-    actions.setStatePage(StatePage.LIST_FILTER);
+    this.servicePage.setTitle(title);
+    this.servicePage.setService(this.services);
+
+    this.servicePage.setStatePage(StatePage.LIST_FILTER);
     //actions.build(this.ob, title, this, this.services);
-    actions.setRotaEntidade(`${this.services.rote}`);
+    this.servicePage.setRotaEntidade(`${this.services.rote}`);
     this.findFilter(this.getFilterBase());
   }
 
@@ -30,19 +33,19 @@ export abstract class SPageListFilter<
   }
 
   findFilter(filter: any) {
-    this.actions.loading.showLoading();
-    this.actions
+    this.servicePage.loading.showLoading();
+    this.servicePage
       .getService()
       .findFilter(filter)
       .subscribe({
         next: (res) => {
           this.dataTableObserve.update(res.datas);
           this.list = res.datas;
-          this.actions.loading.dropLoading();
+          this.servicePage.loading.dropLoading();
         },
         error: (error) => {
           console.log(error); //TOFO-GF
-          this.actions.loading.dropLoading();
+          this.servicePage.loading.dropLoading();
         },
       });
   }

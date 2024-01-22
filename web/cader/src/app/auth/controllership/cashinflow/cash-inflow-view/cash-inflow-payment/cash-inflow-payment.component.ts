@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DataTableService } from 'src/app/components/custom/data-table/data-table.service';
 import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-impl.service';
 import { ToastService } from 'src/app/components/prime/toast/toast.service';
+import { StatePage } from 'src/app/core/enuns/statePage';
 import { PagesService } from 'src/app/core/services/pages.service';
 import { CashInflow } from 'src/app/model/cash-inflow';
 import { CashInclowPayment } from 'src/app/model/cash-inflow-payment';
@@ -23,6 +24,7 @@ export class CashInflowPaymentComponent implements OnInit {
   ngOnInit(): void {
     this.serviceModel.setTitle('Pagamento');
   }
+  stateView = StatePage.VIEW;
 
   @Input() dataTableServicePaymentys?: DataTableService<CashInclowPayment>;
 

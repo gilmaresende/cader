@@ -101,7 +101,7 @@ export class InputReaisComponent implements ControlValueAccessor, OnInit {
       value = value * 100;
     }
     this.value = value;
-    // this.value = this.formatarMoeda(value);
+    this.value = this.formatarMoeda(value);
   }
 
   registerOnChange(onChange: any) {

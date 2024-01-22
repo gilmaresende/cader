@@ -37,6 +37,8 @@ export class AutocompleteComponent
 
   @Input() service!: BaseHttpService<SEntidade>;
 
+  @Input() alwaysDisabled: boolean = false;
+
   allData: Array<DescriptionId> = [];
 
   selected?: DescriptionId;
@@ -45,12 +47,18 @@ export class AutocompleteComponent
 
   @Input() isDisabled?: ObservableElement;
   disabled = false;
+  disabled2 = false;
 
   ngOnInit(): void {
     this.getCombo();
-    this.isDisabled?.observable$.subscribe((data) => {
-      this.disabled = data;
-    });
+    if (this.alwaysDisabled) {
+      this.disabled2 = true;
+    } else {
+      this.isDisabled?.observable$.subscribe((data) => {
+        this.disabled = data;
+        this.disabled2 = data;
+      });
+    }
   }
 
   getCombo() {

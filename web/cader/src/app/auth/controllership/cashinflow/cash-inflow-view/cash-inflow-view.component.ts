@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DataTableService } from 'src/app/components/custom/data-table/data-table.service';
 import { SPage } from 'src/app/core/pages/spage/super-page';
-import { PagesService } from 'src/app/core/services/pages.service';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { CashInflow } from 'src/app/model/cash-inflow';
 import { CashInclowPayment } from 'src/app/model/cash-inflow-payment';
@@ -28,38 +27,34 @@ export class CashInflowViewComponent extends SPage<
     super('Entrada de Caixa', service, factoryService, actRote);
   }
 
-  dataTableServicePaymentys: DataTableService<CashInclowPayment> =
-    new DataTableService<CashInclowPayment>();
+  dataTableServicePaymentys!: DataTableService<CashInclowPayment>;
+  listPayments!: CashInclowPayment[];
 
-  listPayments: CashInclowPayment[] = [];
+  override instanceList(): void {
+    this.dataTableServicePaymentys = new DataTableService<CashInclowPayment>();
+    this.listPayments = [];
+  }
 
   override populatedForm(ob: CashInflow) {
-    // this.form = this.formBuilder.group({
-    //   id: [ob.id, Validators.required],
-    //   update: [ob.update],
-    //   description: [
-    //     ob.description,
-    //     [Validators.required, Validators.minLength(6)],
-    //   ],
-    //   observation: [ob.observation],
-    //   dueDate: [ob.dueDate],
-    //   openingDate: [ob.openingDate],
-    //   valueTotal: [ob.valueTotal],
-    //   amountPaid: [ob.amountPaid],
-    //   openValue: [ob.openValue],
-    //   wallet: [ob.wallet],
-    //   incomeCategory: [ob.incomeCategory],
-    //   paymentType: [ob.paymentType],
-    //   person: [ob.person],
-    // });
+    this.form = this.formBuilder.group({
+      description: [ob.description, Validators.required],
+      dueDate: [ob.dueDate, Validators.required],
+      openingDate: [ob.openingDate, Validators.required],
+      openValue: [ob.openValue],
+      origin: [ob.origin],
+      valueTotal: [ob.valueTotal],
+      amountPaid: [ob.amountPaid],
+      paymentType: [ob.paymentType],
+      incomeCategory: [ob.incomeCategory],
+      wallet: [ob.wallet],
+      person: [ob.person],
+      observation: [ob.observation],
+    });
 
-    this.listPayments = ob.payments as CashInclowPayment[];
-    this.dataTableServicePaymentys.update(this.listPayments);
+    this.dataTableServicePaymentys.update(ob.payments as CashInclowPayment[]);
   }
   override getOb(): CashInflow {
-    const form = this.form;
-    form?.value;
-
-    return form?.value;
+    const ob = this.form?.value;
+    return ob;
   }
 }

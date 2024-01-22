@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DataTableService } from 'src/app/components/custom/data-table/data-table.service';
 import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-impl.service';
 import { ToastService } from 'src/app/components/prime/toast/toast.service';
+import { StatePage } from 'src/app/core/enuns/statePage';
 import { PagesService } from 'src/app/core/services/pages.service';
 import { ExpensePayment } from 'src/app/model/expense-payment';
 import { ExpensePaymentService } from 'src/app/services/expense-payment.service';
@@ -22,6 +23,7 @@ export class ExpensePaymentComponent implements OnInit {
   ngOnInit(): void {
     this.serviceModel.setTitle('Pagamento');
   }
+  stateView = StatePage.VIEW;
 
   @Input() dataTableServicePaymentys?: DataTableService<ExpensePayment>;
 

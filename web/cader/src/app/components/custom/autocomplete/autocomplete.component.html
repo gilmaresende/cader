@@ -1,18 +1,3 @@
-<!-- <div class="select-prime-impl p-fluid">
-  <span class="p-float-label">
-    <p-autoComplete
-      [(ngModel)]="selected"
-      [dropdown]="true"
-      [suggestions]="list"
-      (completeMethod)="filter($event)"
-      field="description"
-      
-    ></p-autoComplete>
-    <label htmlFor="username">{{ label }}</label>
-  </span>
-  
-</div> -->
-
 <div class="lineLeft borderAutoComplete">
   <div class="fullW">
     <span class="p-fluid p-float-label">
@@ -23,7 +8,7 @@
         [suggestions]="list"
         (completeMethod)="filter($event)"
         field="description"
-        [disabled]="disabled"
+        [disabled]="disabled2"
       ></p-autoComplete>
       <label>{{ label }}</label>
     </span>

@@ -32,14 +32,17 @@ export class DropdownComponent
   @Input() label: string | null = null;
   @Input() list: Array<DescriptionId> = [];
 
+  @Input() isDisabled?: ObservableElement;
+
   selected?: DescriptionId;
 
   touched = false;
 
   description = 'dev';
 
-  @Input() isDisabled?: ObservableElement;
+  @Input() alwaysDisabled: boolean = false;
   disabled = false;
+  disabled2 = false;
 
   ngOnInit() {
     this.markAsTouched();
@@ -47,9 +50,14 @@ export class DropdownComponent
       this.onChange(this.selected);
     }
 
-    this.isDisabled?.observable$.subscribe((data) => {
-      this.disabled = data;
-    });
+    if (this.alwaysDisabled) {
+      this.disabled2 = true;
+    } else {
+      this.isDisabled?.observable$.subscribe((data) => {
+        this.disabled = data;
+        this.disabled2 = data;
+      });
+    }
   }
 
   ngDoCheck(): void {

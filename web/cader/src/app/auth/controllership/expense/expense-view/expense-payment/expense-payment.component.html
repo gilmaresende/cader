@@ -3,14 +3,16 @@
 </modal-impl>
 
 <div class="lineLeft">
-  <div class="btnActionsPayment btnActionsPaymentNew">
-    <btn-primary
-      [isDisabled]="isDisabled"
-      [label]="'Novo'"
-      (click)="newExpensePayment()"
-    ></btn-primary>
+  <div
+    *ngIf="controller.statePage == stateView"
+    class="btnActionsPayment btnActionsPaymentNew"
+  >
+    <btn-primary [label]="'Novo'" (click)="newExpensePayment()"></btn-primary>
   </div>
-  <div *ngIf="controller.obSelect" class="btnActionsPayment">
+  <div
+    *ngIf="controller.obSelect && controller.obSelect"
+    class="btnActionsPayment"
+  >
     <btn-primary
       [isDisabled]="isDisabled"
       [label]="'Carregar'"

@@ -26,10 +26,18 @@
   </div>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt2">
-      <inputReais formControlName="openValue" [label]="'Valor Aberto'" />
+      <inputReais
+        formControlName="openValue"
+        [label]="'Valor Aberto'"
+        [alwaysDisabled]="true"
+      />
     </div>
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt2">
-      <inputReais formControlName="amountPaid" [label]="'Valor Pago'" />
+      <inputReais
+        formControlName="amountPaid"
+        [label]="'Valor Pago'"
+        [alwaysDisabled]="true"
+      />
     </div>
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt2">
       <inputReais

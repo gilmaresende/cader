@@ -3,9 +3,11 @@
 </modal-impl>
 
 <div class="lineLeft">
-  <div class="btnActionsPayment btnActionsPaymentNew">
+  <div
+    class="btnActionsPayment btnActionsPaymentNew"
+    *ngIf="controller.statePage == stateView"
+  >
     <btn-primary
-      [isDisabled]="isDisabled"
       [label]="'Novo'"
       (click)="newExpensePayment()"
     ></btn-primary>

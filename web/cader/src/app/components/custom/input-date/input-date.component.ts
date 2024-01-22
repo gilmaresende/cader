@@ -36,6 +36,8 @@ export class InputDateComponent
 {
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
+  @Input() alwaysDisabled: boolean = false;
+
   @Output() valueChanged = new EventEmitter<any>();
 
   value?: Date;
@@ -44,11 +46,17 @@ export class InputDateComponent
 
   @Input() isDisabled?: ObservableElement;
   disabled = false;
+  disabled2 = false;
 
   ngOnInit(): void {
-    this.isDisabled?.observable$.subscribe((data) => {
-      this.disabled = data;
-    });
+    if (this.alwaysDisabled) {
+      this.disabled2 = true;
+    } else {
+      this.isDisabled?.observable$.subscribe((data) => {
+        this.disabled = data;
+        this.disabled2 = data;
+      });
+    }
   }
 
   ngDoCheck(): void {

@@ -25,6 +25,7 @@ export abstract class SPage<
     private factoryCoreService: FactoryCoreService,
     private activatedRoutes: ActivatedRoute
   ) {
+    this.instanceList();
     this.formBuilder = factoryCoreService.getFormBuilder();
     this.servicePage = factoryCoreService.getSuperControl();
 
@@ -96,4 +97,6 @@ export abstract class SPage<
   abstract populatedForm(ob: Entidade): any;
 
   abstract getOb(): Entidade;
+
+  instanceList() {}
 }
