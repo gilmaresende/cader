@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { HttpServerService } from 'src/app/core/services/http-server.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { HttpServerService } from 'src/app/core/services/http-server.service';
 })
 export class TesteHqlComponent {
   constructor(
-    private controller: ControlService,
+    private controller: PagesService,
     private http: HttpServerService
   ) {
     controller.setTitle('Teste HQL');

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 
 @Component({
   selector: 'loading',
@@ -9,7 +9,7 @@ import { ControlService } from 'src/app/core/services/control.service';
 export class LoadingComponent {
   isLoading: boolean = false;
 
-  constructor(private controller: ControlService) {
+  constructor(private controller: PagesService) {
     controller.setLoading(this);
   }
 

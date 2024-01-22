@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StatePage } from 'src/app/core/enuns/statePage';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { ControlService } from 'src/app/core/services/control.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private controller: ControlService) {}
+  constructor(private controller: PagesService) {}
 
   ngOnInit(): void {
     this.controller.setStatePage(StatePage.HOME);

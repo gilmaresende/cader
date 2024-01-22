@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
 
 @Injectable({
@@ -7,8 +7,8 @@ import { ConfirmDialogComponent } from './confirm-dialog.component';
 })
 export class ConfirmDialogService {
   private confirmDialog: ConfirmDialogComponent | null = null;
-  constructor(private controlService: ControlService) {
-    this.controlService.setConfirmDialogService(this);
+  constructor(private PagesService: PagesService) {
+    this.PagesService.setConfirmDialogService(this);
   }
 
   public showDialog(

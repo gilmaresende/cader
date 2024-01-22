@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SPageList } from 'src/app/core/pages/spage/super-page-list';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { IncomeCategory } from 'src/app/model/income-category';
 import { IncomeCategoryService } from 'src/app/services/income-category.service';
 
@@ -22,7 +22,7 @@ export class IncomeCategoryListComponent extends SPageList<
   atributos: Array<string> = ['name'];
 
   constructor(
-    private controller: ControlService,
+    private controller: PagesService,
     private service: IncomeCategoryService
   ) {
     super('Lista Categorias Receita', controller, service);

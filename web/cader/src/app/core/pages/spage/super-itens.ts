@@ -1,6 +1,6 @@
 import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-impl.service';
 import { SEntidade } from '../../model/sentidade';
-import { ControlService } from '../../services/control.service';
+import { PagesService } from '../../services/pages.service';
 import { BaseHttpService } from '../../services/base-http.service';
 import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
@@ -11,7 +11,7 @@ export abstract class SItems<
   constructor(
     private serviceModalS: ModalImplService,
     private serviceItem: Service,
-    private controllerS: ControlService
+    private controllerS: PagesService
   ) {
     serviceModalS.setView(this);
   }

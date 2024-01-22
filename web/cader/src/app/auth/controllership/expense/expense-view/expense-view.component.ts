@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DataTableService } from 'src/app/components/custom/data-table/data-table.service';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { SPage } from 'src/app/core/pages/spage/super-page';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { Expense } from 'src/app/model/expense';
 import { ExpensePayment } from 'src/app/model/expense-payment';

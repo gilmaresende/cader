@@ -36,8 +36,7 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
   isTooltipVisible: boolean = false;
 
   @Input() isDisabled?: ObservableElement;
-  desabilitado = true;
-  disabled = true;
+  disabled = false;
 
   ngOnInit(): void {
     this.observableValid?.observable$.subscribe((data) => {
@@ -45,7 +44,6 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
     });
 
     this.isDisabled?.observable$.subscribe((data) => {
-      this.setDisabledState(data);
       this.disabled = data;
     });
   }
@@ -60,7 +58,7 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
 
   teclar() {
     this.markAsTouched();
-    if (!this.desabilitado) {
+    if (!this.disabled) {
       this.valueChanged.emit(this.value);
       this.onChange(this.value);
     }
@@ -113,9 +111,6 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  setDisabledState(disabled: boolean) {
-    this.desabilitado = disabled;
-  }
   validate(control: AbstractControl): ValidationErrors | null {
     return null;
   }

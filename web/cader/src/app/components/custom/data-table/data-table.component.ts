@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataTableService } from './data-table.service';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { SEntidade } from 'src/app/core/model/sentidade';
 
 @Component({
@@ -26,7 +26,7 @@ export class DataTableComponent implements OnInit {
   @Input() atributos: Array<string> = [];
 
   //contrutor
-  constructor(private controller: ControlService) {}
+  constructor(private controller: PagesService) {}
 
   ngOnInit() {
     this.dataTableObs?.dataOb$.subscribe((listData) => {

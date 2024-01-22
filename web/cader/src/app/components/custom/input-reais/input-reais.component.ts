@@ -28,6 +28,7 @@ import { ObservableElement } from 'src/app/struct/observable/observable-element.
 export class InputReaisComponent implements ControlValueAccessor, OnInit {
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
+  @Input() alwaysDisabled: boolean = false;
 
   @Output() valueChanged = new EventEmitter<any>();
 
@@ -37,16 +38,22 @@ export class InputReaisComponent implements ControlValueAccessor, OnInit {
 
   @Input() isDisabled?: ObservableElement;
   disabled = false;
+  disabled2 = false;
 
   ngOnInit(): void {
-    this.isDisabled?.observable$.subscribe((data) => {
-      this.disabled = data;
-    });
+    if (this.alwaysDisabled) {
+      this.disabled2 = true;
+    } else {
+      this.isDisabled?.observable$.subscribe((data) => {
+        this.disabled = data;
+        this.disabled2 = data;
+      });
+    }
   }
 
   teclar() {
     this.markAsTouched();
-    if (!this.disabled) {
+    if (!this.disabled2) {
       this.valueChanged.emit(this.value);
       this.onChange(this.value);
     }
@@ -76,7 +83,7 @@ export class InputReaisComponent implements ControlValueAccessor, OnInit {
   //que funções são essas?
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  onChange = (quantity: number) => {};
+  onChange = (quantity: any) => {};
 
   onTouched = () => {};
 
@@ -93,8 +100,8 @@ export class InputReaisComponent implements ControlValueAccessor, OnInit {
     if (value % 1 == 0) {
       value = value * 100;
     }
-
-    this.value = this.formatarMoeda(value);
+    this.value = value;
+    // this.value = this.formatarMoeda(value);
   }
 
   registerOnChange(onChange: any) {

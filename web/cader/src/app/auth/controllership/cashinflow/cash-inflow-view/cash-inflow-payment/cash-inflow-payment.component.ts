@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DataTableService } from 'src/app/components/custom/data-table/data-table.service';
 import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-impl.service';
 import { ToastService } from 'src/app/components/prime/toast/toast.service';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { CashInflow } from 'src/app/model/cash-inflow';
 import { CashInclowPayment } from 'src/app/model/cash-inflow-payment';
 import { CashInflowPaymentService } from 'src/app/services/cash-inflow-payment.service';
@@ -15,7 +15,7 @@ import { ObservableElement } from 'src/app/struct/observable/observable-element.
 })
 export class CashInflowPaymentComponent implements OnInit {
   constructor(
-    public controller: ControlService,
+    public controller: PagesService,
     private serviceCashInflowPayment: CashInflowPaymentService,
     private serviceModel: ModalImplService,
     private toastService: ToastService

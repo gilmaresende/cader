@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SPageListFilter } from 'src/app/core/pages/spage/super-page-list-filter';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { Movement } from 'src/app/model/movement';
 import { MovementService } from 'src/app/services/movement.service';
 
@@ -44,7 +44,7 @@ export class MovementListComponent extends SPageListFilter<
   ];
 
   constructor(
-    private controller: ControlService,
+    private controller: PagesService,
     private service: MovementService
   ) {
     super('Lista Movimentos', controller, service);

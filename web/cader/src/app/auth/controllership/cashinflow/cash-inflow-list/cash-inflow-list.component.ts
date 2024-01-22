@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SPageListFilter } from 'src/app/core/pages/spage/super-page-list-filter';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { newCashInflowFilter } from 'src/app/model-filter/cash-inflow-filter';
 import { CashInflow } from 'src/app/model/cash-inflow';
 import { CashInflowService } from 'src/app/services/cash-inflow.service';
@@ -45,7 +45,7 @@ export class CashInflowListComponent extends SPageListFilter<
   ];
 
   constructor(
-    private controller: ControlService,
+    private controller: PagesService,
     private service: CashInflowService
   ) {
     super('Lista Entradas', controller, service);

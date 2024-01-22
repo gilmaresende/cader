@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { SFilter } from 'src/app/core/pages/spage/super-filter';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import {
   getFirstDayMonth,
   getLastDayMonth,
@@ -17,7 +17,7 @@ import { CardService } from 'src/app/services/card.service';
 })
 export class CardInvoiceFilterComponent extends SFilter<CardInvoiceFilter> {
   constructor(
-    private controller: ControlService,
+    private controller: PagesService,
     public cardService: CardService
   ) {
     super(controller);

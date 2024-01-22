@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SPageListFilter } from 'src/app/core/pages/spage/super-page-list-filter';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { newExpsenseFilter } from 'src/app/model-filter/expense-filter';
 import { Expense } from 'src/app/model/expense';
 import { ExpenseService } from 'src/app/services/expense.service';
@@ -45,7 +45,7 @@ export class ExpenseListComponent extends SPageListFilter<
   ];
 
   constructor(
-    private controller: ControlService,
+    private controller: PagesService,
     private service: ExpenseService
   ) {
     super('Lista Despesas', controller, service);

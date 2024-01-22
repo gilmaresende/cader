@@ -1,25 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ViewComponent } from 'src/app/auth/view/view.component';
+import { LoadingComponent } from 'src/app/components/fusion/loading/loading.component';
+import { ConfirmDialogService } from 'src/app/components/prime/confirm-dialog/confirm-dialog.service';
+import { ModelFilterService } from 'src/app/components/prime/model-filter/model-filter.service';
 import { SidebarComponent } from 'src/app/components/prime/sidebar/sidebar.component';
 import { ToastService } from 'src/app/components/prime/toast/toast.service';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
+import { ToolBarComponent } from 'src/app/templates/tool-bar/tool-bar.component';
+import { StatePage } from '../enuns/statePage';
 import { SEntidade } from '../model/sentidade';
+import { SFilter } from '../pages/spage/super-filter';
 import { SPage } from '../pages/spage/super-page';
 import { SPageList } from '../pages/spage/super-page-list';
-import { BaseHttpService } from './base-http.service';
-import { StatePage } from '../enuns/statePage';
-import { ConfirmDialogService } from 'src/app/components/prime/confirm-dialog/confirm-dialog.service';
 import { SPageListFilter } from '../pages/spage/super-page-list-filter';
-import { ModelFilterService } from 'src/app/components/prime/model-filter/model-filter.service';
-import { SFilter } from '../pages/spage/super-filter';
-import { LoadingComponent } from 'src/app/components/fusion/loading/loading.component';
-import { ToolBarComponent } from 'src/app/templates/tool-bar/tool-bar.component';
-import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
+import { BaseHttpService } from './base-http.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ControlService {
+export class PagesService {
   //----------------------------------------//relacionado ao core da aplicacao--------------------------------
 
   title: string = '';
@@ -32,7 +31,6 @@ export class ControlService {
   loading!: LoadingComponent;
 
   page?:
-    | SPage<SEntidade, BaseHttpService<SEntidade>>
     | SPageList<SEntidade, BaseHttpService<SEntidade>>
     | SPageListFilter<SEntidade, BaseHttpService<SEntidade>>;
 
@@ -99,18 +97,10 @@ export class ControlService {
   //-----------------------------------------------get e set relacionado a entidades---------------------------
 
   getOb(): SEntidade {
-    const page = this.page;
-    console.log(page);
-    if (page instanceof SPage) {
-      alert('insert');
-      const pageEntity = page as SPage<SEntidade, BaseHttpService<SEntidade>>;
-      const obj = pageEntity.getOb();
-      return obj;
-    } else {
-      alert('not insert');
-    }
-
-    throw new Error('Pagina não Registro');
+    const ob = this.pageEntidade!.getOb();
+    const superOb = this.pageEntidade?.getSuperOb()!;
+    Object.assign(superOb, ob);
+    return superOb;
   }
 
   setObSelect(ob: any) {
@@ -134,12 +124,13 @@ export class ControlService {
   async save() {
     this.loading.showLoading();
     const obj: SEntidade = this.getOb();
-    //TODO DELETAR OB
     if (obj.id! > 0) {
       this.service.update(obj).subscribe({
         next: (res) => {
           this.toastService!.showSucess(res.message);
           this.reloadById(res.id!);
+          this.loading.dropLoading();
+          this.pageEntidade?.setIsDisabled(true);
         },
         error: (error) => {
           if (error.error) {
@@ -178,7 +169,6 @@ export class ControlService {
         () => {
           this.service.delete(obj.id!).subscribe({
             next: (res) => {
-              this.getOb()!.update = res.update;
               this.toastService!.showSucess(res.message);
               this.setStatePage(StatePage.LIST);
               this.router.navigate([`${this.rotaEntidade}/list`]);
@@ -195,7 +185,9 @@ export class ControlService {
             },
           });
         },
-        () => {}
+        () => {
+          this.loading.dropLoading();
+        }
       );
     }
   }
@@ -207,6 +199,12 @@ export class ControlService {
   async reloadById(id: number) {
     this.setStatePage(StatePage.VIEW);
     this.page?.findById(id);
+  }
+
+  reloadLocal() {
+    this.setStatePage(StatePage.VIEW);
+    const ob = this.pageEntidade?.getSuperOb();
+    this.pageEntidade?.populatedForm(ob!);
   }
 
   async reload() {
@@ -232,14 +230,7 @@ export class ControlService {
   }
 
   async newOb() {
-    this.setStatePage(StatePage.INSERT);
-    if (this.page instanceof SPage) {
-      const pagePage = this.page as SPage<
-        SEntidade,
-        BaseHttpService<SEntidade>
-      >;
-      pagePage.newOb();
-    }
+    this.pageEntidade?.newOb();
     this.router.navigate([`${this.rotaEntidade}`]);
   }
 
@@ -249,10 +240,13 @@ export class ControlService {
 
   setStatePage(state: StatePage) {
     this.statePage = state;
+    if (!this.pageEntidade) {
+      return;
+    }
     if (state === StatePage.VIEW) {
-      //  this.page?.setIsDisabled(true);
+      this.pageEntidade!.setIsDisabled(true);
     } else {
-      // this.page?.setIsDisabled(false);
+      this.pageEntidade!.setIsDisabled(false);
     }
     if (this.toobar) this.toobar.checkState();
   }
@@ -292,5 +286,13 @@ export class ControlService {
 
   getIsDisabled(): ObservableElement {
     return this.isDisabled!;
+  }
+
+  //---------------------------------------------page entity-----------------------------------------
+
+  pageEntidade?: SPage<SEntidade, BaseHttpService<SEntidade>>;
+
+  setPageEntity(page: SPage<SEntidade, BaseHttpService<SEntidade>>) {
+    this.pageEntidade = page;
   }
 }

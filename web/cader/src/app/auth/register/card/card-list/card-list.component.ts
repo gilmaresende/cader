@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SPageList } from 'src/app/core/pages/spage/super-page-list';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { Card } from 'src/app/model/card';
 import { CardService } from 'src/app/services/card.service';
 
@@ -18,10 +18,7 @@ export class CardListComponent extends SPageList<Card, CardService> {
   ];
   atributos: Array<string> = ['name'];
 
-  constructor(
-    private controller: ControlService,
-    private service: CardService
-  ) {
+  constructor(private controller: PagesService, private service: CardService) {
     super('Lista de Cartões', controller, service);
   }
 }

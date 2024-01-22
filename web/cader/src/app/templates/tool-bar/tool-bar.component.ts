@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StatePage } from 'src/app/core/enuns/statePage';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 
 @Component({
   selector: 'toolbar',
@@ -8,7 +8,7 @@ import { ControlService } from 'src/app/core/services/control.service';
   styleUrls: ['./tool-bar.component.scss'],
 })
 export class ToolBarComponent implements OnInit {
-  constructor(private controller: ControlService) {}
+  constructor(private controller: PagesService) {}
   title: string = '';
 
   isInsert: boolean = false;
@@ -99,7 +99,7 @@ export class ToolBarComponent implements OnInit {
   }
 
   cancel() {
-    this.controller.reload();
+    this.controller.reloadLocal();
   }
 
   goToList() {

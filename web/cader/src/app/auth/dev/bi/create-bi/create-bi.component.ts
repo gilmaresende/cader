@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ObservableTreeService } from 'src/app/components/custom/tree/observable-tree.service';
 import { SPage } from 'src/app/core/pages/spage/super-page';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { HttpServerService } from 'src/app/core/services/http-server.service';
 import { BI } from 'src/app/model-bi/bi';

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SPageList } from 'src/app/core/pages/spage/super-page-list';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { ExpenseCategory } from 'src/app/model/expense-category';
 import { ExpenseCategoryService } from 'src/app/services/expense-category.service';
 
@@ -22,7 +22,7 @@ export class ExpenseCategoryListComponent extends SPageList<
   atributos: Array<string> = ['name'];
 
   constructor(
-    private controller: ControlService,
+    private controller: PagesService,
     private service: ExpenseCategoryService
   ) {
     super('Lista Categorias Despesa', controller, service);

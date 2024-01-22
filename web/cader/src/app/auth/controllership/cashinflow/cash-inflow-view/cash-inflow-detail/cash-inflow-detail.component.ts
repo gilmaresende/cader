@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { IncomeCategoryService } from 'src/app/services/income-category.service';
 import { PaymentTypeService } from 'src/app/services/payment-type.service';
 import { PersonService } from 'src/app/services/person.service';
@@ -14,7 +14,7 @@ import { ObservableElement } from 'src/app/struct/observable/observable-element.
 })
 export class CashInflowDetailComponent {
   constructor(
-    public controller: ControlService,
+    public controller: PagesService,
     public serviceWallet: WalletService,
     public servicePaymentTypeService: PaymentTypeService,
     public servicePerson: PersonService,

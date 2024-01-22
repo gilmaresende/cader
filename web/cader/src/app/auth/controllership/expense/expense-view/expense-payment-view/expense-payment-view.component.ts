@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-impl.service';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { SItems } from 'src/app/core/pages/spage/super-itens';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { ExpensePayment } from 'src/app/model/expense-payment';
 import { ExpensePaymentService } from 'src/app/services/expense-payment.service';
 import { PaymentTypeService } from 'src/app/services/payment-type.service';
@@ -22,7 +22,7 @@ export class ExpensePaymentViewComponent extends SItems<
     private serviceModal: ModalImplService,
     public serviceWallet: WalletService,
     public servicePaymentTypeService: PaymentTypeService,
-    private controller: ControlService,
+    private controller: PagesService,
     private serviceExpensePayment: ExpensePaymentService
   ) {
     super(serviceModal, serviceExpensePayment, controller);

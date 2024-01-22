@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { SPage } from 'src/app/core/pages/spage/super-page';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { Movement } from 'src/app/model/movement';
 import { MovementService } from 'src/app/services/movement.service';

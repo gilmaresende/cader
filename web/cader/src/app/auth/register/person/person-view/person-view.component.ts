@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { EnumYesNo } from 'src/app/core/enuns/enumSimNao';
 import { SPage } from 'src/app/core/pages/spage/super-page';
-import { ControlService } from 'src/app/core/services/control.service';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { Person } from 'src/app/model/person';
 import { PersonService } from 'src/app/services/person.service';
@@ -23,21 +21,14 @@ export class PersonViewComponent extends SPage<Person, PersonService> {
   }
 
   override populatedForm(ob: Person) {
-    const data = this.form.controls;
-    // data.active.setValue(ob.active);
-    // data.name.setValue(ob.name);
-    // data.update.setValue(ob.update);
-    // data.id.setValue(ob.id!);
+    this.form = this.formBuilder.group({
+      name: [ob.name, Validators.required],
+      active: [ob.active],
+    });
   }
 
   override getOb(): Person {
-    // const form = this.form.controls;
-    // const ob: Person = {
-    //   id: form.id.value as number,
-    //   active: form.active.value as number,
-    //   name: form.name.value as string,
-    //   update: form.update.value as Date,
-    // };
-    return this.service.newInstance();
+    const form = this.form?.value;
+    return form;
   }
 }

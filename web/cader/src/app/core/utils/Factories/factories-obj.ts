@@ -1,8 +1,8 @@
-import { ControlService } from '../../services/control.service';
+import { PagesService } from '../../services/pages.service';
 
 export function getBilder(
   title: string,
-  controler: ControlService,
+  controler: PagesService,
   service: any
 ) {
   return {

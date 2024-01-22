@@ -2,7 +2,7 @@ import { DataTableService } from 'src/app/components/custom/data-table/data-tabl
 import { StatePage } from '../../enuns/statePage';
 import { SEntidade } from '../../model/sentidade';
 import { BaseHttpService } from '../../services/base-http.service';
-import { ControlService } from '../../services/control.service';
+import { PagesService } from '../../services/pages.service';
 
 export abstract class SPageList<
   Entidade extends SEntidade,
@@ -16,7 +16,7 @@ export abstract class SPageList<
   isDisabled: boolean = false;
   constructor(
     title: string,
-    private actions: ControlService,
+    private actions: PagesService,
     private services: Service
   ) {
     actions.setStatePage(StatePage.LIST);

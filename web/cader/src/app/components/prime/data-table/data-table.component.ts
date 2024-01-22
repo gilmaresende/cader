@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SEntidade } from 'src/app/core/model/sentidade';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 
 @Component({
   selector: 'data-table',
@@ -14,7 +14,7 @@ export class DataTableComponent implements OnInit {
   dataShow: Array<{}> = [];
   @Input() data: Array<{}> = [];
 
-  constructor(private controller: ControlService) {}
+  constructor(private controller: PagesService) {}
 
   ngOnInit() {
     this.dataShow = this.data;

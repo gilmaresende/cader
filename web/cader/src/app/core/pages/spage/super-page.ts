@@ -1,12 +1,11 @@
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 import { StatePage } from '../../enuns/statePage';
 import { SEntidade } from '../../model/sentidade';
 import { BaseHttpService } from '../../services/base-http.service';
-import { ControlService } from '../../services/control.service';
-import { OnInit } from '@angular/core';
+import { PagesService } from '../../services/pages.service';
 import { FactoryCoreService } from '../../services/factory-core.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
 export abstract class SPage<
   Entidade extends SEntidade,
@@ -18,7 +17,8 @@ export abstract class SPage<
   isDisabled: ObservableElement = new ObservableElement();
 
   formBuilder: FormBuilder;
-  actions: ControlService;
+  servicePage: PagesService;
+  superOb?: SEntidade;
   constructor(
     title: string,
     private services: Service,
@@ -26,24 +26,26 @@ export abstract class SPage<
     private activatedRoutes: ActivatedRoute
   ) {
     this.formBuilder = factoryCoreService.getFormBuilder();
-    this.actions = factoryCoreService.getSuperControl();
+    this.servicePage = factoryCoreService.getSuperControl();
 
-    this.actions.getToolbar().title = title;
-    this.actions.setService(this.services);
-    this.actions.setIsDisabled(this.isDisabled);
+    this.servicePage.setTitle(title);
+    this.servicePage.setService(this.services);
+    this.servicePage.setIsDisabled(this.isDisabled);
+    this.servicePage.setPageEntity(this);
 
     const id = this.activatedRoutes.snapshot.params['id'];
     this.buildFormBase();
     this.newOb();
     if (id) {
       this.findById(id);
-      this.actions.setStatePage(StatePage.VIEW);
+      this.servicePage.setStatePage(StatePage.VIEW);
     }
   }
 
   newOb() {
-    this.actions.setStatePage(StatePage.INSERT);
+    this.servicePage.setStatePage(StatePage.INSERT);
     this.ob = this.services.newInstance();
+    this.superOb = this.ob;
     this.populatedForm(this.ob);
   }
 
@@ -56,24 +58,24 @@ export abstract class SPage<
   }
 
   async findById(id: number) {
-    console.log('fng', id);
-    this.actions.loading.showLoading();
+    this.servicePage.loading.showLoading();
     await this.services.findById(id).subscribe({
       next: (res) => {
+        this.superOb = res.data;
         this.setOb(res.data);
         this.populatedForm(res.data);
-        this.actions.setStatePage(StatePage.VIEW);
+        this.servicePage.setStatePage(StatePage.VIEW);
         this.isDisabled.emmiter(true);
-        this.actions.loading.dropLoading();
+        this.servicePage.loading.dropLoading();
       },
       error: (error) => {
         if (error.error) {
-          this.actions.toastService!.showAlert(error.error.error);
+          this.servicePage.toastService!.showAlert(error.error.error);
         } else {
           console.log(error);
         }
-        this.actions.loading.dropLoading();
-        this.actions.getRouter().navigate([`cader/${this.services.rote}`]);
+        this.servicePage.loading.dropLoading();
+        this.servicePage.getRouter().navigate([`cader/${this.services.rote}`]);
       },
     });
   }
@@ -85,6 +87,10 @@ export abstract class SPage<
 
   public setIsDisabled(valueIsDisable: boolean) {
     this.isDisabled.emmiter(valueIsDisable);
+  }
+
+  public getSuperOb(): SEntidade {
+    return this.superOb!;
   }
 
   abstract populatedForm(ob: Entidade): any;

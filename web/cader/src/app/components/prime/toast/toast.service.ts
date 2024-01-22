@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastComponent } from './toast.component';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,8 +8,8 @@ import { ControlService } from 'src/app/core/services/control.service';
 export class ToastService {
   private toast: ToastComponent | null = null;
 
-  constructor(private controlService: ControlService) {
-    controlService.setToastService(this);
+  constructor(private PagesService: PagesService) {
+    PagesService.setToastService(this);
   }
 
   setToast(toast: ToastComponent) {

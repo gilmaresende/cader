@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SPageList } from 'src/app/core/pages/spage/super-page-list';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { BI } from 'src/app/model-bi/bi';
 import { BIPlayService } from 'src/app/services/biplay.service';
 
@@ -19,7 +19,7 @@ export class BIPlayListComponent extends SPageList<BI, BIPlayService> {
   atributos: Array<string> = ['name'];
 
   constructor(
-    private controller: ControlService,
+    private controller: PagesService,
     private service: BIPlayService
   ) {
     super('Lista BI', controller, service);

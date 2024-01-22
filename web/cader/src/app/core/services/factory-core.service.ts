@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ControlService } from './control.service';
+import { PagesService } from './pages.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +8,7 @@ import { ControlService } from './control.service';
 export class FactoryCoreService {
   constructor(
     private formBuilder: FormBuilder,
-    private controller: ControlService
+    private controller: PagesService
   ) {
     this.formBuilder = formBuilder;
   }
@@ -17,7 +17,7 @@ export class FactoryCoreService {
     return this.formBuilder;
   }
 
-  getSuperControl(): ControlService {
+  getSuperControl(): PagesService {
     return this.controller;
   }
 }

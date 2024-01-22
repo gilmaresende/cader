@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DataTableService } from 'src/app/components/custom/data-table/data-table.service';
 import { SPage } from 'src/app/core/pages/spage/super-page';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { CashInflow } from 'src/app/model/cash-inflow';
 import { CashInclowPayment } from 'src/app/model/cash-inflow-payment';

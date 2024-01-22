@@ -36,10 +36,12 @@ export class InputSwitchComponent implements OnInit {
 
   @Input() isDisabled?: ObservableElement;
   disabled = false;
+  desabiitado = false;
 
   ngOnInit(): void {
     this.isDisabled?.observable$.subscribe((data) => {
       this.disabled = data;
+      this.desabiitado = data;
     });
   }
 

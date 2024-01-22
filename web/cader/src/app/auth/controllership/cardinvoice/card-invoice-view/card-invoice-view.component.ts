@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastService } from 'src/app/components/prime/toast/toast.service';
 import { SPage } from 'src/app/core/pages/spage/super-page';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { CardInvoice } from 'src/app/model/card-invoice';
 import { CardInvoiceLaunch } from 'src/app/model/card-invoice-launch';
@@ -20,7 +20,7 @@ export class CardInvoiceViewComponent extends SPage<
   CardInvoiceService
 > {
   constructor(
-    private controller: ControlService,
+    private controller: PagesService,
     public cardService: CardService,
     public service: CardInvoiceService,
     private factory: FactoryCoreService,

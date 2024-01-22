@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DataTableService } from 'src/app/components/custom/data-table/data-table.service';
 import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-impl.service';
 import { ToastService } from 'src/app/components/prime/toast/toast.service';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { ExpensePayment } from 'src/app/model/expense-payment';
 import { ExpensePaymentService } from 'src/app/services/expense-payment.service';
 import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
@@ -14,7 +14,7 @@ import { ObservableElement } from 'src/app/struct/observable/observable-element.
 })
 export class ExpensePaymentComponent implements OnInit {
   constructor(
-    public controller: ControlService,
+    public controller: PagesService,
     private serviceExpensePayment: ExpensePaymentService,
     private serviceModel: ModalImplService,
     private toastService: ToastService
@@ -22,8 +22,6 @@ export class ExpensePaymentComponent implements OnInit {
   ngOnInit(): void {
     this.serviceModel.setTitle('Pagamento');
   }
-
-  
 
   @Input() dataTableServicePaymentys?: DataTableService<ExpensePayment>;
 

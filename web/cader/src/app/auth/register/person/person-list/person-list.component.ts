@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SPageList } from 'src/app/core/pages/spage/super-page-list';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { Person } from 'src/app/model/person';
 import { PersonService } from 'src/app/services/person.service';
 
@@ -19,7 +19,7 @@ export class PersonListComponent extends SPageList<Person, PersonService> {
   atributos: Array<string> = ['name'];
 
   constructor(
-    private controller: ControlService,
+    private controller: PagesService,
     private service: PersonService
   ) {
     super('Lista Pessoas', controller, service);

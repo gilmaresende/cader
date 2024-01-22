@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SPageList } from 'src/app/core/pages/spage/super-page-list';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { Wallet } from 'src/app/model/wallet';
 import { WalletService } from 'src/app/services/wallet.service';
 
@@ -18,13 +18,12 @@ export class WalletListComponent extends SPageList<Wallet, WalletService> {
     {
       description: 'Saldo',
       percentage: 40,
-      
     },
   ];
   atributos: Array<string> = ['name', 'balance'];
 
   constructor(
-    private controller: ControlService,
+    private controller: PagesService,
     private service: WalletService
   ) {
     super('Lista Carteiras', controller, service);

@@ -5,7 +5,7 @@ import { ObservableTreeService } from 'src/app/components/custom/tree/observable
 import { ModalTree } from 'src/app/components/custom/tree/tree.component';
 import { DescriptionStr } from 'src/app/core/model/description-str';
 import { SPage } from 'src/app/core/pages/spage/super-page';
-import { ControlService } from 'src/app/core/services/control.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { HttpServerService } from 'src/app/core/services/http-server.service';
 import {

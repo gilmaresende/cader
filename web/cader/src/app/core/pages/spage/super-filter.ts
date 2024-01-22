@@ -1,7 +1,7 @@
-import { ControlService } from '../../services/control.service';
+import { PagesService } from '../../services/pages.service';
 
 export abstract class SFilter<Filter> {
-  constructor(controller: ControlService) {
+  constructor(controller: PagesService) {
     controller.setModalFilter(this);
   }
 
