@@ -10,6 +10,8 @@ public class PackageDT<DTO> {
 
     String rotaOb;
 
+    Long id;
+
     DTO data;
 
     List<DTO> datas;
@@ -70,5 +72,13 @@ public class PackageDT<DTO> {
 
     public void setItemsCombo(List<DescriptionId> itemsCombo) {
         this.itemsCombo = itemsCombo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

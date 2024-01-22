@@ -78,6 +78,7 @@ public class BaseController<Entity extends BaseEntity,
 
         PackageDT<DTO> pack = new PackageDT();
         pack.setRotaOb(ToolLink.createURI(ob).getPath());
+        pack.setId(ob.getId());
         pack.setMessage("Saved record");
         return ResponseEntity.ok().body(pack);
     }
@@ -101,6 +102,7 @@ public class BaseController<Entity extends BaseEntity,
             ob = service.save(ob);
             PackageDT<DTO> pack = new PackageDT();
             pack.setUpdate(ob.getUpdate());
+            pack.setId(ob.getId());
             pack.setMessage("Updated record");
             return ResponseEntity.ok().body(pack);
         }

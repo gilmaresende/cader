@@ -19,7 +19,7 @@ export class ExpensePaymentService extends BaseHttpService<ExpensePayment> {
       idExpense: 0,
     };
   }
-  override rote: string = 'expense/expensePayment';
+  override rote: string = 'expensePayment';
 
   predictPayment(id: any): Observable<ResponseServe> {
     return this.getHttp().get<ResponseServe>(

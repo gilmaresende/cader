@@ -95,6 +95,7 @@ export class ToolBarComponent implements OnInit {
 
   edit() {
     this.controller.edit();
+    this.controller.getIsDisabled().emmiter(false);
   }
 
   cancel() {

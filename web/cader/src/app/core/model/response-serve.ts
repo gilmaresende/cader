@@ -7,4 +7,5 @@ export interface ResponseServe {
   message: string;
   update: Date;
   itemsCombo: Array<DescriptionId>;
+  id?: number;
 }

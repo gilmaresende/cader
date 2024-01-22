@@ -14,6 +14,7 @@ import { ModelFilterService } from 'src/app/components/prime/model-filter/model-
 import { SFilter } from '../pages/spage/super-filter';
 import { LoadingComponent } from 'src/app/components/fusion/loading/loading.component';
 import { ToolBarComponent } from 'src/app/templates/tool-bar/tool-bar.component';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,6 @@ export class ControlService {
   //----------------------------------------//relacionado ao core da aplicacao--------------------------------
 
   title: string = '';
-  toobar!: ToolBarComponent;
   sidebar!: SidebarComponent;
   toastService?: ToastService;
   confirmDialogService?: ConfirmDialogService;
@@ -38,31 +38,11 @@ export class ControlService {
 
   //----------------------------------------  //relacionado a entidade da tela--------------------------------
 
-  ob?: any;
   public obSelect?: SEntidade;
-  service!: BaseHttpService<SEntidade>;
   rotaEntidade: string = '';
 
   //----------------------------------------  //contrutores--------------------------------
   constructor(private router: Router) {}
-
-  build(
-    ob: SEntidade | undefined,
-    title: string,
-    page:
-      | SPageList<SEntidade, BaseHttpService<SEntidade>>
-      | SPage<SEntidade, BaseHttpService<SEntidade>>
-      | SPageListFilter<SEntidade, BaseHttpService<SEntidade>>,
-    service: BaseHttpService<SEntidade>
-  ) {
-    this.setService(service);
-    this.setOb(ob);
-    this.page = page;
-    this.title = title;
-    if (this.toobar) {
-      this.toobar.checkState();
-    }
-  }
 
   //-----------------------------------------//gets e setes relacionado a aplicacao---------------------------------
 
@@ -118,22 +98,19 @@ export class ControlService {
   }
   //-----------------------------------------------get e set relacionado a entidades---------------------------
 
-  setService(service: BaseHttpService<SEntidade>) {
-    this.service = service;
-  }
-
-  getService(): BaseHttpService<SEntidade> {
-    return this.service;
-  }
-
-  setOb(ob: any) {
-    this.ob = ob;
-  }
-
   getOb(): SEntidade {
     const page = this.page;
-    const obj = page!.getOb() as SEntidade;
-    return obj;
+    console.log(page);
+    if (page instanceof SPage) {
+      alert('insert');
+      const pageEntity = page as SPage<SEntidade, BaseHttpService<SEntidade>>;
+      const obj = pageEntity.getOb();
+      return obj;
+    } else {
+      alert('not insert');
+    }
+
+    throw new Error('Pagina não Registro');
   }
 
   setObSelect(ob: any) {
@@ -162,7 +139,7 @@ export class ControlService {
       this.service.update(obj).subscribe({
         next: (res) => {
           this.toastService!.showSucess(res.message);
-          this.reload();
+          this.reloadById(res.id!);
         },
         error: (error) => {
           if (error.error) {
@@ -177,8 +154,7 @@ export class ControlService {
     } else {
       await this.service.create(obj).subscribe({
         next: (res) => {
-          console.log(res.rotaOb);
-          // this.router.navigate([`cader/${res.rotaOb}`]);
+          this.reloadById(res.id!);
           this.toastService!.showSucess(res.message);
           this.loading.dropLoading();
         },
@@ -228,6 +204,11 @@ export class ControlService {
     this.setStatePage(StatePage.EDIT);
   }
 
+  async reloadById(id: number) {
+    this.setStatePage(StatePage.VIEW);
+    this.page?.findById(id);
+  }
+
   async reload() {
     this.setStatePage(StatePage.VIEW);
     const obj: SEntidade = this.getOb();
@@ -252,6 +233,13 @@ export class ControlService {
 
   async newOb() {
     this.setStatePage(StatePage.INSERT);
+    if (this.page instanceof SPage) {
+      const pagePage = this.page as SPage<
+        SEntidade,
+        BaseHttpService<SEntidade>
+      >;
+      pagePage.newOb();
+    }
     this.router.navigate([`${this.rotaEntidade}`]);
   }
 
@@ -262,10 +250,47 @@ export class ControlService {
   setStatePage(state: StatePage) {
     this.statePage = state;
     if (state === StatePage.VIEW) {
-      this.page?.setIsDisabled(true);
+      //  this.page?.setIsDisabled(true);
     } else {
-      this.page?.setIsDisabled(false);
+      // this.page?.setIsDisabled(false);
     }
     if (this.toobar) this.toobar.checkState();
+  }
+
+  //####################################################################################################################################
+
+  //---------------------------------------------barra de tarefas-----------------------------------------
+  toobar!: ToolBarComponent;
+
+  setToolbar(toobar: ToolBarComponent) {
+    this.toobar = toobar;
+  }
+
+  getToolbar(): ToolBarComponent {
+    return this.toobar;
+  }
+
+  //---------------------------------------------service-----------------------------------------
+
+  service!: BaseHttpService<SEntidade>;
+
+  setService(service: BaseHttpService<SEntidade>) {
+    this.service = service;
+  }
+
+  getService(): BaseHttpService<SEntidade> {
+    return this.service;
+  }
+
+  //---------------------------------------------isDisabled-----------------------------------------
+
+  isDisabled?: ObservableElement;
+
+  setIsDisabled(isDisabled: ObservableElement) {
+    this.isDisabled = isDisabled;
+  }
+
+  getIsDisabled(): ObservableElement {
+    return this.isDisabled!;
   }
 }

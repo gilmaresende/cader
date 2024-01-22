@@ -19,16 +19,20 @@ export const EnumTypeRevenueExpenceFilter: Array<DescriptionId> = [
   ...EnumTypeRevenueExpence,
 ];
 
-export const EnumOriginMovement: Array<DescriptionId> = [
+export const ConstOriginMovement = {
+  MANUAL: { id: 4, description: 'MANUAL' },
+};
+
+export const EnumOriginMovementList: Array<DescriptionId> = [
   { id: 1, description: 'DESPESA' },
   { id: 2, description: 'TRANSFERENCIA' },
   { id: 3, description: 'RECEITA' },
-  { id: 4, description: 'MANUAL' },
+  ConstOriginMovement.MANUAL,
 ];
 
 export const EnumOriginMovementFilter: Array<DescriptionId> = [
   { id: 0, description: 'TODOS' },
-  ...EnumOriginMovement,
+  ...EnumOriginMovementList,
 ];
 
 export const EnumExpenseOrigin: Array<DescriptionId> = [

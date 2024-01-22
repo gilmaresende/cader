@@ -1,5 +1,5 @@
 <abas-tab [titles]="pages">
-  <div id="idItem0" class="mt2">
+  <div *ngIf="form" id="idItem0" class="mt2">
     <cash-inflow-detail
       [form]="form"
       [isDisabled]="isDisabled"
@@ -8,7 +8,7 @@
   <div id="idItem1">
     <cash-inflow-payment
       [listPayments]="listPayments"
-      [isDisabled]="!isDisabled"
+      [isDisabled]="isDisabled"
       [dataTableServicePaymentys]="dataTableServicePaymentys"
     ></cash-inflow-payment>
   </div>

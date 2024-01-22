@@ -5,6 +5,7 @@ import { ToastService } from 'src/app/components/prime/toast/toast.service';
 import { ControlService } from 'src/app/core/services/control.service';
 import { ExpensePayment } from 'src/app/model/expense-payment';
 import { ExpensePaymentService } from 'src/app/services/expense-payment.service';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
 @Component({
   selector: 'expense-payment',
@@ -22,10 +23,12 @@ export class ExpensePaymentComponent implements OnInit {
     this.serviceModel.setTitle('Pagamento');
   }
 
+  
+
   @Input() dataTableServicePaymentys?: DataTableService<ExpensePayment>;
 
   @Input() listPayments: Array<any> = [];
-  @Input() isDisabled: boolean = true;
+  @Input() isDisabled?: ObservableElement;
 
   header: Array<{ description: string; percentage: number }> = [
     { description: 'Carteira', percentage: 25 },

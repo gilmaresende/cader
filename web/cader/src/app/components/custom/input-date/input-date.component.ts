@@ -1,4 +1,11 @@
-import { Component, DoCheck, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -6,6 +13,7 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 @Component({
   selector: 'inputDate',
   templateUrl: './input-date.component.html',
@@ -23,8 +31,9 @@ import {
     },
   ],
 })
-export class InputDateComponent implements ControlValueAccessor, DoCheck {
-  @Input() isDisabled: boolean = false;
+export class InputDateComponent
+  implements ControlValueAccessor, DoCheck, OnInit
+{
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
   @Output() valueChanged = new EventEmitter<any>();
@@ -33,7 +42,14 @@ export class InputDateComponent implements ControlValueAccessor, DoCheck {
 
   touched = false;
 
+  @Input() isDisabled?: ObservableElement;
   disabled = false;
+
+  ngOnInit(): void {
+    this.isDisabled?.observable$.subscribe((data) => {
+      this.disabled = data;
+    });
+  }
 
   ngDoCheck(): void {
     this.markAsTouched();

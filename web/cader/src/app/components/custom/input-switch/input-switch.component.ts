@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -6,6 +6,8 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
+import { ObservableImpl } from 'src/app/struct/observable/observable-impl.service';
 
 @Component({
   selector: 'inputSwitch',
@@ -24,8 +26,7 @@ import {
     },
   ],
 })
-export class InputSwitchComponent {
-  @Input() isDisabled: boolean = false;
+export class InputSwitchComponent implements OnInit {
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
 
@@ -33,7 +34,14 @@ export class InputSwitchComponent {
 
   touched = false;
 
+  @Input() isDisabled?: ObservableElement;
   disabled = false;
+
+  ngOnInit(): void {
+    this.isDisabled?.observable$.subscribe((data) => {
+      this.disabled = data;
+    });
+  }
 
   onClick(): void {
     this.markAsTouched();

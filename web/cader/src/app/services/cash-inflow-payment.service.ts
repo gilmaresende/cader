@@ -19,7 +19,7 @@ export class CashInflowPaymentService extends BaseHttpService<CashInclowPayment>
       idCashInflow: 0,
     };
   }
-  override rote: string = 'cashInflow/cashInflowPayment';
+  override rote: string = 'cashInflowPayment';
 
   predictPayment(id: any): Observable<ResponseServe> {
     return this.getHttp().get<ResponseServe>(

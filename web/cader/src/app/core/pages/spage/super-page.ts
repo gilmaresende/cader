@@ -3,45 +3,67 @@ import { StatePage } from '../../enuns/statePage';
 import { SEntidade } from '../../model/sentidade';
 import { BaseHttpService } from '../../services/base-http.service';
 import { ControlService } from '../../services/control.service';
+import { OnInit } from '@angular/core';
+import { FactoryCoreService } from '../../services/factory-core.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
 export abstract class SPage<
   Entidade extends SEntidade,
   Service extends BaseHttpService<Entidade>
 > {
   ob?: Entidade;
+  form!: FormGroup;
 
-  isDisabled: boolean = true;
+  isDisabled: ObservableElement = new ObservableElement();
 
+  formBuilder: FormBuilder;
+  actions: ControlService;
   constructor(
     title: string,
-    private actions: ControlService,
     private services: Service,
+    private factoryCoreService: FactoryCoreService,
     private activatedRoutes: ActivatedRoute
   ) {
-    actions.build(this.ob, title, this, this.services);
-    this.startView();
+    this.formBuilder = factoryCoreService.getFormBuilder();
+    this.actions = factoryCoreService.getSuperControl();
+
+    this.actions.getToolbar().title = title;
+    this.actions.setService(this.services);
+    this.actions.setIsDisabled(this.isDisabled);
 
     const id = this.activatedRoutes.snapshot.params['id'];
+    this.buildFormBase();
+    this.newOb();
     if (id) {
       this.findById(id);
       this.actions.setStatePage(StatePage.VIEW);
-    } else {
-      this.actions.setStatePage(StatePage.INSERT);
     }
+  }
+
+  newOb() {
+    this.actions.setStatePage(StatePage.INSERT);
+    this.ob = this.services.newInstance();
+    this.populatedForm(this.ob);
+  }
+
+  buildFormBase() {
+    this.form = this.formBuilder.group({});
   }
 
   public setOb(ob: Entidade) {
     this.ob = ob;
-    this.actions.setOb(ob);
   }
 
   async findById(id: number) {
+    console.log('fng', id);
     this.actions.loading.showLoading();
     await this.services.findById(id).subscribe({
       next: (res) => {
         this.setOb(res.data);
         this.populatedForm(res.data);
         this.actions.setStatePage(StatePage.VIEW);
+        this.isDisabled.emmiter(true);
         this.actions.loading.dropLoading();
       },
       error: (error) => {
@@ -57,16 +79,13 @@ export abstract class SPage<
   }
 
   public clearScreen() {
-    this.isDisabled = false;
+    this.buildFormBase();
+    this.isDisabled.emmiter(false);
   }
 
   public setIsDisabled(valueIsDisable: boolean) {
-    this.isDisabled = valueIsDisable;
+    this.isDisabled.emmiter(valueIsDisable);
   }
-
-  findFilter(filter: any) {}
-
-  startView() {}
 
   abstract populatedForm(ob: Entidade): any;
 

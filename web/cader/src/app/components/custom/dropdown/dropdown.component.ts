@@ -7,6 +7,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { DescriptionId } from 'src/app/core/model/description-id';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
 @Component({
   selector: 'dropdown',
@@ -28,7 +29,6 @@ import { DescriptionId } from 'src/app/core/model/description-id';
 export class DropdownComponent
   implements OnInit, DoCheck, ControlValueAccessor
 {
-  @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;
   @Input() list: Array<DescriptionId> = [];
 
@@ -38,11 +38,18 @@ export class DropdownComponent
 
   description = 'dev';
 
+  @Input() isDisabled?: ObservableElement;
+  disabled = false;
+
   ngOnInit() {
     this.markAsTouched();
     if (this.selected) {
       this.onChange(this.selected);
     }
+
+    this.isDisabled?.observable$.subscribe((data) => {
+      this.disabled = data;
+    });
   }
 
   ngDoCheck(): void {

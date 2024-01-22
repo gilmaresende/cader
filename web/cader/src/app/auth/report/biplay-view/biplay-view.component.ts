@@ -6,6 +6,7 @@ import { ModalTree } from 'src/app/components/custom/tree/tree.component';
 import { DescriptionStr } from 'src/app/core/model/description-str';
 import { SPage } from 'src/app/core/pages/spage/super-page';
 import { ControlService } from 'src/app/core/services/control.service';
+import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { HttpServerService } from 'src/app/core/services/http-server.service';
 import {
   getFirstDayMonth,
@@ -28,17 +29,13 @@ export class BIPlayViewComponent
   implements OnInit
 {
   constructor(
-    private controller: ControlService,
     private http: HttpServerService,
     private service: BIPlayService,
-    private activatedRoute: ActivatedRoute
+    private factory: FactoryCoreService,
+    private actRote: ActivatedRoute
   ) {
-    super('Play Bi', controller, service, activatedRoute);
+    super('Play Bi', service, factory, actRote);
   }
-
-  form = new FormGroup({
-    value: new FormControl(),
-  });
 
   ngOnInit(): void {}
 
@@ -62,7 +59,7 @@ export class BIPlayViewComponent
 
   override populatedForm(ob: BI) {
     this.id = ob.id!;
-    this.controller.setTitle(`${ob.name}`);
+    //this.controller.setTitle(`${ob.name}`);
     this.bi = JSON.parse(ob.data);
     this.bi?.bIParameters.forEach((item) => {
       this.parametros.push({
@@ -100,22 +97,22 @@ export class BIPlayViewComponent
 
   async toForm(item: ModalTree) {
     this.data = item.data;
-    this.parameterCurrent = item.data.item;
-    if (this.data.item.typeInput == 2) {
-      this.toListEntity(this.data.item);
-    }
-    const parameter = this.data.item as BIParameter;
-    if (parameter.typePrimitive == 1) {
-      console.log(parameter.valueDefault);
-      if (parameter.subTypeDate == this.constTypeDateBI.FIST_DAY_MONTH) {
-        console.log(getFirstDayMonth());
-        this.form.controls.value.setValue(getFirstDayMonth());
-      } else if (parameter.subTypeDate == this.constTypeDateBI.LAST_DAY_MONTH) {
-        this.form.controls.value.setValue(getLastDayMonth());
-      }
-    } else {
-      this.form.controls.value.setValue(item.data.valor);
-    }
+    // this.parameterCurrent = item.data.item;
+    // if (this.data.item.typeInput == 2) {
+    //   this.toListEntity(this.data.item);
+    // }
+    // const parameter = this.data.item as BIParameter;
+    // if (parameter.typePrimitive == 1) {
+    //   console.log(parameter.valueDefault);
+    //   if (parameter.subTypeDate == this.constTypeDateBI.FIST_DAY_MONTH) {
+    //     console.log(getFirstDayMonth());
+    //     this.form.controls.value.setValue(getFirstDayMonth());
+    //   } else if (parameter.subTypeDate == this.constTypeDateBI.LAST_DAY_MONTH) {
+    //     this.form.controls.value.setValue(getLastDayMonth());
+    //   }
+    // } else {
+    //   this.form.controls.value.setValue(item.data.valor);
+    // }
   }
 
   newValue(event: any) {

@@ -6,6 +6,7 @@ import { ControlService } from 'src/app/core/services/control.service';
 import { CashInflow } from 'src/app/model/cash-inflow';
 import { CashInclowPayment } from 'src/app/model/cash-inflow-payment';
 import { CashInflowPaymentService } from 'src/app/services/cash-inflow-payment.service';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
 @Component({
   selector: 'cash-inflow-payment',
@@ -26,7 +27,7 @@ export class CashInflowPaymentComponent implements OnInit {
   @Input() dataTableServicePaymentys?: DataTableService<CashInclowPayment>;
 
   @Input() listPayments: Array<any> = [];
-  @Input() isDisabled: boolean = true;
+  @Input() isDisabled?: ObservableElement;
 
   header: Array<{ description: string; percentage: number }> = [
     { description: 'Carteira', percentage: 25 },

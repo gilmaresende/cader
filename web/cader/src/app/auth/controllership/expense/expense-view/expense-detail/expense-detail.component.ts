@@ -5,6 +5,7 @@ import { ExpenseCategoryService } from 'src/app/services/expense-category.servic
 import { PaymentTypeService } from 'src/app/services/payment-type.service';
 import { PersonService } from 'src/app/services/person.service';
 import { WalletService } from 'src/app/services/wallet.service';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
 @Component({
   selector: 'expense-detail',
@@ -20,7 +21,7 @@ export class ExpenseDetailComponent {
     public serviceExpenseCategory: ExpenseCategoryService
   ) {}
 
-  @Input() isDisabled: boolean = true;
+  @Input() isDisabled?: ObservableElement;
 
   @Input() form!: FormGroup;
 }

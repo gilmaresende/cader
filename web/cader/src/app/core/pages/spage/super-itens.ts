@@ -2,6 +2,7 @@ import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-imp
 import { SEntidade } from '../../model/sentidade';
 import { ControlService } from '../../services/control.service';
 import { BaseHttpService } from '../../services/base-http.service';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
 export abstract class SItems<
   Entidade extends SEntidade,
@@ -20,7 +21,7 @@ export abstract class SItems<
   //-----------------------------------------------------------------------------------
 
   //atributo que defini se a tela(modal) esta em modo editavel ou não
-  isDisabled: boolean = false;
+  isDisabled: ObservableElement = new ObservableElement();
 
   //-----------------------------------------------------------------------------------
   //gets e sets

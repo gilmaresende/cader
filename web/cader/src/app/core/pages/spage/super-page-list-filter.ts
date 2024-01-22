@@ -20,14 +20,13 @@ export abstract class SPageListFilter<
     private services: Service
   ) {
     actions.setStatePage(StatePage.LIST_FILTER);
-    actions.build(this.ob, title, this, this.services);
+    //actions.build(this.ob, title, this, this.services);
     actions.setRotaEntidade(`${this.services.rote}`);
     this.findFilter(this.getFilterBase());
   }
 
   public setOb(ob: Entidade) {
     this.ob = ob;
-    this.actions.setOb(ob);
   }
 
   findFilter(filter: any) {

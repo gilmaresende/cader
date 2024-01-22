@@ -20,32 +20,28 @@ export abstract class SPageList<
     private services: Service
   ) {
     actions.setStatePage(StatePage.LIST);
-    actions.build(this.ob, title, this, this.services);
+    //actions.build(this.ob, title, this, this.services);
     actions.setRotaEntidade(`${this.services.rote}`);
     this.findAll();
   }
 
   public setOb(ob: Entidade) {
     this.ob = ob;
-    this.actions.setOb(ob);
   }
 
   findAll() {
     this.actions.loading.showLoading();
-    this.actions
-      .getService()
-      .findAll()
-      .subscribe({
-        next: (res) => {
-          this.dataTableObserve.update(res.datas);
-          this.list = res.datas;
-          this.actions.loading.dropLoading();
-        },
-        error: (error) => {
-          console.log(error);
-          this.actions.loading.dropLoading();
-        },
-      });
+    this.services.findAll().subscribe({
+      next: (res) => {
+        this.dataTableObserve.update(res.datas);
+        this.list = res.datas;
+        this.actions.loading.dropLoading();
+      },
+      error: (error) => {
+        console.log(error);
+        this.actions.loading.dropLoading();
+      },
+    });
   }
 
   public alterLoading(isLoading: boolean) {

@@ -10,6 +10,7 @@ import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { SEntidade } from 'src/app/core/model/sentidade';
 import { BaseHttpService } from 'src/app/core/services/base-http.service';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
 @Component({
   selector: 'autocomplete',
@@ -31,7 +32,6 @@ import { BaseHttpService } from 'src/app/core/services/base-http.service';
 export class AutocompleteComponent
   implements OnInit, DoCheck, ControlValueAccessor
 {
-  @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;
   list: Array<DescriptionId> = [];
 
@@ -43,10 +43,14 @@ export class AutocompleteComponent
 
   touched = false;
 
+  @Input() isDisabled?: ObservableElement;
   disabled = false;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getCombo();
+    this.isDisabled?.observable$.subscribe((data) => {
+      this.disabled = data;
+    });
   }
 
   getCombo() {

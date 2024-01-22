@@ -6,6 +6,7 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 import { ObservableValid } from 'src/app/struct/observable/observable-valid-impl.service';
 
 @Component({
@@ -26,7 +27,6 @@ import { ObservableValid } from 'src/app/struct/observable/observable-valid-impl
   ],
 })
 export class InputTextComponent implements ControlValueAccessor, OnInit {
-  @Input() isDisabled: boolean = false;
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
   @Input() observableValid?: ObservableValid;
@@ -35,9 +35,18 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
   errorMessage: string = '';
   isTooltipVisible: boolean = false;
 
+  @Input() isDisabled?: ObservableElement;
+  desabilitado = true;
+  disabled = true;
+
   ngOnInit(): void {
     this.observableValid?.observable$.subscribe((data) => {
       this.showErros(data);
+    });
+
+    this.isDisabled?.observable$.subscribe((data) => {
+      this.setDisabledState(data);
+      this.disabled = data;
     });
   }
   showErros(data: Array<string>) {
@@ -49,11 +58,9 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
 
   touched = false;
 
-  disabled = false;
-
   teclar() {
     this.markAsTouched();
-    if (!this.disabled) {
+    if (!this.desabilitado) {
       this.valueChanged.emit(this.value);
       this.onChange(this.value);
     }
@@ -107,7 +114,7 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
   }
 
   setDisabledState(disabled: boolean) {
-    this.disabled = disabled;
+    this.desabilitado = disabled;
   }
   validate(control: AbstractControl): ValidationErrors | null {
     return null;
