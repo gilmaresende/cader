@@ -1,0 +1,95 @@
+<div [formGroup]="form" class="mX1">
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <inputText
+        formControlName="description"
+        [label]="'Descrição'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt2">
+      <inputDate
+        formControlName="openingDate"
+        [label]="'Data Abertura'"
+        [isDisabled]="isDisabled"
+      ></inputDate>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt2">
+      <inputDate
+        formControlName="dueDate"
+        [label]="'Data Vencimento'"
+        [isDisabled]="isDisabled"
+      ></inputDate>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt2">
+      <inputReais
+        formControlName="openValue"
+        [label]="'Valor Aberto'"
+        [alwaysDisabled]="true"
+      />
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt2">
+      <inputReais
+        formControlName="amountPaid"
+        [label]="'Valor Pago'"
+        [alwaysDisabled]="true"
+      />
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt2">
+      <inputReais
+        formControlName="valueTotal"
+        [label]="'Valor Total'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 mt2">
+      <autocomplete
+        formControlName="wallet"
+        [service]="serviceWallet"
+        [label]="'Carteira'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 mt2">
+      <autocomplete
+        formControlName="paymentType"
+        [service]="servicePaymentTypeService"
+        [label]="'Meio de Pagamento'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 mt2">
+      <autocomplete
+        formControlName="person"
+        [service]="servicePerson"
+        [label]="'Pessoa'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 mt2">
+      <autocomplete
+        formControlName="incomeCategory"
+        [service]="serviceIncomeCategory"
+        [label]="'Categoria'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 mt2">
+      <inputText
+        formControlName="observation"
+        [label]="'Observação'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-blue">
+  <li class="linkBtn nav-item" type="button" (click)="showSidebar()">
+    <span class="material-symbols-outlined icon-write"> menu </span>
+  </li>
+
+  <span class="title">{{ title }}</span>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="material-symbols-outlined icon-write"> more_vert </span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto line">
+      <li
+        *ngIf="isList || isListFilter"
+        class="linkBtn nav-item"
+        type="button"
+        (click)="load()"
+      >
+        <span class="material-symbols-outlined icon-write"> visibility </span>
+      </li>
+
+      <li
+        type="button"
+        class="nav-item linkBtn"
+        (click)="save()"
+        *ngIf="isInsert || isEdit"
+      >
+        <span class="material-symbols-outlined icon-write"> save </span>
+      </li>
+
+      <li
+        type="button"
+        class="nav-item linkBtn"
+        (click)="showFilter()"
+        *ngIf="isListFilter"
+      >
+        <span class="material-symbols-outlined icon-write"> filter_list </span>
+      </li>
+      <li
+        type="button"
+        class="nav-item linkBtn"
+        (click)="newOb()"
+        *ngIf="isView || isList || isListFilter"
+      >
+        <span class="material-symbols-outlined icon-write"> add </span>
+      </li>
+      <li
+        type="button"
+        class="nav-item linkBtn"
+        (click)="edit()"
+        *ngIf="isView"
+      >
+        <span class="material-symbols-outlined icon-write"> edit </span>
+      </li>
+
+      <li
+        type="button"
+        class="nav-item linkBtn"
+        (click)="delete()"
+        *ngIf="isView"
+      >
+        <span class="material-symbols-outlined icon-write"> delete </span>
+      </li>
+      <li
+        type="button"
+        class="nav-item linkBtn"
+        (click)="cancel()"
+        *ngIf="isEdit"
+      >
+        <span class="material-symbols-outlined icon-write"> close </span>
+      </li>
+      <li
+        type="button"
+        class="nav-item linkBtn"
+        (click)="goToList()"
+        *ngIf="isView || isInsert"
+      >
+        <span class="material-symbols-outlined icon-write"> view_list </span>
+      </li>
+    </ul>
+  </div>
+</nav>

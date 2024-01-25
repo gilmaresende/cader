@@ -1,0 +1,15 @@
+<abas-tab [titles]="pages">
+  <div *ngIf="form" id="idItem0" class="mt2">
+    <cash-inflow-detail
+      [form]="form"
+      [isDisabled]="isDisabled"
+    ></cash-inflow-detail>
+  </div>
+  <div id="idItem1">
+    <cash-inflow-payment
+      [listPayments]="listPayments"
+      [isDisabled]="isDisabled"
+      [dataTableServicePaymentys]="dataTableServicePaymentys"
+    ></cash-inflow-payment>
+  </div>
+</abas-tab>

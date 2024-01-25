@@ -1,0 +1,21 @@
+:host {
+  div {
+    display: flex;
+    flex-direction: column;
+    .area {
+      padding-top: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      div {
+        width: 500px;
+      }
+    }
+  }
+}

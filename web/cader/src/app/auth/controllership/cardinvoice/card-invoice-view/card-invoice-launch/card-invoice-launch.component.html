@@ -1,0 +1,18 @@
+<div class="bodyTable">
+  <table class="fullW">
+    <tr>
+      <th class="colunDescription">Descrição</th>
+      <th class="dueDateLaunch">Data Lançamento</th>
+      <th>Número</th>
+      <th>Nº Lançamentos</th>
+      <th class="valueLaunch">Valor</th>
+    </tr>
+    <tr *ngFor="let launch of listLaunches">
+      <td>{{ launch.description }}</td>
+      <td>{{ launch.dateLaunch }}</td>
+      <td>{{ launch.number }}</td>
+      <td>{{ launch.amountLaunches }}</td>
+      <td class="textRight">{{ launch.value | currency : "BRL" }}</td>
+    </tr>
+  </table>
+</div>

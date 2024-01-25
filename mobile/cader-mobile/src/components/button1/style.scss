@@ -1,0 +1,38 @@
+.botao1 {
+	width: 100%; /* Faz o botão ocupar toda a largura da div */
+	background-color: #0074d9;
+	color: white;
+	font-weight: 500;
+	border: none;
+	padding: 10px;
+	font-size: 1rem;
+	cursor: pointer;
+	border-radius: 5px;
+	height: 3rem;
+}
+
+.btnReload {
+	width: 3.5rem;
+	height: 3.5rem;
+	background: none;
+	border: none;
+	color: #69bbff;
+}
+
+.btnReload:active {
+	background-color: #d1eaff;
+	color: #fff;
+}
+
+.btnClean {
+	width: 3.5rem;
+	height: 3.5rem;
+	background: none;
+	border: none;
+	color: #ff6969;
+}
+
+.btnClean:active {
+	background-color: #ffd1d1;
+	color: #fff;
+}

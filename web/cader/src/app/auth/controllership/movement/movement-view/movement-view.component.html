@@ -1,0 +1,53 @@
+<div [formGroup]="form" class="mX2">
+  <div class="row">
+    <div class="col-xs-12 col-md-5 mt2">
+      <inputText
+        formControlName="description"
+        [label]="'Descrição'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div class="col-xs-12 col-md-3 mt2">
+      <dropdown
+        [list]="typeList"
+        formControlName="typeRevenueExpence"
+        [label]="'Tipo'"
+        [isDisabled]="isDisabled"
+      ></dropdown>
+    </div>
+    <div class="col-xs-12 col-md-3 mt2">
+      <dropdown
+        [list]="typeList"
+        formControlName="origin"
+        [label]="'Origem'"
+        [alwaysDisabled]="true"
+        [isDisabled]="isDisabled"
+      ></dropdown>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-3 mt2">
+      <inputReais
+        formControlName="value"
+        [label]="'Valor'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+    <div class="col-xs-12 col-md-4 col-lg-3 mt2">
+      <inputDate
+        formControlName="movementDate"
+        [label]="'Data'"
+        [isDisabled]="isDisabled"
+      ></inputDate>
+    </div>
+
+    <div class="col-xs-12 col-md-5 mt2">
+      <autocomplete
+        formControlName="wallet"
+        [service]="serviceWallet"
+        [label]="'Carteira'"
+        [isDisabled]="isDisabled"
+      />
+    </div>
+  </div>
+</div>

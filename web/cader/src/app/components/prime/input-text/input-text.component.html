@@ -1,0 +1,11 @@
+<span class="p-float-label">
+  <input
+    pInputText
+    type="text"
+    [(ngModel)]="value"
+    (keyup)="teclar()"
+    [placeholder]="placeholder"
+    [disabled]="isDisabled"
+  />
+  <label htmlFor="username">{{ label }}</label>
+</span>

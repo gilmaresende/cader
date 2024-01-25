@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-xs-12 col-md-5 mt2">
+    <input-date
+      [ob]="ob"
+      [atributo]="'movimentDateStart'"
+      [label]="'Data Inicial'"
+      [placeholder]="'Data Inicial'"
+    />
+  </div>
+  <div class="itemFilter">
+    <input-date
+      [ob]="ob"
+      [atributo]="'movimentDateEnd'"
+      [label]="'Data Final'"
+      [placeholder]="'Data Final'"
+    />
+  </div>
+  <div class="itemFilter">
+    <drop-dow
+      [ob]="ob"
+      [atributo]="'typeRevenueExpence'"
+      [label]="'Tipo'"
+      [placeholder]="'Tipo'"
+      [list]="typeList"
+    />
+  </div>
+  <div class="itemFilter">
+    <drop-dow
+      [ob]="ob"
+      [atributo]="'origin'"
+      [label]="'Origem'"
+      [placeholder]="'Origem'"
+      [list]="origenList"
+    />
+  </div>
+</div>
+<div class="line lineFilter">
+  <div class="itemFilter">
+    <auto-complete
+      [ob]="ob"
+      [atributo]="'idWallet'"
+      [label]="'Carteira'"
+      [placeholder]="'Carteira'"
+      [service]="serviceWallet"
+    />
+  </div>
+</div>

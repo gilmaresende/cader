@@ -1,0 +1,29 @@
+:host {
+  .lineHover:hover {
+    background: #3f51b5;
+    color: #fff;
+  }
+
+  .filterTable {
+    text-align: center;
+    padding: 15px;
+    border-bottom: solid #3f51b5 0.3px;
+  }
+
+  .bodyTable {
+    max-height: calc(100vh - 7rem);
+    overflow-y: scroll;
+  }
+
+  .bodyTable::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .bodyTable::-webkit-scrollbar-thumb {
+    background-color: rgb(179, 209, 228);
+  }
+
+  .bodyTable::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+}

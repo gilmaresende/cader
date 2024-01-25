@@ -1,0 +1,130 @@
+<div class="row">
+  <div class="col-4">
+    <div class="itemQuery lineLeft" *ngFor="let p of parameters">
+      <label class="nomeParameter"> {{ p.name }} </label>
+      <div class="complete">
+        <div class="lineLeft toRight">
+          <button class="btn btn-primary btnIcon" (click)="populateForm(p)">
+            <span class="material-icons"> visibility </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-8">
+    <div [formGroup]="form">
+      <div class="fullW p1">
+        <button class="btn btn-primary mb2 mr1" (click)="save()">Save</button>
+        <button
+          *ngIf="this.item"
+          class="btn btn-danger mb2"
+          (click)="removeParameter()"
+        >
+          Delete
+        </button>
+      </div>
+      {{ item | json }}
+      <div class="lineLeft">
+        <div class="mr1">
+          <inputText formControlName="name" [label]="'Nome'" />
+        </div>
+        <div class="mr1">
+          <inputText formControlName="key" [label]="'Key'" />
+        </div>
+        <div>
+          <inputRadio
+            [label]="'Primitivo'"
+            [id]="'typePrimitiveOrEntityBasic'"
+            [name]="'typePrimitiveOrEntity'"
+            [valueFix]="constPrimitiEntity.PRIMITIVE"
+            formControlName="typePrimitiveOrEntity"
+            (valueChanged)="changePrimitiveAndEntity($event)"
+          />
+          <inputRadio
+            [label]="'Registros'"
+            [id]="'typePrimitiveOrEntityRegister'"
+            [name]="'typePrimitiveOrEntity'"
+            [valueFix]="constPrimitiEntity.ENTITY"
+            formControlName="typePrimitiveOrEntity"
+            (valueChanged)="changePrimitiveAndEntity($event)"
+          />
+        </div>
+      </div>
+      <div class="fullW">
+        <div
+          *ngIf="typeInputPrimitiveOrEntity === constPrimitiEntity.PRIMITIVE"
+        >
+          <hr />
+          <div>
+            <div class="lineLeft mt2">
+              <div class="drop mr1">
+                <dropdown
+                  [label]="'Tipo Primitivo'"
+                  formControlName="typePrimitive"
+                  [list]="listTypes"
+                  (valueChanged)="checkDate($event)"
+                ></dropdown>
+              </div>
+              <div *ngIf="showComboDate; else valueDefaut">
+                <div class="drop mr1">
+                  <div>
+                    <inputRadio
+                      [label]="'Branco'"
+                      [id]="'subTypeDateWrite'"
+                      [name]="'subTypeDate'"
+                      [valueFix]="constBITypeDate.EMPTY"
+                      formControlName="subTypeDate"
+                    />
+                    <inputRadio
+                      [label]="'Primeiro Dia Mês'"
+                      [id]="'subTypeDateFirstDay'"
+                      [name]="'subTypeDate'"
+                      [valueFix]="constBITypeDate.FIST_DAY_MONTH"
+                      formControlName="subTypeDate"
+                    />
+                    <inputRadio
+                      [label]="'Ultimo Dia Mês'"
+                      [id]="'subTypeDateLastDay'"
+                      [name]="'subTypeDate'"
+                      [valueFix]="constBITypeDate.LAST_DAY_MONTH"
+                      formControlName="subTypeDate"
+                    />
+                  </div>
+                </div>
+              </div>
+              <ng-template #valueDefaut>
+                <div class="line">
+                  <div class="drop">
+                    <inputText
+                      formControlName="valueDefault"
+                      [label]="'Valor Padrão'"
+                    />
+                  </div>
+                  <div class="ml1">
+                    <check
+                      [label]="'Customizado'"
+                      formControlName="customized"
+                      (valueChanged)="checkCustom($event)"
+                    ></check>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+            <div *ngIf="showCustomizade">
+              <defined-parameter-view [observableCustom]="observableCustom" />
+            </div>
+          </div>
+        </div>
+        <div *ngIf="typeInputPrimitiveOrEntity === constPrimitiEntity.ENTITY">
+          <div class="drop">
+            <dropdownstr
+              formControlName="typeClass"
+              [list]="listClass"
+              [label]="'Class'"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

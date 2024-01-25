@@ -1,0 +1,42 @@
+<hr />
+<div class="lineLeft mt2">
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th class="label">Label</th>
+          <th class="label">Valor</th>
+          <th class="icon"></th>
+          <th class="icon"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of list">
+          <td>{{ item.name }}</td>
+          <td>{{ item.value }}</td>
+          <td>
+            <button class="btnClean" (click)="remove(item)">
+              <span class="material-symbols-outlined"> delete_sweep </span>
+            </button>
+          </td>
+          <td>
+            <button class="btnClean" (click)="toForm(item)">
+              <span class="material-symbols-outlined"> visibility </span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="ml1" [formGroup]="form">
+    <div>
+      <inputText formControlName="name" [label]="'Nome'" />
+    </div>
+    <div class="mt2">
+      <inputText formControlName="value" [label]="'Valor'" />
+    </div>
+    <div>
+      <button class="mt1 btn btn-primary" (click)="save()">Salvar</button>
+    </div>
+  </div>
+</div>

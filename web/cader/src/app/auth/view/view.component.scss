@@ -1,0 +1,18 @@
+:host {
+  .bodyApp {
+    height: calc(100vh - 4rem);
+    overflow-y: scroll;
+  }
+
+  .bodyApp::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .bodyApp::-webkit-scrollbar-thumb {
+    background-color: rgb(132, 188, 224);
+  }
+
+  .bodyApp::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+}

@@ -1,0 +1,17 @@
+<div class="lineLeft">
+  <span class="p-float-label">
+    <p-calendar
+      [(ngModel)]="value"
+      [showIcon]="true"
+      dateFormat="dd/mm/yy"
+      [disabled]="disabled2"
+    ></p-calendar>
+
+    <label>{{ label }}</label>
+  </span>
+  <div>
+    <button (click)="clean()" class="btn clean" [disabled]="isDisabled">
+      <i class="pi pi-times"></i>
+    </button>
+  </div>
+</div>

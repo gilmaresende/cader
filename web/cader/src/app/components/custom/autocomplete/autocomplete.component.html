@@ -1,0 +1,26 @@
+<div class="lineLeft borderAutoComplete">
+  <div class="fullW">
+    <span class="p-fluid p-float-label">
+      <p-autoComplete
+        [dropdown]="true"
+        home
+        [(ngModel)]="selected"
+        [suggestions]="list"
+        (completeMethod)="filter($event)"
+        field="description"
+        [disabled]="disabled2"
+      ></p-autoComplete>
+      <label>{{ label }}</label>
+    </span>
+  </div>
+  <div class="">
+    <button (click)="getCombo()" class="btn refresh" [disabled]="isDisabled">
+      <i class="pi pi-refresh"></i>
+    </button>
+  </div>
+  <div>
+    <button (click)="cleanSeleted()" class="btn clean" [disabled]="isDisabled">
+      <i class="pi pi-times"></i>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Main-Class: com.condelar.cader.CaderApplication
+Class-Path: server angus-activation-2.0.0.jar annotations-24.0.1.jar ant
+ lr4-runtime-4.10.1.jar aspectjweaver-1.9.19.jar byte-buddy-1.12.23.jar 
+ classmate-1.5.1.jar h2-2.1.214.jar hibernate-commons-annotations-6.0.6.
+ Final.jar hibernate-core-6.1.7.Final.jar HikariCP-5.0.1.jar istack-comm
+ ons-runtime-4.1.1.jar jackson-annotations-2.14.2.jar jackson-core-2.14.
+ 2.jar jackson-databind-2.14.2.jar jackson-datatype-jdk8-2.14.2.jar jack
+ son-datatype-jsr310-2.14.2.jar jackson-module-parameter-names-2.14.2.ja
+ r jakarta.activation-api-2.1.1.jar jakarta.annotation-api-2.1.1.jar jak
+ arta.inject-api-2.0.0.jar jakarta.persistence-api-3.1.0.jar jakarta.tra
+ nsaction-api-2.0.1.jar jakarta.xml.bind-api-4.0.0.jar jandex-2.4.2.Fina
+ l.jar java-jwt-4.3.0.jar jaxb-core-4.0.2.jar jaxb-runtime-4.0.2.jar jbo
+ ss-logging-3.5.0.Final.jar jul-to-slf4j-2.0.7.jar log4j-api-2.19.0.jar 
+ log4j-to-slf4j-2.19.0.jar logback-classic-1.4.7.jar logback-core-1.4.7.
+ jar lombok-1.18.26.jar micrometer-commons-1.10.6.jar micrometer-observa
+ tion-1.10.6.jar mysql-connector-j-8.0.33.jar slf4j-api-2.0.7.jar snakey
+ aml-1.33.jar spring-aop-6.0.8.jar spring-aspects-6.0.8.jar spring-beans
+ -6.0.8.jar spring-boot-3.0.6.jar spring-boot-autoconfigure-3.0.6.jar sp
+ ring-boot-starter-3.0.6.jar spring-boot-starter-aop-3.0.6.jar spring-bo
+ ot-starter-data-jpa-3.0.6.jar spring-boot-starter-jdbc-3.0.6.jar spring
+ -boot-starter-json-3.0.6.jar spring-boot-starter-logging-3.0.6.jar spri
+ ng-boot-starter-security-3.0.6.jar spring-boot-starter-tomcat-3.0.6.jar
+  spring-boot-starter-web-3.0.6.jar spring-context-6.0.8.jar spring-core
+ -6.0.8.jar spring-data-commons-3.0.5.jar spring-data-jpa-3.0.5.jar spri
+ ng-expression-6.0.8.jar spring-jcl-6.0.8.jar spring-jdbc-6.0.8.jar spri
+ ng-orm-6.0.8.jar spring-security-config-6.0.3.jar spring-security-core-
+ 6.0.3.jar spring-security-crypto-6.0.3.jar spring-security-web-6.0.3.ja
+ r spring-tx-6.0.8.jar spring-web-6.0.8.jar spring-webmvc-6.0.8.jar tomc
+ at-embed-core-10.1.8.jar tomcat-embed-el-10.1.8.jar tomcat-embed-websoc
+ ket-10.1.8.jar txw2-4.0.2.jar
+

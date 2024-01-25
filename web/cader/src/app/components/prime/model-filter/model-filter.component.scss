@@ -1,0 +1,65 @@
+:host {
+  /* Estilo do modal */
+
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 99;
+  }
+
+  .show {
+    display: block;
+  }
+
+  /* Conteúdo do modal */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 3% auto;
+    border: 1px solid #888;
+    width: 95%;
+    padding-bottom: 5rem;
+    border-radius: 0;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .bg-blue {
+    background-color: rgb(65, 65, 255);
+  }
+
+  .icon-write {
+    color: #fff;
+  }
+
+  .linkBtn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+
+  .linkBtn:hover {
+    background: rgb(45, 45, 255);
+  }
+
+  .title {
+    padding-left: 15px;
+    color: #fff;
+    font-size: 1.2rem;
+  }
+
+  .ationBtn {
+    padding-right: 15px;
+  }
+}

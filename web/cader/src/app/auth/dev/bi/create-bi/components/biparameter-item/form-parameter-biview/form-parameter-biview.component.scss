@@ -1,0 +1,10 @@
+:host {
+  .drop {
+    width: 250px;
+  }
+
+  .defind {
+    flex-grow: 1; /* A div ocupa o restante do espaço disponível no eixo Y */
+    overflow: auto;
+  }
+}

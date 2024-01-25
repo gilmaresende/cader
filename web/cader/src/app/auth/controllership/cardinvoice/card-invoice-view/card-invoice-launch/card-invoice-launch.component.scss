@@ -1,0 +1,71 @@
+:host {
+  .bodyTable {
+    height: calc(100vh - 8rem);
+    overflow-y: scroll;
+  }
+
+  .bodyTable::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .bodyTable::-webkit-scrollbar-thumb {
+    background-color: rgb(132, 188, 224);
+  }
+
+  .bodyTable::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+
+  /* Reset de Estilos Padrão da Tabela */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  /* Estilo das Células */
+  td,
+  th {
+    padding: 8px;
+    text-align: left;
+  }
+
+  /* Cor de Fundo Alterna para Linhas */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  /* Estilo do Cabeçalho da Tabela */
+  th {
+    background-color: rgb(13, 148, 238);
+    color: white;
+  }
+
+  /* Remover Bordas da Tabela */
+  table,
+  th,
+  td {
+    border: 1px solid #ddd;
+  }
+
+  /* Remover Borda da Primeira Linha */
+  tr:first-child th {
+    border-top: none;
+  }
+
+  /* Remover Borda da Última Linha */
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  .colunDescription {
+    min-width: 200px;
+  }
+
+  .dueDateLaunch {
+    min-width: 100px;
+  }
+
+  .valueLaunch {
+    min-width: 100px;
+  }
+}

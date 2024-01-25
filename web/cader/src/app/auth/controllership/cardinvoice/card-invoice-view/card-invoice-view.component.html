@@ -1,0 +1,49 @@
+<div [formGroup]="form" class="mX1">
+  <div class="row">
+    <div class="col-xs-12 col-md-4 mt2">
+      <div class="row">
+        <autocomplete
+          formControlName="card"
+          [service]="cardService"
+          [isDisabled]="isDisabled"
+          [label]="'Cartão'"
+        />
+      </div>
+      <div class="row mt2">
+        <inputDate
+          formControlName="closedDate"
+          [label]="'Data Fechamento'"
+          [isDisabled]="isDisabled"
+        ></inputDate>
+      </div>
+      <div class="row mt2">
+        <inputDate
+          formControlName="dueDate"
+          [label]="'Data Vencimento'"
+          [isDisabled]="isDisabled"
+        ></inputDate>
+      </div>
+      <div class="row mt2">
+        <btn-primary
+          (click)="findLauches()"
+          [isDisabled]="isDisabled"
+          [label]="'Buscar Lançamentos'"
+        ></btn-primary>
+      </div>
+      <div>
+        <div class="mt1">
+          Valor Lançamentos: {{ getValueLaunches() | currency : "BRL" }}
+        </div>
+        <div class="mt1">
+          Valor Extorno: {{ getRefundValue() | currency : "BRL" }}
+        </div>
+        <div class="mt1">
+          Valor Total: {{ getValueTotal() | currency : "BRL" }}
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-8 mt2">
+      <card-invoice-launch [listLaunches]="listLaunches" />
+    </div>
+  </div>
+</div>

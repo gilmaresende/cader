@@ -1,0 +1,83 @@
+<button class="btn btn-primary" (click)="show()">show</button>
+
+<div class="pt1">
+  <abaH>
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        id="home-tab"
+        data-toggle="tab"
+        href="#homeBI"
+        role="tab"
+        aria-controls="home"
+        aria-selected="true"
+        >Home</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="queryBI-tab"
+        data-toggle="tab"
+        href="#queryBI"
+        role="tab"
+        aria-controls="queryBI"
+        aria-selected="false"
+        >Querys</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="parameter-tab"
+        data-toggle="tab"
+        href="#parameter"
+        role="tab"
+        aria-controls="parameter"
+        aria-selected="false"
+        >Parametros</a
+      >
+    </li>
+  </abaH>
+
+  <div class="tab-content" id="myTabContent">
+    <div
+      class="tab-pane fade show active"
+      id="homeBI"
+      role="tabpanel"
+      aria-labelledby="home-tab"
+    >
+      <div class="divBI p1">
+        <div [formGroup]="form">
+          <div class="fullW p1">
+            <inputText formControlName="name" [label]="'Nome'" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="queryBI"
+      role="tabpanel"
+      aria-labelledby="queryBI-tab"
+    >
+      <div class="fullW">
+        <biquery-item [queryOb]="queryOb" />
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="parameter"
+      role="tabpanel"
+      aria-labelledby="parameter-tab"
+    >
+      <biparameterItem [observable]="observableParameter" />
+      <!-- <div class="divLists m1">
+        
+        </div>
+        <div class="divForm">
+          <form-parameter-biview [observable]="observableParameter" [bi]="bi" />
+        </div> -->
+    </div>
+  </div>
+</div>

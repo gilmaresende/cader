@@ -1,0 +1,13 @@
+<div class="fullW">
+  <span class="p-float-label">
+    <input
+      pInputText
+      type="text"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      (keyup)="teclar()"
+      [(ngModel)]="value"
+    />
+    <label htmlFor="username">{{ label }}</label>
+  </span>
+</div>

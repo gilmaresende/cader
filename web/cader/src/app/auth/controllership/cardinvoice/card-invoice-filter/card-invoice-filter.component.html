@@ -1,0 +1,37 @@
+<div [formGroup]="form" class="mX1">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-3 mt2">
+      <inputDate
+        formControlName="dueDateStart"
+        [label]="'Data Inicial Vencimento'"
+      ></inputDate>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-3 mt2">
+      <inputDate
+        formControlName="dueDateEnd"
+        [label]="'Data Final Vencimento'"
+      ></inputDate>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-3 mt2">
+      <inputDate
+        formControlName="closedDateStart"
+        [label]="'Data Inicial Fechamento'"
+      ></inputDate>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-3 mt2">
+      <inputDate
+        formControlName="closedDateEnd"
+        [label]="'Data Final Fechamento'"
+      ></inputDate>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-4 mt2">
+      <autocomplete
+        formControlName="card"
+        [service]="cardService"
+        [label]="'Cartão'"
+      />
+    </div>
+  </div>
+</div>

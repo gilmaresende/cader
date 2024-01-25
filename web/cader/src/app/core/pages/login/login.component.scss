@@ -1,0 +1,73 @@
+:host {
+  padding-top: 4%;
+
+  .inputLogin,
+  h1 {
+    margin-bottom: 3rem;
+  }
+
+  @media screen and (max-width: 479px) {
+    .body {
+      padding-top: 40%;
+    }
+
+    .card {
+      max-width: 1024px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 10%;
+    }
+
+    .cardInte {
+      margin: 0 auto;
+      max-width: 600px;
+    }
+  }
+
+  @media screen and (min-width: 480px) and (max-width: 1023px) {
+    .body {
+      padding-top: 6%;
+    }
+    .card {
+      width: 100%;
+      margin: 10% auto 0 auto;
+      padding: 3% 7%;
+    }
+
+    .cardInte {
+      padding: 2% 7%;
+      border: 0.4px solid #9f9eaa;
+      border-radius: 5px;
+      margin: 0 auto;
+      min-width: 300px;
+      max-width: 600px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .body {
+      padding-top: 6%;
+    }
+
+    .card {
+      max-width: 1024px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 7% 8% 7%;
+      border: 0.4px solid #9f9eaa;
+      border-radius: 5px;
+    }
+
+    .cardInte {
+      margin: 0 auto;
+      padding: 3rem 5rem 0 5rem;
+      min-width: 600px;
+    }
+  }
+
+  .title {
+    margin-bottom: 0.5rem;
+    color: #2b2b2b;
+    font-size: 2.2rem;
+  }
+}

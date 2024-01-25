@@ -1,0 +1,14 @@
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '17' WHERE (`id` = '1');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '16' WHERE (`id` = '2');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '19' WHERE (`id` = '3');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '9' WHERE (`id` = '4');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '15' WHERE (`id` = '5');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '18' WHERE (`id` = '6');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '8' WHERE (`id` = '7');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '18' WHERE (`id` = '8');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '23' WHERE (`id` = '10');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '14' WHERE (`id` = '11');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '20' WHERE (`id` = '12');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '20' WHERE (`id` = '32');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '12' WHERE (`id` = '13');
+UPDATE `cader`.`lote_despesa` SET `id_pessoa` = '12' WHERE (`id` = '14');

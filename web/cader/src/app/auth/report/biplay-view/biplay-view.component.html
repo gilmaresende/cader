@@ -1,0 +1,56 @@
+<div [formGroup]="form" class="m2">
+  <div class="row">
+    <div class="col-5">
+      <tree [dataTableObs]="observableParametros" (action)="toForm($event)" />
+    </div>
+    <div class="col-7">
+      <div *ngIf="parameterCurrent?.typePrimitiveOrEntity == 1">
+        <div *ngIf="parameterCurrent?.customized; else noCuston">
+          <dropdownstr
+            [label]="parameterCurrent!.name"
+            formControlName="value"
+            [list]="toListStr(parameterCurrent?.optionsDefined)"
+            (valueChanged)="newValue($event)"
+          ></dropdownstr>
+        </div>
+        <ng-template #noCuston>
+          <div *ngIf="parameterCurrent?.typePrimitive == 1">INTEGER</div>
+          <div *ngIf="parameterCurrent?.typePrimitive == 2">
+            <inputText
+              formControlName="value"
+              [label]="parameterCurrent!.name"
+              (valueChanged)="newValue($event)"
+            />
+          </div>
+          <div *ngIf="parameterCurrent?.typePrimitive == 3">
+            <inputDate
+              formControlName="value"
+              [label]="parameterCurrent!.name"
+              (valueChanged)="newValue($event)"
+            />
+          </div>
+          <div *ngIf="parameterCurrent?.typePrimitive == 4">
+            <inputReais
+              formControlName="value"
+              [label]="parameterCurrent!.name"
+              (valueChanged)="newValue($event)"
+            />
+          </div>
+        </ng-template>
+      </div>
+      <div *ngIf="parameterCurrent?.typePrimitiveOrEntity == 2">
+        <dropdownstr
+          [label]="parameterCurrent!.name"
+          formControlName="value"
+          (valueChanged)="newValue($event)"
+          [observableList]="observableList"
+        ></dropdownstr>
+      </div>
+      <div class="row">
+        <button type="button" class="btn btn-primary mt-2" (click)="playBi()">
+          Play
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
