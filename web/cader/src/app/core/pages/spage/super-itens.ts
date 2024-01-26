@@ -1,19 +1,27 @@
-import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-impl.service';
-import { SEntidade } from '../../model/sentidade';
-import { PagesService } from '../../services/pages.service';
-import { BaseHttpService } from '../../services/base-http.service';
 import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
+import { SEntidade } from '../../model/sentidade';
+import { BaseHttpService } from '../../services/base-http.service';
+import { FactoryCoreService } from '../../services/factory-core.service';
+import { PagesService } from '../../services/pages.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 export abstract class SItems<
   Entidade extends SEntidade,
   Service extends BaseHttpService<Entidade>
 > {
+  servicePage: PagesService;
+  private serviceModal;
+  formBuilder: FormBuilder;
+
+  form!: FormGroup;
   constructor(
-    private serviceModalS: ModalImplService,
     private serviceItem: Service,
-    private servicePage: PagesService
+    private factoryCoreService: FactoryCoreService
   ) {
-    serviceModalS.setView(this);
+    this.servicePage = factoryCoreService.getSuperControl();
+    this.serviceModal = factoryCoreService.getServiceModal();
+    this.formBuilder = factoryCoreService.getFormBuilder();
+    this.serviceModal.setView(this);
   }
 
   //-----------------------------------------------------------------------------------
@@ -45,12 +53,12 @@ export abstract class SItems<
   //chamada da api para salvar objeto atual da tela
   save() {
     this.servicePage.loading.showLoading();
-    const ob = this.serviceModalS.getOb();
+    const ob = this.serviceModal.getOb();
     if (!ob.id) {
       this.serviceItem.create(ob as Entidade).subscribe({
         next: (res) => {
           this.servicePage.getControllerToast().showSucess(res.message);
-          this.serviceModalS.close();
+          this.serviceModal.close();
           this.servicePage.loading.dropLoading();
           this.servicePage.reload();
         },
@@ -64,7 +72,7 @@ export abstract class SItems<
         next: (res) => {
           this.servicePage.getControllerToast().showSucess(res.message);
           this.servicePage.reload();
-          this.serviceModalS.close();
+          this.serviceModal.close();
           this.servicePage.loading.dropLoading();
         },
         error: (er) => {
@@ -78,13 +86,13 @@ export abstract class SItems<
   //chamada da api para apagar objeto atual da tela
   delete() {
     this.servicePage.loading.showLoading();
-    const id = this.serviceModalS.getOb().id!;
+    const id = this.serviceModal.getOb().id!;
     this.serviceItem.delete(id).subscribe({
       next: (res) => {
         this.servicePage.getControllerToast().showSucess(res.message);
         this.servicePage.reload();
         this.servicePage.loading.dropLoading();
-        this.serviceModalS.close();
+        this.serviceModal.close();
       },
       error: (er) => {
         this.servicePage.getControllerToast().catchErro(er);

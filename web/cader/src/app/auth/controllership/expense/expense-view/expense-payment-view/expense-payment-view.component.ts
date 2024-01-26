@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ModalImplService } from 'src/app/components/fusion/modal-impl/modal-impl.service';
-import { DescriptionId } from 'src/app/core/model/description-id';
+import { Validators } from '@angular/forms';
 import { SItems } from 'src/app/core/pages/spage/super-itens';
-import { PagesService } from 'src/app/core/services/pages.service';
+import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { ExpensePayment } from 'src/app/model/expense-payment';
 import { ExpensePaymentService } from 'src/app/services/expense-payment.service';
 import { PaymentTypeService } from 'src/app/services/payment-type.service';
@@ -19,50 +17,27 @@ export class ExpensePaymentViewComponent extends SItems<
   ExpensePaymentService
 > {
   constructor(
-    private serviceModal: ModalImplService,
     public serviceWallet: WalletService,
     public servicePaymentTypeService: PaymentTypeService,
-    private controller: PagesService,
-    private serviceExpensePayment: ExpensePaymentService
+    private serviceExpensePayment: ExpensePaymentService,
+    private factoryCore: FactoryCoreService
   ) {
-    super(serviceModal, serviceExpensePayment, controller);
+    super(serviceExpensePayment, factoryCore);
   }
 
-  form = new FormGroup({
-    id: new FormControl(0),
-    idExpense: new FormControl(0),
-    update: new FormControl(new Date()),
-    observation: new FormControl(''),
-    payDay: new FormControl(new Date()),
-    value: new FormControl(),
-    wallet: new FormControl(),
-    paymentType: new FormControl(),
-  });
-
   override populateForm(ob: ExpensePayment): void {
-    const data = this.form.controls;
-    data.id.setValue(ob.id!);
-    data.idExpense.setValue(ob.idExpense!);
-    data.update.setValue(ob.update);
-    data.observation.setValue(ob.observation);
-    data.payDay.setValue(ob.payDay);
-    data.value.setValue(ob.value);
-    data.wallet.setValue(ob.wallet);
-    data.paymentType.setValue(ob.paymentType);
+    this.form = this.formBuilder.group({
+      wallet: [ob.wallet, Validators.required],
+      idExpense: [ob.idExpense, Validators.required],
+      payDay: [ob.payDay, Validators.required],
+      value: [ob.value, Validators.required],
+      observation: [ob.observation],
+      paymentType: [ob.paymentType],
+    });
   }
 
   override getByForm(): ExpensePayment {
-    const form = this.form.controls;
-    const ob: ExpensePayment = {
-      id: form.id.value as number,
-      update: form.update.value as Date,
-      value: form.value.value as number,
-      paymentType: form.paymentType.value as DescriptionId,
-      wallet: form.wallet.value as DescriptionId,
-      payDay: form.payDay.value as Date,
-      observation: form.observation.value as string,
-      idExpense: form.idExpense.value as number,
-    };
+    const ob = this.form?.value;
     return ob;
   }
 }
