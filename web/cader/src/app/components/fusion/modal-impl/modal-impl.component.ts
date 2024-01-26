@@ -54,18 +54,18 @@ export class ModalImplComponent {
 
   //defini o status da tela como editavel
   //este atributo controla quais icones estão sendo exibidos na barra
-  habiliteEdit() {
+  showIconSave() {
     this.stateView = false;
   }
 
   //repassa ao service controlador que o status do corpo da tela sera editavel
   editData() {
-    this.habiliteEdit();
-    this.service.disabledTrue();
+    this.showIconSave();
+    this.service.disabledFalse();
   }
 
   //defini que o stado do modal sera de visualização
-  habiliteView() {
+  showIconEdit() {
     this.stateView = true;
   }
 

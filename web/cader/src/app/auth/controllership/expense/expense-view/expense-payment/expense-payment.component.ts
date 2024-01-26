@@ -48,7 +48,7 @@ export class ExpensePaymentComponent implements OnInit {
         next: (res) => {
           this.serviceModel.setOb(res.data);
           this.serviceModel.show();
-          this.serviceModel.disabledFalse();
+          this.serviceModel.disabledTrue();
           this.controller.loading.dropLoading();
         },
         error: (error) => {
@@ -68,7 +68,7 @@ export class ExpensePaymentComponent implements OnInit {
         next: (res) => {
           this.serviceModel.setOb(res.data);
           this.serviceModel.show();
-          this.serviceModel.disabledTrue();
+          this.serviceModel.disabledFalse();
           this.controller.loading.dropLoading();
         },
         error: (error) => {

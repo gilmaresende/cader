@@ -26,7 +26,11 @@
   </div>
   <div class="row">
     <div class="col-xs-12 col-md-6 col-lg-4 mt2">
-      <inputReais formControlName="value" [label]="'Valor'" />
+      <inputReais
+        formControlName="value"
+        [label]="'Valor'"
+        [isDisabled]="isDisabled"
+      />
     </div>
   </div>
   <div class="row">

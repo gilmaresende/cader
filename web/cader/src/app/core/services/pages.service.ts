@@ -210,7 +210,7 @@ export class PagesService {
   async reload() {
     this.setStatePage(StatePage.VIEW);
     const obj: SEntidade = this.getOb();
-    this.page?.findById(obj.id!);
+    this.pageEntidade?.findById(obj.id!);
   }
 
   goToList() {

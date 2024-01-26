@@ -11,7 +11,7 @@ export abstract class SItems<
   constructor(
     private serviceModalS: ModalImplService,
     private serviceItem: Service,
-    private controllerS: PagesService
+    private servicePage: PagesService
   ) {
     serviceModalS.setView(this);
   }
@@ -44,32 +44,32 @@ export abstract class SItems<
   //-----------------------------------------------------------------------------------
   //chamada da api para salvar objeto atual da tela
   save() {
-    this.controllerS.loading.showLoading();
+    this.servicePage.loading.showLoading();
     const ob = this.serviceModalS.getOb();
     if (!ob.id) {
       this.serviceItem.create(ob as Entidade).subscribe({
         next: (res) => {
-          this.controllerS.getControllerToast().showSucess(res.message);
-          this.controllerS.reload();
+          this.servicePage.getControllerToast().showSucess(res.message);
           this.serviceModalS.close();
-          this.controllerS.loading.dropLoading();
+          this.servicePage.loading.dropLoading();
+          this.servicePage.reload();
         },
         error: (er) => {
-          this.controllerS.getControllerToast().catchErro(er);
-          this.controllerS.loading.dropLoading();
+          this.servicePage.getControllerToast().catchErro(er);
+          this.servicePage.loading.dropLoading();
         },
       });
     } else {
       this.serviceItem.update(ob as Entidade).subscribe({
         next: (res) => {
-          this.controllerS.getControllerToast().showSucess(res.message);
-          this.controllerS.reload();
+          this.servicePage.getControllerToast().showSucess(res.message);
+          this.servicePage.reload();
           this.serviceModalS.close();
-          this.controllerS.loading.dropLoading();
+          this.servicePage.loading.dropLoading();
         },
         error: (er) => {
-          this.controllerS.getControllerToast().catchErro(er);
-          this.controllerS.loading.dropLoading();
+          this.servicePage.getControllerToast().catchErro(er);
+          this.servicePage.loading.dropLoading();
         },
       });
     }
@@ -77,20 +77,24 @@ export abstract class SItems<
 
   //chamada da api para apagar objeto atual da tela
   delete() {
-    this.controllerS.loading.showLoading();
+    this.servicePage.loading.showLoading();
     const id = this.serviceModalS.getOb().id!;
     this.serviceItem.delete(id).subscribe({
       next: (res) => {
-        this.controllerS.getControllerToast().showSucess(res.message);
-        this.controllerS.reload();
-        this.controllerS.loading.dropLoading();
+        this.servicePage.getControllerToast().showSucess(res.message);
+        this.servicePage.reload();
+        this.servicePage.loading.dropLoading();
         this.serviceModalS.close();
       },
       error: (er) => {
-        this.controllerS.getControllerToast().catchErro(er);
-        this.controllerS.loading.dropLoading();
+        this.servicePage.getControllerToast().catchErro(er);
+        this.servicePage.loading.dropLoading();
       },
     });
+  }
+
+  setIsDisabled(value: boolean) {
+    this.isDisabled.emmiter(value);
   }
 
   //chama a implementação do form para popular a tela

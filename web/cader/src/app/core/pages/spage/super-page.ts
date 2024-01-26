@@ -4,8 +4,8 @@ import { ObservableElement } from 'src/app/struct/observable/observable-element.
 import { StatePage } from '../../enuns/statePage';
 import { SEntidade } from '../../model/sentidade';
 import { BaseHttpService } from '../../services/base-http.service';
-import { PagesService } from '../../services/pages.service';
 import { FactoryCoreService } from '../../services/factory-core.service';
+import { PagesService } from '../../services/pages.service';
 
 export abstract class SPage<
   Entidade extends SEntidade,

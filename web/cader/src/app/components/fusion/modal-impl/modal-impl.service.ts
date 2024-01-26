@@ -63,15 +63,15 @@ export class ModalImplService {
   //bloqueia edição a tela, desabilita o icone de salvar
   // habilita o icone de iditar e o icone de deletar
   async disabledFalse() {
-    this.view!.isDisabled.emmiter(false);
-    this.modal?.habiliteView();
+    this.view!.setIsDisabled(false);
+    this.modal?.showIconSave();
   }
 
   //habilita edição a tela, desabilita o  icone de iditar e o icone de deletar
   // habilita o icone de salvar
   async disabledTrue() {
-    this.view!.isDisabled.emmiter(false);
-    this.modal?.habiliteEdit();
+    this.view!.setIsDisabled(true);
+    this.modal?.showIconEdit();
   }
 
   //limpa o objeto atual na tela e na memoria
