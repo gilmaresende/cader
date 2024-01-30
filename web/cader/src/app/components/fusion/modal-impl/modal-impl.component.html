@@ -1,4 +1,4 @@
-<div class="modal" [ngClass]="{ show: showModal }">
+<div class="modal" *ngIf="showModal" [ngClass]="{ show: showModal }">
   <div class="modal-content">
     <nav class="navbar navbar-expand-lg navbar-light bg-blue">
       <span class="title">{{ title }}</span>

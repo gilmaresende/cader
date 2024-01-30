@@ -37,6 +37,8 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
   }
 
   override populatedForm(ob: Expense) {
+    console.log('??', ob);
+
     this.form = this.formBuilder.group({
       description: [ob.description, Validators.required],
       dueDate: [ob.dueDate, Validators.required],
@@ -48,7 +50,6 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
       paymentType: [ob.paymentType],
       person: [ob.person],
     });
-
     this.dataTableServicePaymentys.update(ob.payments as ExpensePayment[]);
   }
 }

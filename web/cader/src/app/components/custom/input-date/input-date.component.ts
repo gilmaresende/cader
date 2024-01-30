@@ -91,12 +91,13 @@ export class InputDateComponent
    * deseja definir um valor no controle filho.
    */
   writeValue(value: Date | undefined) {
+    console.log(value);
     if (value) {
       let milissegundos;
       if (value instanceof Date) {
         this.value = new Date(value.getTime());
       } else {
-        milissegundos = value;
+        //this.value = new Date(value.getTime());
       }
     }
   }

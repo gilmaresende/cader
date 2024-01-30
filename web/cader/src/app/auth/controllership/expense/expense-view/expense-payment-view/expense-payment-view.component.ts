@@ -23,6 +23,7 @@ export class ExpensePaymentViewComponent extends SItems<
     private factoryCore: FactoryCoreService
   ) {
     super(serviceExpensePayment, factoryCore);
+    this.populateForm({ update: new Date() });
   }
 
   override populateForm(ob: ExpensePayment): void {

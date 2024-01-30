@@ -60,6 +60,7 @@ export abstract class SPage<
 
   async findById(id: number) {
     this.servicePage.loading.showLoading();
+
     await this.services.findById(id).subscribe({
       next: (res) => {
         this.superOb = res.data;
@@ -67,9 +68,11 @@ export abstract class SPage<
         this.populatedForm(res.data);
         this.servicePage.setStatePage(StatePage.VIEW);
         this.isDisabled.emmiter(true);
+
         this.servicePage.loading.dropLoading();
       },
       error: (error) => {
+        console.log(error);
         if (error.error) {
           this.servicePage.toastService!.showAlert(error.error.error);
         } else {

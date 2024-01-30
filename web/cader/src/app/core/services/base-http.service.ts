@@ -34,9 +34,10 @@ export abstract class BaseHttpService<Entiti extends SEntidade> {
   }
 
   findById(id: any): Observable<ResponseServe> {
-    return this.http.get<ResponseServe>(
+    const response = this.http.get<ResponseServe>(
       `${API_CONFIG.BASE_URL}/${this.rote}/${id}`
     );
+    return response;
   }
 
   getCombo(): Observable<ResponseServe> {
