@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { SFilter } from 'src/app/core/pages/spage/super-filter';
+import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { PagesService } from 'src/app/core/services/pages.service';
 import {
   getFirstDayMonth,
@@ -24,13 +25,13 @@ import {
 })
 export class CashInflowFilterComponent extends SFilter<CashInflowFilter> {
   constructor(
-    private controller: PagesService,
+    private factore: FactoryCoreService,
     public serviceWallet: WalletService,
     public servicePaymentTypeService: PaymentTypeService,
     public servicePerson: PersonService,
     public serviceIncomeCategory: IncomeCategoryService
   ) {
-    super(controller);
+    super(factore);
   }
 
   statusList: Array<DescriptionId> = EnumCashInflowStatusFilter;

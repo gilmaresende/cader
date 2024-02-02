@@ -6,9 +6,10 @@
       [(ngModel)]="selected"
       optionLabel="description"
       [style]="{ width: '100%' }"
-      [disabled]="isDisabled"
+      [disabled]="disabled"
       (onChange)="change()"
     ></p-dropdown>
-    <label>{{ label }}</label>
+    <label>{{ label }} </label>
   </span>
 </div>
+- {{ disabled }}

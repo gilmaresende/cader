@@ -12,8 +12,8 @@ export class ModelFilterService {
   private modelFilterComponent: ModelFilterComponent | null = null;
   ob: any;
 
-  constructor(private PagesService: PagesService) {
-    PagesService.setFilterService(this);
+  constructor(private pagesService: PagesService) {
+    pagesService.setFilterService(this);
   }
 
   public setModal(modelFilterComponent: ModelFilterComponent) {
@@ -25,8 +25,8 @@ export class ModelFilterService {
   }
 
   public toFilter() {
-    const ob = this.PagesService.getModalFilter().getOb();
-    const page = this.PagesService.page;
+    const ob = this.pagesService.getModalFilter().getOb();
+    const page = this.pagesService.page;
     if (page instanceof SPageListFilter) {
       const pageFilter = page as SPageListFilter<
         SEntidade,

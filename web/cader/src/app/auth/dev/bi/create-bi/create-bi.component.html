@@ -1,5 +1,3 @@
-<button class="btn btn-primary" (click)="show()">show</button>
-
 <div class="pt1">
   <abaH>
     <li class="nav-item">
@@ -50,7 +48,11 @@
       <div class="divBI p1">
         <div [formGroup]="form">
           <div class="fullW p1">
-            <inputText formControlName="name" [label]="'Nome'" />
+            <inputText
+              formControlName="name"
+              [label]="'Nome'"
+              [isDisabled]="isDisabled"
+            />
           </div>
         </div>
       </div>
@@ -62,7 +64,7 @@
       aria-labelledby="queryBI-tab"
     >
       <div class="fullW">
-        <biquery-item [queryOb]="queryOb" />
+        <biquery-item [queryOb]="queryOb" [isDisabled]="isDisabled" />
       </div>
     </div>
     <div
@@ -71,7 +73,10 @@
       role="tabpanel"
       aria-labelledby="parameter-tab"
     >
-      <biparameterItem [observable]="observableParameter" />
+      <biparameterItem
+        [observable]="observableParameter"
+        [isDisabled]="isDisabled"
+      />
       <!-- <div class="divLists m1">
         
         </div>

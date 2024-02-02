@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { SFilter } from 'src/app/core/pages/spage/super-filter';
+import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { PagesService } from 'src/app/core/services/pages.service';
 import {
   getFirstDayMonth,
@@ -25,10 +26,10 @@ export class MovementFilterComponent extends SFilter<MovimentFilter> {
   origenList: Array<DescriptionId> = EnumOriginMovementFilter;
 
   constructor(
-    private controller: PagesService,
+    private factore: FactoryCoreService,
     public serviceWallet: WalletService
   ) {
-    super(controller);
+    super(factore);
   }
 
   form = new FormGroup({

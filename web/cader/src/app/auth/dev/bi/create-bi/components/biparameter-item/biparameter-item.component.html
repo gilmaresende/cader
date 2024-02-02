@@ -1,20 +1,15 @@
-<div class="row">
-  <div class="col-4">
-    <div class="itemQuery lineLeft" *ngFor="let p of parameters">
-      <label class="nomeParameter"> {{ p.name }} </label>
-      <div class="complete">
-        <div class="lineLeft toRight">
-          <button class="btn btn-primary btnIcon" (click)="populateForm(p)">
-            <span class="material-icons"> visibility </span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="row p-2">
   <div class="col-8">
     <div [formGroup]="form">
-      <div class="fullW p1">
+      <div class="fullW p1" *ngIf="!disabled">
         <button class="btn btn-primary mb2 mr1" (click)="save()">Save</button>
+        <button
+          *ngIf="this.item"
+          class="btn btn-primary mb2 mr1"
+          (click)="save()"
+        >
+          Novo
+        </button>
         <button
           *ngIf="this.item"
           class="btn btn-danger mb2"
@@ -23,13 +18,20 @@
           Delete
         </button>
       </div>
-      {{ item | json }}
       <div class="lineLeft">
         <div class="mr1">
-          <inputText formControlName="name" [label]="'Nome'" />
+          <inputText
+            formControlName="name"
+            [label]="'Nome'"
+            [isDisabled]="isDisabled"
+          />
         </div>
         <div class="mr1">
-          <inputText formControlName="key" [label]="'Key'" />
+          <inputText
+            formControlName="key"
+            [label]="'Key'"
+            [isDisabled]="isDisabled"
+          />
         </div>
         <div>
           <inputRadio
@@ -39,6 +41,7 @@
             [valueFix]="constPrimitiEntity.PRIMITIVE"
             formControlName="typePrimitiveOrEntity"
             (valueChanged)="changePrimitiveAndEntity($event)"
+            [isDisabled]="isDisabled"
           />
           <inputRadio
             [label]="'Registros'"
@@ -47,6 +50,7 @@
             [valueFix]="constPrimitiEntity.ENTITY"
             formControlName="typePrimitiveOrEntity"
             (valueChanged)="changePrimitiveAndEntity($event)"
+            [isDisabled]="isDisabled"
           />
         </div>
       </div>
@@ -63,6 +67,7 @@
                   formControlName="typePrimitive"
                   [list]="listTypes"
                   (valueChanged)="checkDate($event)"
+                  [isDisabled]="isDisabled"
                 ></dropdown>
               </div>
               <div *ngIf="showComboDate; else valueDefaut">
@@ -74,6 +79,7 @@
                       [name]="'subTypeDate'"
                       [valueFix]="constBITypeDate.EMPTY"
                       formControlName="subTypeDate"
+                      [isDisabled]="isDisabled"
                     />
                     <inputRadio
                       [label]="'Primeiro Dia Mês'"
@@ -81,6 +87,7 @@
                       [name]="'subTypeDate'"
                       [valueFix]="constBITypeDate.FIST_DAY_MONTH"
                       formControlName="subTypeDate"
+                      [isDisabled]="isDisabled"
                     />
                     <inputRadio
                       [label]="'Ultimo Dia Mês'"
@@ -88,6 +95,7 @@
                       [name]="'subTypeDate'"
                       [valueFix]="constBITypeDate.LAST_DAY_MONTH"
                       formControlName="subTypeDate"
+                      [isDisabled]="isDisabled"
                     />
                   </div>
                 </div>
@@ -98,6 +106,7 @@
                     <inputText
                       formControlName="valueDefault"
                       [label]="'Valor Padrão'"
+                      [isDisabled]="isDisabled"
                     />
                   </div>
                   <div class="ml1">
@@ -105,13 +114,17 @@
                       [label]="'Customizado'"
                       formControlName="customized"
                       (valueChanged)="checkCustom($event)"
-                    ></check>
+                      [isDisabled]="isDisabled"
+                    />
                   </div>
                 </div>
               </ng-template>
             </div>
             <div *ngIf="showCustomizade">
-              <defined-parameter-view [observableCustom]="observableCustom" />
+              <defined-parameter-view
+                [observableCustom]="observableCustom"
+                [isDisabled]="isDisabled"
+              />
             </div>
           </div>
         </div>
@@ -121,8 +134,21 @@
               formControlName="typeClass"
               [list]="listClass"
               [label]="'Class'"
+              [isDisabled]="isDisabled"
             />
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="itemQuery lineLeft" *ngFor="let p of parameters">
+      <label class="nomeParameter"> {{ p.name }} </label>
+      <div class="complete">
+        <div class="lineLeft toRight">
+          <button class="btn btn-primary btnIcon" (click)="populateForm(p)">
+            <span class="material-icons"> visibility </span>
+          </button>
         </div>
       </div>
     </div>

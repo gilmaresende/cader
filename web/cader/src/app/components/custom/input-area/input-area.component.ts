@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import {
   AbstractControl,
@@ -7,6 +7,7 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
 @Component({
   selector: 'inputArea',
@@ -25,8 +26,8 @@ import {
     },
   ],
 })
-export class InputAreaComponent implements ControlValueAccessor {
-  @Input() isDisabled: boolean = false;
+export class InputAreaComponent implements ControlValueAccessor, OnInit {
+  @Input() isDisabled?: ObservableElement;
   @Input() label: string | null = null;
   @Input() placeholder: string = '';
   @Input() nLine: string = '12';
@@ -36,6 +37,12 @@ export class InputAreaComponent implements ControlValueAccessor {
   touched = false;
 
   disabled = false;
+
+  ngOnInit(): void {
+    this.isDisabled?.observable$.subscribe((data) => {
+      this.disabled = data;
+    });
+  }
 
   teclar() {
     this.markAsTouched();

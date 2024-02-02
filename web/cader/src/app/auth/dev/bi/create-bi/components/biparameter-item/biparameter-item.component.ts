@@ -1,7 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BIParameter } from 'src/app/model-bi/biparameter';
-import { FormParameterBIViewService } from './form-parameter-biview/form-parameter-biview.service';
-import { ObservableImpl } from 'src/app/struct/observable/observable-impl.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DescriptionStr } from 'src/app/core/model/description-str';
 import { ConstBITypeDate, ConstBITypeInput } from 'src/app/data';
@@ -9,8 +6,11 @@ import {
   ConstBIPrimitiveOrEntity,
   ConstBITypeInputList,
 } from 'src/app/data/ConstantsBI';
+import { BIParameter } from 'src/app/model-bi/biparameter';
 import { BIParameterDefined } from 'src/app/model-bi/biparameterdefind';
 import { BiService } from 'src/app/services/bi.service';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
+import { ObservableImpl } from 'src/app/struct/observable/observable-impl.service';
 
 @Component({
   selector: 'biparameterItem',
@@ -19,8 +19,10 @@ import { BiService } from 'src/app/services/bi.service';
 })
 export class BIParameterItemComponent implements OnInit {
   @Input() observable?: ObservableImpl<BIParameter>;
+  @Input() isDisabled?: ObservableElement;
   parameters?: Array<BIParameter> = [];
   constBITypeDate = ConstBITypeDate;
+  disabled: boolean = false;
 
   //listas e contantes
   constTypeInputs = ConstBITypeInput;
@@ -38,13 +40,14 @@ export class BIParameterItemComponent implements OnInit {
 
   observableCustom?: ObservableImpl<BIParameterDefined> = new ObservableImpl();
 
-  constructor(
-    private serviceFormItem: FormParameterBIViewService,
-    private service: BiService
-  ) {}
+  constructor(private service: BiService) {}
   ngOnInit(): void {
     this.observable?.dataOb$.subscribe((listData) => {
       this.parameters = listData;
+    });
+
+    this.isDisabled?.observable$.subscribe((data) => {
+      this.disabled = data;
     });
     this.findTypesRegister();
     this.item = this.service.getNewParameter();
@@ -90,9 +93,8 @@ export class BIParameterItemComponent implements OnInit {
 
     // this.parameters = item.optionsDefined;
     //this.alterTypeImput(item.typeInput);
-    // this.checkCustom(item.customized);
-
-    // this.observableCustom?.update(item.optionsDefined);
+    this.checkCustom(item.customized);
+    this.observableCustom?.update(item.optionsDefined);
   }
 
   findTypesRegister() {
@@ -141,9 +143,9 @@ export class BIParameterItemComponent implements OnInit {
   }
 
   checkCustom(value: boolean) {
+    this.showCustomizade = value;
     const form = this.form.controls;
     form.customized.setValue(value);
-    this.showCustomizade = value;
   }
 
   save() {
@@ -154,7 +156,6 @@ export class BIParameterItemComponent implements OnInit {
     }
 
     if (this.item) {
-      console.log(this.item);
       const parameterAux = this.parameters?.find((i) => i == this.item);
       if (parameterAux) {
         Object.assign(parameterAux, ob);
@@ -164,7 +165,7 @@ export class BIParameterItemComponent implements OnInit {
     } else {
       this.parameters?.push(ob);
     }
-    this.item = this.service.getNewParameter();
+    this.populateForm(this.service.getNewParameter());
   }
 
   removeParameter() {

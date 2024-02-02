@@ -6,6 +6,7 @@ import { BIQuery } from 'src/app/model-bi/biquery';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ObservableTreeService } from 'src/app/components/custom/tree/observable-tree.service';
 import { BiService } from 'src/app/services/bi.service';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
 @Component({
   selector: 'biquery-item',
@@ -16,8 +17,10 @@ export class BIQueryItemComponent implements OnInit {
   item?: BIQuery;
   items: Array<any> = [];
   queryMain?: BIQuery;
+  disabled: boolean = false;
 
   @Input() queryOb?: ObservableTreeService<BIQuery>;
+  @Input() isDisabled?: ObservableElement;
 
   constructor(private serviceBi: BiService) {}
 
@@ -25,6 +28,10 @@ export class BIQueryItemComponent implements OnInit {
     this.queryOb?.dataOb$.subscribe((listData) => {
       this.items = listData;
       this.queryMain = listData[0];
+    });
+
+    this.isDisabled?.observable$.subscribe((data) => {
+      this.disabled = data;
     });
   }
 

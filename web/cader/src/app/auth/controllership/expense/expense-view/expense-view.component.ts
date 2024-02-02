@@ -37,8 +37,6 @@ export class ExpenseViewComponent extends SPage<Expense, ExpenseService> {
   }
 
   override populatedForm(ob: Expense) {
-    console.log('??', ob);
-
     this.form = this.formBuilder.group({
       description: [ob.description, Validators.required],
       dueDate: [ob.dueDate, Validators.required],

@@ -45,7 +45,6 @@ import { CreateComponent } from './dev/bi/create/create.component';
 import { CreateBiComponent } from './dev/bi/create-bi/create-bi.component';
 import { BIQueryItemComponent } from './dev/bi/create-bi/components/biquery-item/biquery-item.component';
 import { BIParameterItemComponent } from './dev/bi/create-bi/components/biparameter-item/biparameter-item.component';
-import { FormParameterBIViewComponent } from './dev/bi/create-bi/components/biparameter-item/form-parameter-biview/form-parameter-biview.component';
 import { DefinedParameterViewComponent } from './dev/bi/create-bi/components/biparameter-item/form-parameter-biview/defined-parameter-view/defined-parameter-view.component';
 import { ListBiComponent } from './dev/bi/create-bi/list-bi/list-bi.component';
 import { TemplatesModule } from '../templates/templates.module';
@@ -92,7 +91,6 @@ import { BIPlayViewComponent } from './report/biplay-view/biplay-view.component'
     CreateBiComponent,
     BIQueryItemComponent,
     BIParameterItemComponent,
-    FormParameterBIViewComponent,
     DefinedParameterViewComponent,
     ListBiComponent,
     BIPlayListComponent,

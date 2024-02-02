@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import {
   AbstractControl,
@@ -7,6 +7,7 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 @Component({
   selector: 'inputRadio',
   templateUrl: './input-radio.component.html',
@@ -24,8 +25,8 @@ import {
     },
   ],
 })
-export class InputRadioComponent implements ControlValueAccessor {
-  @Input() isDisabled: boolean = false;
+export class InputRadioComponent implements ControlValueAccessor, OnInit {
+  @Input() isDisabled?: ObservableElement;
   @Input() label: string | null = null;
   @Input() id: string | null = null;
 
@@ -38,6 +39,14 @@ export class InputRadioComponent implements ControlValueAccessor {
   touched = false;
 
   disabled = false;
+  disabled2 = false;
+
+  ngOnInit(): void {
+    this.isDisabled?.observable$.subscribe((data) => {
+      this.disabled2 = data;
+      this.disabled = data;
+    });
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////////
   //que funções são essas?

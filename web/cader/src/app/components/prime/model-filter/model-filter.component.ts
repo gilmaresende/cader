@@ -17,7 +17,7 @@ export class ModelFilterComponent {
     this.visible = !this.visible;
   }
 
-  toFilert() {
+  toFilter() {
     this.modelFilterService.toFilter();
   }
 

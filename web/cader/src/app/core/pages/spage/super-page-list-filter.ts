@@ -25,6 +25,7 @@ export abstract class SPageListFilter<
     this.servicePage.setStatePage(StatePage.LIST_FILTER);
     //actions.build(this.ob, title, this, this.services);
     this.servicePage.setRotaEntidade(`${this.services.rote}`);
+    this.servicePage.page = this;
     this.findFilter(this.getFilterBase());
   }
 

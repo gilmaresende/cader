@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { SFilter } from 'src/app/core/pages/spage/super-filter';
+import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { PagesService } from 'src/app/core/services/pages.service';
 import {
   getFirstDayMonth,
@@ -17,10 +18,10 @@ import { CardService } from 'src/app/services/card.service';
 })
 export class CardInvoiceFilterComponent extends SFilter<CardInvoiceFilter> {
   constructor(
-    private controller: PagesService,
+    private factore: FactoryCoreService,
     public cardService: CardService
   ) {
-    super(controller);
+    super(factore);
   }
 
   form = new FormGroup({
@@ -30,6 +31,7 @@ export class CardInvoiceFilterComponent extends SFilter<CardInvoiceFilter> {
     closedDateEnd: new FormControl(),
     card: new FormControl(),
   });
+
   override getOb(): CardInvoiceFilter {
     const form = this.form.controls;
     return {

@@ -30,12 +30,20 @@
   </div>
   <div class="ml1" [formGroup]="form">
     <div>
-      <inputText formControlName="name" [label]="'Nome'" />
+      <inputText
+        formControlName="name"
+        [label]="'Nome'"
+        [isDisabled]="isDisabled"
+      />
     </div>
     <div class="mt2">
-      <inputText formControlName="value" [label]="'Valor'" />
+      <inputText
+        formControlName="value"
+        [label]="'Valor'"
+        [isDisabled]="isDisabled"
+      />
     </div>
-    <div>
+    <div *ngIf="!disabled">
       <button class="mt1 btn btn-primary" (click)="save()">Salvar</button>
     </div>
   </div>

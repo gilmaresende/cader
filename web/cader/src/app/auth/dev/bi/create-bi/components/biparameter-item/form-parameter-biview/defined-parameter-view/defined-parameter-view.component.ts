@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastService } from 'src/app/components/prime/toast/toast.service';
 import { removeOfList } from 'src/app/core/utils/List/UtilList';
 import { BIParameterDefined } from 'src/app/model-bi/biparameterdefind';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 import { ObservableImpl } from 'src/app/struct/observable/observable-impl.service';
 
 @Component({
@@ -10,11 +11,14 @@ import { ObservableImpl } from 'src/app/struct/observable/observable-impl.servic
   templateUrl: './defined-parameter-view.component.html',
   styleUrls: ['./defined-parameter-view.component.scss'],
 })
-export class DefinedParameterViewComponent implements OnInit {
+export class DefinedParameterViewComponent implements OnInit, AfterViewInit {
   @Input() observableCustom?: ObservableImpl<BIParameterDefined>;
+
+  @Input() isDisabled?: ObservableElement;
 
   item?: BIParameterDefined;
   list: Array<BIParameterDefined> = [];
+  disabled = false;
 
   form = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -26,6 +30,16 @@ export class DefinedParameterViewComponent implements OnInit {
   ngOnInit(): void {
     this.observableCustom?.dataOb$.subscribe((data) => {
       this.list = data;
+    });
+
+    this.isDisabled?.observable$.subscribe((data) => {
+      this.disabled = data;
+    });
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.isDisabled?.reload();
     });
   }
 

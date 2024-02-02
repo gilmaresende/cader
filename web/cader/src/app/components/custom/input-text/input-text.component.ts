@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -47,6 +53,7 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
       this.disabled = data;
     });
   }
+
   showErros(data: Array<string>) {
     this.hasError = true;
     this.errorMessage = data.toString();

@@ -14,6 +14,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { DescriptionStr } from 'src/app/core/model/description-str';
+import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 import { ObservableImpl } from 'src/app/struct/observable/observable-impl.service';
 
 @Component({
@@ -36,7 +37,7 @@ import { ObservableImpl } from 'src/app/struct/observable/observable-impl.servic
 export class DropdownstrComponent
   implements OnInit, DoCheck, ControlValueAccessor
 {
-  @Input() isDisabled: boolean = false;
+  @Input() isDisabled?: ObservableElement;
   @Input() label: string | null = null;
   @Input() list: Array<DescriptionStr> = [];
 
@@ -48,6 +49,7 @@ export class DropdownstrComponent
   touched = false;
 
   description = 'dev';
+  disabled = false;
 
   ngOnInit() {
     this.markAsTouched();
@@ -59,6 +61,10 @@ export class DropdownstrComponent
         this.list = data;
       });
     }
+
+    this.isDisabled?.observable$.subscribe((data) => {
+      this.disabled = data;
+    });
   }
 
   ngDoCheck(): void {

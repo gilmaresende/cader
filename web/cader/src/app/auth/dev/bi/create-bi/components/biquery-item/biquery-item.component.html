@@ -4,7 +4,7 @@
   </div>
   <div class="complete">
     <div [formGroup]="form">
-      <div class="fullW p1">
+      <div class="fullW p1" *ngIf="!disabled">
         <button
           *ngIf="this.item"
           class="btn btn-primary mb2 mr1"
@@ -28,10 +28,15 @@
         >
           Delete
         </button>
-        <inputText formControlName="label" [label]="'Nome'" />
+        <inputText
+          formControlName="label"
+          [label]="'Nome'"
+          [isDisabled]="isDisabled"
+        />
       </div>
       <div class="p1">
         <inputArea
+          [isDisabled]="isDisabled"
           formControlName="query"
           [label]="'Query'"
           [placeholder]="'select'"
