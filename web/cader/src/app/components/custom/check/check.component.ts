@@ -30,7 +30,8 @@ export class CheckComponent implements ControlValueAccessor, OnInit {
   @Input() isDisabled?: ObservableElement;
   @Input() label: string | null = null;
   @Input() id: string | null = null;
-  value = '';
+
+  value = false;
 
   @Output() valueChanged = new EventEmitter<any>();
 
@@ -48,7 +49,7 @@ export class CheckComponent implements ControlValueAccessor, OnInit {
   //que funções são essas?
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  onChange = (quantity: string) => {};
+  onChange = (quantity: boolean) => {};
 
   onTouched = () => {};
 
@@ -61,7 +62,7 @@ export class CheckComponent implements ControlValueAccessor, OnInit {
    * Forms sempre que o formulário pai
    * deseja definir um valor no controle filho.
    */
-  writeValue(value: string) {
+  writeValue(value: boolean) {
     this.value = value;
   }
 
@@ -97,6 +98,7 @@ export class CheckComponent implements ControlValueAccessor, OnInit {
   }
 
   change() {
+    this.value = !this.value;
     this.onChange(this.value);
     this.onTouched();
     this.valueChanged.emit(this.value);

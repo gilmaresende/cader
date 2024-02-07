@@ -1,14 +1,29 @@
 import { DescriptionId } from '../core/model/description-id';
 
 const ConstBITypeDate = {
-  EMPTY: 0,
-  FIST_DAY_MONTH: 1,
-  LAST_DAY_MONTH: 2,
+  EMPTY: {
+    id: 0,
+    description: 'EMPTY',
+  },
+  FIST_DAY_MONTH: {
+    id: 1,
+    description: 'FIST_DAY_MONTH',
+  },
+  LAST_DAY_MONTH: {
+    id: 2,
+    description: 'LAST_DAY_MONTH',
+  },
 };
 
 const ConstBIPrimitiveOrEntity = {
-  PRIMITIVE: 1,
-  ENTITY: 2,
+  PRIMITIVE: {
+    id: 1,
+    description: 'PRIMITIVE',
+  },
+  ENTITY: {
+    id: 2,
+    description: 'ENTITY',
+  },
 };
 
 const ConstBITypeInput = {

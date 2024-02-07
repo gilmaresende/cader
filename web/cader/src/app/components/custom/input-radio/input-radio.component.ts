@@ -7,6 +7,7 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
+import { DescriptionId } from 'src/app/core/model/description-id';
 import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 @Component({
   selector: 'inputRadio',
@@ -31,8 +32,8 @@ export class InputRadioComponent implements ControlValueAccessor, OnInit {
   @Input() id: string | null = null;
 
   @Input() name: string = '';
-  @Input() value: any;
-  @Input() valueFix: any;
+  @Input() value?: DescriptionId;
+  @Input() valueFix?: DescriptionId;
 
   @Output() valueChanged = new EventEmitter<any>();
 
@@ -65,7 +66,7 @@ export class InputRadioComponent implements ControlValueAccessor, OnInit {
    * Forms sempre que o formulário pai
    * deseja definir um valor no controle filho.
    */
-  writeValue(value: string) {
+  writeValue(value: any) {
     this.value = value;
   }
 
@@ -101,8 +102,8 @@ export class InputRadioComponent implements ControlValueAccessor, OnInit {
   }
 
   change() {
-    this.onChange(this.value);
+    this.onChange(this.valueFix);
     this.onTouched();
-    this.valueChanged.emit(this.value);
+    this.valueChanged.emit(this.valueFix);
   }
 }

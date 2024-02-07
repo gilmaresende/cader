@@ -33,7 +33,7 @@ export class BIParameterItemComponent implements OnInit {
 
   //controle visual tela
   showComboDate = false;
-  typeInputPrimitiveOrEntity = 1;
+  typeInputPrimitiveOrEntity = this.constPrimitiEntity.ENTITY;
   showCustomizade = false;
 
   //elementos de dados
@@ -57,7 +57,7 @@ export class BIParameterItemComponent implements OnInit {
   form = new FormGroup({
     name: new FormControl(''),
     key: new FormControl(''),
-    typePrimitiveOrEntity: new FormControl(1),
+    typePrimitiveOrEntity: new FormControl(this.constPrimitiEntity.ENTITY),
     typePrimitive: new FormControl(this.constTypeInputs.INTEGER),
     valueDefault: new FormControl(''),
     subTypeDate: new FormControl(),
@@ -67,13 +67,10 @@ export class BIParameterItemComponent implements OnInit {
 
   getOb(): BIParameter {
     const form = this.form.controls;
-
-    const typePrimitive = form.typePrimitive.value;
-
     return {
       name: form.name.value as string,
       key: form.key.value as string,
-      typePrimitiveOrEntity: form.typePrimitiveOrEntity.value as number,
+      typePrimitiveOrEntity: form.typePrimitiveOrEntity.value as DescriptionId,
       typePrimitive: form.typePrimitive.value as DescriptionId,
       valueDefault: form.valueDefault.value as string,
       subTypeDate: form.subTypeDate.value,
@@ -95,8 +92,8 @@ export class BIParameterItemComponent implements OnInit {
     form.valueDefault.setValue(item.valueDefault);
     form.subTypeDate.setValue(item.subTypeDate);
 
-    // this.parameters = item.optionsDefined;
-    //this.alterTypeImput(item.typeInput);
+    this.typeInputPrimitiveOrEntity = item.typePrimitiveOrEntity;
+
     this.checkCustom(item.customized);
     this.observableCustom?.update(item.optionsDefined);
   }
@@ -112,9 +109,9 @@ export class BIParameterItemComponent implements OnInit {
     });
   }
 
-  changePrimitiveAndEntity(value: number) {
+  changePrimitiveAndEntity(value: DescriptionId) {
     this.typeInputPrimitiveOrEntity = value;
-    if (value === this.constPrimitiEntity.PRIMITIVE) {
+    if (value.id === this.constPrimitiEntity.PRIMITIVE.id) {
       const typePrimitive = this.form.controls.typePrimitive.value;
       this.changePrimitiveDate(typePrimitive!);
     }
@@ -128,33 +125,21 @@ export class BIParameterItemComponent implements OnInit {
     }
   }
 
-  alterTypeImputOld(value: number) {
-    this.typeInputPrimitiveOrEntity = value;
-    const form = this.form.controls;
-    const type = form.typePrimitive;
-    if (type && type.value) {
-      this.checkDate(type.value);
-    }
-  }
-
   checkDate(select: any) {
-    if (select.id == 'LOCAL_DATE') {
+    if (select.id == this.constTypeInputs.LOCAL_DATE.id) {
       this.showComboDate = true;
     } else {
       this.showComboDate = false;
     }
-    this.checkCustom(false);
+    // this.checkCustom(false);
   }
 
   checkCustom(value: boolean) {
     this.showCustomizade = value;
-    const form = this.form.controls;
-    form.customized.setValue(value);
   }
 
   save() {
     const ob = this.getOb();
-    console.log(ob);
     const hasErro: boolean = this.checkErros(ob);
     if (hasErro) {
       return;

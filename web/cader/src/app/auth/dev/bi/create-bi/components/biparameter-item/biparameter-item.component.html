@@ -56,7 +56,9 @@
       </div>
       <div class="fullW">
         <div
-          *ngIf="typeInputPrimitiveOrEntity === constPrimitiEntity.PRIMITIVE"
+          *ngIf="
+            typeInputPrimitiveOrEntity.id === constPrimitiEntity.PRIMITIVE.id
+          "
         >
           <hr />
           <div>
@@ -128,7 +130,9 @@
             </div>
           </div>
         </div>
-        <div *ngIf="typeInputPrimitiveOrEntity === constPrimitiEntity.ENTITY">
+        <div
+          *ngIf="typeInputPrimitiveOrEntity.id === constPrimitiEntity.ENTITY.id"
+        >
           <div class="drop">
             <dropdownstr
               formControlName="typeClass"

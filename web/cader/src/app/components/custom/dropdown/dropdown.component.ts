@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, DoCheck } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  DoCheck,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -31,8 +38,10 @@ export class DropdownComponent
 {
   @Input() label: string | null = null;
   @Input() list: Array<DescriptionId> = [];
-
   @Input() isDisabled?: ObservableElement;
+  @Input() alwaysDisabled: boolean = false;
+
+  @Output() valueChanged = new EventEmitter<any>();
 
   selected?: DescriptionId;
 
@@ -40,7 +49,6 @@ export class DropdownComponent
 
   description = 'dev';
 
-  @Input() alwaysDisabled: boolean = false;
   disabled = false;
   disabled2 = false;
 
@@ -63,9 +71,9 @@ export class DropdownComponent
   ngDoCheck(): void {
     this.markAsTouched();
     if (this.selected) {
-      //if (this.selected) {
       this.description = this.selected.description;
       this.onChange(this.selected);
+      this.valueChanged.emit(this.selected);
     }
   }
 

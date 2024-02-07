@@ -2,10 +2,10 @@
   <input
     class="form-check-input"
     type="checkbox"
-    [(ngModel)]="value"
+    [ngModel]="value"
     [id]="id"
-    (change)="change()"
     [disabled]="disabled"
+    (change)="change()"
   />
   <label class="form-check-label" [for]="id">
     {{ label }}
