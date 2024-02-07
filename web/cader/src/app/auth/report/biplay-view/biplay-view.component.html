@@ -1,83 +1,65 @@
-<div [formGroup]="form" class="m2">
-  <div class="mt-4" *ngFor="let item of bi?.bIParameters">
-    <div *ngIf="item.typePrimitiveOrEntity == constPrimitiEntity.PRIMITIVE">
-      <div *ngIf="item.typePrimitive.id == constTypeInputs.INTEGER.id">
-        integer
-      </div>
-      <div *ngIf="item.typePrimitive.id == constTypeInputs.DOUBLE.id">
-        double
-      </div>
-      <div *ngIf="item.typePrimitive.id == constTypeInputs.LOCAL_DATE.id">
-        date
-      </div>
-      <div *ngIf="item.typePrimitive.id == constTypeInputs.STRING.id">
-        string
-      </div>
-      <inputText
-        formControlName="{{ item.key }}"
-        [label]="item.name"
-        (valueChanged)="newValue($event)"
-      />
-    </div>
-    <div *ngIf="item.typePrimitiveOrEntity == constPrimitiEntity.ENTITY">
-      combo entidade
-    </div>
-  </div>
-</div>
-
-<!-- <div [formGroup]="form" class="m2">
-  <div class="row">
-    <div class="col-5">
-      <tree [dataTableObs]="observableParametros" (action)="toForm($event)" />
-    </div>
-    <div class="col-7">
-      <div *ngIf="parameterCurrent?.typePrimitiveOrEntity == 1">
-        <div *ngIf="parameterCurrent?.customized; else noCuston">
+<div class="row">
+  <div class="col-5">
+    <div [formGroup]="form" class="m2">
+      <div class="mt-4" *ngFor="let item of bi?.bIParameters">
+        <div
+          *ngIf="
+            item.typePrimitiveOrEntity.id == constPrimitiEntity.ENTITY.id;
+            else typesPrimitive
+          "
+        >
           <dropdownstr
-            [label]="parameterCurrent!.name"
-            formControlName="value"
-            [list]="toListStr(parameterCurrent?.optionsDefined)"
-            (valueChanged)="newValue($event)"
-          ></dropdownstr>
+            [label]="item.name"
+            formControlName="{{ item.key }}"
+            [observableList]="this.listComboClass[item.typeClass!.id!]"
+          />
         </div>
-        <ng-template #noCuston>
-          <div *ngIf="parameterCurrent?.typePrimitive == 1">INTEGER</div>
-          <div *ngIf="parameterCurrent?.typePrimitive == 2">
-            <inputText
-              formControlName="value"
-              [label]="parameterCurrent!.name"
-              (valueChanged)="newValue($event)"
+        <ng-template #typesPrimitive>
+          <div *ngIf="item.customized; else noCustomized">
+            <dropdownstr
+              [label]="item.name"
+              formControlName="{{ item.key }}"
+              [list]="toListStr(item?.optionsDefined)"
             />
           </div>
-          <div *ngIf="parameterCurrent?.typePrimitive == 3">
-            <inputDate
-              formControlName="value"
-              [label]="parameterCurrent!.name"
-              (valueChanged)="newValue($event)"
-            />
-          </div>
-          <div *ngIf="parameterCurrent?.typePrimitive == 4">
-            <inputReais
-              formControlName="value"
-              [label]="parameterCurrent!.name"
-              (valueChanged)="newValue($event)"
-            />
-          </div>
+          <ng-template #noCustomized>
+            <div
+              *ngIf="
+                item.typePrimitiveOrEntity.id == constPrimitiEntity.PRIMITIVE.id
+              "
+            >
+              <div *ngIf="item.typePrimitive.id == constTypeInputs.INTEGER.id">
+                integer
+              </div>
+              <div *ngIf="item.typePrimitive.id == constTypeInputs.DOUBLE.id">
+                <inputReais
+                  formControlName="{{ item.key }}"
+                  [label]="item.name"
+                />
+              </div>
+              <div
+                *ngIf="item.typePrimitive.id == constTypeInputs.LOCAL_DATE.id"
+              >
+                <inputDate
+                  formControlName="{{ item.key }}"
+                  [label]="item.name"
+                />
+              </div>
+              <div *ngIf="item.typePrimitive.id == constTypeInputs.STRING.id">
+                <inputText
+                  formControlName="{{ item.key }}"
+                  [label]="item.name"
+                />
+              </div>
+            </div>
+          </ng-template>
         </ng-template>
       </div>
-      <div *ngIf="parameterCurrent?.typePrimitiveOrEntity == 2">
-        <dropdownstr
-          [label]="parameterCurrent!.name"
-          formControlName="value"
-          (valueChanged)="newValue($event)"
-          [observableList]="observableList"
-        ></dropdownstr>
-      </div>
-      <div class="row">
-        <button type="button" class="btn btn-primary mt-2" (click)="playBi()">
-          Play
-        </button>
-      </div>
     </div>
   </div>
-</div> -->
+  <div class="col-7">
+    <button type="button" class="btn btn-primary mt-2 col-7" (click)="playBi()">
+      Play
+    </button>
+  </div>
+</div>

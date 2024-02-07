@@ -1,34 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ObservableTreeService } from 'src/app/components/custom/tree/observable-tree.service';
-import { ModalTree } from 'src/app/components/custom/tree/tree.component';
 import { DescriptionStr } from 'src/app/core/model/description-str';
 import { SPage } from 'src/app/core/pages/spage/super-page';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { HttpServerService } from 'src/app/core/services/http-server.service';
-import {
-  ConstBIPrimitiveOrEntity,
-  ConstBITypeDate,
-  ConstBITypeInput,
-} from 'src/app/data';
+import { ConstBIPrimitiveOrEntity, ConstBITypeInput } from 'src/app/data';
 import { BI } from 'src/app/model-bi/bi';
 import { BIData } from 'src/app/model-bi/bidata';
-import { BIParameter } from 'src/app/model-bi/biparameter';
 import { BIPlayService } from 'src/app/services/biplay.service';
 import { ObservableImpl } from 'src/app/struct/observable/observable-impl.service';
+
+interface ListCombo {
+  class: string;
+  list: Array<DescriptionStr>;
+}
 
 @Component({
   selector: 'app-biplay-view',
   templateUrl: './biplay-view.component.html',
   styleUrls: ['./biplay-view.component.scss'],
 })
-export class BIPlayViewComponent
-  extends SPage<BI, BIPlayService>
-  implements OnInit
-{
+export class BIPlayViewComponent extends SPage<BI, BIPlayService> {
   constTypeInputs = ConstBITypeInput;
-  listClass: Array<DescriptionStr> = [];
   constPrimitiEntity = ConstBIPrimitiveOrEntity;
+  listComboClass: any = {};
+
+  id: number = 0;
+  bi?: BIData;
 
   constructor(
     private http: HttpServerService,
@@ -39,27 +37,19 @@ export class BIPlayViewComponent
     super('Play Bi', service, factory, actRote);
   }
 
-  ngOnInit(): void {}
-
-  constTypeDateBI = ConstBITypeDate;
-
-  id: number = 0;
-  bi?: BIData;
-  parametros: Array<ModalTree> = [];
-  parameterCurrent?: BIParameter;
-  data: any;
-  combo: { class: string; list: Array<DescriptionStr> } = {
-    class: '',
-    list: [],
-  };
-  value: any;
-  observableParametros!: ObservableTreeService<ModalTree>;
-
-  observableList!: ObservableImpl<DescriptionStr>;
-
-  override instanceList(): void {
-    this.observableList = new ObservableImpl<DescriptionStr>();
-    this.observableParametros = new ObservableTreeService();
+  pesquisarCombosClass() {
+    this.bi?.bIParameters.forEach((param) => {
+      if (param.typePrimitiveOrEntity.id == this.constPrimitiEntity.ENTITY.id) {
+        this.service.findComboReport(param!.typeClass!.id).subscribe({
+          next: (res) => {
+            const obseElement: ObservableImpl<DescriptionStr> =
+              this.listComboClass[param.typeClass?.id!];
+            obseElement.update(res.data);
+          },
+          error: (error) => {},
+        });
+      }
+    });
   }
 
   override populatedForm(ob: BI) {
@@ -67,130 +57,54 @@ export class BIPlayViewComponent
       id: [ob.id],
     });
 
-    this.form.addControl(
-      'novoAtributo',
-      this.formBuilder.control('valorInicial')
-    );
-
     this.id = ob.id!;
     this.bi = JSON.parse(ob.data);
+    console.log(this.bi);
 
     this.bi?.bIParameters.forEach((param) => {
-      console.log(param);
       this.form.addControl(
         param.key,
         this.formBuilder.control(param.valueDefault)
       );
-      //this.form.addControl(param.key, param.valueDefault);
+
+      if (param.typePrimitiveOrEntity.id == this.constPrimitiEntity.ENTITY.id) {
+        const observable = new ObservableImpl<DescriptionStr>();
+        this.listComboClass[param.typeClass?.id!] = observable;
+      }
     });
 
-    /* this.bi?.bIParameters.forEach((item) => {
-      this.parametros.push({
-        label: item.name,
-        data: { valor: this.getValueDefault(item), item },
-        key: item.key,
-        children: [],
-      });
-    });
-    this.observableParametros.update(this.parametros);*/
+    this.pesquisarCombosClass();
   }
 
   override getOb(): BI {
     return this.service.newInstance();
   }
 
-  getValueDefault(item: BIParameter): DescriptionStr | string {
-    if (item.customized) {
-      const opSelection = item.optionsDefined.find((i) => {
-        return i.value == item.valueDefault;
-      });
-
-      if (opSelection) {
-        return {
-          id: opSelection.value,
-          description: opSelection.name,
-        };
-      } else {
-        return '';
-      }
-    } else {
-      return item.valueDefault;
-    }
-  }
-
-  async toForm(item: ModalTree) {
-    this.data = item.data;
-    console.log(item);
-
-    /*  if (this.data.item.typeInput == this.constPrimitiEntity.ENTITY) {
-      this.toListEntity(this.data.item);
-    }
-    const parameter = this.data.item as BIParameter;
-    if (parameter.typePrimitive == 1) {
-      if (parameter.subTypeDate == this.constTypeDateBI.FIST_DAY_MONTH) {
-        this.form.controls.value.setValue(getFirstDayMonth());
-      } else if (parameter.subTypeDate == this.constTypeDateBI.LAST_DAY_MONTH) {
-        this.form.controls.value.setValue(getLastDayMonth());
-      }
-    } else {
-      this.form.controls.value.setValue(item.data.valor);
-    }*/
-  }
-
-  newValue(event: any) {
-    if (event instanceof Date) {
-      const dt = event as Date;
-      this.data.valor = dt.getTime();
-      //this.value = new Date(value.getTime());
-    } else {
-      console.log('no data');
-
-      //   milissegundos = value;
-      this.data.valor = event;
-    }
+  getParametros() {
+    const form = this.form?.value;
+    return form;
   }
 
   playBi() {
     const parameter: Array<any> = [];
+    const params = this.getParametros();
+    console.log(params);
+    // this.http
+    //   .post('biPlay/playBi', { idBI: this.id, parameter: parameter })
+    //   .subscribe({
+    //     next: (res) => {
+    //       const blobUrl = URL.createObjectURL(res);
 
-    this.parametros.forEach((item) => {
-      parameter.push({ key: item.key, value: item.data.valor });
-    });
-    console.log(parameter);
-    this.http
-      .post('biPlay/playBi', { idBI: this.id, parameter: parameter })
-      .subscribe({
-        next: (res) => {
-          const blobUrl = URL.createObjectURL(res);
-
-          const downloadLink = document.createElement('a');
-          downloadLink.href = blobUrl;
-          downloadLink.download = 'DOWNLOAD_FILE.CSV';
-          downloadLink.click();
-          downloadLink.remove();
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
-    /*
-    this.service.playReport({ idBI: this.id, parameter: parameter }).subscribe({
-      next: (res) => {
-        const blobUrl = URL.createObjectURL(res);
-
-        const downloadLink = document.createElement('a');
-        downloadLink.href = blobUrl;
-        downloadLink.download = 'DOWNLOAD_FILE.CSV';
-        downloadLink.click();
-        downloadLink.remove();
-
-        //this.combo = res.data;
-        // this.observableList?.update(res.data);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });*/
+    //       const downloadLink = document.createElement('a');
+    //       downloadLink.href = blobUrl;
+    //       downloadLink.download = 'DOWNLOAD_FILE.CSV';
+    //       downloadLink.click();
+    //       downloadLink.remove();
+    //     },
+    //     error: (error) => {
+    //       console.log(error);
+    //     },
+    //   });
   }
 
   toListStr(data: any) {
@@ -199,25 +113,5 @@ export class BIPlayViewComponent
       options.push({ id: item.value, description: item.name })
     );
     return options;
-  }
-
-  toListEntity(item: BIParameter) {
-    if (
-      this.combo.class !== item!.typeClass!.id ||
-      this.combo.list.length < 0
-    ) {
-      this.combo.class = item!.typeClass!.id;
-      this.service.findComboReport(item!.typeClass!.id).subscribe({
-        next: (res) => {
-          this.combo = res.data;
-          this.observableList?.update(res.data);
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
-    }
-
-    return [];
   }
 }

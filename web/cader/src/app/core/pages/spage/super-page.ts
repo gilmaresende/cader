@@ -68,7 +68,6 @@ export abstract class SPage<
         this.populatedForm(res.data);
         this.servicePage.setStatePage(StatePage.VIEW);
         this.isDisabled.emmiter(true);
-
         this.servicePage.loading.dropLoading();
       },
       error: (error) => {
