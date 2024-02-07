@@ -62,7 +62,7 @@ export class DropdownComponent
 
   ngDoCheck(): void {
     this.markAsTouched();
-    if (!this.isDisabled && this.selected) {
+    if (this.selected) {
       //if (this.selected) {
       this.description = this.selected.description;
       this.onChange(this.selected);

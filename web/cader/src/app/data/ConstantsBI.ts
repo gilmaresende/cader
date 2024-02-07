@@ -12,34 +12,30 @@ const ConstBIPrimitiveOrEntity = {
 };
 
 const ConstBITypeInput = {
-  INTEGER: 1,
-  DOUBLE: 2,
-  STRING: 3,
-  LOCAL_DATE: 4,
+  INTEGER: {
+    id: 1,
+    description: 'INTEGER',
+  },
+  DOUBLE: {
+    id: 2,
+    description: 'DOUBLE',
+  },
+  STRING: {
+    id: 3,
+    description: 'STRING',
+  },
+  LOCAL_DATE: {
+    id: 4,
+    description: 'LOCAL_DATE',
+  },
   REGISTER: 5,
 };
 
 const ConstBITypeInputList: Array<DescriptionId> = [
-  {
-    id: 1,
-    description: 'INTEGER',
-  },
-  {
-    id: 2,
-    description: 'DOUBLE',
-  },
-  {
-    id: 3,
-    description: 'STRING',
-  },
-  {
-    id: 4,
-    description: 'LOCAL_DATE',
-  },
-  {
-    id: 5,
-    description: 'REGISTER',
-  },
+  ConstBITypeInput.INTEGER,
+  ConstBITypeInput.DOUBLE,
+  ConstBITypeInput.LOCAL_DATE,
+  ConstBITypeInput.STRING,
 ];
 
 export {

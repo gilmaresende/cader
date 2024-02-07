@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ObservableTreeService } from 'src/app/components/custom/tree/observable-tree.service';
 import { ModalTree } from 'src/app/components/custom/tree/tree.component';
 import { DescriptionStr } from 'src/app/core/model/description-str';
 import { SPage } from 'src/app/core/pages/spage/super-page';
-import { PagesService } from 'src/app/core/services/pages.service';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { HttpServerService } from 'src/app/core/services/http-server.service';
 import {
-  getFirstDayMonth,
-  getLastDayMonth,
-} from 'src/app/core/utils/Date/date-util';
-import { ConstBITypeDate } from 'src/app/data';
+  ConstBIPrimitiveOrEntity,
+  ConstBITypeDate,
+  ConstBITypeInput,
+} from 'src/app/data';
 import { BI } from 'src/app/model-bi/bi';
 import { BIData } from 'src/app/model-bi/bidata';
 import { BIParameter } from 'src/app/model-bi/biparameter';
@@ -28,6 +26,10 @@ export class BIPlayViewComponent
   extends SPage<BI, BIPlayService>
   implements OnInit
 {
+  constTypeInputs = ConstBITypeInput;
+  listClass: Array<DescriptionStr> = [];
+  constPrimitiEntity = ConstBIPrimitiveOrEntity;
+
   constructor(
     private http: HttpServerService,
     private service: BIPlayService,
@@ -51,17 +53,38 @@ export class BIPlayViewComponent
     list: [],
   };
   value: any;
-  observableParametros: ObservableTreeService<ModalTree> =
-    new ObservableTreeService();
+  observableParametros!: ObservableTreeService<ModalTree>;
 
-  observableList?: ObservableImpl<DescriptionStr> =
-    new ObservableImpl<DescriptionStr>();
+  observableList!: ObservableImpl<DescriptionStr>;
+
+  override instanceList(): void {
+    this.observableList = new ObservableImpl<DescriptionStr>();
+    this.observableParametros = new ObservableTreeService();
+  }
 
   override populatedForm(ob: BI) {
+    this.form = this.formBuilder.group({
+      id: [ob.id],
+    });
+
+    this.form.addControl(
+      'novoAtributo',
+      this.formBuilder.control('valorInicial')
+    );
+
     this.id = ob.id!;
-    //this.controller.setTitle(`${ob.name}`);
     this.bi = JSON.parse(ob.data);
-    this.bi?.bIParameters.forEach((item) => {
+
+    this.bi?.bIParameters.forEach((param) => {
+      console.log(param);
+      this.form.addControl(
+        param.key,
+        this.formBuilder.control(param.valueDefault)
+      );
+      //this.form.addControl(param.key, param.valueDefault);
+    });
+
+    /* this.bi?.bIParameters.forEach((item) => {
       this.parametros.push({
         label: item.name,
         data: { valor: this.getValueDefault(item), item },
@@ -69,7 +92,7 @@ export class BIPlayViewComponent
         children: [],
       });
     });
-    this.observableParametros.update(this.parametros);
+    this.observableParametros.update(this.parametros);*/
   }
 
   override getOb(): BI {
@@ -97,22 +120,21 @@ export class BIPlayViewComponent
 
   async toForm(item: ModalTree) {
     this.data = item.data;
-    // this.parameterCurrent = item.data.item;
-    // if (this.data.item.typeInput == 2) {
-    //   this.toListEntity(this.data.item);
-    // }
-    // const parameter = this.data.item as BIParameter;
-    // if (parameter.typePrimitive == 1) {
-    //   console.log(parameter.valueDefault);
-    //   if (parameter.subTypeDate == this.constTypeDateBI.FIST_DAY_MONTH) {
-    //     console.log(getFirstDayMonth());
-    //     this.form.controls.value.setValue(getFirstDayMonth());
-    //   } else if (parameter.subTypeDate == this.constTypeDateBI.LAST_DAY_MONTH) {
-    //     this.form.controls.value.setValue(getLastDayMonth());
-    //   }
-    // } else {
-    //   this.form.controls.value.setValue(item.data.valor);
-    // }
+    console.log(item);
+
+    /*  if (this.data.item.typeInput == this.constPrimitiEntity.ENTITY) {
+      this.toListEntity(this.data.item);
+    }
+    const parameter = this.data.item as BIParameter;
+    if (parameter.typePrimitive == 1) {
+      if (parameter.subTypeDate == this.constTypeDateBI.FIST_DAY_MONTH) {
+        this.form.controls.value.setValue(getFirstDayMonth());
+      } else if (parameter.subTypeDate == this.constTypeDateBI.LAST_DAY_MONTH) {
+        this.form.controls.value.setValue(getLastDayMonth());
+      }
+    } else {
+      this.form.controls.value.setValue(item.data.valor);
+    }*/
   }
 
   newValue(event: any) {

@@ -4,16 +4,21 @@ import { BI } from '../model-bi/bi';
 import { Observable } from 'rxjs';
 import { ResponseServe } from '../core/model/response-serve';
 import { API_CONFIG } from 'src/environments/environments';
+import { BiService } from './bi.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BIPlayService extends BaseHttpService<BI> {
+  constructor(private serviveBI: BiService, private httpSerice: HttpClient) {
+    super(httpSerice);
+  }
   override newInstance(): BI {
-    throw new Error('Method not implemented.');
+    return this.serviveBI.newInstance();
   }
   override getFilterBase(): {} {
-    throw {};
+    return {};
   }
   override rote: string = 'biPlay';
 

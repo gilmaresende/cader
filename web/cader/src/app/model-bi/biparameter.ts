@@ -6,7 +6,7 @@ export interface BIParameter {
   key: string;
   name: string;
   typePrimitiveOrEntity: number;
-  typePrimitive: number;
+  typePrimitive: DescriptionId;
   valueDefault: string;
   subTypeDate?: number;
   typeClass?: DescriptionStr;

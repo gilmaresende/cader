@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DescriptionId } from 'src/app/core/model/description-id';
 import { DescriptionStr } from 'src/app/core/model/description-str';
 import { ConstBITypeDate, ConstBITypeInput } from 'src/app/data';
 import {
@@ -66,11 +67,14 @@ export class BIParameterItemComponent implements OnInit {
 
   getOb(): BIParameter {
     const form = this.form.controls;
+
+    const typePrimitive = form.typePrimitive.value;
+
     return {
       name: form.name.value as string,
       key: form.key.value as string,
       typePrimitiveOrEntity: form.typePrimitiveOrEntity.value as number,
-      typePrimitive: form.typePrimitive.value as number,
+      typePrimitive: form.typePrimitive.value as DescriptionId,
       valueDefault: form.valueDefault.value as string,
       subTypeDate: form.subTypeDate.value,
       typeClass: form.typeClass.value as DescriptionStr,
@@ -116,7 +120,7 @@ export class BIParameterItemComponent implements OnInit {
     }
   }
 
-  changePrimitiveDate(typePrimitive: number) {
+  changePrimitiveDate(typePrimitive: DescriptionId) {
     if (typePrimitive == this.constTypeInputs.LOCAL_DATE) {
       this.showComboDate = true;
     } else {
@@ -150,6 +154,7 @@ export class BIParameterItemComponent implements OnInit {
 
   save() {
     const ob = this.getOb();
+    console.log(ob);
     const hasErro: boolean = this.checkErros(ob);
     if (hasErro) {
       return;

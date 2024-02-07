@@ -1,4 +1,31 @@
 <div [formGroup]="form" class="m2">
+  <div class="mt-4" *ngFor="let item of bi?.bIParameters">
+    <div *ngIf="item.typePrimitiveOrEntity == constPrimitiEntity.PRIMITIVE">
+      <div *ngIf="item.typePrimitive.id == constTypeInputs.INTEGER.id">
+        integer
+      </div>
+      <div *ngIf="item.typePrimitive.id == constTypeInputs.DOUBLE.id">
+        double
+      </div>
+      <div *ngIf="item.typePrimitive.id == constTypeInputs.LOCAL_DATE.id">
+        date
+      </div>
+      <div *ngIf="item.typePrimitive.id == constTypeInputs.STRING.id">
+        string
+      </div>
+      <inputText
+        formControlName="{{ item.key }}"
+        [label]="item.name"
+        (valueChanged)="newValue($event)"
+      />
+    </div>
+    <div *ngIf="item.typePrimitiveOrEntity == constPrimitiEntity.ENTITY">
+      combo entidade
+    </div>
+  </div>
+</div>
+
+<!-- <div [formGroup]="form" class="m2">
   <div class="row">
     <div class="col-5">
       <tree [dataTableObs]="observableParametros" (action)="toForm($event)" />
@@ -53,4 +80,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

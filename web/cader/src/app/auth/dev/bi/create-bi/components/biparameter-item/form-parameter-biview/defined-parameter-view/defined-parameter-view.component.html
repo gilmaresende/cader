@@ -6,7 +6,7 @@
         <tr>
           <th class="label">Label</th>
           <th class="label">Valor</th>
-          <th class="icon"></th>
+          <th *ngIf="!disabled" class="icon"></th>
           <th class="icon"></th>
         </tr>
       </thead>
@@ -14,7 +14,7 @@
         <tr *ngFor="let item of list">
           <td>{{ item.name }}</td>
           <td>{{ item.value }}</td>
-          <td>
+          <td *ngIf="!disabled">
             <button class="btnClean" (click)="remove(item)">
               <span class="material-symbols-outlined"> delete_sweep </span>
             </button>
