@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { DescriptionStr } from 'src/app/core/model/description-str';
-import { ConstBITypeDate, ConstBITypeInput } from 'src/app/data';
+import { ConstBITypeDate, ConstBITypePrimitive } from 'src/app/data';
 import {
   ConstBIPrimitiveOrEntity,
   ConstBITypeInputList,
@@ -26,7 +26,7 @@ export class BIParameterItemComponent implements OnInit {
   disabled: boolean = false;
 
   //listas e contantes
-  constTypeInputs = ConstBITypeInput;
+  constTypeInputs = ConstBITypePrimitive;
   listTypes = ConstBITypeInputList;
   listClass: Array<DescriptionStr> = [];
   constPrimitiEntity = ConstBIPrimitiveOrEntity;

@@ -26,7 +26,7 @@ const ConstBIPrimitiveOrEntity = {
   },
 };
 
-const ConstBITypeInput = {
+const ConstBITypePrimitive = {
   INTEGER: {
     id: 1,
     description: 'INTEGER',
@@ -47,15 +47,15 @@ const ConstBITypeInput = {
 };
 
 const ConstBITypeInputList: Array<DescriptionId> = [
-  ConstBITypeInput.INTEGER,
-  ConstBITypeInput.DOUBLE,
-  ConstBITypeInput.LOCAL_DATE,
-  ConstBITypeInput.STRING,
+  ConstBITypePrimitive.INTEGER,
+  ConstBITypePrimitive.DOUBLE,
+  ConstBITypePrimitive.LOCAL_DATE,
+  ConstBITypePrimitive.STRING,
 ];
 
 export {
   ConstBITypeDate,
-  ConstBITypeInput,
+  ConstBITypePrimitive,
   ConstBITypeInputList,
   ConstBIPrimitiveOrEntity,
 };

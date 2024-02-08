@@ -3,6 +3,7 @@ package com.condelar.cader.tool.util;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 public class ToolDate {
 
@@ -36,6 +37,16 @@ public class ToolDate {
     public static LocalDate convertLongToLocalDate(long timestamp) {
         Instant instant = Instant.ofEpochMilli(timestamp);
         return instant.atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public static LocalDate strToLocal(String dataString){
+        // Converter a String para um objeto ZonedDateTime
+        ZonedDateTime zonedDateTime = ZonedDateTime.parse(dataString);
+
+        // Extrair a data (sem informações de fuso horário)
+        LocalDate localDate = zonedDateTime.toLocalDate();
+
+        return localDate;
     }
 
 }

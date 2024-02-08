@@ -8,7 +8,7 @@ export interface BIParameter {
   typePrimitiveOrEntity: DescriptionId;
   typePrimitive: DescriptionId;
   valueDefault: string;
-  subTypeDate?: DescriptionStr;
+  subTypeDate?: DescriptionId;
   typeClass?: DescriptionStr;
   customized: boolean;
   optionsDefined: Array<BIParameterDefined>;

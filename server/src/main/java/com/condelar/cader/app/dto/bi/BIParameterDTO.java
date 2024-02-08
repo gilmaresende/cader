@@ -13,17 +13,16 @@ public class BIParameterDTO implements Serializable {
 
     private String name;
 
-    private Long typeInput;
+    private DescriptionId typePrimitiveOrEntity;
 
-    private DescriptionStr typePrimitive;
+    private DescriptionId typePrimitive;
 
     private String valueDefault;
 
-    private Short subTypeDate;
+    private DescriptionStr subTypeDate;
 
     private DescriptionStr typeClass;
 
     private Boolean customized;
-
 
 }

@@ -5,7 +5,7 @@ import { newId } from '../core/utils/Factories/generator';
 import { BI } from '../model-bi/bi';
 import { BIParameter } from '../model-bi/biparameter';
 import { BIQuery } from '../model-bi/biquery';
-import { ConstBIPrimitiveOrEntity, ConstBITypeInput } from '../data';
+import { ConstBIPrimitiveOrEntity, ConstBITypePrimitive } from '../data';
 
 @Injectable({
   providedIn: 'root',
@@ -58,7 +58,7 @@ export class BiService extends BaseHttpService<BI> {
       key: '',
       typePrimitiveOrEntity: ConstBIPrimitiveOrEntity.PRIMITIVE,
       valueDefault: '0',
-      typePrimitive: ConstBITypeInput.INTEGER,
+      typePrimitive: ConstBITypePrimitive.INTEGER,
       customized: false,
       optionsDefined: [],
     };

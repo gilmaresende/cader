@@ -1,6 +1,6 @@
 import {
   ConstBITypeDate,
-  ConstBITypeInput,
+  ConstBITypePrimitive,
   ConstBIPrimitiveOrEntity,
 } from './ConstantsBI';
-export { ConstBITypeDate, ConstBITypeInput, ConstBIPrimitiveOrEntity };
+export { ConstBITypeDate, ConstBITypePrimitive, ConstBIPrimitiveOrEntity };

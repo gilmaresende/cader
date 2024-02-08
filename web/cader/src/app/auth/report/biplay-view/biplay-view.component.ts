@@ -4,7 +4,7 @@ import { DescriptionStr } from 'src/app/core/model/description-str';
 import { SPage } from 'src/app/core/pages/spage/super-page';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { HttpServerService } from 'src/app/core/services/http-server.service';
-import { ConstBIPrimitiveOrEntity, ConstBITypeInput } from 'src/app/data';
+import { ConstBIPrimitiveOrEntity, ConstBITypePrimitive } from 'src/app/data';
 import { BI } from 'src/app/model-bi/bi';
 import { BIData } from 'src/app/model-bi/bidata';
 import { BIPlayService } from 'src/app/services/biplay.service';
@@ -21,11 +21,10 @@ interface ListCombo {
   styleUrls: ['./biplay-view.component.scss'],
 })
 export class BIPlayViewComponent extends SPage<BI, BIPlayService> {
-  constTypeInputs = ConstBITypeInput;
+  constTypeInputs = ConstBITypePrimitive;
   constPrimitiEntity = ConstBIPrimitiveOrEntity;
   listComboClass: any = {};
 
-  id: number = 0;
   bi?: BIData;
 
   constructor(
@@ -56,8 +55,6 @@ export class BIPlayViewComponent extends SPage<BI, BIPlayService> {
     this.form = this.formBuilder.group({
       id: [ob.id],
     });
-
-    this.id = ob.id!;
     this.bi = JSON.parse(ob.data);
     console.log(this.bi);
 
@@ -86,25 +83,21 @@ export class BIPlayViewComponent extends SPage<BI, BIPlayService> {
   }
 
   playBi() {
-    const parameter: Array<any> = [];
     const params = this.getParametros();
-    console.log(params);
-    // this.http
-    //   .post('biPlay/playBi', { idBI: this.id, parameter: parameter })
-    //   .subscribe({
-    //     next: (res) => {
-    //       const blobUrl = URL.createObjectURL(res);
+    this.http.post('biPlay/playBi', params).subscribe({
+      next: (res) => {
+        const blobUrl = URL.createObjectURL(res);
 
-    //       const downloadLink = document.createElement('a');
-    //       downloadLink.href = blobUrl;
-    //       downloadLink.download = 'DOWNLOAD_FILE.CSV';
-    //       downloadLink.click();
-    //       downloadLink.remove();
-    //     },
-    //     error: (error) => {
-    //       console.log(error);
-    //     },
-    //   });
+        const downloadLink = document.createElement('a');
+        downloadLink.href = blobUrl;
+        downloadLink.download = 'DOWNLOAD_FILE.CSV';
+        downloadLink.click();
+        downloadLink.remove();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   toListStr(data: any) {

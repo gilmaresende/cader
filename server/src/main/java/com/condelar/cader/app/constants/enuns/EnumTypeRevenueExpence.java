@@ -2,7 +2,7 @@ package com.condelar.cader.app.constants.enuns;
 
 import com.condelar.cader.core.otherdto.DescriptionId;
 
-public enum EnumTypeRevenueExpence {
+public enum  EnumTypeRevenueExpence {
     RECEITA((short) 2),
     DESPESA((short) 1);
 

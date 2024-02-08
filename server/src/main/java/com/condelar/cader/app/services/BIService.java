@@ -1,5 +1,7 @@
 package com.condelar.cader.app.services;
 
+import com.condelar.cader.app.constants.enuns.ConstBIPrimitiveOrEntity;
+import com.condelar.cader.app.constants.enuns.ConstBITypePrimitive;
 import com.condelar.cader.app.constants.enuns.EnumTypeParameter;
 import com.condelar.cader.app.dto.bi.*;
 import com.condelar.cader.app.entiti.BI;
@@ -88,56 +90,69 @@ public class BIService extends BaseService<BI, BIDTO, BIFilterDTO, BIListDTO, BI
         return response;
     }
 
-    public String executeBI(BIPlayDTO data) {
-        BI biBase = getById(data.getIdBI());
+    public String executeBI(LinkedHashMap data) {
+        Object idOb = data.get("id");
+        Long idBI = Long.parseLong(idOb.toString());
+        System.out.println(idBI);
+
+        BI biBase = getById(idBI);
+
         BIDataDTO bi = GJsonImp.toObject(BIDataDTO.class, new String(biBase.getBody()));
 
-        HashMap<String, String> parameterHash = new HashMap<>();
-        HashMap<String, String> labelsHash = new HashMap<>();
-        bi.getBIParameters().forEach(parameter -> {
-            String description = "";
-            String key = "";
-            String value = "";
+        HashMap<String, Object> parameters = new HashMap<>();
 
-            Optional<BIParameterPlayDTO> p = data.getParameter().stream().filter(f -> f.getKey().equals(parameter.getKey())).findFirst();
-            if (p.isPresent()) {
-                Object par = p.get().getValue();
-                key = p.get().getKey();
-                if (par instanceof LinkedHashMap) {
-                    LinkedHashMap map = (LinkedHashMap) par;
-                    value = (String) map.get("id");
-                    description = (String) map.get("description");
-                } else {
-                    if (parameter.getTypePrimitive().getId().equals("LOCAL_DATE")) {
-                        Long dat = (Long) par;
-                        if (dat != null)
-                            value = dat.toString();
-                        else {
-                            value = System.currentTimeMillis() + "";
-                        }
-                    } else {
-                        value = (String) par;
-                    }
+        StringBuilder descriptionParameterLabel = new StringBuilder();
+        bi.getBIParameters().forEach(parameter -> {
+            String keyParameter = parameter.getKey();
+            String descriptionParameter = parameter.getName();
+            Object value = data.get(keyParameter);
+            System.out.println("-" + keyParameter + "-" + value + "-" + descriptionParameter);
+
+            descriptionParameterLabel.append(descriptionParameter);
+            descriptionParameterLabel.append(": ");
+            if (ConstBIPrimitiveOrEntity.ENTITY.equals(parameter.getTypePrimitiveOrEntity().getId())) {
+                LinkedHashMap valueLink = (LinkedHashMap) value;
+                String description = (String) valueLink.get("description");
+                descriptionParameterLabel.append(description).append(" | ");
+                String id = (String) valueLink.get("id");
+                parameters.put(keyParameter, id);
+            } else if (parameter.getCustomized()) {
+                LinkedHashMap valueLink = (LinkedHashMap) value;
+                String description = (String) valueLink.get("description");
+                descriptionParameterLabel.append(description).append(" | ");
+                String id = (String) valueLink.get("id");
+
+                if (ConstBITypePrimitive.INTEGER.equals(parameter.getTypePrimitive().getId())) {
+                    parameters.put(keyParameter, Integer.parseInt(id));
+                } else if (ConstBITypePrimitive.DOUBLE.equals(parameter.getTypePrimitive().getId())) {
+                    parameters.put(keyParameter, Double.parseDouble(id));
+                } else if (ConstBITypePrimitive.STRING.equals(parameter.getTypePrimitive().getId())) {
+                    parameters.put(keyParameter, id);
                 }
-                parameterHash.put(key, value);
-                labelsHash.put(key, description);
+            } else {
+                Object valuePrimitive = value;
+                if (ConstBITypePrimitive.INTEGER.equals(parameter.getTypePrimitive().getId())) {
+                    parameters.put(keyParameter, Integer.parseInt(valuePrimitive.toString()));
+                } else if (ConstBITypePrimitive.DOUBLE.equals(parameter.getTypePrimitive().getId())) {
+                    parameters.put(keyParameter, Double.parseDouble(valuePrimitive.toString()));
+                } else if (ConstBITypePrimitive.STRING.equals(parameter.getTypePrimitive().getId())) {
+                    parameters.put(keyParameter, valuePrimitive.toString());
+                } else {
+                    LocalDate date = ToolDate.strToLocal(valuePrimitive.toString());
+                    parameters.put(keyParameter, date);
+                    System.out.println(date);
+                }
             }
         });
 
         QueryExecutor query = serviceQuery.newQuery(bi.getQuery().getData());
 
         bi.getBIParameters().forEach(parameter -> {
-            if (parameter.getTypePrimitive().getId().equals("LOCAL_DATE")) {
-                String time = parameterHash.get(parameter.getKey());
-                LocalDate localDate = ToolDate.convertLongToLocalDate(Long.parseLong(time));
-                query.setParameter(parameter.getKey(), localDate);
-            } else {
-                query.setParameter(parameter.getKey(), parameterHash.get(parameter.getKey()));
-            }
+            if (bi.getQuery().getData().contains(":" + parameter.getKey()))
+                query.setParameter(parameter.getKey(), parameters.get(parameter.getKey()));
         });
 
         List<Map> dataResult = query.executeToMap();
-
         return ToolCsv.mapToCsv(dataResult);
     }
 }
