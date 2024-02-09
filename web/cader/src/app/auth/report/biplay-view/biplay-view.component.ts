@@ -2,18 +2,14 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DescriptionStr } from 'src/app/core/model/description-str';
 import { SPage } from 'src/app/core/pages/spage/super-page';
+import { DownloadService } from 'src/app/core/services/download.service';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
-import { HttpServerService } from 'src/app/core/services/http-server.service';
+import { downloadFile } from 'src/app/core/utils/File/tool-files';
 import { ConstBIPrimitiveOrEntity, ConstBITypePrimitive } from 'src/app/data';
 import { BI } from 'src/app/model-bi/bi';
 import { BIData } from 'src/app/model-bi/bidata';
 import { BIPlayService } from 'src/app/services/biplay.service';
 import { ObservableImpl } from 'src/app/struct/observable/observable-impl.service';
-
-interface ListCombo {
-  class: string;
-  list: Array<DescriptionStr>;
-}
 
 @Component({
   selector: 'app-biplay-view',
@@ -28,10 +24,10 @@ export class BIPlayViewComponent extends SPage<BI, BIPlayService> {
   bi?: BIData;
 
   constructor(
-    private http: HttpServerService,
     private service: BIPlayService,
     private factory: FactoryCoreService,
-    private actRote: ActivatedRoute
+    private actRote: ActivatedRoute,
+    private downloadService: DownloadService
   ) {
     super('Play Bi', service, factory, actRote);
   }
@@ -56,7 +52,6 @@ export class BIPlayViewComponent extends SPage<BI, BIPlayService> {
       id: [ob.id],
     });
     this.bi = JSON.parse(ob.data);
-    console.log(this.bi);
 
     this.bi?.bIParameters.forEach((param) => {
       this.form.addControl(
@@ -84,15 +79,9 @@ export class BIPlayViewComponent extends SPage<BI, BIPlayService> {
 
   playBi() {
     const params = this.getParametros();
-    this.http.post('biPlay/playBi', params).subscribe({
+    this.downloadService.downloadFile('biPlay/playBi', params).subscribe({
       next: (res) => {
-        const blobUrl = URL.createObjectURL(res);
-
-        const downloadLink = document.createElement('a');
-        downloadLink.href = blobUrl;
-        downloadLink.download = 'DOWNLOAD_FILE.CSV';
-        downloadLink.click();
-        downloadLink.remove();
+        downloadFile(res);
       },
       error: (error) => {
         console.log(error);

@@ -7,6 +7,7 @@ import com.condelar.cader.app.dto.bi.*;
 import com.condelar.cader.app.entiti.BI;
 import com.condelar.cader.app.repositories.BIRepository;
 import com.condelar.cader.app.valid.BIValid;
+import com.condelar.cader.core.dto.DownloadDTO;
 import com.condelar.cader.core.errors.exceptions.ObjectNotFoundException;
 import com.condelar.cader.core.otherdto.DescriptionStr;
 import com.condelar.cader.core.structure.BaseService;
@@ -90,7 +91,7 @@ public class BIService extends BaseService<BI, BIDTO, BIFilterDTO, BIListDTO, BI
         return response;
     }
 
-    public String executeBI(LinkedHashMap data) {
+    public DownloadDTO executeBI(LinkedHashMap data) {
         Object idOb = data.get("id");
         Long idBI = Long.parseLong(idOb.toString());
         System.out.println(idBI);
@@ -153,7 +154,7 @@ public class BIService extends BaseService<BI, BIDTO, BIFilterDTO, BIListDTO, BI
         });
 
         List<Map> dataResult = query.executeToMap();
-        return ToolCsv.mapToCsv(dataResult);
+        return new DownloadDTO(biBase.getName(), "csv", ToolCsv.mapToCsv(dataResult).getBytes());
     }
 }
 

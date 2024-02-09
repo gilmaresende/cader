@@ -7,6 +7,7 @@ import com.condelar.cader.app.entiti.BI;
 import com.condelar.cader.app.repositories.BIRepository;
 import com.condelar.cader.app.services.BIService;
 import com.condelar.cader.app.valid.BIValid;
+import com.condelar.cader.core.dto.DownloadDTO;
 import com.condelar.cader.core.otherdto.DescriptionStr;
 import com.condelar.cader.core.structure.BaseController;
 import com.condelar.cader.core.structure.util.PackageDT;
@@ -32,23 +33,10 @@ public class BIPlayController extends BaseController<BI, BIDTO, BIFilterDTO, BIL
     }
 
     @PostMapping("playBi")
-   public HttpEntity<byte[]> save(@RequestBody LinkedHashMap data) {
-   // public HttpEntity<byte[]> save(@RequestBody BIPlayDTO data) {
-
-
-      String report = getService().executeBI(data);
-       // Number idBi =(Number) data.get("idBI");
-        //Object parameter = data.get("parameter");
-
-     //   System.out.println(idBi);
-
-        System.out.println(data);
-         //   return ToolDownload.getFile("select", "csv", "".getBytes());
-      return ToolDownload.getFile("select", "csv", report.getBytes());
+    public ResponseEntity<DownloadDTO> save(@RequestBody LinkedHashMap data) {
+        DownloadDTO report = getService().executeBI(data);
+        return ResponseEntity.ok(report);
     }
-
-
-
 
 
 }

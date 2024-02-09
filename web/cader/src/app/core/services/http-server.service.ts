@@ -11,9 +11,7 @@ export class HttpServerService {
 
   post(rote: string, ob: any): Observable<any> {
     const url = `${API_CONFIG.BASE_URL}/${rote}`;
-    const response = this.http.post(url, ob, {
-      responseType: 'blob',
-    });
+    const response = this.http.post(url, ob);
     return response;
   }
 }
