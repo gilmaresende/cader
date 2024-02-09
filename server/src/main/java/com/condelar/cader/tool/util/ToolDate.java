@@ -4,6 +4,8 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.Map;
 
 public class ToolDate {
 
@@ -39,7 +41,7 @@ public class ToolDate {
         return instant.atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
-    public static LocalDate strToLocal(String dataString){
+    public static LocalDate strToLocal(String dataString) {
         // Converter a String para um objeto ZonedDateTime
         ZonedDateTime zonedDateTime = ZonedDateTime.parse(dataString);
 
@@ -47,6 +49,19 @@ public class ToolDate {
         LocalDate localDate = zonedDateTime.toLocalDate();
 
         return localDate;
+    }
+
+
+    public static List<Map> changeLocalDate(List<Map> data) {
+        for (Map hash : data) {
+            for (Object key : hash.keySet()) {
+                Object item = hash.get(key);
+                if (item instanceof LocalDate) {
+                    hash.put(key, item.toString());
+                }
+            }
+        }
+        return data;
     }
 
 }

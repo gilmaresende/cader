@@ -45,6 +45,7 @@ export class BIQueryItemComponent implements OnInit {
     id: new FormControl(''),
     label: new FormControl('', Validators.required),
     query: new FormControl('', Validators.required),
+    pathJasper: new FormControl(),
   });
 
   popularForm(item: BIQuery) {
@@ -52,12 +53,14 @@ export class BIQueryItemComponent implements OnInit {
     const form = this.form.controls;
     form.label.setValue(item.label);
     form.query.setValue(item.data);
+    form.pathJasper.setValue(item.pathJasper);
   }
 
   toOb() {
     const form = this.form.controls;
     this.item!.data = form.query.value as string;
     this.item!.label = form.label.value as string;
+    this.item!.pathJasper = form.pathJasper.value;
     this.clean();
   }
 
@@ -66,6 +69,7 @@ export class BIQueryItemComponent implements OnInit {
     const form = this.form.controls;
     form.label.setValue('');
     form.query.setValue('');
+    form.pathJasper.setValue('');
   }
 
   newChildreen() {

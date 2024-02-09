@@ -2,6 +2,7 @@ package com.condelar.cader.app.services;
 
 import com.condelar.cader.app.constants.enuns.ConstBIPrimitiveOrEntity;
 import com.condelar.cader.app.constants.enuns.ConstBITypePrimitive;
+import com.condelar.cader.app.constants.enuns.ConstFormatsFile;
 import com.condelar.cader.app.constants.enuns.EnumTypeParameter;
 import com.condelar.cader.app.dto.bi.*;
 import com.condelar.cader.app.entiti.BI;
@@ -13,11 +14,14 @@ import com.condelar.cader.core.otherdto.DescriptionStr;
 import com.condelar.cader.core.structure.BaseService;
 import com.condelar.cader.core.structure.RegisterEntity;
 import com.condelar.cader.tool.csv.ToolCsv;
+import com.condelar.cader.tool.json.ToolJson;
 import com.condelar.cader.tool.util.ToolDate;
 import com.condelar.cader.toollibs.ggson.GJsonImp;
 import com.condelar.cader.toollibs.hibernet.QueryExecutor;
 import com.condelar.cader.toollibs.hibernet.QueryHqlService;
+import com.condelar.cader.toollibs.jasper.ToolJasper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -26,6 +30,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class BIService extends BaseService<BI, BIDTO, BIFilterDTO, BIListDTO, BIRepository, BIValid> {
+
+    @Value("${pathJasperBase}")
+    private String pathJasperBase;
 
     @Autowired
     private QueryHqlService serviceQuery;
@@ -94,7 +101,9 @@ public class BIService extends BaseService<BI, BIDTO, BIFilterDTO, BIListDTO, BI
     public DownloadDTO executeBI(LinkedHashMap data) {
         Object idOb = data.get("id");
         Long idBI = Long.parseLong(idOb.toString());
-        System.out.println(idBI);
+
+        LinkedHashMap formatData = (LinkedHashMap) data.get("format");
+        String format = (String) formatData.get("description");
 
         BI biBase = getById(idBI);
 
@@ -107,7 +116,6 @@ public class BIService extends BaseService<BI, BIDTO, BIFilterDTO, BIListDTO, BI
             String keyParameter = parameter.getKey();
             String descriptionParameter = parameter.getName();
             Object value = data.get(keyParameter);
-            System.out.println("-" + keyParameter + "-" + value + "-" + descriptionParameter);
 
             descriptionParameterLabel.append(descriptionParameter);
             descriptionParameterLabel.append(": ");
@@ -141,7 +149,6 @@ public class BIService extends BaseService<BI, BIDTO, BIFilterDTO, BIListDTO, BI
                 } else {
                     LocalDate date = ToolDate.strToLocal(valuePrimitive.toString());
                     parameters.put(keyParameter, date);
-                    System.out.println(date);
                 }
             }
         });
@@ -154,7 +161,17 @@ public class BIService extends BaseService<BI, BIDTO, BIFilterDTO, BIListDTO, BI
         });
 
         List<Map> dataResult = query.executeToMap();
-        return new DownloadDTO(biBase.getName(), "csv", ToolCsv.mapToCsv(dataResult).getBytes());
+
+        if (format.equals(ConstFormatsFile.CSV)) {
+            return new DownloadDTO(biBase.getName(), ConstFormatsFile.CSV, ToolCsv.mapToCsv(dataResult).getBytes());
+        } else if (format.equals(ConstFormatsFile.PDF)) {
+            byte[] fileReport = ToolJasper.playReportPDF(dataResult, new HashMap<>(),
+                    pathJasperBase + "/" +
+                            bi.getQuery().getPathJasper());
+            return new DownloadDTO(biBase.getName(), ConstFormatsFile.PDF, fileReport);
+        } else {
+            return new DownloadDTO(biBase.getName(), ConstFormatsFile.JSON, ToolJson.toJson(ToolDate.changeLocalDate(dataResult)).getBytes());
+        }
     }
 }
 

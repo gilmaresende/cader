@@ -13,6 +13,8 @@ public class BIQueryDTO implements Serializable {
 
     private String data;
 
+    private String pathJasper;
+
     private List<BIQueryDTO> children = new ArrayList<BIQueryDTO>();
 
 }

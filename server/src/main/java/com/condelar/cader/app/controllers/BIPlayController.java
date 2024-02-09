@@ -38,6 +38,5 @@ public class BIPlayController extends BaseController<BI, BIDTO, BIFilterDTO, BIL
         return ResponseEntity.ok(report);
     }
 
-
 }
 

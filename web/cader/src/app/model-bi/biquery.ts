@@ -4,4 +4,5 @@ export interface BIQuery {
   data: string;
   children: Array<BIQuery>;
   main: boolean;
+  pathJasper?: string;
 }

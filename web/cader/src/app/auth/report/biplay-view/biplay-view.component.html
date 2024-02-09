@@ -1,6 +1,30 @@
 <div class="row">
   <div class="col-5">
     <div [formGroup]="form" class="m2">
+      <div>
+        <inputRadio
+          [id]="'formatCSV'"
+          [label]="'CSV'"
+          formControlName="format"
+          [name]="'format'"
+          [valueFix]="constFormat.CSV"
+        />
+        <inputRadio
+          [id]="'formatPDF'"
+          [label]="'PDF'"
+          formControlName="format"
+          [name]="'format'"
+          [valueFix]="constFormat.PDF"
+        />
+        <inputRadio
+          [id]="'formatJSON'"
+          [label]="'JSON'"
+          formControlName="format"
+          [name]="'format'"
+          [valueFix]="constFormat.JSON"
+        />
+      </div>
+
       <div class="mt-4" *ngFor="let item of bi?.bIParameters">
         <div
           *ngIf="
@@ -29,7 +53,10 @@
               "
             >
               <div *ngIf="item.typePrimitive.id == constTypeInputs.INTEGER.id">
-                integer
+                <inputText
+                  formControlName="{{ item.key }}"
+                  [label]="item.name"
+                />
               </div>
               <div *ngIf="item.typePrimitive.id == constTypeInputs.DOUBLE.id">
                 <inputReais

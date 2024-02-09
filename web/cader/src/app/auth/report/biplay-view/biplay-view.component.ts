@@ -6,6 +6,7 @@ import { DownloadService } from 'src/app/core/services/download.service';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
 import { downloadFile } from 'src/app/core/utils/File/tool-files';
 import { ConstBIPrimitiveOrEntity, ConstBITypePrimitive } from 'src/app/data';
+import { ConstFormat } from 'src/app/data/ConstantsFormatFiles';
 import { BI } from 'src/app/model-bi/bi';
 import { BIData } from 'src/app/model-bi/bidata';
 import { BIPlayService } from 'src/app/services/biplay.service';
@@ -19,6 +20,7 @@ import { ObservableImpl } from 'src/app/struct/observable/observable-impl.servic
 export class BIPlayViewComponent extends SPage<BI, BIPlayService> {
   constTypeInputs = ConstBITypePrimitive;
   constPrimitiEntity = ConstBIPrimitiveOrEntity;
+  constFormat = ConstFormat;
   listComboClass: any = {};
 
   bi?: BIData;
@@ -50,6 +52,7 @@ export class BIPlayViewComponent extends SPage<BI, BIPlayService> {
   override populatedForm(ob: BI) {
     this.form = this.formBuilder.group({
       id: [ob.id],
+      format: [],
     });
     this.bi = JSON.parse(ob.data);
 
