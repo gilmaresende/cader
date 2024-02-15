@@ -54,17 +54,15 @@ export class TreeMenuComponent implements OnInit {
             label: 'Fatura Cartão',
             command: () => this.toGo('cardInvoice'),
           },
+          {
+            label: 'Lote Despesas',
+            command: () => this.toGo('lotOfExpense'),
+          },
         ],
       },
       {
         label: 'Relatórios',
-        items: [
-          { label: 'BI Play', command: () => this.toGo('biPlay') },
-
-          { label: 'A pagar', command: () => this.toGo('carteira') },
-          { label: 'A receber', command: () => this.toGo('pessoa') },
-          { label: 'Movimentos', command: () => this.toGo('pessoa') },
-        ],
+        items: [{ label: 'BI Play', command: () => this.toGo('biPlay') }],
       },
       {
         label: 'Dev',

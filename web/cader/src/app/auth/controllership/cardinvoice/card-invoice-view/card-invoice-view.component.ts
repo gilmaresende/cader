@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastService } from 'src/app/components/prime/toast/toast.service';
 import { SPage } from 'src/app/core/pages/spage/super-page';
-import { PagesService } from 'src/app/core/services/pages.service';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
+import { PagesService } from 'src/app/core/services/pages.service';
 import { CardInvoice } from 'src/app/model/card-invoice';
 import { CardInvoiceLaunch } from 'src/app/model/card-invoice-launch';
 import { CardInvoiceService } from 'src/app/services/card-invoice.service';
@@ -32,45 +32,22 @@ export class CardInvoiceViewComponent extends SPage<
 
   listLaunches: Array<CardInvoiceLaunch> = [];
 
-  // form = new FormGroup({
-  //   id: new FormControl(0),
-  //   update: new FormControl(new Date()),
-  //   closedDate: new FormControl(new Date()),
-  //   dueDate: new FormControl(new Date()),
-  //   value: new FormControl(0),
-  //   refundValue: new FormControl(0),
-  //   valueLaunches: new FormControl(0),
-  //   card: new FormControl(),
-  // });
-
   override populatedForm(ob: CardInvoice) {
-    const data = this.form.controls;
-    // data.id.setValue(ob.id!);
-    // data.update.setValue(ob.update);
-    // data.dueDate.setValue(ob.dueDate);
-    // data.closedDate.setValue(ob.closedDate);
-    // data.card.setValue(ob.card);
-    // data.value.setValue(ob.value);
-    // data.valueLaunches.setValue(ob.valueLaunches);
-    // data.refundValue.setValue(ob.refundValue);
+    this.form = this.formBuilder.group({
+      dueDate: [ob.dueDate, Validators.required],
+      closedDate: [ob.closedDate, Validators.required],
+      card: [ob.card],
+      value: [ob.value],
+      valueLaunches: [ob.valueLaunches],
+      refundValue: [ob.refundValue],
+    });
     this.listLaunches = ob.launches;
   }
 
   override getOb(): CardInvoice {
-    const form = this.form.controls;
-    // const ob: CardInvoice = {
-    //   id: form.id.value as number,
-    //   card: form.card.value,
-    //   closedDate: form.closedDate.value as Date,
-    //   dueDate: form.dueDate.value as Date,
-    //   launches: this.listLaunches,
-    //   update: form.update.value as Date,
-    //   value: form.value.value as number,
-    //   refundValue: form.refundValue.value as number,
-    //   valueLaunches: form.valueLaunches.value as number,
-    // };
-    // return ob;
-    return this.service.newInstance();
+    const ob: CardInvoice = this.form?.value;
+    ob.launches = this.listLaunches;
+    return ob;
   }
 
   findLauches() {
@@ -88,17 +65,14 @@ export class CardInvoiceViewComponent extends SPage<
   }
 
   getValueTotal() {
-    return 0; //gftodo
-    // return this.form.controls.value.value;
+    return this.form.value.value;
   }
 
   getRefundValue() {
-    return 0; //gftodo
-    //   return this.form.controls.refundValue.value;
+    return this.form.value.refundValue;
   }
 
   getValueLaunches() {
-    return 0; //gftodo
-    //  return this.form.controls.valueLaunches.value;
+    return this.form.value.valueLaunches;
   }
 }

@@ -4,6 +4,7 @@ import { CardInvoice } from '../model/card-invoice';
 import { Observable } from 'rxjs';
 import { ResponseServe } from '../core/model/response-serve';
 import { API_CONFIG } from 'src/environments/environments';
+import { getToday } from '../core/utils/Date/date-util';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,14 @@ export class CardInvoiceService extends BaseHttpService<CardInvoice> {
   override rote: string = 'cardInvoice';
 
   override newInstance(): CardInvoice {
-    throw new Error('Method not implemented.');
+    return {
+      closedDate: getToday(),
+      launches: [],
+      refundValue: 0,
+      value: 0,
+      valueLaunches: 0,
+      update: getToday(),
+    };
   }
   override getFilterBase(): {} {
     throw new Error('Method not implemented.');

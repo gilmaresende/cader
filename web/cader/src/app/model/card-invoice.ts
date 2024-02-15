@@ -4,8 +4,8 @@ import { CardInvoiceLaunch } from './card-invoice-launch';
 
 export interface CardInvoice extends SEntidade {
   value: number;
-  card: DescriptionId;
-  dueDate: Date;
+  card?: DescriptionId;
+  dueDate?: Date;
   closedDate: Date;
   launches: Array<CardInvoiceLaunch>;
   refundValue: number;

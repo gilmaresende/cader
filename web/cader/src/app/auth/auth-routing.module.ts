@@ -27,6 +27,8 @@ import { WalletViewComponent } from './register/wallet/wallet-view/wallet-view.c
 import { BIPlayListComponent } from './report/biplay-list/biplay-list.component';
 import { BIPlayViewComponent } from './report/biplay-view/biplay-view.component';
 import { ViewComponent } from './view/view.component';
+import { LoteOfExpenseViewComponent } from './controllership/lotofexpense/lote-of-expense-view/lote-of-expense-view.component';
+import { LoteOfExpenseListComponent } from './controllership/lotofexpense/lote-of-expense-list/lote-of-expense-list.component';
 
 const routes: Routes = [
   {
@@ -121,6 +123,14 @@ const routes: Routes = [
           { path: '', component: CardInvoiceViewComponent },
           { path: 'list', component: CardInvoiceListComponent },
           { path: ':id', component: CardInvoiceViewComponent },
+        ],
+      },
+      {
+        path: 'lotOfExpense',
+        children: [
+          { path: '', component: LoteOfExpenseViewComponent },
+          { path: 'list', component: LoteOfExpenseListComponent },
+          { path: ':id', component: LoteOfExpenseViewComponent },
         ],
       },
       {

@@ -50,6 +50,9 @@ import { ListBiComponent } from './dev/bi/create-bi/list-bi/list-bi.component';
 import { TemplatesModule } from '../templates/templates.module';
 import { BIPlayListComponent } from './report/biplay-list/biplay-list.component';
 import { BIPlayViewComponent } from './report/biplay-view/biplay-view.component';
+import { LoteOfExpenseListComponent } from './controllership/lotofexpense/lote-of-expense-list/lote-of-expense-list.component';
+import { LoteOfExpenseViewComponent } from './controllership/lotofexpense/lote-of-expense-view/lote-of-expense-view.component';
+import { LoteOfExpenseFilterComponent } from './controllership/lotofexpense/lote-of-expense-filter/lote-of-expense-filter.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +98,9 @@ import { BIPlayViewComponent } from './report/biplay-view/biplay-view.component'
     ListBiComponent,
     BIPlayListComponent,
     BIPlayViewComponent,
+    LoteOfExpenseListComponent,
+    LoteOfExpenseViewComponent,
+    LoteOfExpenseFilterComponent,
   ],
   imports: [
     CommonModule,

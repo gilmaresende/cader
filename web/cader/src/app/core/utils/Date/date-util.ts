@@ -10,6 +10,11 @@ export function getLastDayMonth(): Date {
   return lastDay;
 }
 
+export function getToday(): Date {
+  const date = new Date();
+  return date;
+}
+
 export function dateToStr(date: Date) {
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Adiciona um zero à esquerda se necessário
