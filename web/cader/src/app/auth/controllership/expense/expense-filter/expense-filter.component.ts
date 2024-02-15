@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { DescriptionId } from 'src/app/core/model/description-id';
 import { SFilter } from 'src/app/core/pages/spage/super-filter';
 import { FactoryCoreService } from 'src/app/core/services/factory-core.service';
-import { PagesService } from 'src/app/core/services/pages.service';
 import {
   getFirstDayMonth,
   getLastDayMonth,

@@ -14,6 +14,7 @@ export abstract class SItems<
   formBuilder: FormBuilder;
 
   form!: FormGroup;
+  ob: Entidade | undefined;
   constructor(
     private serviceItem: Service,
     private factoryCoreService: FactoryCoreService
@@ -43,6 +44,7 @@ export abstract class SItems<
   //defini o objeto atual na tela
   setOb(ob: Entidade | undefined) {
     if (ob) {
+      this.ob = ob;
       this.populateForm(ob);
     }
   }
@@ -53,8 +55,14 @@ export abstract class SItems<
   //chamada da api para salvar objeto atual da tela
   save() {
     this.servicePage.loading.showLoading();
-    const ob = this.serviceModal.getOb();
+    let ob = this.serviceModal.getOb();
+
+    if (this.ob) {
+      Object.assign(this.ob, ob);
+      ob = this.ob;
+    }
     if (!ob.id) {
+      console.log('new');
       this.serviceItem.create(ob as Entidade).subscribe({
         next: (res) => {
           this.servicePage.getControllerToast().showSucess(res.message);
@@ -68,6 +76,7 @@ export abstract class SItems<
         },
       });
     } else {
+      console.log('update');
       this.serviceItem.update(ob as Entidade).subscribe({
         next: (res) => {
           this.servicePage.getControllerToast().showSucess(res.message);

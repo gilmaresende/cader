@@ -6,6 +6,7 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
+import { putDecimalPlace } from 'src/app/core/utils/Number/ToolNumber';
 import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 
 @Component({
@@ -32,7 +33,7 @@ export class InputReaisComponent implements ControlValueAccessor, OnInit {
 
   @Output() valueChanged = new EventEmitter<any>();
 
-  value = 0;
+  value: any = 0;
 
   touched = false;
 
@@ -51,34 +52,15 @@ export class InputReaisComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  teclar() {
+  teclar(value: any) {
+    const valueTmp = value.target.value;
     this.markAsTouched();
     if (!this.disabled2) {
-      this.valueChanged.emit(this.value);
-      this.onChange(this.value);
+      this.valueChanged.emit(valueTmp);
+      this.onChange(valueTmp);
     }
   }
 
-  formatarMoeda(valor: any) {
-    let dividirPor100 = false;
-    if (valor < 1) {
-      dividirPor100 = true;
-    }
-
-    valor = valor + '';
-    valor = parseFloat(valor.replace(/[\D]+/g, ''));
-
-    valor = valor + '';
-    valor = valor.replace(/([0-9]{2})$/g, '.$1');
-
-    if (valor.length > 6) {
-      valor = valor.replace(/([0-9]{3})([0-9]{2}$)/g, '$1.$2');
-    }
-    if (dividirPor100) {
-      valor = valor / 100;
-    }
-    return valor;
-  }
   /////////////////////////////////////////////////////////////////////////////////////////////
   //que funções são essas?
   /////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,11 +79,7 @@ export class InputReaisComponent implements ControlValueAccessor, OnInit {
    * deseja definir um valor no controle filho.
    */
   writeValue(value: number) {
-    if (value % 1 == 0) {
-      value = value * 100;
-    }
-    this.value = value;
-    this.value = this.formatarMoeda(value);
+    this.value = putDecimalPlace(value, 2);
   }
 
   registerOnChange(onChange: any) {

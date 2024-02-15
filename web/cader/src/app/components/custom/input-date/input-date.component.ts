@@ -13,6 +13,7 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
+import { getMilisegundos } from 'src/app/core/utils/Date/date-util';
 import { ObservableElement } from 'src/app/struct/observable/observable-element.service';
 @Component({
   selector: 'inputDate',
@@ -91,14 +92,9 @@ export class InputDateComponent
    * deseja definir um valor no controle filho.
    */
   writeValue(value: Date | undefined) {
-    console.log(value);
     if (value) {
-      let milissegundos;
-      if (value instanceof Date) {
-        this.value = new Date(value.getTime());
-      } else {
-        //this.value = new Date(value.getTime());
-      }
+      const dateTmp = getMilisegundos(value);
+      this.value = new Date(dateTmp);
     }
   }
 

@@ -1,0 +1,69 @@
+<div *ngIf="form">
+  <div [formGroup]="form" class="mX1 pt1">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <inputText
+          formControlName="description"
+          [label]="'Descrição'"
+          [isDisabled]="isDisabled"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt2">
+        <inputDate
+          formControlName="firstDue"
+          [label]="'Primeiro Vencimento'"
+          [isDisabled]="isDisabled"
+        ></inputDate>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt2">
+        <inputDate
+          formControlName="lastDue"
+          [label]="'Último Vencimento'"
+          [isDisabled]="isDisabled"
+        ></inputDate>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt2">
+        <inputReais
+          formControlName="valueBase"
+          [label]="'Valor Base'"
+          [isDisabled]="isDisabled"
+        />
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-4 mt2">
+        <autocomplete
+          formControlName="wallet"
+          [service]="serviceWallet"
+          [label]="'Carteira'"
+          [isDisabled]="isDisabled"
+        />
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 mt2">
+        <autocomplete
+          formControlName="paymentType"
+          [service]="servicePaymentTypeService"
+          [label]="'Meio de Pagamento'"
+          [isDisabled]="isDisabled"
+        />
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 mt2">
+        <autocomplete
+          formControlName="person"
+          [service]="servicePerson"
+          [label]="'Pessoa'"
+          [isDisabled]="isDisabled"
+        />
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 mt2">
+        <autocomplete
+          formControlName="category"
+          [service]="serviceExpenseCategory"
+          [label]="'Categoria'"
+          [isDisabled]="isDisabled"
+        />
+      </div>
+    </div>
+  </div>
+</div>

@@ -53,6 +53,7 @@ import { BIPlayViewComponent } from './report/biplay-view/biplay-view.component'
 import { LoteOfExpenseListComponent } from './controllership/lotofexpense/lote-of-expense-list/lote-of-expense-list.component';
 import { LoteOfExpenseViewComponent } from './controllership/lotofexpense/lote-of-expense-view/lote-of-expense-view.component';
 import { LoteOfExpenseFilterComponent } from './controllership/lotofexpense/lote-of-expense-filter/lote-of-expense-filter.component';
+import { LotOfExpenseModelComponent } from './controllership/lotofexpense/lote-of-expense-view/lot-of-expense-model/lot-of-expense-model.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { LoteOfExpenseFilterComponent } from './controllership/lotofexpense/lote
     LoteOfExpenseListComponent,
     LoteOfExpenseViewComponent,
     LoteOfExpenseFilterComponent,
+    LotOfExpenseModelComponent,
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { SPageListFilter } from 'src/app/core/pages/spage/super-page-list-filter';
 import { PagesService } from 'src/app/core/services/pages.service';
-import { LotOfExpenses } from 'src/app/model/lot-of-expenses';
+import { newLoteOfExpsenseFilter } from 'src/app/model/filters';
+import { LoteOfExpenses } from 'src/app/model/lot-of-expenses';
 import { LotOfExpensesService } from 'src/app/services/lot-of-expenses.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { LotOfExpensesService } from 'src/app/services/lot-of-expenses.service';
   styleUrls: ['./lote-of-expense-list.component.scss'],
 })
 export class LoteOfExpenseListComponent extends SPageListFilter<
-  LotOfExpenses,
+  LoteOfExpenses,
   LotOfExpensesService
 > {
   constructor(
@@ -21,7 +22,7 @@ export class LoteOfExpenseListComponent extends SPageListFilter<
   }
 
   override getFilterBase() {
-    return {};
+    return newLoteOfExpsenseFilter();
   }
 
   header: Array<{ description: string; percentage: number }> = [

@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { API_CONFIG } from 'src/environments/environments';
 import { ResponseServe } from '../model/response-serve';
 import { SEntidade } from '../model/sentidade';
-import { BIQuery } from 'src/app/model-bi/biquery';
 @Injectable({
   providedIn: 'root',
 })
@@ -59,6 +58,7 @@ export abstract class BaseHttpService<Entiti extends SEntidade> {
   }
 
   create(ob: Entiti): Observable<ResponseServe> {
+    console.log(ob);
     const response = this.http.post<ResponseServe>(
       `${API_CONFIG.BASE_URL}/${this.rote}`,
       ob
@@ -67,6 +67,7 @@ export abstract class BaseHttpService<Entiti extends SEntidade> {
   }
 
   update(ob: Entiti): Observable<ResponseServe> {
+    console.log(ob);
     const response = this.http.put<ResponseServe>(
       `${API_CONFIG.BASE_URL}/${this.rote}/${ob.id}`,
       ob

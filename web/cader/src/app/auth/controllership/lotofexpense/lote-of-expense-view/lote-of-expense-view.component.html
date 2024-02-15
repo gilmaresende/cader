@@ -1,1 +1,70 @@
-<p>lote-of-expense-view works!</p>
+<div class="p1">
+  <abaH>
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        id="model-tab"
+        data-toggle="tab"
+        href="#model"
+        role="tab"
+        aria-controls="model"
+        aria-selected="true"
+        >Modelo</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="withPayment-tab"
+        data-toggle="tab"
+        href="#withPayment"
+        role="tab"
+        aria-controls="withPayment"
+        aria-selected="false"
+        >Sem Pagamentos</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="noPayment-tab"
+        data-toggle="tab"
+        href="#noPayment"
+        role="tab"
+        aria-controls="noPayment"
+        aria-selected="false"
+        >Com Pagamentos</a
+      >
+    </li>
+  </abaH>
+
+  <div class="tab-content" id="myTabContent">
+    <div
+      class="tab-pane fade show active"
+      id="model"
+      role="tabpanel"
+      aria-labelledby="model-tab"
+    >
+      <div class="divBI p1">
+        <lot-of-expense-model [form]="form" [isDisabled]="isDisabled" />
+      </div>
+    </div>
+
+    <div
+      class="tab-pane fade"
+      id="withPayment"
+      role="tabpanel"
+      aria-labelledby="withPayment-tab"
+    >
+      sem pagamentos
+    </div>
+    <div
+      class="tab-pane fade"
+      id="noPayment"
+      role="tabpanel"
+      aria-labelledby="noPayment-tab"
+    >
+      <div class="fullW">com pagamentos</div>
+    </div>
+  </div>
+</div>
