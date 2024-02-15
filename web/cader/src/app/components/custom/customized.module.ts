@@ -28,6 +28,7 @@ import { CheckComponent } from './check/check.component';
 import { TreeComponent } from './tree/tree.component';
 import { IkMaskDirective } from './directive/ik-mask.directive';
 import { IkMoneyDirective } from './directive/ik-money.directive';
+import { InputNumberComponent } from './input-number/input-number.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -60,6 +61,7 @@ import { IkMoneyDirective } from './directive/ik-money.directive';
     TreeComponent,
     IkMaskDirective,
     IkMoneyDirective,
+    InputNumberComponent,
   ],
   exports: [
     InputTextComponent,
@@ -79,6 +81,7 @@ import { IkMoneyDirective } from './directive/ik-money.directive';
     TreeComponent,
     IkMaskDirective,
     IkMoneyDirective,
+    InputNumberComponent,
   ],
 })
 export class CustomizedModule {}
