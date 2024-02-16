@@ -17,7 +17,6 @@ export class CashInflowService extends BaseHttpService<CashInflow> {
       payments: [],
       description: '',
       dueDate: new Date(),
-      origin: 1,
       valueTotal: 0,
       observation: '',
     };

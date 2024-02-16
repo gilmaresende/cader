@@ -58,7 +58,6 @@ export abstract class BaseHttpService<Entiti extends SEntidade> {
   }
 
   create(ob: Entiti): Observable<ResponseServe> {
-    console.log(ob);
     const response = this.http.post<ResponseServe>(
       `${API_CONFIG.BASE_URL}/${this.rote}`,
       ob
@@ -67,7 +66,6 @@ export abstract class BaseHttpService<Entiti extends SEntidade> {
   }
 
   update(ob: Entiti): Observable<ResponseServe> {
-    console.log(ob);
     const response = this.http.put<ResponseServe>(
       `${API_CONFIG.BASE_URL}/${this.rote}/${ob.id}`,
       ob

@@ -41,7 +41,6 @@ export class CashInflowViewComponent extends SPage<
       dueDate: [ob.dueDate, Validators.required],
       openingDate: [ob.openingDate, Validators.required],
       openValue: [ob.openValue],
-      origin: [ob.origin],
       valueTotal: [ob.valueTotal],
       amountPaid: [ob.amountPaid],
       paymentType: [ob.paymentType],

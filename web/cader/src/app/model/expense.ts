@@ -6,7 +6,6 @@ export interface Expense extends SEntidade {
   description: string;
   payments: Array<ExpensePayment>;
   dueDate: Date;
-  origin?: number;
   value: number;
   openValue?: number;
   amountPaid?: number;

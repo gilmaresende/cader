@@ -16,7 +16,6 @@ export class ExpenseService extends BaseHttpService<Expense> {
       payments: [],
       description: '',
       dueDate: new Date(),
-      origin: 1,
       value: 0,
     };
   }
