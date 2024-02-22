@@ -1,9 +1,6 @@
 package com.condelar.cader.app.services;
 
-import com.condelar.cader.app.dto.lotofexpense.ItemLotOfExpenseDTO;
-import com.condelar.cader.app.dto.lotofexpense.LotOfExpenseDTO;
-import com.condelar.cader.app.dto.lotofexpense.LotOfExpenseFilterDTO;
-import com.condelar.cader.app.dto.lotofexpense.LotOfExpenseListDTO;
+import com.condelar.cader.app.dto.lotofexpense.*;
 import com.condelar.cader.app.entiti.ItemLotOfExpense;
 import com.condelar.cader.app.entiti.LotOfExpense;
 import com.condelar.cader.app.repositories.LotOfExpenseRepository;
@@ -94,17 +91,20 @@ public class LotOfExpenseService extends BaseService<LotOfExpense, LotOfExpenseD
         return new LotOfExpenseValid();
     }
 
-    public void previewExpenses(LotOfExpenseDTO lotOfExpenseDTO) {
+    public LotOfExpenseDTO previewExpenses(LotOfExpensePreviewDTO lotOfExpenseDTO) {
+        LotOfExpenseDTO res = new LotOfExpenseDTO();
         LocalDate dueDate = lotOfExpenseDTO.getFirstDue();
+        res.setFirstDue(dueDate);
         int dayDueDate = dueDate.getDayOfMonth();
         for (int i = 0; i < lotOfExpenseDTO.getAmount(); i++) {
             ItemLotOfExpenseDTO item = new ItemLotOfExpenseDTO();
             item.setNumber(i + 1);
             item.setValue(lotOfExpenseDTO.getValueBase());
             item.setDueDate(dueDate);
-            lotOfExpenseDTO.getNoPayments().add(item);
+            res.getNoPayments().add(item);
             dueDate = getDayInNextMonth(dueDate, dayDueDate);
         }
+        return res;
     }
 }
 

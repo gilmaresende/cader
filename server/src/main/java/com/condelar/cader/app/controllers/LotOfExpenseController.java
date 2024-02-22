@@ -3,6 +3,7 @@ package com.condelar.cader.app.controllers;
 import com.condelar.cader.app.dto.lotofexpense.LotOfExpenseDTO;
 import com.condelar.cader.app.dto.lotofexpense.LotOfExpenseFilterDTO;
 import com.condelar.cader.app.dto.lotofexpense.LotOfExpenseListDTO;
+import com.condelar.cader.app.dto.lotofexpense.LotOfExpensePreviewDTO;
 import com.condelar.cader.app.entiti.LotOfExpense;
 import com.condelar.cader.app.repositories.LotOfExpenseRepository;
 import com.condelar.cader.app.services.LotOfExpenseService;
@@ -17,13 +18,13 @@ import org.springframework.web.bind.annotation.*;
 public class LotOfExpenseController extends BaseController<LotOfExpense, LotOfExpenseDTO, LotOfExpenseFilterDTO, LotOfExpenseListDTO, LotOfExpenseRepository, LotOfExpenseService, LotOfExpenseValid> {
 
     @GetMapping("previewExpenses")
-    public ResponseEntity<PackageDT<LotOfExpenseDTO>> previewExpenses(@RequestBody LotOfExpenseDTO lotOfExpenseDTO) {
+    public ResponseEntity<PackageDT<LotOfExpenseDTO>> previewExpenses(@RequestBody LotOfExpensePreviewDTO lotOfExpenseDTO) {
         getValid().clear();
         getValid().previewExpenses(lotOfExpenseDTO);
         getValid().hasError();
-        getService().previewExpenses(lotOfExpenseDTO);
+        LotOfExpenseDTO dataResponse =  getService().previewExpenses(lotOfExpenseDTO);
         PackageDT<LotOfExpenseDTO> pack = new PackageDT();
-        pack.setData(lotOfExpenseDTO);
+        pack.setData(dataResponse);
         return ResponseEntity.ok().body(pack);
     }
 }

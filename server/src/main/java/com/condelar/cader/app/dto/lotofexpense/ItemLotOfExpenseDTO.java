@@ -11,10 +11,10 @@ public class ItemLotOfExpenseDTO extends BaseDTO {
 
     private Long idExpense;
     private LocalDate dueDate;
-    private Double value;
-    private Double amountPaid;
-    private Double openValue;
-    private Integer number;
+    private Double value  = 0D;
+    private Double amountPaid = 0D;
+    private Double openValue = 0D;
+    private Integer number = 1;
 
     public ItemLotOfExpenseDTO() {
     }

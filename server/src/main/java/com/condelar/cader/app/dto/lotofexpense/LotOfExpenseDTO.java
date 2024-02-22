@@ -20,8 +20,8 @@ public class LotOfExpenseDTO extends BaseDTO {
     private DescriptionId paymentType;
     private DescriptionId wallet;
     private DescriptionId person;
-    private Double valueBase;
-    private Integer amount;
+    private Double valueBase = 0D;
+    private Integer amount = 1;
     private List<ItemLotOfExpenseDTO> withPayments = new ArrayList<>();
     private List<ItemLotOfExpenseDTO> noPayments = new ArrayList<>();
 

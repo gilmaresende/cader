@@ -54,6 +54,7 @@ import { LoteOfExpenseListComponent } from './controllership/lotofexpense/lote-o
 import { LoteOfExpenseViewComponent } from './controllership/lotofexpense/lote-of-expense-view/lote-of-expense-view.component';
 import { LoteOfExpenseFilterComponent } from './controllership/lotofexpense/lote-of-expense-filter/lote-of-expense-filter.component';
 import { LotOfExpenseModelComponent } from './controllership/lotofexpense/lote-of-expense-view/lot-of-expense-model/lot-of-expense-model.component';
+import { LotOfExpenseBaseComponent } from './controllership/lotofexpense/lote-of-expense-view/lot-of-expense-base/lot-of-expense-base.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { LotOfExpenseModelComponent } from './controllership/lotofexpense/lote-o
     LoteOfExpenseViewComponent,
     LoteOfExpenseFilterComponent,
     LotOfExpenseModelComponent,
+    LotOfExpenseBaseComponent,
   ],
   imports: [
     CommonModule,

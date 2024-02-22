@@ -5,6 +5,18 @@
         class="nav-link active"
         id="model-tab"
         data-toggle="tab"
+        href="#base"
+        role="tab"
+        aria-controls="base"
+        aria-selected="true"
+        >Base</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="model-tab"
+        data-toggle="tab"
         href="#model"
         role="tab"
         aria-controls="model"
@@ -41,6 +53,18 @@
   <div class="tab-content" id="myTabContent">
     <div
       class="tab-pane fade show active"
+      id="base"
+      role="tabpanel"
+      aria-labelledby="base-tab"
+    >
+      <div class="divBI p1">
+        <div>
+          <lot-of-expense-base />
+        </div>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade show"
       id="model"
       role="tabpanel"
       aria-labelledby="model-tab"
